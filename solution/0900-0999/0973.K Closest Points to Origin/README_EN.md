@@ -12,7 +12,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0973.K%20Closest%20Points%20to%20Origin/images/closestplane1.jpg" style="width: 400px; height: 400px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0973.K%20Closest%20Points%20to%20Origin/images/closestplane1.jpg" style="width: 400px; height: 400px;" />
 <pre>
 <strong>Input:</strong> points = [[1,3],[-2,2]], k = 1
 <strong>Output:</strong> [[-2,2]]
@@ -39,7 +39,6 @@ We only want the closest k = 1 points from the origin, so the answer is just [[-
 	<li><code>-10<sup>4</sup> &lt; x<sub>i</sub>, y<sub>i</sub> &lt; 10<sup>4</sup></code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -53,7 +52,76 @@ We only want the closest k = 1 points from the origin, so the answer is just [[-
 ### **Java**
 
 ```java
+import java.util.*;
 
+
+/**
+ * @author Furaha Damien
+ */
+
+
+class Solution {
+
+
+    // Helper inner class
+    public class Point {
+        int x;
+        int y;
+        int distance;
+
+
+        public Point(int x, int y, int distance) {
+            this.x = x;
+            this.y = y;
+            this.distance = distance;
+        }
+    }
+
+
+    public int[][] kClosest(int[][] points, int K) {
+
+
+        PriorityQueue<Point> que = new PriorityQueue<Point>((a, b) -> (a.distance - b.distance));
+        int[][] res = new int[K][2];
+
+
+        for (int[] temp : points) {
+            int dist = (temp[0] * temp[0] + temp[1] * temp[1]);
+            que.offer(new Point(temp[0], temp[1], dist));
+        }
+        for (int i = 0; i < K; i++) {
+            Point curr = que.poll();
+            res[i][0] = curr.x;
+            res[i][1] = curr.y;
+        }
+        return res;
+
+
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function kClosest(points: number[][], k: number): number[][] {
+    return points
+        .sort((a, b) => a[0] ** 2 + a[1] ** 2 - (b[0] ** 2 + b[1] ** 2))
+        .slice(0, k);
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn k_closest(mut points: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
+        points.sort_unstable_by(|a, b| {
+            (a[0].pow(2) + a[1].pow(2)).cmp(&(b[0].pow(2) + b[1].pow(2)))
+        });
+        points[0..k as usize].to_vec()
+    }
+}
 ```
 
 ### **...**

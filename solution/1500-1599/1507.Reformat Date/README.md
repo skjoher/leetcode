@@ -1,4 +1,4 @@
-# [1507. 转变日期格式](https://leetcode-cn.com/problems/reformat-date)
+# [1507. 转变日期格式](https://leetcode.cn/problems/reformat-date)
 
 [English Version](/solution/1500-1599/1507.Reformat%20Date/README_EN.md)
 
@@ -50,7 +50,6 @@
 	<li>给定日期保证是合法的，所以不需要处理异常输入。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -66,12 +65,25 @@
 ```python
 class Solution:
     def reformatDate(self, date: str) -> str:
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ]
         mapper = {v: str(k + 1) for k, v in enumerate(months)}
         split = date.split(' ')
         year = split[2]
         month = mapper.get(split[1])
-        day = split[0][:len(split[0]) - 2]
+        day = split[0][: len(split[0]) - 2]
         return year + '-' + month.zfill(2) + '-' + day.zfill(2)
 ```
 

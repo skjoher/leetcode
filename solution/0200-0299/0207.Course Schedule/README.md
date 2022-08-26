@@ -1,4 +1,4 @@
-# [207. 课程表](https://leetcode-cn.com/problems/course-schedule)
+# [207. 课程表](https://leetcode.cn/problems/course-schedule)
 
 [English Version](/solution/0200-0299/0207.Course%20Schedule/README_EN.md)
 
@@ -44,10 +44,13 @@
 	<li><code>prerequisites[i]</code> 中的所有课程对 <strong>互不相同</strong></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：拓扑排序**
+
+BFS 实现。
 
 <!-- tabs:start -->
 
@@ -56,7 +59,23 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        g = defaultdict(list)
+        indeg = [0] * numCourses
+        for a, b in prerequisites:
+            g[b].append(a)
+            indeg[a] += 1
+        cnt = 0
+        q = deque([i for i, v in enumerate(indeg) if v == 0])
+        while q:
+            i = q.popleft()
+            cnt += 1
+            for j in g[i]:
+                indeg[j] -= 1
+                if indeg[j] == 0:
+                    q.append(j)
+        return cnt == numCourses
 ```
 
 ### **Java**
@@ -64,7 +83,166 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<Integer>[] g = new List[numCourses];
+        for (int i = 0; i < numCourses; ++i) {
+            g[i] = new ArrayList<>();
+        }
+        int[] indeg = new int[numCourses];
+        for (var p : prerequisites) {
+            int a = p[0], b = p[1];
+            g[b].add(a);
+            ++indeg[a];
+        }
+        Deque<Integer> q = new ArrayDeque<>();
+        for (int i = 0; i < numCourses; ++i) {
+            if (indeg[i] == 0) {
+                q.offer(i);
+            }
+        }
+        int cnt = 0;
+        while (!q.isEmpty()) {
+            int i = q.poll();
+            ++cnt;
+            for (int j : g[i]) {
+                if (--indeg[j] == 0) {
+                    q.offer(j);
+                }
+            }
+        }
+        return cnt == numCourses;
+    }
+}
+```
 
+### **TypeScrpt**
+
+```ts
+function canFinish(numCourses: number, prerequisites: number[][]): boolean {
+    let g = Array.from({ length: numCourses }, () => []);
+    let indeg = new Array(numCourses).fill(0);
+    for (let [a, b] of prerequisites) {
+        g[b].push(a);
+        ++indeg[a];
+    }
+    let q = [];
+    for (let i = 0; i < numCourses; ++i) {
+        if (!indeg[i]) {
+            q.push(i);
+        }
+    }
+    let cnt = 0;
+    while (q.length) {
+        const i = q.shift();
+        ++cnt;
+        for (let j of g[i]) {
+            if (--indeg[j] == 0) {
+                q.push(j);
+            }
+        }
+    }
+    return cnt == numCourses;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> g(numCourses);
+        vector<int> indeg(numCourses);
+        for (auto& p : prerequisites) {
+            int a = p[0], b = p[1];
+            g[b].push_back(a);
+            ++indeg[a];
+        }
+        queue<int> q;
+        for (int i = 0; i < numCourses; ++i)
+            if (indeg[i] == 0) q.push(i);
+        int cnt = 0;
+        while (!q.empty()) {
+            int i = q.front();
+            q.pop();
+            ++cnt;
+            for (int j : g[i])
+                if (--indeg[j] == 0) q.push(j);
+        }
+        return cnt == numCourses;
+    }
+};
+```
+
+### **Go**
+
+```go
+func canFinish(numCourses int, prerequisites [][]int) bool {
+	g := make([][]int, numCourses)
+	indeg := make([]int, numCourses)
+	for _, p := range prerequisites {
+		a, b := p[0], p[1]
+		g[b] = append(g[b], a)
+		indeg[a]++
+	}
+	q := []int{}
+	for i, v := range indeg {
+		if v == 0 {
+			q = append(q, i)
+		}
+	}
+	cnt := 0
+	for len(q) > 0 {
+		i := q[0]
+		q = q[1:]
+		cnt++
+		for _, j := range g[i] {
+			indeg[j]--
+			if indeg[j] == 0 {
+				q = append(q, j)
+			}
+		}
+	}
+	return cnt == numCourses
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public bool CanFinish(int numCourses, int[][] prerequisites) {
+        var g = new List<int>[numCourses];
+        for (int i = 0; i < numCourses; ++i)
+        {
+            g[i] = new List<int>();
+        }
+        var indeg = new int[numCourses];
+        foreach (var p in prerequisites)
+        {
+            int a = p[0], b = p[1];
+            g[b].Add(a);
+            ++indeg[a];
+        }
+        var q = new Queue<int>();
+        for (int i = 0; i < numCourses; ++i)
+        {
+            if (indeg[i] == 0) q.Enqueue(i);
+        }
+        var cnt = 0;
+        while (q.Count > 0)
+        {
+            int i = q.Dequeue();
+            ++cnt;
+            foreach (int j in g[i])
+            {
+                if (--indeg[j] == 0) q.Enqueue(j);
+            }
+        }
+        return cnt == numCourses;
+    }
+}
 ```
 
 ### **...**

@@ -10,6 +10,8 @@
 
 <p>If there are several possible values for <code>h</code>, the maximum one is taken as the <code>h</code><strong>-index</strong>.</p>
 
+<p>You must write an algorithm that runs in logarithmic time.</p>
+
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
@@ -37,24 +39,103 @@ Since the researcher has 3 papers with at least 3 citations each and the remaini
 	<li><code>citations</code> is sorted in <strong>ascending order</strong>.</li>
 </ul>
 
-<p>&nbsp;</p>
-<p><strong>Follow up:</strong> Could you solve it in logarithmic time complexity?</p>
-
-
 ## Solutions
+
+Binary search.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
-
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        n = len(citations)
+        left, right = 0, n
+        while left < right:
+            mid = (left + right + 1) >> 1
+            if citations[n - mid] >= mid:
+                left = mid
+            else:
+                right = mid - 1
+        return left
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int left = 0, right = n;
+        while (left < right) {
+            int mid = (left + right + 1) >> 1;
+            if (citations[n - mid] >= mid) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int n = citations.size();
+        int left = 0, right = n;
+        while (left < right) {
+            int mid = (left + right + 1) >> 1;
+            if (citations[n - mid] >= mid)
+                left = mid;
+            else
+                right = mid - 1;
+        }
+        return left;
+    }
+};
+```
+
+### **Go**
+
+```go
+func hIndex(citations []int) int {
+	n := len(citations)
+	left, right := 0, n
+	for left < right {
+		mid := (left + right + 1) >> 1
+		if citations[n-mid] >= mid {
+			left = mid
+		} else {
+			right = mid - 1
+		}
+	}
+	return left
+}
+```
+
+### **TypeScript**
+
+```ts
+function hIndex(citations: number[]): number {
+    const n = citations.length;
+    let left = 0,
+        right = n;
+    while (left < right) {
+        const mid = (left + right + 1) >> 1;
+        if (citations[n - mid] >= mid) {
+            left = mid;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return left;
+}
 ```
 
 ### **...**

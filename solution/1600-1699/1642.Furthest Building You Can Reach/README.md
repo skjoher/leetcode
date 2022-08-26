@@ -1,4 +1,4 @@
-# [1642. 可以到达的最远建筑](https://leetcode-cn.com/problems/furthest-building-you-can-reach)
+# [1642. 可以到达的最远建筑](https://leetcode.cn/problems/furthest-building-you-can-reach)
 
 [English Version](/solution/1600-1699/1642.Furthest%20Building%20You%20Can%20Reach/README_EN.md)
 
@@ -21,7 +21,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1642.Furthest%20Building%20You%20Can%20Reach/images/q4.gif" style="width: 562px; height: 561px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1642.Furthest%20Building%20You%20Can%20Reach/images/q4.gif" style="width: 562px; height: 561px;" />
 <pre>
 <strong>输入：</strong>heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1
 <strong>输出：</strong>4
@@ -57,7 +57,6 @@
 	<li><code>0 <= bricks <= 10<sup>9</sup></code></li>
 	<li><code>0 <= ladders <= heights.length</code></li>
 </ul>
-
 
 ## 解法
 

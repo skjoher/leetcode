@@ -1,4 +1,4 @@
-# [1864. 构成交替字符串需要的最小交换次数](https://leetcode-cn.com/problems/minimum-number-of-swaps-to-make-the-binary-string-alternating)
+# [1864. 构成交替字符串需要的最小交换次数](https://leetcode.cn/problems/minimum-number-of-swaps-to-make-the-binary-string-alternating)
 
 [English Version](/solution/1800-1899/1864.Minimum%20Number%20of%20Swaps%20to%20Make%20the%20Binary%20String%20Alternating/README_EN.md)
 
@@ -45,7 +45,6 @@
 	<li><code>1 <= s.length <= 1000</code></li>
 	<li><code>s[i]</code> 的值为 <code>'0'</code> 或 <code>'1'</code></li>
 </ul>
-
 
 ## 解法
 
@@ -126,7 +125,7 @@ class Solution {
  * @param {string} s
  * @return {number}
  */
- var minSwaps = function(s) {
+var minSwaps = function (s) {
     let n = s.length;
     let n1 = [...s].reduce((a, c) => parseInt(c) + a, 0);
     let n0 = n - n1;

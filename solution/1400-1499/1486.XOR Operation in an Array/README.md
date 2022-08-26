@@ -1,4 +1,4 @@
-# [1486. 数组异或操作](https://leetcode-cn.com/problems/xor-operation-in-an-array)
+# [1486. 数组异或操作](https://leetcode.cn/problems/xor-operation-in-an-array)
 
 [English Version](/solution/1400-1499/1486.XOR%20Operation%20in%20an%20Array/README_EN.md)
 
@@ -50,7 +50,6 @@
 	<li><code>n == nums.length</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -66,7 +65,7 @@ class Solution:
     def xorOperation(self, n: int, start: int) -> int:
         res = 0
         for i in range(n):
-            res ^= (start + (i << 1))
+            res ^= start + (i << 1)
         return res
 ```
 
@@ -75,7 +74,15 @@ class Solution:
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
-
+class Solution {
+  public int xorOperation(int n, int start) {
+    int ret = start;
+    for (int i = 1; i < n; i++) {
+      ret = ret ^ (start + (i << 1));
+    }
+    return ret;
+  }
+}
 ```
 
 ### **...**

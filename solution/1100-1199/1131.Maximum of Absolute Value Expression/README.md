@@ -1,4 +1,4 @@
-# [1131. 绝对值表达式的最大值](https://leetcode-cn.com/problems/maximum-of-absolute-value-expression)
+# [1131. 绝对值表达式的最大值](https://leetcode.cn/problems/maximum-of-absolute-value-expression)
 
 [English Version](/solution/1100-1199/1131.Maximum%20of%20Absolute%20Value%20Expression/README_EN.md)
 
@@ -33,7 +33,6 @@
 	<li><code>2 &lt;= arr1.length == arr2.length &lt;= 40000</code></li>
 	<li><code>-10^6 &lt;= arr1[i], arr2[i] &lt;= 10^6</code></li>
 </ul>
-
 
 ## 解法
 

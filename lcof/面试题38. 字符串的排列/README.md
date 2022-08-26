@@ -1,23 +1,28 @@
-# [面试题 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+# [面试题 38. 字符串的排列](https://leetcode.cn/problems/zi-fu-chuan-de-pai-lie-lcof/)
 
 ## 题目描述
 
 <!-- 这里写题目描述 -->
 
-输入一个字符串，打印出该字符串中字符的所有排列。
+<p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
 
-你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。
+<p>&nbsp;</p>
 
-**示例:**
+<p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
 
-```
-输入：s = "abc"
-输出：["abc","acb","bac","bca","cab","cba"]
-```
+<p>&nbsp;</p>
 
-**限制：**
+<p><strong>示例:</strong></p>
 
-- `1 <= s 的长度 <= 8`
+<pre><strong>输入：</strong>s = &quot;abc&quot;
+<strong>输出：[</strong>&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;<strong>]</strong>
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>限制：</strong></p>
+
+<p><code>1 &lt;= s 的长度 &lt;= 8</code></p>
 
 ## 解法
 
@@ -44,6 +49,7 @@ class Solution:
                 chars[i], chars[x] = chars[x], chars[i]
                 dfs(x + 1)
                 chars[i], chars[x] = chars[x], chars[i]
+
         chars, res = list(s), []
         dfs(0)
         return res
@@ -98,22 +104,22 @@ class Solution {
  * @return {string[]}
  */
 var permutation = function (s) {
-  let len = s.length;
-  let res = new Set();
-  function dfs(str, isRead) {
-    if (str.length === len) {
-      res.add(str);
-      return;
+    let len = s.length;
+    let res = new Set();
+    function dfs(str, isRead) {
+        if (str.length === len) {
+            res.add(str);
+            return;
+        }
+        for (let i = 0; i < len; i++) {
+            if (isRead[i]) continue;
+            isRead[i] = 1;
+            dfs(str.concat(s[i]), isRead);
+            isRead[i] = 0;
+        }
     }
-    for (let i = 0; i < len; i++) {
-      if (isRead[i]) continue;
-      isRead[i] = 1;
-      dfs(str.concat(s[i]), isRead);
-      isRead[i] = 0;
-    }
-  }
-  dfs("", {});
-  return [...res];
+    dfs('', {});
+    return [...res];
 };
 ```
 
@@ -124,11 +130,9 @@ class Solution {
 public:
     void func(string str, int index, set<string>& mySet) {
         if (index == str.size()) {
-            // 当轮训到最后一个字符的时候，直接放入set中。加入set结构，是为了避免插入的值重复
             mySet.insert(str);
         } else {
             for (int i = index; i < str.size(); i++) {
-                // 从传入位置(index)开始算，固定第一个字符，然后后面的字符依次跟index位置交换
                 swap(str[i], str[index]);
                 int temp = index + 1;
                 func(str, temp, mySet);
@@ -141,9 +145,7 @@ public:
         set<string> mySet;
         func(s, 0, mySet);
         vector<string> ret;
-        for (auto& x : mySet) {
-            /* 这一题加入mySet是为了进行结果的去重。
-               但由于在最后加入了将set转vector的过程，所以时间复杂度稍高 */
+        for (string x : mySet) {
             ret.push_back(x);
         }
         return ret;
@@ -151,10 +153,87 @@ public:
 };
 ```
 
-### **...**
+### **TypeScript**
 
+```ts
+function permutation(s: string): string[] {
+    const n = s.length;
+    const cs = s.split('');
+    const set = new Set<string>();
+    const dfs = (i: number) => {
+        if (i === n) {
+            set.add(cs.join(''));
+            return;
+        }
+        dfs(i + 1);
+        for (let j = i + 1; j < n; j++) {
+            [cs[i], cs[j]] = [cs[j], cs[i]];
+            dfs(i + 1);
+            [cs[i], cs[j]] = [cs[j], cs[i]];
+        }
+    };
+    dfs(0);
+    return [...set];
+}
 ```
 
+### **Rust**
+
+```rust
+use std::collections::HashSet;
+impl Solution {
+    fn dfs(i: usize, cs: &mut Vec<char>, res: &mut Vec<String>) {
+        if i == cs.len() {
+            res.push(cs.iter().collect());
+            return;
+        }
+        let mut set = HashSet::new();
+        for j in i..cs.len() {
+            if set.contains(&cs[j]) {
+                continue;
+            }
+            set.insert(cs[j]);
+            cs.swap(i, j);
+            Self::dfs(i + 1, cs, res);
+            cs.swap(i, j);
+        }
+    }
+
+    pub fn permutation(s: String) -> Vec<String> {
+        let mut res = Vec::new();
+        Self::dfs(0, &mut s.chars().collect(), &mut res);
+        res
+    }
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public string[] Permutation(string s) {
+        int n = s.Length;
+        var data = s.ToCharArray();
+        var ans = new List<string>();
+        DFS(data, 0, ans);
+        return ans.ToArray();
+    }
+
+    void DFS(char[] s, int idx, List<string> ans) {
+        if (idx == s.Length) {
+            ans.Add(new string(s));
+            return;
+        }
+        var set = new HashSet<char>();
+        for (int i = idx; i < s.Length; i++) {
+            if (set.Add(s[i])) {
+                (s[i], s[idx]) = (s[idx], s[i]);
+                DFS(s, idx+1, ans);
+                (s[i], s[idx]) = (s[idx], s[i]);
+            }
+        }
+    }
+}
 ```
 
 <!-- tabs:end -->

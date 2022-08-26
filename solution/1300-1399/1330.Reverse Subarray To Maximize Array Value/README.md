@@ -1,4 +1,4 @@
-# [1330. 翻转子数组得到最大的数组值](https://leetcode-cn.com/problems/reverse-subarray-to-maximize-array-value)
+# [1330. 翻转子数组得到最大的数组值](https://leetcode.cn/problems/reverse-subarray-to-maximize-array-value)
 
 [English Version](/solution/1300-1399/1330.Reverse%20Subarray%20To%20Maximize%20Array%20Value/README_EN.md)
 
@@ -35,7 +35,6 @@
 	<li><code>1 &lt;= nums.length &lt;= 3*10^4</code></li>
 	<li><code>-10^5 &lt;= nums[i] &lt;= 10^5</code></li>
 </ul>
-
 
 ## 解法
 

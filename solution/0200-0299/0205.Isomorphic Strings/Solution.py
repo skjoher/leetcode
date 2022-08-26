@@ -1,11 +1,9 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        a2b, b2a = {}, {}
-        n = len(s)
-        for i in range(n):
-            a, b = s[i], t[i]
-            if (a in a2b and a2b[a] != b) or (b in b2a and b2a[b] != a):
+        d1, d2 = [0] * 256, [0] * 256
+        for i, (a, b) in enumerate(zip(s, t)):
+            a, b = ord(a), ord(b)
+            if d1[a] != d2[b]:
                 return False
-            a2b[a] = b
-            b2a[b] = a
+            d1[a] = d2[b] = i + 1
         return True

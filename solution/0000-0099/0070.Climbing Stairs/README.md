@@ -1,4 +1,4 @@
-# [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs)
+# [70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs)
 
 [English Version](/solution/0000-0099/0070.Climbing%20Stairs/README_EN.md)
 
@@ -6,30 +6,39 @@
 
 <!-- 这里写题目描述 -->
 
-<p>假设你正在爬楼梯。需要 <em>n</em>&nbsp;阶你才能到达楼顶。</p>
+<p>假设你正在爬楼梯。需要 <code>n</code>&nbsp;阶你才能到达楼顶。</p>
 
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>每次你可以爬 <code>1</code> 或 <code>2</code> 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
 
-<p><strong>注意：</strong>给定 <em>n</em> 是一个正整数。</p>
+<p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
-<pre><strong>输入：</strong> 2
-<strong>输出：</strong> 2
-<strong>解释：</strong> 有两种方法可以爬到楼顶。
-1.  1 阶 + 1 阶
-2.  2 阶</pre>
+<pre>
+<strong>输入：</strong>n = 2
+<strong>输出：</strong>2
+<strong>解释：</strong>有两种方法可以爬到楼顶。
+1. 1 阶 + 1 阶
+2. 2 阶</pre>
 
 <p><strong>示例 2：</strong></p>
 
-<pre><strong>输入：</strong> 3
-<strong>输出：</strong> 3
-<strong>解释：</strong> 有三种方法可以爬到楼顶。
-1.  1 阶 + 1 阶 + 1 阶
-2.  1 阶 + 2 阶
-3.  2 阶 + 1 阶
+<pre>
+<strong>输入：</strong>n = 3
+<strong>输出：</strong>3
+<strong>解释：</strong>有三种方法可以爬到楼顶。
+1. 1 阶 + 1 阶 + 1 阶
+2. 1 阶 + 2 阶
+3. 2 阶 + 1 阶
 </pre>
 
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 &lt;= n &lt;= 45</code></li>
+</ul>
 
 ## 解法
 
@@ -95,14 +104,14 @@ public:
  * @return {number}
  */
 var climbStairs = function (n) {
-  let a = 0,
-    b = 1;
-  for (let i = 0; i < n; ++i) {
-    const c = a + b;
-    a = b;
-    b = c;
-  }
-  return b;
+    let a = 0,
+        b = 1;
+    for (let i = 0; i < n; ++i) {
+        const c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
 };
 ```
 
@@ -115,6 +124,35 @@ func climbStairs(n int) int {
         a, b = b, a + b
     }
     return b
+}
+```
+
+### **TypeScript**
+
+```ts
+function climbStairs(n: number): number {
+    let p = 1;
+    let q = 1;
+    for (let i = 1; i < n; i++) {
+        [p, q] = [q, p + q];
+    }
+    return q;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn climb_stairs(n: i32) -> i32 {
+        let (mut p, mut q) = (1, 1);
+        for i in 1..n {
+            let t = p + q;
+            p = q;
+            q = t;
+        }
+        q
+    }
 }
 ```
 

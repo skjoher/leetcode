@@ -1,4 +1,4 @@
-# [1861. 旋转盒子](https://leetcode-cn.com/problems/rotating-the-box)
+# [1861. 旋转盒子](https://leetcode.cn/problems/rotating-the-box)
 
 [English Version](/solution/1800-1899/1861.Rotating%20the%20Box/README_EN.md)
 
@@ -23,7 +23,8 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1861.Rotating%20the%20Box/images/rotatingtheboxleetcodewithstones.png" style="width: 300px; height: 150px;"></p>
+
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1861.Rotating%20the%20Box/images/rotatingtheboxleetcodewithstones.png" style="width: 300px; height: 150px;"></p>
 
 <pre><b>输入：</b>box = [["#",".","#"]]
 <b>输出：</b>[["."],
@@ -33,7 +34,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1861.Rotating%20the%20Box/images/rotatingtheboxleetcode2withstones.png" style="width: 375px; height: 195px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1861.Rotating%20the%20Box/images/rotatingtheboxleetcode2withstones.png" style="width: 375px; height: 195px;"></p>
 
 <pre><b>输入：</b>box = [["#",".","*","."],
             ["#","#","*","."]]
@@ -45,7 +46,7 @@
 
 <p><strong>示例 3：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1861.Rotating%20the%20Box/images/rotatingtheboxleetcode3withstone.png" style="width: 400px; height: 218px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1861.Rotating%20the%20Box/images/rotatingtheboxleetcode3withstone.png" style="width: 400px; height: 218px;"></p>
 
 <pre><b>输入：</b>box = [["#","#","*",".","*","."],
             ["#","#","#","*",".","."],
@@ -90,7 +91,7 @@ class Solution:
             for j in range(n):
                 res[j][m - i - 1] = box[i][j]
         for j in range(m):
-            q = collections.deque()
+            q = deque()
             for i in range(n - 1, -1, -1):
                 if res[i][j] == '*':
                     q.clear()

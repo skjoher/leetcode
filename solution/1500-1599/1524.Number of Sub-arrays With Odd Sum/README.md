@@ -1,4 +1,4 @@
-# [1524. 和为奇数的子数组数目](https://leetcode-cn.com/problems/number-of-sub-arrays-with-odd-sum)
+# [1524. 和为奇数的子数组数目](https://leetcode.cn/problems/number-of-sub-arrays-with-odd-sum)
 
 [English Version](/solution/1500-1599/1524.Number%20of%20Sub-arrays%20With%20Odd%20Sum/README_EN.md)
 
@@ -57,8 +57,9 @@
 	<li><code>1 &lt;= arr[i] &lt;= 100</code></li>
 </ul>
 
-
 ## 解法
+
+前缀和 + 计数器。
 
 <!-- 这里可写通用的实现逻辑 -->
 
@@ -69,7 +70,19 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def numOfSubarrays(self, arr: List[int]) -> int:
+        MOD = int(1e9) + 7
+        counter = [0] * 2
+        s = ans = 0
+        for v in arr:
+            s += v
+            counter[s % 2] += 1
+            if s % 2 == 1:
+                ans += 1 + counter[0]
+            else:
+                ans += counter[1]
+        return ans % MOD
 ```
 
 ### **Java**
@@ -77,7 +90,66 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    private static final int MOD = (int) 1e9 + 7;
 
+    public int numOfSubarrays(int[] arr) {
+        int[] counter = new int[2];
+        int s = 0, ans = 0;
+        for (int v : arr) {
+            s += v;
+            ++counter[s % 2];
+            if (s % 2 == 1) {
+                ans = (ans + 1 + counter[0]) % MOD;
+            } else {
+                ans = (ans + counter[1]) % MOD;
+            }
+        }
+        return ans;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr) {
+        const int MOD = 1e9 + 7;
+        vector<int> counter(2);
+        int s = 0, ans = 0;
+        for (int& v : arr) {
+            s += v;
+            ++counter[s % 2];
+            if (s % 2 == 1)
+                ans = (ans + 1 + counter[0]) % MOD;
+            else
+                ans = (ans + counter[1]) % MOD;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func numOfSubarrays(arr []int) int {
+	const MOD = 1e9 + 7
+	counter := make([]int, 2)
+	s, ans := 0, 0
+	for _, v := range arr {
+		s += v
+		counter[s%2]++
+		if s%2 == 1 {
+			ans = (ans + 1 + counter[0]) % MOD
+		} else {
+			ans = (ans + counter[1]) % MOD
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

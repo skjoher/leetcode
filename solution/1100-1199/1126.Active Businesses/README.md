@@ -1,4 +1,4 @@
-# [1126. 查询活跃业务](https://leetcode-cn.com/problems/active-businesses)
+# [1126. 查询活跃业务](https://leetcode.cn/problems/active-businesses)
 
 [English Version](/solution/1100-1199/1126.Active%20Businesses/README_EN.md)
 
@@ -50,7 +50,6 @@ Events table:
 +-------------+ 
 &#39;reviews&#39;、 &#39;ads&#39; 和 &#39;page views&#39; 的总平均发生次数分别是 (7+3)/2=5, (11+7+6)/3=8, (3+12)/2=7.5。
 id 为 1 的业务有 7 个 &#39;reviews&#39; 事件（大于 5）和 11 个 &#39;ads&#39; 事件（大于 8），所以它是活跃业务。</pre>
-
 
 ## 解法
 

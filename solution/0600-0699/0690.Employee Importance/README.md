@@ -1,4 +1,4 @@
-# [690. 员工的重要性](https://leetcode-cn.com/problems/employee-importance)
+# [690. 员工的重要性](https://leetcode.cn/problems/employee-importance)
 
 [English Version](/solution/0600-0699/0690.Employee%20Importance/README_EN.md)
 
@@ -53,6 +53,7 @@ class Employee:
         self.importance = importance
         self.subordinates = subordinates
 """
+
 
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
@@ -122,19 +123,19 @@ class Solution {
  * @return {number}
  */
 var GetImportance = function (employees, id) {
-  const map = new Map();
-  for (const employee of employees) {
-    map.set(employee.id, employee);
-  }
-  const dfs = (id) => {
-    const employee = map.get(id);
-    let sum = employee.importance;
-    for (const subId of employee.subordinates) {
-      sum += dfs(subId);
+    const map = new Map();
+    for (const employee of employees) {
+        map.set(employee.id, employee);
     }
-    return sum;
-  };
-  return dfs(id);
+    const dfs = id => {
+        const employee = map.get(id);
+        let sum = employee.importance;
+        for (const subId of employee.subordinates) {
+            sum += dfs(subId);
+        }
+        return sum;
+    };
+    return dfs(id);
 };
 ```
 

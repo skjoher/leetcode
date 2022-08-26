@@ -1,4 +1,4 @@
-# [608. 树节点](https://leetcode-cn.com/problems/tree-node)
+# [608. 树节点](https://leetcode.cn/problems/tree-node)
 
 [English Version](/solution/0600-0699/0608.Tree%20Node/README_EN.md)
 
@@ -54,21 +54,22 @@
 	<li>样例中树的形态如下：
 	<p>&nbsp;</p>
 
-	<pre>			  1
-			/   \
+    <pre>			  1
+    		/   \
                       2       3
                     /   \
                   4       5
+
 </pre>
 
-	<p>&nbsp;</p>
-	</li>
+    <p>&nbsp;</p>
+    </li>
+
 </ul>
 
 <p><strong>注意</strong></p>
 
 <p>如果树中只有一个节点，你只需要输出它的根属性。</p>
-
 
 ## 解法
 
@@ -79,7 +80,18 @@
 ### **SQL**
 
 ```sql
-
+SELECT id,
+    (
+        CASE
+            WHEN p_id IS NULL THEN 'Root'
+            WHEN id IN (
+                SELECT p_id
+                FROM tree
+            ) THEN 'Inner'
+            ELSE 'Leaf'
+        END
+    ) AS type
+FROM tree;
 ```
 
 <!-- tabs:end -->

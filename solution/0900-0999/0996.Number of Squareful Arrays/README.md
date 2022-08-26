@@ -1,4 +1,4 @@
-# [996. 正方形数组的数目](https://leetcode-cn.com/problems/number-of-squareful-arrays)
+# [996. 正方形数组的数目](https://leetcode.cn/problems/number-of-squareful-arrays)
 
 [English Version](/solution/0900-0999/0996.Number%20of%20Squareful%20Arrays/README_EN.md)
 
@@ -34,7 +34,6 @@
 	<li><code>1 &lt;= A.length &lt;= 12</code></li>
 	<li><code>0 &lt;= A[i] &lt;= 1e9</code></li>
 </ol>
-
 
 ## 解法
 

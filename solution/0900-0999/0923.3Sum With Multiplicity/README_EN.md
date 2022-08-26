@@ -33,6 +33,14 @@ We choose one 1 from [1,1] in 2 ways,
 and two 2s from [2,2,2,2] in 6 ways.
 </pre>
 
+<p><strong>Example 3:</strong></p>
+
+<pre>
+<strong>Input:</strong> arr = [2,1,3], target = 6
+<strong>Output:</strong> 1
+<strong>Explanation:</strong> (1, 2, 3) occured one time in the array so we return 1.
+</pre>
+
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -41,7 +49,6 @@ and two 2s from [2,2,2,2] in 6 ways.
 	<li><code>0 &lt;= arr[i] &lt;= 100</code></li>
 	<li><code>0 &lt;= target &lt;= 300</code></li>
 </ul>
-
 
 ## Solutions
 
@@ -59,10 +66,29 @@ and two 2s from [2,2,2,2] in 6 ways.
 
 ```
 
-### **...**
+### **C++**
 
-```
-
+```cpp
+class Solution {
+public:
+    int threeSumMulti(vector<int>& arr, int target) {
+        unordered_map<int, long> c;
+        for (int a : arr) c[a]++;
+        long res = 0;
+        for (auto it : c)
+            for (auto it2 : c) {
+                int i = it.first, j = it2.first, k = target - i - j;
+                if (!c.count(k)) continue;
+                if (i == j && j == k)
+                    res += c[i] * (c[i] - 1) * (c[i] - 2) / 6;
+                else if (i == j && j != k)
+                    res += c[i] * (c[i] - 1) / 2 * c[k];
+                else if (i < j && j < k)
+                    res += c[i] * c[j] * c[k];
+            }
+        return res % int(1e9 + 7);
+    }
+};
 ```
 
 <!-- tabs:end -->

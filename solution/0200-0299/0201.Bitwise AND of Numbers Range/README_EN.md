@@ -35,7 +35,6 @@
 	<li><code>0 &lt;= left &lt;= right &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -43,13 +42,61 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def rangeBitwiseAnd(self, left: int, right: int) -> int:
+        while left < right:
+            right &= right - 1
+        return right
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int rangeBitwiseAnd(int left, int right) {
+        while (left < right) {
+            right &= (right - 1);
+        }
+        return right;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        while (left < right) right &= (right - 1);
+        return right;
+    }
+};
+```
+
+### **Go**
+
+```go
+func rangeBitwiseAnd(left int, right int) int {
+	for left < right {
+		right &= (right - 1)
+	}
+	return right
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int RangeBitwiseAnd(int left, int right) {
+        while (left < right)
+        {
+            right &= (right - 1);
+        }
+        return right;
+    }
+}
 ```
 
 ### **...**

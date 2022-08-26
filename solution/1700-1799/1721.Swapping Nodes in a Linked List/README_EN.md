@@ -10,7 +10,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1721.Swapping%20Nodes%20in%20a%20Linked%20List/images/linked1.jpg" style="width: 722px; height: 202px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1721.Swapping%20Nodes%20in%20a%20Linked%20List/images/linked1.jpg" style="width: 400px; height: 112px;" />
 <pre>
 <strong>Input:</strong> head = [1,2,3,4,5], k = 2
 <strong>Output:</strong> [1,4,3,2,5]
@@ -21,27 +21,6 @@
 <pre>
 <strong>Input:</strong> head = [7,9,6,6,7,8,3,0,9,5], k = 5
 <strong>Output:</strong> [7,9,6,6,8,7,3,0,9,5]
-</pre>
-
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> head = [1], k = 1
-<strong>Output:</strong> [1]
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> head = [1,2], k = 1
-<strong>Output:</strong> [2,1]
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> head = [1,2,3], k = 2
-<strong>Output:</strong> [1,2,3]
 </pre>
 
 <p>&nbsp;</p>
@@ -110,6 +89,96 @@ class Solution {
         q.val = t;
         return head;
     }
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        ListNode* p1 = head;
+        for (int i = 1; i < k; i++)
+            p1 = p1->next;
+        ListNode *slow = head, *fast = p1->next;
+
+        while (fast) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        swap(slow->val, p1->val);
+        return head;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func swapNodes(head *ListNode, k int) *ListNode {
+	fast := head
+	for k > 1 {
+		fast = fast.Next
+		k--
+	}
+	p := fast
+	slow := head
+	for fast.Next != nil {
+		slow, fast = slow.Next, fast.Next
+	}
+	q := slow
+	p.Val, q.Val = q.Val, p.Val
+	return head
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function swapNodes(head: ListNode | null, k: number): ListNode | null {
+    let fast = head;
+    while (--k) {
+        fast = fast.next;
+    }
+    let p = fast;
+    let slow = head;
+    while (fast.next) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+    let q = slow;
+    [p.val, q.val] = [q.val, p.val];
+    return head;
 }
 ```
 

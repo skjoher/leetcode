@@ -43,9 +43,6 @@ myHashSet.contains(2); // return False, (already removed)</pre>
 	<li>At most <code>10<sup>4</sup></code> calls will be made to <code>add</code>, <code>remove</code>, and <code>contains</code>.</li>
 </ul>
 
-<p>&nbsp;</p>
-<strong>Follow up:</strong> Could you solve the problem without using the built-in HashSet library?
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -54,7 +51,6 @@ myHashSet.contains(2); // return False, (already removed)</pre>
 
 ```python
 class MyHashSet:
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -72,7 +68,6 @@ class MyHashSet:
         Returns true if this set contains the specified element
         """
         return self.data[key]
-
 
 
 # Your MyHashSet object will be instantiated and called as such:
@@ -114,6 +109,37 @@ class MyHashSet {
  * obj.add(key);
  * obj.remove(key);
  * boolean param_3 = obj.contains(key);
+ */
+```
+
+### **TypeScript**
+
+```ts
+class MyHashSet {
+    data: Array<boolean>;
+    constructor() {
+        this.data = new Array(10 ** 6 + 1).fill(false);
+    }
+
+    add(key: number): void {
+        this.data[key] = true;
+    }
+
+    remove(key: number): void {
+        this.data[key] = false;
+    }
+
+    contains(key: number): boolean {
+        return this.data[key];
+    }
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * var obj = new MyHashSet()
+ * obj.add(key)
+ * obj.remove(key)
+ * var param_3 = obj.contains(key)
  */
 ```
 

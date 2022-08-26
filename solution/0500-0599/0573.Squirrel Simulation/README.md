@@ -1,4 +1,4 @@
-# [573. 松鼠模拟](https://leetcode-cn.com/problems/squirrel-simulation)
+# [573. 松鼠模拟](https://leetcode.cn/problems/squirrel-simulation)
 
 [English Version](/solution/0500-0599/0573.Squirrel%20Simulation/README_EN.md)
 
@@ -18,7 +18,7 @@
 坚果 : [[3,0], [2,5]]
 <strong>输出:</strong> 12
 <strong>解释:</strong>
-<img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0573.Squirrel%20Simulation/images/squirrel_simulation.png" style="width: 40%;">​​​​​
+<img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0573.Squirrel%20Simulation/images/squirrel_simulation.png" style="width: 40%;">​​​​​
 </pre>
 
 <p><strong>注意:</strong></p>
@@ -30,7 +30,6 @@
 	<li>高度和宽度是正整数。 3 &lt;= 高度 * 宽度 &lt;= 10,000。</li>
 	<li>给定的网格至少包含一颗坚果，唯一的一棵树和一只松鼠。</li>
 </ol>
-
 
 ## 解法
 

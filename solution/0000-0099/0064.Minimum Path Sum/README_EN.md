@@ -10,7 +10,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0064.Minimum%20Path%20Sum/images/minpath.jpg" style="width: 242px; height: 242px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0064.Minimum%20Path%20Sum/images/minpath.jpg" style="width: 242px; height: 242px;" />
 <pre>
 <strong>Input:</strong> grid = [[1,3,1],[1,5,1],[4,2,1]]
 <strong>Output:</strong> 7
@@ -36,6 +36,8 @@
 
 ## Solutions
 
+Dynamic programming.
+
 <!-- tabs:start -->
 
 ### **Python3**
@@ -52,7 +54,7 @@ class Solution:
         for i in range(1, m):
             for j in range(1, n):
                 dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
-        return dp[m - 1][n - 1]
+        return dp[-1][-1]
 ```
 
 ### **Java**
@@ -79,6 +81,29 @@ class Solution {
 }
 ```
 
+### **TypeScript**
+
+```ts
+function minPathSum(grid: number[][]): number {
+    let m = grid.length,
+        n = grid[0].length;
+    let dp = Array.from({ length: m }, v => new Array(n).fill(0));
+    dp[0][0] = grid[0][0];
+    for (let i = 1; i < m; ++i) {
+        dp[i][0] = dp[i - 1][0] + grid[i][0];
+    }
+    for (let j = 1; j < n; ++j) {
+        dp[0][j] = dp[0][j - 1] + grid[0][j];
+    }
+    for (let i = 1; i < m; ++i) {
+        for (let j = 1; j < n; ++j) {
+            dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+        }
+    }
+    return dp[m - 1][n - 1];
+}
+```
+
 ### **C++**
 
 ```cpp
@@ -101,6 +126,116 @@ public:
         return dp[m - 1][n - 1];
     }
 };
+```
+
+### **Go**
+
+```go
+func minPathSum(grid [][]int) int {
+	m, n := len(grid), len(grid[0])
+	dp := make([][]int, m)
+	for i := 0; i < m; i++ {
+		dp[i] = make([]int, n)
+	}
+	dp[0][0] = grid[0][0]
+	for i := 1; i < m; i++ {
+		dp[i][0] = dp[i-1][0] + grid[i][0]
+	}
+	for j := 1; j < n; j++ {
+		dp[0][j] = dp[0][j-1] + grid[0][j]
+	}
+	for i := 1; i < m; i++ {
+		for j := 1; j < n; j++ {
+			dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+		}
+	}
+	return dp[m-1][n-1]
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int MinPathSum(int[][] grid) {
+        int m = grid.Length, n = grid[0].Length;
+        int[,] dp = new int[m, n];
+        dp[0, 0] = grid[0][0];
+        for (int i = 1; i < m; ++i)
+        {
+            dp[i, 0] = dp[i - 1, 0] + grid[i][0];
+        }
+        for (int j = 1; j < n; ++j)
+        {
+            dp[0, j] = dp[0, j - 1] + grid[0][j];
+        }
+        for (int i = 1; i < m; ++i)
+        {
+            for (int j = 1; j < n; ++j)
+            {
+                dp[i, j] = Math.Min(dp[i - 1, j], dp[i, j - 1]) + grid[i][j];
+            }
+        }
+        return dp[m- 1, n - 1];
+    }
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var minPathSum = function (grid) {
+    let m = grid.length,
+        n = grid[0].length;
+    let dp = Array.from({ length: m }, v => new Array(n).fill(0));
+    dp[0][0] = grid[0][0];
+    for (let i = 1; i < m; ++i) {
+        dp[i][0] = dp[i - 1][0] + grid[i][0];
+    }
+    for (let j = 1; j < n; ++j) {
+        dp[0][j] = dp[0][j - 1] + grid[0][j];
+    }
+    for (let i = 1; i < m; ++i) {
+        for (let j = 1; j < n; ++j) {
+            dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+        }
+    }
+    return dp[m - 1][n - 1];
+};
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn min_path_sum(mut grid: Vec<Vec<i32>>) -> i32 {
+        let m = grid.len();
+        let n = grid[0].len();
+        for i in 1..m {
+            grid[i][0] += grid[i - 1][0];
+        }
+        for i in 1..n {
+            grid[0][i] += grid[0][i - 1];
+        }
+        for i in 1..m {
+            for j in 1..n {
+                grid[i][j] += grid[i][j - 1].min(grid[i - 1][j]);
+            }
+        }
+        grid[m - 1][n - 1]
+    }
+}
 ```
 
 ### **...**

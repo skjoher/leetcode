@@ -1,4 +1,4 @@
-# [1299. 将每个元素替换为右侧最大元素](https://leetcode-cn.com/problems/replace-elements-with-greatest-element-on-right-side)
+# [1299. 将每个元素替换为右侧最大元素](https://leetcode.cn/problems/replace-elements-with-greatest-element-on-right-side)
 
 [English Version](/solution/1200-1299/1299.Replace%20Elements%20with%20Greatest%20Element%20on%20Right%20Side/README_EN.md)
 
@@ -42,7 +42,6 @@
 	<li><code>1 <= arr.length <= 10<sup>4</sup></code></li>
 	<li><code>1 <= arr[i] <= 10<sup>5</sup></code></li>
 </ul>
-
 
 ## 解法
 

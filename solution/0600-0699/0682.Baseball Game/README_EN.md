@@ -15,7 +15,7 @@
 	<li><code>&quot;C&quot;</code> - Invalidate the previous score, removing it from the record. It is guaranteed there will always be a previous score.</li>
 </ol>
 
-<p>Return <em>the sum of all the scores on the record</em>.</p>
+<p>Return <em>the sum of all the scores on the record</em>. The test cases are generated so that the answer fits in a 32-bit integer.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -52,8 +52,12 @@ The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
 <p><strong>Example 3:</strong></p>
 
 <pre>
-<strong>Input:</strong> ops = [&quot;1&quot;]
-<strong>Output:</strong> 1
+<strong>Input:</strong> ops = [&quot;1&quot;,&quot;C&quot;]
+<strong>Output:</strong> 0
+<strong>Explanation:</strong>
+&quot;1&quot; - Add 1 to the record, record is now [1].
+&quot;C&quot; - Invalidate and remove the previous score, record is now [].
+Since the record is empty, the total sum is 0.
 </pre>
 
 <p>&nbsp;</p>
@@ -66,7 +70,6 @@ The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
 	<li>For operations <code>&quot;C&quot;</code> and <code>&quot;D&quot;</code>, there will always be at least one previous score on the record.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -76,17 +79,17 @@ The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
 ```python
 class Solution:
     def calPoints(self, ops: List[str]) -> int:
-        stack = []
+        stk = []
         for op in ops:
-            if op == 'C':
-                stack.pop()
+            if op == '+':
+                stk.append(stk[-1] + stk[-2])
             elif op == 'D':
-                stack.append(stack[-1] << 1)
-            elif op == '+':
-                stack.append(stack[-1] + stack[-2])
+                stk.append(stk[-1] << 1)
+            elif op == 'C':
+                stk.pop()
             else:
-                stack.append(int(op))
-        return sum(stack)
+                stk.append(int(op))
+        return sum(stk)
 ```
 
 ### **Java**
@@ -94,26 +97,123 @@ class Solution:
 ```java
 class Solution {
     public int calPoints(String[] ops) {
-        Deque<Integer> stack = new ArrayDeque<>();
+        Deque<Integer> stk = new ArrayDeque<>();
         for (String op : ops) {
-            if ("C".equals(op)) {
-                stack.pop();
+            if ("+".equals(op)) {
+                int a = stk.pop();
+                int b = stk.peek();
+                stk.push(a);
+                stk.push(a + b);
             } else if ("D".equals(op)) {
-                stack.push(stack.peek() << 1);
-            } else if ("+".equals(op)) {
-                Integer a = stack.pop();
-                Integer b = stack.peek();
-                stack.push(a);
-                stack.push(a + b);
+                stk.push(stk.peek() << 1);
+            } else if ("C".equals(op)) {
+                stk.pop();
             } else {
-                stack.push(Integer.valueOf(op));
+                stk.push(Integer.valueOf(op));
             }
         }
-        int res = 0;
-        for (Integer score : stack) {
-            res += score;
+        return stk.stream().mapToInt(Integer::intValue).sum();
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        vector<int> stk;
+        for (auto& op : ops) {
+            int n = stk.size();
+            if (op == "+") {
+                int a = stk[n - 1];
+                int b = stk[n - 2];
+                stk.push_back(a + b);
+            } else if (op == "D")
+                stk.push_back(stk[n - 1] * 2);
+            else if (op == "C")
+                stk.pop_back();
+            else
+                stk.push_back(stoi(op));
         }
-        return res;
+        return accumulate(stk.begin(), stk.end(), 0);
+    }
+};
+```
+
+### **Go**
+
+```go
+func calPoints(ops []string) int {
+	var stk []int
+	for _, op := range ops {
+		n := len(stk)
+		switch op {
+		case "+":
+			stk = append(stk, stk[n-1]+stk[n-2])
+		case "D":
+			stk = append(stk, stk[n-1]*2)
+		case "C":
+			stk = stk[:n-1]
+		default:
+			num, _ := strconv.Atoi(op)
+			stk = append(stk, num)
+		}
+	}
+	ans := 0
+	for _, score := range stk {
+		ans += score
+	}
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function calPoints(ops: string[]): number {
+    const stack = [];
+    for (const op of ops) {
+        const n = stack.length;
+        if (op === '+') {
+            stack.push(stack[n - 1] + stack[n - 2]);
+        } else if (op === 'D') {
+            stack.push(stack[n - 1] * 2);
+        } else if (op === 'C') {
+            stack.pop();
+        } else {
+            stack.push(Number(op));
+        }
+    }
+    return stack.reduce((p, v) => p + v);
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn cal_points(ops: Vec<String>) -> i32 {
+        let mut stack = vec![];
+        for op in ops {
+            match op.as_str() {
+                "+" => {
+                    let n = stack.len();
+                    stack.push(stack[n - 1] + stack[n - 2]);
+                }
+                "D" => {
+                    stack.push(stack.last().unwrap() * 2);
+                }
+                "C" => {
+                    stack.pop();
+                }
+                n => {
+                    stack.push(n.parse::<i32>().unwrap());
+                }
+            }
+        }
+        stack.into_iter().sum()
     }
 }
 ```

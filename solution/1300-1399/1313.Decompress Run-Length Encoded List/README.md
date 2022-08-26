@@ -1,4 +1,4 @@
-# [1313. 解压缩编码列表](https://leetcode-cn.com/problems/decompress-run-length-encoded-list)
+# [1313. 解压缩编码列表](https://leetcode.cn/problems/decompress-run-length-encoded-list)
 
 [English Version](/solution/1300-1399/1313.Decompress%20Run-Length%20Encoded%20List/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>1 <= nums[i] <= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -52,7 +51,12 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def decompressRLElist(self, nums: List[int]) -> List[int]:
+        res = []
+        for i in range(1, len(nums), 2):
+            res.extend([nums[i]] * nums[i - 1])
+        return res
 ```
 
 ### **Java**
@@ -60,7 +64,67 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] decompressRLElist(int[] nums) {
+        int n = 0;
+        for (int i = 0; i < nums.length; i += 2) {
+            n += nums[i];
+        }
+        int[] res = new int[n];
+        for (int i = 1, k = 0; i < nums.length; i += 2) {
+            for (int j = 0; j < nums[i - 1]; ++j) {
+                res[k++] = nums[i];
+            }
+        }
+        return res;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function decompressRLElist(nums: number[]): number[] {
+    let n = nums.length >> 1;
+    let ans = [];
+    for (let i = 0; i < n; i++) {
+        let freq = nums[2 * i],
+            val = nums[2 * i + 1];
+        ans.push(...new Array(freq).fill(val));
+    }
+    return ans;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> decompressRLElist(vector<int>& nums) {
+        vector<int> res;
+        for (int i = 1; i < nums.size(); i += 2) {
+            for (int j = 0; j < nums[i - 1]; ++j) {
+                res.push_back(nums[i]);
+            }
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func decompressRLElist(nums []int) []int {
+	var res []int
+	for i := 1; i < len(nums); i += 2 {
+		for j := 0; j < nums[i-1]; j++ {
+			res = append(res, nums[i])
+		}
+	}
+	return res
+}
 ```
 
 ### **...**

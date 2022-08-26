@@ -1,4 +1,4 @@
-# [面试题 16.03. 交点](https://leetcode-cn.com/problems/intersection-lcci)
+# [面试题 16.03. 交点](https://leetcode.cn/problems/intersection-lcci)
 
 [English Version](/lcci/16.03.Intersection/README_EN.md)
 
@@ -43,6 +43,7 @@ line2 = {1, 0}, {2, 1}
 
 ```python
 
+
 ```
 
 ### **Java**
@@ -51,11 +52,13 @@ line2 = {1, 0}, {2, 1}
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

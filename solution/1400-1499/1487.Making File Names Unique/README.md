@@ -1,4 +1,4 @@
-# [1487. 保证文件名唯一](https://leetcode-cn.com/problems/making-file-names-unique)
+# [1487. 保证文件名唯一](https://leetcode.cn/problems/making-file-names-unique)
 
 [English Version](/solution/1400-1499/1487.Making%20File%20Names%20Unique/README_EN.md)
 
@@ -65,7 +65,6 @@
 	<li><code>1 &lt;= names[i].length &lt;= 20</code></li>
 	<li><code>names[i]</code> 由小写英文字母、数字和/或圆括号组成。</li>
 </ul>
-
 
 ## 解法
 

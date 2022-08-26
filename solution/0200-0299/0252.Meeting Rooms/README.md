@@ -1,4 +1,4 @@
-# [252. 会议室](https://leetcode-cn.com/problems/meeting-rooms)
+# [252. 会议室](https://leetcode.cn/problems/meeting-rooms)
 
 [English Version](/solution/0200-0299/0252.Meeting%20Rooms/README_EN.md)
 
@@ -33,7 +33,6 @@
 	<li><code>intervals[i].length == 2</code></li>
 	<li><code>0 <= start<sub>i</sub> < end<sub>i</sub> <= 10<sup>6</sup></code></li>
 </ul>
-
 
 ## 解法
 

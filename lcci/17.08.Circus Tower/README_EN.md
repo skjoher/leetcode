@@ -1,4 +1,4 @@
-# [17.08. Circus Tower](https://leetcode-cn.com/problems/circus-tower-lcci)
+# [17.08. Circus Tower](https://leetcode.cn/problems/circus-tower-lcci)
 
 [中文文档](/lcci/17.08.Circus%20Tower/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong>Input: </strong>height = [65,70,56,75,60,68] weight = [100,150,90,190,95,110]
 
+
+
 <strong>Output: </strong>6
+
+
 
 <strong>Explanation: </strong>The longest tower is length 6 and includes from top to bottom: (56,90), (60,95), (65,100), (68,110), (70,150), (75,190)</pre>
 
@@ -30,17 +36,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

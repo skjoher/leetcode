@@ -1,4 +1,4 @@
-# [17.14. Smallest K](https://leetcode-cn.com/problems/smallest-k-lcci)
+# [17.14. Smallest K](https://leetcode.cn/problems/smallest-k-lcci)
 
 [中文文档](/lcci/17.14.Smallest%20K/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong>Input: </strong> arr = [1,3,5,7,2,4,6,8], k = 4
 
+
+
 <strong>Output: </strong> [1,2,3,4]
+
+
 
 </pre>
 
@@ -31,17 +37,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

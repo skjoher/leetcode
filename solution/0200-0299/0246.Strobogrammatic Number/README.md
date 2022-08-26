@@ -1,4 +1,4 @@
-# [246. 中心对称数](https://leetcode-cn.com/problems/strobogrammatic-number)
+# [246. 中心对称数](https://leetcode.cn/problems/strobogrammatic-number)
 
 [English Version](/solution/0200-0299/0246.Strobogrammatic%20Number/README_EN.md)
 
@@ -34,7 +34,6 @@
 <strong>输出：</strong>true
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -56,6 +55,7 @@ class Solution:
             if a == '9':
                 return b == '6'
             return False
+
         n = len(num)
         i, j = 0, n - 1
         while i <= j:

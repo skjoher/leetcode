@@ -1,4 +1,4 @@
-# [431. 将 N 叉树编码为二叉树](https://leetcode-cn.com/problems/encode-n-ary-tree-to-binary-tree)
+# [431. 将 N 叉树编码为二叉树](https://leetcode.cn/problems/encode-n-ary-tree-to-binary-tree)
 
 [English Version](/solution/0400-0499/0431.Encode%20N-ary%20Tree%20to%20Binary%20Tree/README_EN.md)
 
@@ -12,7 +12,7 @@
 
 <p>&nbsp;</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0431.Encode%20N-ary%20Tree%20to%20Binary%20Tree/images/narytreebinarytreeexample.png" style="width: 500px;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0431.Encode%20N-ary%20Tree%20to%20Binary%20Tree/images/narytreebinarytreeexample.png" style="width: 500px;"></p>
 
 <p>&nbsp;</p>
 
@@ -24,7 +24,6 @@
 	<li><code>N</code>&nbsp;的范围在 <code>[1, 1000]</code></li>
 	<li>不要使用类成员 / 全局变量 / 静态变量来存储状态。你的编码和解码算法应是无状态的。</li>
 </ol>
-
 
 ## 解法
 

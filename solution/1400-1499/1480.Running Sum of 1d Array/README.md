@@ -1,4 +1,4 @@
-# [1480. 一维数组的动态和](https://leetcode-cn.com/problems/running-sum-of-1d-array)
+# [1480. 一维数组的动态和](https://leetcode.cn/problems/running-sum-of-1d-array)
 
 [English Version](/solution/1400-1499/1480.Running%20Sum%20of%201d%20Array/README_EN.md)
 
@@ -39,10 +39,11 @@
 	<li><code>-10^6&nbsp;&lt;= nums[i] &lt;=&nbsp;10^6</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：前缀和**
 
 <!-- tabs:start -->
 
@@ -51,7 +52,9 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def runningSum(self, nums: List[int]) -> List[int]:
+        return list(accumulate(nums))
 ```
 
 ### **Java**
@@ -59,7 +62,37 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] runningSum(int[] nums) {
+        for (int i = 1; i < nums.length; ++i) {
+            nums[i] += nums[i - 1];
+        }
+        return nums;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        for (int i = 1; i < nums.size(); ++i) nums[i] += nums[i - 1];
+        return nums;
+    }
+};
+```
+
+### **Go**
+
+```go
+func runningSum(nums []int) []int {
+	for i := 1; i < len(nums); i++ {
+		nums[i] += nums[i-1]
+	}
+	return nums
+}
 ```
 
 ### **...**

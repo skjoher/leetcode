@@ -1,4 +1,4 @@
-# [16.26. Calculator](https://leetcode-cn.com/problems/calculator-lcci)
+# [16.26. Calculator](https://leetcode.cn/problems/calculator-lcci)
 
 [中文文档](/lcci/16.26.Calculator/README.md)
 
@@ -12,9 +12,15 @@
 
 <pre>
 
+
+
 <strong>Input: </strong>&quot;3+2*2&quot;
 
+
+
 <strong>Output:</strong> 7
+
+
 
 </pre>
 
@@ -22,7 +28,11 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> &quot; 3/2 &quot;
+
+
 
 <strong>Output:</strong> 1</pre>
 
@@ -30,9 +40,15 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> &quot; 3+5 / 2 &quot;
 
+
+
 <strong>Output:</strong> 5
+
+
 
 </pre>
 
@@ -51,17 +67,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

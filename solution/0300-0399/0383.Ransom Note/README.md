@@ -1,4 +1,4 @@
-# [383. 赎金信](https://leetcode-cn.com/problems/ransom-note)
+# [383. 赎金信](https://leetcode.cn/problems/ransom-note)
 
 [English Version](/solution/0300-0399/0383.Ransom%20Note/README_EN.md)
 
@@ -6,11 +6,13 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给定一个赎金信 (<code>ransom</code>) 字符串和一个杂志(<code>magazine</code>)字符串，判断第一个字符串 <code>ransom</code> 能不能由第二个字符串 <code>magazines</code> 里面的字符构成。如果可以构成，返回 <code>true</code> ；否则返回 <code>false</code>。</p>
+<p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p>
 
-<p>(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。杂志字符串中的每个字符只能在赎金信字符串中使用一次。)</p>
+<p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p>
 
-<p> </p>
+<p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p>
+
+<p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
@@ -33,14 +35,14 @@
 <strong>输出：</strong>true
 </pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
-	<li>你可以假设两个字符串均只含有小写字母。</li>
+	<li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>ransomNote</code> 和 <code>magazine</code> 由小写英文字母组成</li>
 </ul>
-
 
 ## 解法
 
@@ -57,13 +59,11 @@
 ```python
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        chars = {}
-        for i in magazine:
-            chars[i] = chars.get(i, 0) + 1
-        for i in ransomNote:
-            if not chars.get(i):
+        counter = Counter(magazine)
+        for c in ransomNote:
+            if counter[c] <= 0:
                 return False
-            chars[i] -= 1
+            counter[c] -= 1
         return True
 ```
 
@@ -74,18 +74,76 @@ class Solution:
 ```java
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        int[] chars = new int[26];
-        for (int i = 0, n = magazine.length(); i < n; ++i) {
-            int idx = magazine.charAt(i) - 'a';
-            ++chars[idx];
+        int[] counter = new int[26];
+        for (char c : magazine.toCharArray()) {
+            ++counter[c - 'a'];
         }
-        for (int i = 0, n = ransomNote.length(); i < n; ++i) {
-            int idx = ransomNote.charAt(i) - 'a';
-            if (chars[idx] == 0) return false;
-            --chars[idx];
+        for (char c : ransomNote.toCharArray()) {
+            if (counter[c - 'a'] <= 0) {
+                return false;
+            }
+            --counter[c - 'a'];
         }
         return true;
     }
+}
+```
+
+### **TypeScript**
+
+```ts
+function canConstruct(ransomNote: string, magazine: string): boolean {
+    let counter = new Array(26).fill(0);
+    let base = 'a'.charCodeAt(0);
+    for (let s of magazine) {
+        ++counter[s.charCodeAt(0) - base];
+    }
+    for (let s of ransomNote) {
+        let idx = s.charCodeAt(0) - base;
+        if (counter[idx] == 0) return false;
+        --counter[idx];
+    }
+    return true;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        vector<int> counter(26);
+        for (char c : magazine) ++counter[c - 'a'];
+        for (char c : ransomNote) {
+            if (counter[c - 'a'] <= 0) return false;
+            --counter[c - 'a'];
+        }
+        return true;
+    }
+};
+```
+
+### **Go**
+
+```go
+func canConstruct(ransomNote string, magazine string) bool {
+	rc := make([]int, 26)
+	for _, b := range ransomNote {
+		rc[b-'a']++
+	}
+
+	mc := make([]int, 26)
+	for _, b := range magazine {
+		mc[b-'a']++
+	}
+
+	for i := 0; i < 26; i++ {
+		if rc[i] > mc[i] {
+			return false
+		}
+	}
+	return true
 }
 ```
 

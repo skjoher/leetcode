@@ -1,4 +1,4 @@
-# [192. 统计词频](https://leetcode-cn.com/problems/word-frequency)
+# [192. 统计词频](https://leetcode.cn/problems/word-frequency)
 
 [English Version](/solution/0100-0199/0192.Word%20Frequency/README_EN.md)
 
@@ -39,32 +39,17 @@ day 1
 	<li>你可以使用一行&nbsp;<a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-4.html">Unix pipes</a>&nbsp;实现吗？</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
 <!-- tabs:start -->
 
-### **Python3**
+### **Bash**
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-```python
-
-```
-
-### **Java**
-
-<!-- 这里可写当前语言的特殊实现逻辑 -->
-
-```java
-
-```
-
-### **...**
-
-```
+```sh
 
 ```
 

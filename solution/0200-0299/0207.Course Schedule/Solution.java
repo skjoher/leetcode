@@ -1,38 +1,31 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        int[] indegree = new int[numCourses];
-        int[][] g = new int[numCourses][numCourses];
-        for (int[] e : prerequisites) {
-            int cur = e[0];
-            int pre = e[1];
-            if (g[pre][cur] == 0) {
-                ++indegree[cur];
-                g[pre][cur] = 1;
-            }
-        }
-
-        Queue<Integer> queue = new LinkedList<>();
+        List<Integer>[] g = new List[numCourses];
         for (int i = 0; i < numCourses; ++i) {
-            if (indegree[i] == 0) {
-                queue.offer(i);
+            g[i] = new ArrayList<>();
+        }
+        int[] indeg = new int[numCourses];
+        for (var p : prerequisites) {
+            int a = p[0], b = p[1];
+            g[b].add(a);
+            ++indeg[a];
+        }
+        Deque<Integer> q = new ArrayDeque<>();
+        for (int i = 0; i < numCourses; ++i) {
+            if (indeg[i] == 0) {
+                q.offer(i);
             }
         }
-
         int cnt = 0;
-        while (!queue.isEmpty()) {
-            int i = queue.poll();
+        while (!q.isEmpty()) {
+            int i = q.poll();
             ++cnt;
-            for (int j = 0; j < numCourses; ++j) {
-                if (g[i][j] == 1) {
-                    g[i][j] = 0;
-                    --indegree[j];
-                    if (indegree[j] == 0) {
-                        queue.offer(j);
-                    }
+            for (int j : g[i]) {
+                if (--indeg[j] == 0) {
+                    q.offer(j);
                 }
             }
         }
-
         return cnt == numCourses;
     }
 }

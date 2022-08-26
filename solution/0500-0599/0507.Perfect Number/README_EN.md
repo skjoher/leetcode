@@ -21,28 +21,7 @@
 <p><strong>Example 2:</strong></p>
 
 <pre>
-<strong>Input:</strong> num = 6
-<strong>Output:</strong> true
-</pre>
-
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> num = 496
-<strong>Output:</strong> true
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> num = 8128
-<strong>Output:</strong> true
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> num = 2
+<strong>Input:</strong> num = 7
 <strong>Output:</strong> false
 </pre>
 
@@ -53,7 +32,6 @@
 	<li><code>1 &lt;= num &lt;= 10<sup>8</sup></code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -61,13 +39,81 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def checkPerfectNumber(self, num: int) -> bool:
+        if num == 1:
+            return False
+        s, i = 1, 2
+        while i * i <= num:
+            if num % i == 0:
+                s += i
+                if i != num // i:
+                    s += num // i
+            i += 1
+        return s == num
 ```
 
 ### **Java**
 
 ```java
+class Solution {
 
+    public boolean checkPerfectNumber(int num) {
+        if (num == 1) {
+            return false;
+        }
+        int s = 1;
+        for (int i = 2; i * i <= num; ++i) {
+            if (num % i == 0) {
+                s += i;
+                if (i != num / i) {
+                    s += num / i;
+                }
+            }
+        }
+        return s == num;
+    }
+}
+
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool checkPerfectNumber(int num) {
+        if (num == 1) return false;
+        int s = 1;
+        for (int i = 2; i * i <= num; ++i) {
+            if (num % i == 0) {
+                s += i;
+                if (i != num / i) s += num / i;
+            }
+        }
+        return s == num;
+    }
+};
+```
+
+### **Go**
+
+```go
+func checkPerfectNumber(num int) bool {
+	if num == 1 {
+		return false
+	}
+	s := 1
+	for i := 2; i*i <= num; i++ {
+		if num%i == 0 {
+			s += i
+			if i != num/i {
+				s += num / i
+			}
+		}
+	}
+	return s == num
+}
 ```
 
 ### **...**

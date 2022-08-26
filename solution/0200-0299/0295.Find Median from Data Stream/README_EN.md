@@ -63,7 +63,6 @@ medianFinder.findMedian(); // return 2.0
 
 ```python
 class MedianFinder:
-
     def __init__(self):
         """
         initialize your data structure here.
@@ -72,10 +71,10 @@ class MedianFinder:
         self.max_heap = []
 
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.min_heap, num)
-        heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        heappush(self.min_heap, num)
+        heappush(self.max_heap, -heappop(self.min_heap))
         if len(self.max_heap) - len(self.min_heap) > 1:
-            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+            heappush(self.min_heap, -heappop(self.max_heap))
 
     def findMedian(self) -> float:
         if len(self.max_heap) > len(self.min_heap):
@@ -123,6 +122,44 @@ class MedianFinder {
  * MedianFinder obj = new MedianFinder();
  * obj.addNum(num);
  * double param_2 = obj.findMedian();
+ */
+```
+
+### **C++**
+
+```cpp
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    MedianFinder() { }
+
+    void addNum(int num) {
+        max_heap.push(num);
+        min_heap.push(max_heap.top());
+        max_heap.pop();
+        if (min_heap.size() > max_heap.size()) {
+            max_heap.push(min_heap.top());
+            min_heap.pop();
+        }
+    }
+
+    double findMedian() {
+        if (max_heap.size() > min_heap.size()) {
+            return max_heap.top();
+        }
+        return (double)(max_heap.top() + min_heap.top()) / 2;
+    }
+
+private:
+    priority_queue<int> max_heap;
+    priority_queue<int, vector<int>, greater<int>> min_heap;
+};
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
  */
 ```
 

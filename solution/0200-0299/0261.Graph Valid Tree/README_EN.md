@@ -10,14 +10,14 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0261.Graph%20Valid%20Tree/images/tree1-graph.jpg" style="width: 222px; height: 302px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0261.Graph%20Valid%20Tree/images/tree1-graph.jpg" style="width: 222px; height: 302px;" />
 <pre>
 <strong>Input:</strong> n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]
 <strong>Output:</strong> true
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0261.Graph%20Valid%20Tree/images/tree2-graph.jpg" style="width: 382px; height: 222px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0261.Graph%20Valid%20Tree/images/tree2-graph.jpg" style="width: 382px; height: 222px;" />
 <pre>
 <strong>Input:</strong> n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]
 <strong>Output:</strong> false
@@ -27,7 +27,7 @@
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= 2000 &lt;= n</code></li>
+	<li><code>1 &lt;= n &lt;= 2000</code></li>
 	<li><code>0 &lt;= edges.length &lt;= 5000</code></li>
 	<li><code>edges[i].length == 2</code></li>
 	<li><code>0 &lt;= a<sub>i</sub>, b<sub>i</sub> &lt; n</code></li>
@@ -35,21 +35,143 @@
 	<li>There are no self-loops or repeated edges.</li>
 </ul>
 
-
 ## Solutions
+
+Union find.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
+        p = list(range(n))
+        for a, b in edges:
+            if find(a) == find(b):
+                return False
+            p[find(a)] = find(b)
+            n -= 1
+        return n == 1
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    private int[] p;
 
+    public boolean validTree(int n, int[][] edges) {
+        p = new int[n];
+        for (int i = 0; i < n; ++i) {
+            p[i] = i;
+        }
+        for (int[] e : edges) {
+            int a = e[0], b = e[1];
+            if (find(a) == find(b)) {
+                return false;
+            }
+            p[find(a)] = find(b);
+            --n;
+        }
+        return n == 1;
+    }
+
+    private int find(int x) {
+        if (p[x] != x) {
+            p[x] = find(p[x]);
+        }
+        return p[x];
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> p;
+
+    bool validTree(int n, vector<vector<int>>& edges) {
+        p.resize(n);
+        for (int i = 0; i < n; ++i) p[i] = i;
+        for (auto& e : edges) {
+            int a = e[0], b = e[1];
+            if (find(a) == find(b)) return 0;
+            p[find(a)] = find(b);
+            --n;
+        }
+        return n == 1;
+    }
+
+    int find(int x) {
+        if (p[x] != x) p[x] = find(p[x]);
+        return p[x];
+    }
+};
+```
+
+### **Go**
+
+```go
+func validTree(n int, edges [][]int) bool {
+	p := make([]int, n)
+	for i := range p {
+		p[i] = i
+	}
+	var find func(x int) int
+	find = func(x int) int {
+		if p[x] != x {
+			p[x] = find(p[x])
+		}
+		return p[x]
+	}
+	for _, e := range edges {
+		a, b := e[0], e[1]
+		if find(a) == find(b) {
+			return false
+		}
+		p[find(a)] = find(b)
+		n--
+	}
+	return n == 1
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @return {boolean}
+ */
+var validTree = function (n, edges) {
+    let p = new Array(n);
+    for (let i = 0; i < n; ++i) {
+        p[i] = i;
+    }
+    function find(x) {
+        if (p[x] != x) {
+            p[x] = find(p[x]);
+        }
+        return p[x];
+    }
+    for (const [a, b] of edges) {
+        if (find(a) == find(b)) {
+            return false;
+        }
+        p[find(a)] = find(b);
+        --n;
+    }
+    return n == 1;
+};
 ```
 
 ### **...**

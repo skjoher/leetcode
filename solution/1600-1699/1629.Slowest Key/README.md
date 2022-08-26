@@ -1,4 +1,4 @@
-# [1629. 按键持续时间最长的键](https://leetcode-cn.com/problems/slowest-key)
+# [1629. 按键持续时间最长的键](https://leetcode.cn/problems/slowest-key)
 
 [English Version](/solution/1600-1699/1629.Slowest%20Key/README_EN.md)
 
@@ -14,9 +14,9 @@
 
 <p>注意，测试期间，同一个键可以在不同时刻被多次按下，而每次的持续时间都可能不同。</p>
 
-<p>请返回按键 <strong>持续时间最长</strong> 的键，如果有多个这样的键，则返回 <strong>按字母顺序排列最大</strong> 的那个键。</p>
+<p>请返回单次按键 <strong>持续时间最长</strong> 的键，如果有多个这样的键，则返回 <strong>按字母顺序排列最大</strong> 的那个键。</p>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
@@ -45,19 +45,18 @@
 按下 'a' ，持续时间 62 - 46 = 16
 按键持续时间最长的键是 'a' ，持续时间 16</pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
 	<li><code>releaseTimes.length == n</code></li>
 	<li><code>keysPressed.length == n</code></li>
-	<li><code>2 <= n <= 1000</code></li>
-	<li><code>1 <= releaseTimes[i] <= 10<sup>9</sup></code></li>
-	<li><code>releaseTimes[i] < releaseTimes[i+1]</code></li>
+	<li><code>2 &lt;= n &lt;= 1000</code></li>
+	<li><code>1 &lt;= releaseTimes[i] &lt;= 10<sup>9</sup></code></li>
+	<li><code>releaseTimes[i] &lt; releaseTimes[i+1]</code></li>
 	<li><code>keysPressed</code> 仅由小写英文字母组成</li>
 </ul>
-
 
 ## 解法
 
@@ -70,7 +69,16 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
+        ans = keysPressed[0]
+        mx = releaseTimes[0]
+        for i in range(1, len(keysPressed)):
+            d = releaseTimes[i] - releaseTimes[i - 1]
+            if d > mx or (d == mx and ord(keysPressed[i]) > ord(ans)):
+                mx = d
+                ans = keysPressed[i]
+        return ans
 ```
 
 ### **Java**
@@ -78,7 +86,57 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public char slowestKey(int[] releaseTimes, String keysPressed) {
+        char ans = keysPressed.charAt(0);
+        int mx = releaseTimes[0];
+        for (int i = 1; i < releaseTimes.length; ++i) {
+            int d = releaseTimes[i] - releaseTimes[i - 1];
+            if (d > mx || (d == mx && keysPressed.charAt(i) > ans)) {
+                mx = d;
+                ans = keysPressed.charAt(i);
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    char slowestKey(vector<int>& releaseTimes, string keysPressed) {
+        char ans = keysPressed[0];
+        int mx = releaseTimes[0];
+        for (int i = 1, n = releaseTimes.size(); i < n; ++i) {
+            int d = releaseTimes[i] - releaseTimes[i - 1];
+            if (d > mx || (d == mx && keysPressed[i] > ans)) {
+                mx = d;
+                ans = keysPressed[i];
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func slowestKey(releaseTimes []int, keysPressed string) byte {
+	ans := keysPressed[0]
+	mx := releaseTimes[0]
+	for i := 1; i < len(releaseTimes); i++ {
+		d := releaseTimes[i] - releaseTimes[i-1]
+		if d > mx || (d == mx && keysPressed[i] > ans) {
+			mx = d
+			ans = keysPressed[i]
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

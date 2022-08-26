@@ -1,4 +1,4 @@
-# [1006. 笨阶乘](https://leetcode-cn.com/problems/clumsy-factorial)
+# [1006. 笨阶乘](https://leetcode.cn/problems/clumsy-factorial)
 
 [English Version](/solution/1000-1099/1006.Clumsy%20Factorial/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>1 &lt;= N &lt;= 10000</code></li>
 	<li><code>-2^31 &lt;= answer &lt;= 2^31 - 1</code>&nbsp; （答案保证符合 32 位整数。）</li>
 </ol>
-
 
 ## 解法
 
@@ -109,5 +108,4 @@ class Solution {
 
 ```
 
-<!-- tabs:end -->
 <!-- tabs:end -->

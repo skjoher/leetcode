@@ -30,17 +30,6 @@
 <p><strong>Example 3:</strong></p>
 
 <pre>
-<strong>Input:</strong> pattern = &quot;abab&quot;, s = &quot;asdasdasdasd&quot;
-<strong>Output:</strong> true
-<strong>Explanation:</strong> One possible mapping is as follows:
-&#39;a&#39; -&gt; &quot;a&quot;
-&#39;b&#39; -&gt; &quot;sdasd&quot;
-Note that &#39;a&#39; and &#39;b&#39; cannot both map to &quot;asd&quot; since the mapping is a bijection.
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
 <strong>Input:</strong> pattern = &quot;aabb&quot;, s = &quot;xyzabcxzyabc&quot;
 <strong>Output:</strong> false
 </pre>
@@ -50,9 +39,8 @@ Note that &#39;a&#39; and &#39;b&#39; cannot both map to &quot;asd&quot; since t
 
 <ul>
 	<li><code>1 &lt;= pattern.length, s.length &lt;= 20</code></li>
-	<li><code>pattern</code> and <code>s</code> consist of only lower-case English letters.</li>
+	<li><code>pattern</code> and <code>s</code> consist of only lowercase English letters.</li>
 </ul>
-
 
 ## Solutions
 
@@ -61,13 +49,155 @@ Note that &#39;a&#39; and &#39;b&#39; cannot both map to &quot;asd&quot; since t
 ### **Python3**
 
 ```python
+class Solution:
+    def wordPatternMatch(self, pattern: str, s: str) -> bool:
+        def dfs(i, j):
+            if i == m and j == n:
+                return True
+            if i == m or j == n or n - j < m - i:
+                return False
+            for k in range(j, n):
+                t = s[j : k + 1]
+                if d.get(pattern[i]) == t:
+                    if dfs(i + 1, k + 1):
+                        return True
+                if pattern[i] not in d and t not in vis:
+                    d[pattern[i]] = t
+                    vis.add(t)
+                    if dfs(i + 1, k + 1):
+                        return True
+                    d.pop(pattern[i])
+                    vis.remove(t)
+            return False
 
+        m, n = len(pattern), len(s)
+        d = {}
+        vis = set()
+        return dfs(0, 0)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    private Set<String> vis;
+    private Map<Character, String> d;
+    private String p;
+    private String s;
+    private int m;
+    private int n;
 
+    public boolean wordPatternMatch(String pattern, String s) {
+        vis = new HashSet<>();
+        d = new HashMap<>();
+        this.p = pattern;
+        this.s = s;
+        m = p.length();
+        n = s.length();
+        return dfs(0, 0);
+    }
+
+    private boolean dfs(int i, int j) {
+        if (i == m && j == n) {
+            return true;
+        }
+        if (i == m || j == n || m - i > n - j) {
+            return false;
+        }
+        char c = p.charAt(i);
+        for (int k = j + 1; k <= n; ++k) {
+            String t = s.substring(j, k);
+            if (d.getOrDefault(c, "").equals(t)) {
+                if (dfs(i + 1, k)) {
+                    return true;
+                }
+            }
+            if (!d.containsKey(c) && !vis.contains(t)) {
+                d.put(c, t);
+                vis.add(t);
+                if (dfs(i + 1, k)) {
+                    return true;
+                }
+                vis.remove(t);
+                d.remove(c);
+            }
+        }
+        return false;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool wordPatternMatch(string pattern, string s) {
+        unordered_set<string> vis;
+        unordered_map<char, string> d;
+        return dfs(0, 0, pattern, s, vis, d);
+    }
+
+    bool dfs(int i, int j, string& p, string& s, unordered_set<string>& vis, unordered_map<char, string>& d) {
+        int m = p.size(), n = s.size();
+        if (i == m && j == n) return true;
+        if (i == m || j == n || m - i > n - j) return false;
+        char c = p[i];
+        for (int k = j + 1; k <= n; ++k) {
+            string t = s.substr(j, k - j);
+            if (d.count(c) && d[c] == t) {
+                if (dfs(i + 1, k, p, s, vis, d)) return true;
+            }
+            if (!d.count(c) && !vis.count(t)) {
+                d[c] = t;
+                vis.insert(t);
+                if (dfs(i + 1, k, p, s, vis, d)) return true;
+                vis.erase(t);
+                d.erase(c);
+            }
+        }
+        return false;
+    }
+};
+```
+
+### **Go**
+
+```go
+func wordPatternMatch(pattern string, s string) bool {
+	m, n := len(pattern), len(s)
+	vis := map[string]bool{}
+	d := map[byte]string{}
+	var dfs func(i, j int) bool
+	dfs = func(i, j int) bool {
+		if i == m && j == n {
+			return true
+		}
+		if i == m || j == n || m-i > n-j {
+			return false
+		}
+		c := pattern[i]
+		for k := j + 1; k <= n; k++ {
+			t := s[j:k]
+			if v, ok := d[c]; ok && v == t {
+				if dfs(i+1, k) {
+					return true
+				}
+			}
+			if _, ok := d[c]; !ok && !vis[t] {
+				d[c] = t
+				vis[t] = true
+				if dfs(i+1, k) {
+					return true
+				}
+				delete(d, c)
+				vis[t] = false
+			}
+		}
+		return false
+	}
+	return dfs(0, 0)
+}
 ```
 
 ### **...**

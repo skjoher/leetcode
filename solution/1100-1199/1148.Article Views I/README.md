@@ -1,4 +1,4 @@
-# [1148. 文章浏览 I](https://leetcode-cn.com/problems/article-views-i)
+# [1148. 文章浏览 I](https://leetcode.cn/problems/article-views-i)
 
 [English Version](/solution/1100-1199/1148.Article%20Views%20I/README_EN.md)
 
@@ -62,15 +62,10 @@ Views 表：
 ### **SQL**
 
 ```sql
-# Write your MySQL query statement below
-SELECT
-    DISTINCT(author_id) as id
-FROM
-    Views
-WHERE
-    author_id = viewer_id
-ORDER BY
-    id;
+SELECT DISTINCT(author_id) as id
+FROM Views
+WHERE author_id = viewer_id
+ORDER BY id;
 ```
 
 <!-- tabs:end -->

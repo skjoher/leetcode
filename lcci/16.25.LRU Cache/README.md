@@ -1,4 +1,4 @@
-# [面试题 16.25. LRU 缓存](https://leetcode-cn.com/problems/lru-cache-lcci)
+# [面试题 16.25. LRU 缓存](https://leetcode.cn/problems/lru-cache-lcci)
 
 [English Version](/lcci/16.25.LRU%20Cache/README_EN.md)
 
@@ -33,18 +33,18 @@ cache.get(4);       // 返回  4
 
 “哈希表 + 双向链表”实现。其中：
 
-- 双向链表按照被使用的顺序存储 kv 键值对，靠近头部的 kv 键值对是最近使用的，而靠近尾部的键值对是最久未使用的。
-- 哈希表通过缓存的 key 映射到双向链表中的位置。我们可以在 `O(1)` 时间内定位到缓存的 key 所对应的 value 在链表中的位置。
+-   双向链表按照被使用的顺序存储 kv 键值对，靠近头部的 kv 键值对是最近使用的，而靠近尾部的键值对是最久未使用的。
+-   哈希表通过缓存的 key 映射到双向链表中的位置。我们可以在 `O(1)` 时间内定位到缓存的 key 所对应的 value 在链表中的位置。
 
 对于 `get` 操作，判断 key 是否存在哈希表中：
 
-- 若不存在，返回 -1
-- 若存在，则 key 对应的节点 node 是最近使用的节点。将该节点移动到双向链表的头部，最后返回该节点的值即可。
+-   若不存在，返回 -1
+-   若存在，则 key 对应的节点 node 是最近使用的节点。将该节点移动到双向链表的头部，最后返回该节点的值即可。
 
 对于 `put` 操作，同样先判断 key 是否存在哈希表中：
 
-- 若不存在，则创建一个新的 node 节点，放入哈希表中。然后在双向链表的头部添加该节点。接着判断双向链表节点数是否超过 capacity。若超过，则删除双向链表的尾部节点，以及在哈希表中对应的项。
-- 若存在，则更新 node 节点的值，然后该节点移动到双向链表的头部。
+-   若不存在，则创建一个新的 node 节点，放入哈希表中。然后在双向链表的头部添加该节点。接着判断双向链表节点数是否超过 capacity。若超过，则删除双向链表的尾部节点，以及在哈希表中对应的项。
+-   若存在，则更新 node 节点的值，然后该节点移动到双向链表的头部。
 
 双向链表节点（哈希表的 value）的结构如下：
 
@@ -82,8 +82,8 @@ class Node:
         self.prev = None
         self.next = None
 
-class LRUCache:
 
+class LRUCache:
     def __init__(self, capacity: int):
         self.cache = {}
         self.head = Node()
@@ -175,7 +175,7 @@ class LRUCache {
         head.next = tail;
         tail.prev = head;
     }
-    
+
     public int get(int key) {
         if (!cache.containsKey(key)) {
             return -1;
@@ -184,7 +184,7 @@ class LRUCache {
         moveToHead(node);
         return node.value;
     }
-    
+
     public void put(int key, int value) {
         if (cache.containsKey(key)) {
             Node node = cache.get(key);

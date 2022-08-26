@@ -1,4 +1,4 @@
-# [1705. 吃苹果的最大数目](https://leetcode-cn.com/problems/maximum-number-of-eaten-apples)
+# [1705. 吃苹果的最大数目](https://leetcode.cn/problems/maximum-number-of-eaten-apples)
 
 [English Version](/solution/1700-1799/1705.Maximum%20Number%20of%20Eaten%20Apples/README_EN.md)
 
@@ -47,10 +47,11 @@
 	<li>只有在 <code>apples[i] = 0</code> 时，<code>days[i] = 0</code> 才成立</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+优先队列。先吃掉最容易腐烂的苹果。
 
 <!-- tabs:start -->
 
@@ -59,7 +60,24 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def eatenApples(self, apples: List[int], days: List[int]) -> int:
+        q = []
+        n = len(apples)
+        i = ans = 0
+        while i < n or q:
+            if i < n and apples[i] > 0:
+                heappush(q, [i + days[i] - 1, apples[i]])
+            while q and q[0][0] < i:
+                heappop(q)
+            if q:
+                end, num = heappop(q)
+                num -= 1
+                ans += 1
+                if num > 0 and end > i:
+                    heappush(q, [end, num])
+            i += 1
+        return ans
 ```
 
 ### **Java**
@@ -67,7 +85,94 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int eatenApples(int[] apples, int[] days) {
+        PriorityQueue<int[]> q = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        int ans = 0, i = 0, n = apples.length;
+        while (i < n || !q.isEmpty()) {
+            if (i < n && apples[i] > 0) {
+                q.offer(new int[]{i + days[i] - 1, apples[i]});
+            }
+            while (!q.isEmpty() && q.peek()[0] < i) {
+                q.poll();
+            }
+            if (!q.isEmpty()) {
+                int[] t = q.poll();
+                if (--t[1] > 0 && t[0] > i) {
+                    q.offer(t);
+                }
+                ++ans;
+            }
+            ++i;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+typedef pair<int, int> PII;
+
+class Solution {
+public:
+    int eatenApples(vector<int>& apples, vector<int>& days) {
+        priority_queue<PII, vector<PII>, greater<PII>> q;
+        int i = 0, n = apples.size(), ans = 0;
+        while (i < n || !q.empty()) {
+            if (i < n && apples[i] > 0) q.emplace(i + days[i] - 1, apples[i]);
+            while (!q.empty() && q.top().first < i) q.pop();
+            if (!q.empty()) {
+                PII t = q.top();
+                q.pop();
+                --t.second;
+                ++ans;
+                if (t.second > 0 && t.first > i) q.emplace(t);
+            }
+            ++i;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func eatenApples(apples []int, days []int) int {
+	var h hp
+	ans, n := 0, len(apples)
+	for i := 0; i < n || len(h) > 0; i++ {
+		if i < n && apples[i] > 0 {
+			heap.Push(&h, pair{i + days[i] - 1, apples[i]})
+		}
+		for len(h) > 0 && h[0].first < i {
+			heap.Pop(&h)
+		}
+		if len(h) > 0 {
+			h[0].second--
+			if h[0].first == i || h[0].second == 0 {
+				heap.Pop(&h)
+			}
+			ans++
+		}
+	}
+	return ans
+}
+
+type pair struct {
+	first  int
+	second int
+}
+
+type hp []pair
+
+func (a hp) Len() int            { return len(a) }
+func (a hp) Swap(i, j int)       { a[i], a[j] = a[j], a[i] }
+func (a hp) Less(i, j int) bool  { return a[i].first < a[j].first }
+func (a *hp) Push(x interface{}) { *a = append(*a, x.(pair)) }
+func (a *hp) Pop() interface{}   { l := len(*a); t := (*a)[l-1]; *a = (*a)[:l-1]; return t }
 ```
 
 ### **...**

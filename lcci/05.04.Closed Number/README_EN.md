@@ -1,4 +1,4 @@
-# [05.04. Closed Number](https://leetcode-cn.com/problems/closed-number-lcci)
+# [05.04. Closed Number](https://leetcode.cn/problems/closed-number-lcci)
 
 [中文文档](/lcci/05.04.Closed%20Number/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: num = 2 (0b10)
 
+
+
 <strong> Output</strong>: [4, 1] ([0b100, 0b1])
+
+
 
 </pre>
 
@@ -20,9 +26,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: num = 1
 
+
+
 <strong> Output</strong>: [2, -1]
+
+
 
 </pre>
 
@@ -41,17 +53,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

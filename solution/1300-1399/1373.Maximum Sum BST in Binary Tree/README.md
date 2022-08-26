@@ -1,4 +1,4 @@
-# [1373. 二叉搜索子树的最大键值和](https://leetcode-cn.com/problems/maximum-sum-bst-in-binary-tree)
+# [1373. 二叉搜索子树的最大键值和](https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree)
 
 [English Version](/solution/1300-1399/1373.Maximum%20Sum%20BST%20in%20Binary%20Tree/README_EN.md)
 
@@ -20,7 +20,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1373.Maximum%20Sum%20BST%20in%20Binary%20Tree/images/sample_1_1709.png" style="height: 250px; width: 320px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1373.Maximum%20Sum%20BST%20in%20Binary%20Tree/images/sample_1_1709.png" style="height: 250px; width: 320px;" /></p>
 
 <pre>
 <strong>输入：</strong>root = [1,4,3,2,4,2,5,null,null,null,null,null,null,4,6]
@@ -30,7 +30,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1373.Maximum%20Sum%20BST%20in%20Binary%20Tree/images/sample_2_1709.png" style="height: 180px; width: 134px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1373.Maximum%20Sum%20BST%20in%20Binary%20Tree/images/sample_2_1709.png" style="height: 180px; width: 134px;" /></p>
 
 <pre>
 <strong>输入：</strong>root = [4,3,null,1,2]
@@ -68,7 +68,6 @@
 	<li>每棵树有 <code>1</code> 到 <code>40000</code> 个节点。</li>
 	<li>每个节点的键值在 <code>[-4 * 10^4 , 4 * 10^4]</code> 之间。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [591. 标签验证器](https://leetcode-cn.com/problems/tag-validator)
+# [591. 标签验证器](https://leetcode.cn/problems/tag-validator)
 
 [English Version](/solution/0500-0599/0591.Tag%20Validator/README_EN.md)
 
@@ -91,10 +91,11 @@ cdata <strong>不</strong>是 <strong>&quot;&lt;![CDATA[&lt;div&gt;]&gt;]]&gt;]]
 	<li>为简明起见，你可以假设输入的代码（包括提到的<strong>任意字符</strong>）只包含<code>数字</code>, <font color="#c7254e" face="Menlo, Monaco, Consolas, Courier New, monospace"><span style="background-color:#f9f2f4; font-size:12.6px">字母</span></font>, <code>&#39;&lt;&#39;</code>,<code>&#39;&gt;&#39;</code>,<code>&#39;/&#39;</code>,<code>&#39;!&#39;</code>,<code>&#39;[&#39;</code>,<code>&#39;]&#39;</code>和<code>&#39; &#39;</code>。</li>
 </ol>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：栈模拟**
 
 <!-- tabs:start -->
 
@@ -103,7 +104,40 @@ cdata <strong>不</strong>是 <strong>&quot;&lt;![CDATA[&lt;div&gt;]&gt;]]&gt;]]
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+class Solution:
+    def isValid(self, code: str) -> bool:
+        def check(tag):
+            return 1 <= len(tag) <= 9 and all(c.isupper() for c in tag)
 
+        stk = []
+        i, n = 0, len(code)
+        while i < n:
+            if i and not stk:
+                return False
+            if code[i : i + 9] == '<![CDATA[':
+                i = code.find(']]>', i + 9)
+                if i < 0:
+                    return False
+                i += 2
+            elif code[i : i + 2] == '</':
+                j = i + 2
+                i = code.find('>', j)
+                if i < 0:
+                    return False
+                t = code[j:i]
+                if not check(t) or not stk or stk.pop() != t:
+                    return False
+            elif code[i] == '<':
+                j = i + 1
+                i = code.find('>', j)
+                if i < 0:
+                    return False
+                t = code[j:i]
+                if not check(t):
+                    return False
+                stk.append(t)
+            i += 1
+        return not stk
 ```
 
 ### **Java**
@@ -111,7 +145,216 @@ cdata <strong>不</strong>是 <strong>&quot;&lt;![CDATA[&lt;div&gt;]&gt;]]&gt;]]
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public boolean isValid(String code) {
+        Deque<String> stk = new ArrayDeque<>();
+        for (int i = 0; i < code.length(); ++i) {
+            if (i > 0 && stk.isEmpty()) {
+                return false;
+            }
+            if (code.startsWith("<![CDATA[", i)) {
+                i = code.indexOf("]]>", i + 9);
+                if (i < 0) {
+                    return false;
+                }
+                i += 2;
+            } else if (code.startsWith("</", i)) {
+                int j = i + 2;
+                i = code.indexOf(">", j);
+                if (i < 0) {
+                    return false;
+                }
+                String t = code.substring(j, i);
+                if (!check(t) || stk.isEmpty() || !stk.pop().equals(t)) {
+                    return false;
+                }
+            } else if (code.startsWith("<", i)) {
+                int j = i + 1;
+                i = code.indexOf(">", j);
+                if (i < 0) {
+                    return false;
+                }
+                String t = code.substring(j, i);
+                if (!check(t)) {
+                    return false;
+                }
+                stk.push(t);
+            }
+        }
+        return stk.isEmpty();
+    }
 
+    private boolean check(String tag) {
+        int n = tag.length();
+        if (n < 1 || n > 9) {
+            return false;
+        }
+        for (char c : tag.toCharArray()) {
+            if (!Character.isUpperCase(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool isValid(string code) {
+        stack<string> stk;
+        for (int i = 0; i < code.size(); ++i) {
+            if (i && stk.empty()) return false;
+            if (code.substr(i, 9) == "<![CDATA[") {
+                i = code.find("]]>", i + 9);
+                if (i < 0) return false;
+                i += 2;
+            } else if (code.substr(i, 2) == "</") {
+                int j = i + 2;
+                i = code.find('>', j);
+                if (i < 0) return false;
+                string t = code.substr(j, i - j);
+                if (!check(t) || stk.empty() || stk.top() != t) return false;
+                stk.pop();
+            } else if (code.substr(i, 1) == "<") {
+                int j = i + 1;
+                i = code.find('>', j);
+                if (i < 0) return false;
+                string t = code.substr(j, i - j);
+                if (!check(t)) return false;
+                stk.push(t);
+            }
+        }
+        return stk.empty();
+    }
+
+    bool check(string tag) {
+        int n = tag.size();
+        if (n < 1 || n > 9) return false;
+        for (char& c : tag)
+            if (!isupper(c))
+                return false;
+        return true;
+    }
+};
+```
+
+### **Go**
+
+```go
+func isValid(code string) bool {
+	var stk []string
+	for i := 0; i < len(code); i++ {
+		if i > 0 && len(stk) == 0 {
+			return false
+		}
+		if strings.HasPrefix(code[i:], "<![CDATA[") {
+			n := strings.Index(code[i+9:], "]]>")
+			if n == -1 {
+				return false
+			}
+			i += n + 11
+		} else if strings.HasPrefix(code[i:], "</") {
+			if len(stk) == 0 {
+				return false
+			}
+			j := i + 2
+			n := strings.IndexByte(code[j:], '>')
+			if n == -1 {
+				return false
+			}
+			t := code[j : j+n]
+			last := stk[len(stk)-1]
+			stk = stk[:len(stk)-1]
+			if !check(t) || last != t {
+				return false
+			}
+			i += n + 2
+		} else if strings.HasPrefix(code[i:], "<") {
+			j := i + 1
+			n := strings.IndexByte(code[j:], '>')
+			if n == -1 {
+				return false
+			}
+			t := code[j : j+n]
+			if !check(t) {
+				return false
+			}
+			stk = append(stk, t)
+			i += n + 1
+		}
+	}
+	return len(stk) == 0
+}
+
+func check(tag string) bool {
+	n := len(tag)
+	if n < 1 || n > 9 {
+		return false
+	}
+	for _, c := range tag {
+		if c < 'A' || c > 'Z' {
+			return false
+		}
+	}
+	return true
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn is_valid(code: String) -> bool {
+        fn check(tag: &str) -> bool {
+            let n = tag.len();
+            n >= 1 && n <= 9 && tag.as_bytes().iter().all(|b| b.is_ascii_uppercase())
+        }
+
+        let mut stk = Vec::new();
+        let mut i = 0;
+        while i < code.len() {
+            if i > 0 && stk.is_empty() {
+                return false;
+            }
+            if code[i..].starts_with("<![CDATA[") {
+                match code[i + 9..].find("]]>") {
+                    Some(n) => i += n + 11,
+                    None => return false,
+                };
+            } else if code[i..].starts_with("</") {
+                let j = i + 2;
+                match code[j..].find('>') {
+                    Some(n) => {
+                        let t = &code[j..j + n];
+                        if !check(t) || stk.is_empty() || stk.pop().unwrap() != t {
+                            return false;
+                        }
+                        i += n + 2;
+                    }
+                    None => return false,
+                };
+            } else if code[i..].starts_with("<") {
+                let j = i + 1;
+                match code[j..].find('>') {
+                    Some(n) => {
+                        let t = &code[j..j + n];
+                        if !check(t) {
+                            return false;
+                        }
+                        stk.push(t);
+                    }
+                    None => return false,
+                };
+            }
+            i += 1;
+        }
+        stk.is_empty()
+    }
+}
 ```
 
 ### **...**

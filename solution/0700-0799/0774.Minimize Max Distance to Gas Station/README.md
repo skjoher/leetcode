@@ -1,4 +1,4 @@
-# [774. 最小化去加油站的最大距离](https://leetcode-cn.com/problems/minimize-max-distance-to-gas-station)
+# [774. 最小化去加油站的最大距离](https://leetcode.cn/problems/minimize-max-distance-to-gas-station)
 
 [English Version](/solution/0700-0799/0774.Minimize%20Max%20Distance%20to%20Gas%20Station/README_EN.md)
 
@@ -39,7 +39,6 @@
 	<li><code>stations</code> 按 <strong>严格递增</strong> 顺序排列</li>
 	<li><code>1 <= k <= 10<sup>6</sup></code></li>
 </ul>
-
 
 ## 解法
 

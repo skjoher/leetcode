@@ -1,4 +1,4 @@
-# [530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst)
+# [530. 二叉搜索树的最小绝对差](https://leetcode.cn/problems/minimum-absolute-difference-in-bst)
 
 [English Version](/solution/0500-0599/0530.Minimum%20Absolute%20Difference%20in%20BST/README_EN.md)
 
@@ -6,25 +6,24 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值。</p>
+<p>给你一个二叉搜索树的根节点 <code>root</code> ，返回 <strong>树中任意两不同节点值之间的最小差值</strong> 。</p>
+
+<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
 
 <p>&nbsp;</p>
 
-<p><strong>示例：</strong></p>
+<p><strong>示例 1：</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0530.Minimum%20Absolute%20Difference%20in%20BST/images/bst1.jpg" style="width: 292px; height: 301px;" />
+<pre>
+<strong>输入：</strong>root = [4,2,6,1,3]
+<strong>输出：</strong>1
+</pre>
 
-<pre><strong>输入：</strong>
-
-   1
-    \
-     3
-    /
-   2
-
-<strong>输出：</strong>
-1
-
-<strong>解释：
-</strong>最小绝对差为 1，其中 2 和 1 的差的绝对值为 1（或者 2 和 3）。
+<p><strong>示例 2：</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0530.Minimum%20Absolute%20Difference%20in%20BST/images/bst2.jpg" style="width: 282px; height: 301px;" />
+<pre>
+<strong>输入：</strong>root = [1,0,48,null,null,12,49]
+<strong>输出：</strong>1
 </pre>
 
 <p>&nbsp;</p>
@@ -32,16 +31,21 @@
 <p><strong>提示：</strong></p>
 
 <ul>
-	<li>树中至少有 2 个节点。</li>
-	<li>本题与 783 <a href="https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/">https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/</a> 相同</li>
+	<li>树中节点的数目范围是 <code>[2, 10<sup>4</sup>]</code></li>
+	<li><code>0 &lt;= Node.val &lt;= 10<sup>5</sup></code></li>
 </ul>
 
+<p>&nbsp;</p>
+
+<p><strong>注意：</strong>本题与 783 <a href="https://leetcode.cn/problems/minimum-distance-between-bst-nodes/">https://leetcode.cn/problems/minimum-distance-between-bst-nodes/</a> 相同</p>
 
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
-中序遍历二叉搜索树，获取当前节点与上个节点的差值的最小值即可。
+**方法一：中序遍历**
+
+中序遍历二叉搜索树，获取当前节点与上个节点差值的最小值即可。
 
 <!-- tabs:start -->
 
@@ -52,26 +56,24 @@
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def getMinimumDifference(self, root: TreeNode) -> int:
-        def inorder(root):
-            if not root:
+        def dfs(root):
+            if root is None:
                 return
-            inorder(root.left)
-            if self.pre is not None:
-                self.min_diff = min(self.min_diff, abs(root.val - self.pre))
-            self.pre = root.val
-            inorder(root.right)
+            dfs(root.left)
+            nonlocal ans, prev
+            ans = min(ans, abs(prev - root.val))
+            prev = root.val
+            dfs(root.right)
 
-        self.pre = None
-        self.min_diff = 10 ** 5
-        inorder(root)
-        return self.min_diff
+        ans = prev = inf
+        dfs(root)
+        return ans
 ```
 
 ### **Java**
@@ -85,58 +87,115 @@ class Solution:
  *     int val;
  *     TreeNode left;
  *     TreeNode right;
- *     TreeNode(int x) { val = x; }
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
  * }
  */
 class Solution {
-
-    private int minDiff = Integer.MAX_VALUE;
-    private Integer pre;
+    private int ans;
+    private int prev;
+    private int inf = Integer.MAX_VALUE;
 
     public int getMinimumDifference(TreeNode root) {
-        inorder(root);
-        return minDiff;
+        ans = inf;
+        prev = inf;
+        dfs(root);
+        return ans;
     }
 
-    private void inorder(TreeNode root) {
-        if (root == null) return;
-        inorder(root.left);
-        if (pre != null) minDiff = Math.min(minDiff, Math.abs(root.val - pre));
-        pre = root.val;
-        inorder(root.right);
+    private void dfs(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        dfs(root.left);
+        ans = Math.min(ans, Math.abs(root.val - prev));
+        prev = root.val;
+        dfs(root.right);
     }
 }
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    const int inf = INT_MAX;
+    int ans;
+    int prev;
+
+    int getMinimumDifference(TreeNode* root) {
+        ans = inf, prev = inf;
+        dfs(root);
+        return ans;
+    }
+
+    void dfs(TreeNode* root) {
+        if (!root) return;
+        dfs(root->left);
+        ans = min(ans, abs(prev - root->val));
+        prev = root->val;
+        dfs(root->right);
+    }
+};
 ```
 
 ### **Go**
 
 ```go
-var res int
-var preNode *TreeNode
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
 func getMinimumDifference(root *TreeNode) int {
-    res = int(^uint(0) >> 1)
-    preNode = nil
-    helper(root)
-    return res
+	inf := 0x3f3f3f3f
+	ans, prev := inf, inf
+	var dfs func(*TreeNode)
+	dfs = func(root *TreeNode) {
+		if root == nil {
+			return
+		}
+		dfs(root.Left)
+		ans = min(ans, abs(prev-root.Val))
+		prev = root.Val
+		dfs(root.Right)
+	}
+	dfs(root)
+	return ans
 }
 
-func helper(root *TreeNode)  {
-    if root == nil {
-        return
-    }
-    helper(root.Left)
-    if preNode != nil {
-        res = getMinInt(res, root.Val - preNode.Val)
-    }
-    preNode = root
-    helper(root.Right)
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
-func getMinInt(a,b int) int {
-    if a < b {
-        return a
-    }
-    return b
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
 }
 ```
 

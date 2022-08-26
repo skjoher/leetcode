@@ -6,67 +6,35 @@
 
 <p>Given an array of string <code>words</code>. Return all strings in <code>words</code> which is substring of another word in <strong>any</strong> order.&nbsp;</p>
 
-
-
 <p>String <code>words[i]</code> is substring of <code>words[j]</code>,&nbsp;if&nbsp;can be obtained removing some characters to left and/or right side of <code>words[j]</code>.</p>
 
-
-
 <p>&nbsp;</p>
-
 <p><strong>Example 1:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> words = [&quot;mass&quot;,&quot;as&quot;,&quot;hero&quot;,&quot;superhero&quot;]
-
 <strong>Output:</strong> [&quot;as&quot;,&quot;hero&quot;]
-
 <strong>Explanation:</strong> &quot;as&quot; is substring of &quot;mass&quot; and &quot;hero&quot; is substring of &quot;superhero&quot;.
-
 [&quot;hero&quot;,&quot;as&quot;] is also a valid answer.
-
 </pre>
-
-
 
 <p><strong>Example 2:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> words = [&quot;leetcode&quot;,&quot;et&quot;,&quot;code&quot;]
-
 <strong>Output:</strong> [&quot;et&quot;,&quot;code&quot;]
-
 <strong>Explanation:</strong> &quot;et&quot;, &quot;code&quot; are substring of &quot;leetcode&quot;.
-
 </pre>
-
-
 
 <p><strong>Example 3:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> words = [&quot;blue&quot;,&quot;green&quot;,&quot;bu&quot;]
-
 <strong>Output:</strong> []
-
 </pre>
 
-
-
 <p>&nbsp;</p>
-
 <p><strong>Constraints:</strong></p>
-
-
 
 <ul>
 	<li><code>1 &lt;= words.length &lt;= 100</code></li>
@@ -82,13 +50,109 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def stringMatching(self, words: List[str]) -> List[str]:
+        ans = []
+        for i, w1 in enumerate(words):
+            for j, w2 in enumerate(words):
+                if i != j and w1 in w2:
+                    ans.append(w1)
+                    break
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public List<String> stringMatching(String[] words) {
+        List<String> ans = new ArrayList<>();
+        int n = words.length;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (i != j && words[j].contains(words[i])) {
+                    ans.add(words[i]);
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<string> stringMatching(vector<string>& words) {
+        vector<string> ans;
+        int n = words.size();
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (i != j && words[j].find(words[i]) != string::npos) {
+                    ans.push_back(words[i]);
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func stringMatching(words []string) []string {
+	ans := []string{}
+	for i, w1 := range words {
+		for j, w2 := range words {
+			if i != j && strings.Contains(w2, w1) {
+				ans = append(ans, w1)
+				break
+			}
+		}
+	}
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function stringMatching(words: string[]): string[] {
+    const res: string[] = [];
+    for (const target of words) {
+        for (const word of words) {
+            if (word !== target && word.includes(target)) {
+                res.push(target);
+                break;
+            }
+        }
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn string_matching(words: Vec<String>) -> Vec<String> {
+        let mut res = Vec::new();
+        for target in words.iter() {
+            for word in words.iter() {
+                if word != target && word.contains(target) {
+                    res.push(target.clone());
+                    break;
+                }
+            }
+        }
+        res
+    }
+}
 ```
 
 ### **...**

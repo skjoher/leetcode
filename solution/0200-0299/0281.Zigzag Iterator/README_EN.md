@@ -53,13 +53,12 @@
 
 <p>The &quot;Zigzag&quot; order is not clearly defined and is ambiguous for <code>k &gt; 2</code> cases. If &quot;Zigzag&quot; does not look right to you, replace &quot;Zigzag&quot; with &quot;Cyclic&quot;.</p>
 
-<p><strong>Example:</strong></p>
+<p><strong>Follow-up Example:</strong></p>
 
 <pre>
 <strong>Input:</strong> v1 = [1,2,3], v2 = [4,5,6,7], v3 = [8,9]
 <strong>Output:</strong> [1,4,8,2,5,9,3,6,7]
 </pre>
-
 
 ## Solutions
 
@@ -90,7 +89,7 @@ class ZigzagIterator:
             if self.cur == start:
                 return False
         return True
-        
+
 
 # Your ZigzagIterator object will be instantiated and called as such:
 # i, v = ZigzagIterator(v1, v2), []
@@ -105,7 +104,7 @@ public class ZigzagIterator {
     private int size;
     private List<Integer> indexes = new ArrayList<>();
     private List<List<Integer>> vectors = new ArrayList<>();
-    
+
     public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
         cur = 0;
         size = 2;

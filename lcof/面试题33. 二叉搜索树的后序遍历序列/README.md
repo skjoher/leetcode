@@ -1,38 +1,38 @@
-# [面试题 33. 二叉搜索树的后序遍历序列](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+# [面试题 33. 二叉搜索树的后序遍历序列](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
 
 ## 题目描述
 
 <!-- 这里写题目描述 -->
 
-输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回  `true`，否则返回  `false`。假设输入的数组的任意两个数字都互不相同。
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回&nbsp;<code>true</code>，否则返回&nbsp;<code>false</code>。假设输入的数组的任意两个数字都互不相同。</p>
 
-参考以下这棵二叉搜索树：
+<p>&nbsp;</p>
 
-```
-     5
+<p>参考以下这颗二叉搜索树：</p>
+
+<pre>     5
     / \
    2   6
   / \
- 1   3
-```
+ 1   3</pre>
 
-**示例 1：**
+<p><strong>示例 1：</strong></p>
 
-```
-输入: [1,6,3,2,5]
-输出: false
-```
+<pre><strong>输入: </strong>[1,6,3,2,5]
+<strong>输出: </strong>false</pre>
 
-**示例 2：**
+<p><strong>示例 2：</strong></p>
 
-```
-输入: [1,3,2,6,5]
-输出: true
-```
+<pre><strong>输入: </strong>[1,3,2,6,5]
+<strong>输出: </strong>true</pre>
 
-**提示：**
+<p>&nbsp;</p>
 
-- `数组长度 <= 1000`
+<p><strong>提示：</strong></p>
+
+<ol>
+	<li><code>数组长度 &lt;= 1000</code></li>
+</ol>
 
 ## 解法
 
@@ -49,21 +49,18 @@
 ```python
 class Solution:
     def verifyPostorder(self, postorder: List[int]) -> bool:
-        def verify(p1, p2):
-            if p1 > p2:
+        def dfs(postorder):
+            if not postorder:
                 return True
-            pos = p1
-            while pos < p2 and postorder[pos] < postorder[p2]:
-                pos += 1
-            p = pos
-            while pos < p2:
-                if postorder[pos] < postorder[p2]:
-                    return False
-                pos += 1
-            return verify(p1, p - 1) and verify(p, p2 - 1)
-        if not postorder:
-            return True
-        return verify(0, len(postorder) - 1)
+            v = postorder[-1]
+            i = 0
+            while i < len(postorder) and postorder[i] < v:
+                i += 1
+            if any(x < v for x in postorder[i:]):
+                return False
+            return dfs(postorder[:i]) and dfs(postorder[i:-1])
+
+        return dfs(postorder)
 ```
 
 ### **Java**
@@ -73,21 +70,27 @@ class Solution:
 ```java
 class Solution {
     public boolean verifyPostorder(int[] postorder) {
-        int n;
-        if (postorder == null || (n = postorder.length) == 0) return true;
-        return verify(postorder, 0, n - 1);
+        if (postorder == null || postorder.length < 2) {
+            return true;
+        }
+        return dfs(postorder, 0, postorder.length);
     }
 
-    private boolean  verify(int[] postorder, int p1, int p2) {
-        if (p1 >= p2) return true;
-        int pos = p1;
-        while (pos < p2 && postorder[pos] < postorder[p2]) ++pos;
-        int p = pos;
-        while (pos < p2) {
-            if (postorder[pos] < postorder[p2]) return false;
-            ++pos;
+    private boolean dfs(int[] postorder, int i, int n) {
+        if (n <= 0) {
+            return true;
         }
-        return verify(postorder, p1, p - 1) && verify(postorder, p, p2 - 1);
+        int v = postorder[i + n - 1];
+        int j = i;
+        while (j < i + n && postorder[j] < v) {
+            ++j;
+        }
+        for (int k = j; k < i + n; ++k) {
+            if (postorder[k] < v) {
+                return false;
+            }
+        }
+        return dfs(postorder, i, j - i) && dfs(postorder, j, n + i - j - 1);
     }
 }
 ```
@@ -100,19 +103,20 @@ class Solution {
  * @return {boolean}
  */
 var verifyPostorder = function (postorder) {
-  if (!postorder || postorder.length < 2) return true;
-  let mid = 0;
-  let root = postorder[postorder.length - 1];
-  for (let i = 0; i < postorder.length - 1 && postorder[i] < root; i++) {
-    mid++;
-  }
-  for (let i = mid + 1; i < postorder.length - 1; i++) {
-    if (postorder[i] < root) return false;
-  }
-  return (
-    verifyPostorder(postorder.slice(0, mid)) &&
-    verifyPostorder(postorder.slice(mid + 1, postorder.length - 1))
-  );
+    if (postorder.length < 2) return true;
+    function dfs(i, n) {
+        if (n <= 0) return true;
+        const v = postorder[i + n - 1];
+        let j = i;
+        while (j < i + n && postorder[j] < v) ++j;
+        for (let k = j; k < i + n; ++k) {
+            if (postorder[k] < v) {
+                return false;
+            }
+        }
+        return dfs(i, j - i) && dfs(j, n + i - j - 1);
+    }
+    return dfs(0, postorder.length);
 };
 ```
 
@@ -120,32 +124,27 @@ var verifyPostorder = function (postorder) {
 
 ```go
 func verifyPostorder(postorder []int) bool {
-    if len(postorder) < 2 {
-        return true
-    }
-    return helper(postorder, 0, len(postorder)-1)
-}
-// 递归
-func helper(postorder []int , left,right int) bool {
-    if left >= right {
-        return true
-    }
-    // 最后一位即根
-    rootValue := postorder[right]
-    // 从左开始往右遍历，直到大于根停止,小于部分是左子树
-    i := left
-    for i < right && postorder[i] < rootValue {
-        i++
-    }
-    // 剩下部分是右子树，检查是否都大于根值
-    for j := i; j < right; j++ {
-        if postorder[j] < rootValue {
-            return false
-        }
-    }
-    l := helper(postorder,left,i-1) // 检查左子树，左子树i要减一
-    r := helper(postorder,i,right-1)// 检查右子树，剔除最后一位是根
-    return l && r
+	if len(postorder) < 2 {
+		return true
+	}
+	var dfs func(i, n int) bool
+	dfs = func(i, n int) bool {
+		if n <= 0 {
+			return true
+		}
+		v := postorder[i+n-1]
+		j := i
+		for j < i+n && postorder[j] < v {
+			j++
+		}
+		for k := j; k < i+n; k++ {
+			if postorder[k] < v {
+				return false
+			}
+		}
+		return dfs(i, j-i) && dfs(j, n+i-j-1)
+	}
+	return dfs(0, len(postorder))
 }
 ```
 
@@ -155,27 +154,97 @@ func helper(postorder []int , left,right int) bool {
 class Solution {
 public:
     bool verifyPostorder(vector<int>& postorder) {
-        return verify(postorder, 0, postorder.size() - 1);
+        if (postorder.size() < 2) return true;
+        return dfs(postorder, 0, postorder.size());
     }
 
-    bool verify(vector<int>& postorder, int left, int right) {
-        if (left >= right) {
-            return true;
-        }
-        int root = postorder[right], i = left;
-        while (postorder[i] < root) {
-            ++i;
-        }
-        int mid = i;
-        while (i < right) {
-            if (postorder[i] < root) {
-                return false;
-            }
-            ++i;
-        }
-        return verify(postorder, left, mid - 1) && verify(postorder, mid, right - 1);
+    bool dfs(vector<int>& postorder, int i, int n) {
+        if (n <= 0) return 1;
+        int v = postorder[i + n - 1];
+        int j = i;
+        while (j < i + n && postorder[j] < v) ++j;
+        for (int k = j; k < i + n; ++k)
+            if (postorder[k] < v)
+                return 0;
+        return dfs(postorder, i, j - i) && dfs(postorder, j, n + i - j - 1);
     }
 };
+```
+
+### **TypeScript**
+
+```ts
+function verifyPostorder(postorder: number[]): boolean {
+    const dfs = (start: number, end: number, maxVal: number) => {
+        if (start > end) {
+            return true;
+        }
+        const rootVal = postorder[end];
+        for (let i = end; i >= start; i--) {
+            const val = postorder[i];
+            if (val > maxVal) {
+                return false;
+            }
+            if (val < rootVal) {
+                return dfs(start, i, rootVal) && dfs(i + 1, end - 1, maxVal);
+            }
+        }
+        return dfs(start, end - 1, maxVal);
+    };
+    const n = postorder.length;
+    return dfs(0, n - 1, Infinity);
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    fn dfs(start: usize, end: usize, max_val: i32, postorder: &Vec<i32>) -> bool {
+        if start >= end {
+            return true;
+        }
+        let root_val = postorder[end - 1];
+        for i in (start..end).rev() {
+            let val = postorder[i];
+            if val > max_val {
+                return false;
+            }
+            if val < root_val {
+                return Self::dfs(start, i, root_val, postorder)
+                    && Self::dfs(i + 1, end - 1, max_val, postorder);
+            }
+        }
+        Self::dfs(start, end - 1, max_val, postorder)
+    }
+
+    pub fn verify_postorder(postorder: Vec<i32>) -> bool {
+        Self::dfs(0, postorder.len(), i32::MAX, &postorder)
+    }
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public bool VerifyPostorder(int[] postorder) {
+        if (postorder.Length == 0) {
+            return true;
+        }
+        var root = postorder[^1];
+        int n = postorder.Length, i = 0;
+        while (i < n && postorder[i] < root) {
+            i += 1;
+        }
+        for (int j = i; j < n - 1; j++) {
+            if (postorder[j] < root) {
+                return false;
+            }
+        }
+        return VerifyPostorder(postorder[..i]) && VerifyPostorder(postorder[i..^1]);
+    }
+}
 ```
 
 ### **...**

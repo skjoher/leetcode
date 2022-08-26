@@ -1,4 +1,4 @@
-# [1250. 检查「好数组」](https://leetcode-cn.com/problems/check-if-it-is-a-good-array)
+# [1250. 检查「好数组」](https://leetcode.cn/problems/check-if-it-is-a-good-array)
 
 [English Version](/solution/1200-1299/1250.Check%20If%20It%20Is%20a%20Good%20Array/README_EN.md)
 
@@ -42,7 +42,6 @@
 	<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
 	<li><code>1 &lt;= nums[i] &lt;= 10^9</code></li>
 </ul>
-
 
 ## 解法
 

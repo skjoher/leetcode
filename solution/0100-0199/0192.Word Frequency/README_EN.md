@@ -6,27 +6,17 @@
 
 <p>Write a bash script to calculate the frequency of each word in a text file <code>words.txt</code>.</p>
 
-
-
 <p>For simplicity sake, you may assume:</p>
 
-
-
 <ul>
-	<li><code>words.txt</code> contains only lowercase characters and space <code>&#39; &#39;</code> characters.</li>
-	<li>Each word must consist of lowercase characters only.</li>
-	<li>Words are separated by one or more whitespace characters.</li>
+    <li><code>words.txt</code> contains only lowercase characters and space <code>&#39; &#39;</code> characters.</li>
+    <li>Each word must consist of lowercase characters only.</li>
+    <li>Words are separated by one or more whitespace characters.</li>
 </ul>
-
-
 
 <p><strong>Example:</strong></p>
 
-
-
 <p>Assume that <code>words.txt</code> has the following content:</p>
-
-
 
 <pre>
 
@@ -36,11 +26,7 @@ the sunny is is
 
 </pre>
 
-
-
 <p>Your script should output the following, sorted by descending frequency:</p>
-
-
 
 <pre>
 
@@ -54,38 +40,20 @@ day 1
 
 </pre>
 
-
-
 <p><b>Note:</b></p>
 
-
-
 <ul>
-	<li>Don&#39;t worry about handling ties, it is guaranteed that each word&#39;s frequency count is unique.</li>
-	<li>Could you write it in one-line using <a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-4.html">Unix pipes</a>?</li>
+    <li>Don&#39;t worry about handling ties, it is guaranteed that each word&#39;s frequency count is unique.</li>
+    <li>Could you write it in one-line using <a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-4.html">Unix pipes</a>?</li>
 </ul>
-
-
 
 ## Solutions
 
 <!-- tabs:start -->
 
-### **Python3**
+### **Bash**
 
-```python
-
-```
-
-### **Java**
-
-```java
-
-```
-
-### **...**
-
-```
+```sh
 
 ```
 

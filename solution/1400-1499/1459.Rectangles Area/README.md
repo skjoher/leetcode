@@ -1,4 +1,4 @@
-# [1459. 矩形面积](https://leetcode-cn.com/problems/rectangles-area)
+# [1459. 矩形面积](https://leetcode.cn/problems/rectangles-area)
 
 [English Version](/solution/1400-1499/1459.Rectangles%20Area/README_EN.md)
 
@@ -52,13 +52,12 @@ Result 表:
 | 1        | 2           | 2           |
 +----------+-------------+-------------+
 
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1459.Rectangles%20Area/images/rect.png" style="width: 200px; height: 330px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1459.Rectangles%20Area/images/rect.png" style="width: 200px; height: 330px;" />
 
 p1 = 2 且 p2 = 3 时, 面积等于 |4-2| * |8-10| = 4
 p1 = 1 且 p2 = 2 时, 面积等于 ||2-4| * |7-8| = 2 
 p1 = 1 且 p2 = 3 时, 是不可能为矩形的, 面积等于 0
 </pre>
-
 
 ## 解法
 

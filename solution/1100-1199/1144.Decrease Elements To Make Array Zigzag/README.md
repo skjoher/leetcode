@@ -1,4 +1,4 @@
-# [1144. 递减元素使数组呈锯齿状](https://leetcode-cn.com/problems/decrease-elements-to-make-array-zigzag)
+# [1144. 递减元素使数组呈锯齿状](https://leetcode.cn/problems/decrease-elements-to-make-array-zigzag)
 
 [English Version](/solution/1100-1199/1144.Decrease%20Elements%20To%20Make%20Array%20Zigzag/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
 	<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
 </ul>
-
 
 ## 解法
 

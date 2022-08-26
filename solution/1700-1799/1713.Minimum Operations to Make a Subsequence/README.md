@@ -1,4 +1,4 @@
-# [1713. 得到子序列的最少操作次数](https://leetcode-cn.com/problems/minimum-operations-to-make-a-subsequence)
+# [1713. 得到子序列的最少操作次数](https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence)
 
 [English Version](/solution/1700-1799/1713.Minimum%20Operations%20to%20Make%20a%20Subsequence/README_EN.md)
 
@@ -38,7 +38,6 @@
 	<li><code>1 &lt;= target[i], arr[i] &lt;= 10<sup>9</sup></code></li>
 	<li><code>target</code> 不包含任何重复元素。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1797. 设计一个验证系统](https://leetcode-cn.com/problems/design-authentication-manager)
+# [1797. 设计一个验证系统](https://leetcode.cn/problems/design-authentication-manager)
 
 [English Version](/solution/1700-1799/1797.Design%20Authentication%20Manager/README_EN.md)
 
@@ -22,7 +22,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1797.Design%20Authentication%20Manager/images/copy-of-pc68_q2.png" style="width: 500px; height: 287px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1797.Design%20Authentication%20Manager/images/copy-of-pc68_q2.png" style="width: 500px; height: 287px;" />
 <pre>
 <strong>输入：</strong>
 ["AuthenticationManager", "<code>renew</code>", "generate", "<code>countUnexpiredTokens</code>", "generate", "<code>renew</code>", "<code>renew</code>", "<code>countUnexpiredTokens</code>"]
@@ -70,7 +70,6 @@ authenticationManager.<code>countUnexpiredTokens</code>(15); // tokenId 为 "bbb
 
 ```python
 class AuthenticationManager:
-
     def __init__(self, timeToLive: int):
         self.timeToLive = timeToLive
         self.tokens = {}
@@ -142,6 +141,96 @@ class AuthenticationManager {
  * obj.generate(tokenId,currentTime);
  * obj.renew(tokenId,currentTime);
  * int param_3 = obj.countUnexpiredTokens(currentTime);
+ */
+```
+
+### **TypeScript**
+
+```ts
+class AuthenticationManager {
+    private timeToLive: number;
+    private map: Map<string, number>;
+
+    constructor(timeToLive: number) {
+        this.timeToLive = timeToLive;
+        this.map = new Map<string, number>();
+    }
+
+    generate(tokenId: string, currentTime: number): void {
+        this.map.set(tokenId, currentTime + this.timeToLive);
+    }
+
+    renew(tokenId: string, currentTime: number): void {
+        if ((this.map.get(tokenId) ?? 0) <= currentTime) {
+            return;
+        }
+        this.map.set(tokenId, currentTime + this.timeToLive);
+    }
+
+    countUnexpiredTokens(currentTime: number): number {
+        let res = 0;
+        for (const time of this.map.values()) {
+            if (time > currentTime) {
+                res++;
+            }
+        }
+        return res;
+    }
+}
+
+/**
+ * Your AuthenticationManager object will be instantiated and called as such:
+ * var obj = new AuthenticationManager(timeToLive)
+ * obj.generate(tokenId,currentTime)
+ * obj.renew(tokenId,currentTime)
+ * var param_3 = obj.countUnexpiredTokens(currentTime)
+ */
+```
+
+### **Rust**
+
+```rust
+use std::collections::HashMap;
+struct AuthenticationManager {
+    time_to_live: i32,
+    map: HashMap<String, i32>,
+}
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl AuthenticationManager {
+    fn new(timeToLive: i32) -> Self {
+        Self {
+            time_to_live: timeToLive,
+            map: HashMap::new(),
+        }
+    }
+
+    fn generate(&mut self, token_id: String, current_time: i32) {
+        self.map.insert(token_id, current_time + self.time_to_live);
+    }
+
+    fn renew(&mut self, token_id: String, current_time: i32) {
+        if self.map.get(&token_id).unwrap_or(&0) <= &current_time {
+            return;
+        }
+        self.map.insert(token_id, current_time + self.time_to_live);
+    }
+
+    fn count_unexpired_tokens(&self, current_time: i32) -> i32 {
+        self.map.values().filter(|&time| *time > current_time).count() as i32
+    }
+}
+
+
+/**
+ * Your AuthenticationManager object will be instantiated and called as such:
+ * let obj = AuthenticationManager::new(timeToLive);
+ * obj.generate(tokenId, currentTime);
+ * obj.renew(tokenId, currentTime);
+ * let ret_3: i32 = obj.count_unexpired_tokens(currentTime);
  */
 ```
 

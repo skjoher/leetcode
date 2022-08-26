@@ -1,4 +1,4 @@
-# [1278. 分割回文串 III](https://leetcode-cn.com/problems/palindrome-partitioning-iii)
+# [1278. 分割回文串 III](https://leetcode.cn/problems/palindrome-partitioning-iii)
 
 [English Version](/solution/1200-1299/1278.Palindrome%20Partitioning%20III/README_EN.md)
 
@@ -46,7 +46,6 @@
 	<li><code>1 &lt;= k &lt;= s.length &lt;= 100</code></li>
 	<li><code>s</code>&nbsp;中只含有小写英文字母。</li>
 </ul>
-
 
 ## 解法
 

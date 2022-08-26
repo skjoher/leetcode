@@ -1,4 +1,4 @@
-# [1525. 字符串的好分割数目](https://leetcode-cn.com/problems/number-of-good-ways-to-split-a-string)
+# [1525. 字符串的好分割数目](https://leetcode.cn/problems/number-of-good-ways-to-split-a-string)
 
 [English Version](/solution/1500-1599/1525.Number%20of%20Good%20Ways%20to%20Split%20a%20String/README_EN.md)
 
@@ -51,7 +51,6 @@
 	<li><code>s</code>&nbsp;只包含小写英文字母。</li>
 	<li><code>1 &lt;= s.length &lt;= 10^5</code></li>
 </ul>
-
 
 ## 解法
 

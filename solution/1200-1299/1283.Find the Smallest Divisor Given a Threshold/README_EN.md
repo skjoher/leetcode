@@ -8,7 +8,7 @@
 
 <p>Each result of the division is rounded to the nearest integer greater than or equal to that element. (For example: <code>7/3 = 3</code> and <code>10/2 = 5</code>).</p>
 
-<p>It is guaranteed that there will be an answer.</p>
+<p>The test cases are generated so&nbsp;that there will be an answer.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -27,20 +27,6 @@ If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the 
 <strong>Output:</strong> 44
 </pre>
 
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> nums = [21212,10101,12121], threshold = 1000000
-<strong>Output:</strong> 1
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> nums = [2,3,5,7,11], threshold = 11
-<strong>Output:</strong> 3
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -50,7 +36,6 @@ If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the 
 	<li><code>nums.length &lt;= threshold &lt;= 10<sup>6</sup></code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -58,13 +43,131 @@ If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the 
 ### **Python3**
 
 ```python
-
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        left, right = 1, 10**6
+        while left < right:
+            mid = (left + right) >> 1
+            s = sum((v + mid - 1) // mid for v in nums)
+            if s <= threshold:
+                right = mid
+            else:
+                left = mid + 1
+        return left
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int left = 1, right = 1000000;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            int s = 0;
+            for (int v : nums) {
+                s += (v + mid - 1) / mid;
+            }
+            if (s <= threshold) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int smallestDivisor(vector<int>& nums, int threshold) {
+        int left = 1, right = 1e6;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            int s = 0;
+            for (int& v : nums) s += (v + mid - 1) / mid;
+            if (s <= threshold)
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        return left;
+    }
+};
+```
+
+### **Go**
+
+```go
+func smallestDivisor(nums []int, threshold int) int {
+	left, right := 1, 1000000
+	for left < right {
+		mid := (left + right) >> 1
+		s := 0
+		for _, v := range nums {
+			s += (v + mid - 1) / mid
+		}
+		if s <= threshold {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+	return left
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} threshold
+ * @return {number}
+ */
+var smallestDivisor = function (nums, threshold) {
+    let left = 1,
+        right = 1000000;
+    while (left < right) {
+        const mid = (left + right) >> 1;
+        let s = 0;
+        for (let v of nums) {
+            s += Math.ceil(v / mid);
+        }
+        if (s <= threshold) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return left;
+};
+```
+
+### **TypeScript**
+
+```ts
+function smallestDivisor(nums: number[], threshold: number): number {
+    let left = 1,
+        right = 1000000;
+    while (left < right) {
+        const mid = (left + right) >> 1;
+        let s = 0;
+        for (let v of nums) {
+            s += Math.ceil(v / mid);
+        }
+        if (s <= threshold) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return left;
+}
 ```
 
 ### **...**

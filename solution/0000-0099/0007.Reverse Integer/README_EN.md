@@ -10,18 +10,26 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<pre><strong>Input:</strong> x = 123
+
+<pre>
+<strong>Input:</strong> x = 123
 <strong>Output:</strong> 321
-</pre><p><strong>Example 2:</strong></p>
-<pre><strong>Input:</strong> x = -123
-<strong>Output:</strong> -321
-</pre><p><strong>Example 3:</strong></p>
-<pre><strong>Input:</strong> x = 120
-<strong>Output:</strong> 21
-</pre><p><strong>Example 4:</strong></p>
-<pre><strong>Input:</strong> x = 0
-<strong>Output:</strong> 0
 </pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre>
+<strong>Input:</strong> x = -123
+<strong>Output:</strong> -321
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre>
+<strong>Input:</strong> x = 120
+<strong>Output:</strong> 21
+</pre>
+
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -40,7 +48,7 @@ class Solution:
     def reverse(self, x: int) -> int:
         y = int(str(abs(x))[::-1])
         res = -y if x < 0 else y
-        return 0 if res < -2**31 or res > 2**31 -1 else res
+        return 0 if res < -(2**31) or res > 2**31 - 1 else res
 ```
 
 ### **Java**
@@ -82,13 +90,124 @@ public:
  * @return {number}
  */
 var reverse = function (x) {
-  let res = 0;
-  while (x) {
-    res = res * 10 + (x % 10);
-    x = ~~(x / 10);
-  }
-  return res < Math.pow(-2, 31) || res > Math.pow(2, 31) - 1 ? 0 : res;
+    let res = 0;
+    while (x) {
+        res = res * 10 + (x % 10);
+        x = ~~(x / 10);
+    }
+    return res < Math.pow(-2, 31) || res > Math.pow(2, 31) - 1 ? 0 : res;
 };
+```
+
+### **C**
+
+```c
+int reverse(int x) {
+    int res = 0;
+    while (x != 0) {
+        if (res > INT_MAX / 10 || res < INT_MIN / 10) {
+            return 0;
+        }
+        res = res * 10 + x % 10;
+        x /= 10;
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn reverse(mut x: i32) -> i32 {
+        let is_minus = x < 0;
+        match x
+            .abs()
+            .to_string()
+            .chars()
+            .rev()
+            .collect::<String>()
+            .parse::<i32>()
+        {
+            Ok(x) => x * if is_minus { -1 } else { 1 },
+            Err(_) => 0,
+        }
+    }
+}
+```
+
+### **Go**
+
+```go
+func reverse(x int) int {
+	slot := make([]int, 11)
+	count := 0
+	for x != 0 {
+		n := x % 10
+		slot[count] = n
+		count++
+		x /= 10
+	}
+	result := 0
+	flag := true
+	for i := 0; i < count; i++ {
+		if flag && slot[i] == 0 {
+			continue
+		}
+		flag = false
+		result = 10*result + slot[i]
+	}
+	if result > math.MaxInt32 || result < math.MinInt32 {
+		return 0
+	}
+	return result
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int Reverse(int x) {
+        var negative = x < 0;
+        if (negative) x = -x;
+        long result = 0;
+        while (x > 0)
+        {
+            result = (result * 10) + x % 10;
+            x /= 10;
+        }
+        if (negative) result = -result;
+        if (result > int.MaxValue || result < int.MinValue) result = 0;
+        return (int) result;
+    }
+}
+```
+
+### **Ruby**
+
+```rb
+# @param {Integer} x
+# @return {Integer}
+def reverse(x)
+  neg = x < 0
+
+  x = x.abs
+  s = ''
+
+  x /= 10 while x > 0 && (x % 10).zero?
+
+  while x > 0
+    s += (x % 10).to_s
+    x /= 10
+  end
+
+  s = neg ? '-' + s : s
+
+  # have to explicitly constraint the int boundary as per the dummy test case
+  res = s.to_i
+  res <= 214_748_364_7 && res >= -214_748_364_8 ? res : 0
+end
 ```
 
 ### **...**

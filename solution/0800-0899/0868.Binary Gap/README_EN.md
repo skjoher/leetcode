@@ -24,33 +24,18 @@ Note that &quot;<u>1</u>01<u>1</u>0&quot; is not a valid pair since there is a 1
 <p><strong>Example 2:</strong></p>
 
 <pre>
-<strong>Input:</strong> n = 5
-<strong>Output:</strong> 2
-<strong>Explanation:</strong> 5 in binary is &quot;101&quot;.
+<strong>Input:</strong> n = 8
+<strong>Output:</strong> 0
+<strong>Explanation:</strong> 8 in binary is &quot;1000&quot;.
+There are not any adjacent pairs of 1&#39;s in the binary representation of 8, so we return 0.
 </pre>
 
 <p><strong>Example 3:</strong></p>
 
 <pre>
-<strong>Input:</strong> n = 6
-<strong>Output:</strong> 1
-<strong>Explanation:</strong> 6 in binary is &quot;110&quot;.
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> n = 8
-<strong>Output:</strong> 0
-<strong>Explanation:</strong> 8 in binary is &quot;1000&quot;.
-There aren&#39;t any adjacent pairs of 1&#39;s in the binary representation of 8, so we return 0.
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> n = 1
-<strong>Output:</strong> 0
+<strong>Input:</strong> n = 5
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> 5 in binary is &quot;101&quot;.
 </pre>
 
 <p>&nbsp;</p>
@@ -60,7 +45,6 @@ There aren&#39;t any adjacent pairs of 1&#39;s in the binary representation of 8
 	<li><code>1 &lt;= n &lt;= 10<sup>9</sup></code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -68,13 +52,112 @@ There aren&#39;t any adjacent pairs of 1&#39;s in the binary representation of 8
 ### **Python3**
 
 ```python
-
+class Solution:
+    def binaryGap(self, n: int) -> int:
+        ans, j = 0, -1
+        for i in range(32):
+            if n & 1:
+                if j != -1:
+                    ans = max(ans, i - j)
+                j = i
+            n >>= 1
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int binaryGap(int n) {
+        int ans = 0;
+        for (int i = 0, j = -1; n != 0; ++i, n >>= 1) {
+            if ((n & 1) == 1) {
+                if (j != -1) {
+                    ans = Math.max(ans, i - j);
+                }
+                j = i;
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function binaryGap(n: number): number {
+    let res = 0;
+    let j = -1;
+    for (let i = 0; n !== 0; i++) {
+        if (n & 1) {
+            if (j !== -1) {
+                res = Math.max(res, i - j);
+            }
+            j = i;
+        }
+        n >>= 1;
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn binary_gap(mut n: i32) -> i32 {
+        let mut res = 0;
+        let mut i = 0;
+        let mut j = -1;
+        while n != 0 {
+            if n & 1 == 1 {
+                if j != -1 {
+                    res = res.max(i - j);
+                }
+                j = i;
+            }
+            n >>= 1;
+            i += 1;
+        }
+        res
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int binaryGap(int n) {
+        int ans = 0;
+        for (int i = 0, j = -1; n; ++i, n >>= 1) {
+            if (n & 1) {
+                if (j != -1) ans = max(ans, i - j);
+                j = i;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func binaryGap(n int) int {
+	ans := 0
+	for i, j := 0, -1; n != 0; i, n = i+1, n>>1 {
+		if (n & 1) == 1 {
+			if j != -1 && ans < i-j {
+				ans = i - j
+			}
+			j = i
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

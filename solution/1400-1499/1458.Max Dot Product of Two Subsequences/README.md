@@ -1,4 +1,4 @@
-# [1458. 两个子序列的最大点积](https://leetcode-cn.com/problems/max-dot-product-of-two-subsequences)
+# [1458. 两个子序列的最大点积](https://leetcode.cn/problems/max-dot-product-of-two-subsequences)
 
 [English Version](/solution/1400-1499/1458.Max%20Dot%20Product%20of%20Two%20Subsequences/README_EN.md)
 
@@ -54,15 +54,28 @@
 <pre>
 定义 <code><strong>a</strong>&nbsp;= [<em>a</em><sub>1</sub>,&nbsp;<em>a</em><sub>2</sub>,&hellip;,&nbsp;<em>a</em><sub><em>n</em></sub>]</code> 和<strong> <code>b</code></strong><code>&nbsp;= [<em>b</em><sub>1</sub>,&nbsp;<em>b</em><sub>2</sub>,&hellip;,&nbsp;<em>b</em><sub><em>n</em></sub>]</code> 的点积为：
 
-<img alt="\mathbf{a}\cdot \mathbf{b} = \sum_{i=1}^n a_ib_i = a_1b_1 + a_2b_2 + \cdots + a_nb_n " class="tex" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1458.Max%20Dot%20Product%20of%20Two%20Subsequences/images/c329bf86e747d74f55ed2e17c36fd83f.png" />
+<img alt="\mathbf{a}\cdot \mathbf{b} = \sum_{i=1}^n a_ib_i = a_1b_1 + a_2b_2 + \cdots + a_nb_n " class="tex" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1458.Max%20Dot%20Product%20of%20Two%20Subsequences/images/c329bf86e747d74f55ed2e17c36fd83f.png" />
 
 这里的 <strong>&Sigma;</strong> 指示总和符号。
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：动态规划**
+
+定义 $dp[i][j]$ 表示 $nums1$ 前 $i$ 个元素和 $nums2$ 前 $j$ 个元素得到的最大点积。
+
+那么有：
+
+$$
+dp[i][j]=max(dp[i-1][j], dp[i][j - 1], max(dp[i - 1][j - 1], 0) + nums1[i] \times nums2[j])
+$$
+
+答案为 $dp[m][n]$。
+
+时间复杂度 $O(m \times n)$，空间复杂度 $O(m \times n)$。其中 $m$ 和 $n$ 分别是数组 $nums1$ 和 $nums2$ 的长度。
 
 <!-- tabs:start -->
 
@@ -71,7 +84,16 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maxDotProduct(self, nums1: List[int], nums2: List[int]) -> int:
+        m, n = len(nums1), len(nums2)
+        dp = [[-inf] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                v = nums1[i - 1] * nums2[j - 1]
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1],
+                               max(dp[i - 1][j - 1], 0) + v)
+        return dp[-1][-1]
 ```
 
 ### **Java**
@@ -79,7 +101,72 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int maxDotProduct(int[] nums1, int[] nums2) {
+        int m = nums1.length, n = nums2.length;
+        int[][] dp = new int[m + 1][n + 1];
+        for (int[] e : dp) {
+            Arrays.fill(e, Integer.MIN_VALUE);
+        }
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                dp[i][j] = Math.max(dp[i][j], Math.max(0, dp[i - 1][j - 1]) + nums1[i - 1] * nums2[j - 1]);
+            }
+        }
+        return dp[m][n];
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxDotProduct(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size(), n = nums2.size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, INT_MIN));
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                int v = nums1[i - 1] * nums2[j - 1];
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                dp[i][j] = max(dp[i][j], max(0, dp[i - 1][j - 1]) + v);
+            }
+        }
+        return dp[m][n];
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxDotProduct(nums1 []int, nums2 []int) int {
+	m, n := len(nums1), len(nums2)
+	dp := make([][]int, m+1)
+	for i := range dp {
+		dp[i] = make([]int, n+1)
+		for j := range dp[i] {
+			dp[i][j] = math.MinInt32
+		}
+	}
+	for i := 1; i <= m; i++ {
+		for j := 1; j <= n; j++ {
+			v := nums1[i-1] * nums2[j-1]
+			dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+			dp[i][j] = max(dp[i][j], max(0, dp[i-1][j-1])+v)
+		}
+	}
+	return dp[m][n]
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

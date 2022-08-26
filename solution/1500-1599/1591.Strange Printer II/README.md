@@ -1,4 +1,4 @@
-# [1591. 奇怪的打印机 II](https://leetcode-cn.com/problems/strange-printer-ii)
+# [1591. 奇怪的打印机 II](https://leetcode.cn/problems/strange-printer-ii)
 
 [English Version](/solution/1500-1599/1591.Strange%20Printer%20II/README_EN.md)
 
@@ -21,7 +21,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1591.Strange%20Printer%20II/images/sample_1_1929.png" style="height: 138px; width: 483px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1591.Strange%20Printer%20II/images/sample_1_1929.png" style="height: 138px; width: 483px;"></p>
 
 <pre><strong>输入：</strong>targetGrid = [[1,1,1,1],[1,2,2,1],[1,2,2,1],[1,1,1,1]]
 <strong>输出：</strong>true
@@ -29,7 +29,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1591.Strange%20Printer%20II/images/sample_2_1929.png" style="height: 290px; width: 483px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1591.Strange%20Printer%20II/images/sample_2_1929.png" style="height: 290px; width: 483px;"></p>
 
 <pre><strong>输入：</strong>targetGrid = [[1,1,1,1],[1,1,3,3],[1,1,3,4],[5,5,1,4]]
 <strong>输出：</strong>true
@@ -57,7 +57,6 @@
 	<li><code>1 &lt;= m, n &lt;= 60</code></li>
 	<li><code>1 &lt;= targetGrid[row][col] &lt;= 60</code></li>
 </ul>
-
 
 ## 解法
 

@@ -22,7 +22,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0218.The%20Skyline%20Problem/images/merged.jpg" style="width: 800px; height: 331px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0218.The%20Skyline%20Problem/images/merged.jpg" style="width: 800px; height: 331px;" />
 <pre>
 <strong>Input:</strong> buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]
 <strong>Output:</strong> [[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]
@@ -48,7 +48,6 @@ Figure B shows the skyline formed by those buildings. The red points in figure B
 	<li><code>buildings</code> is sorted by <code>left<sub>i</sub></code> in&nbsp;non-decreasing order.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -63,6 +62,47 @@ Figure B shows the skyline formed by those buildings. The red points in figure B
 
 ```java
 
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
+        set<int> poss;
+        map<int, int> m;
+        for (auto v : buildings) {
+            poss.insert(v[0]);
+            poss.insert(v[1]);
+        }
+
+        int i = 0;
+        for (int pos : poss)
+            m.insert(pair<int, int>(pos, i++));
+
+        vector<int> highs(m.size(), 0);
+        for (auto v : buildings) {
+            const int b = m[v[0]], e = m[v[1]];
+            for (int i = b; i < e; ++i)
+                highs[i] = max(highs[i], v[2]);
+        }
+
+        vector<pair<int, int>> res;
+        vector<int> mm(poss.begin(), poss.end());
+        for (int i = 0; i < highs.size(); ++i) {
+            if (highs[i] != highs[i + 1])
+                res.push_back(pair<int, int>(mm[i], highs[i]));
+            else {
+                const int start = i;
+                res.push_back(pair<int, int>(mm[start], highs[i]));
+                while (highs[i] == highs[i + 1])
+                    ++i;
+            }
+        }
+        return res;
+    }
+};
 ```
 
 ### **...**

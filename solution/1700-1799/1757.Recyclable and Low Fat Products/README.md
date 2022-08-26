@@ -1,4 +1,4 @@
-# [1757. 可回收且低脂的产品](https://leetcode-cn.com/problems/recyclable-and-low-fat-products)
+# [1757. 可回收且低脂的产品](https://leetcode.cn/problems/recyclable-and-low-fat-products)
 
 [English Version](/solution/1700-1799/1757.Recyclable%20and%20Low%20Fat%20Products/README_EN.md)
 
@@ -49,7 +49,6 @@ Result 表：
 只有产品 id 为 1 和 3 的产品，既是低脂又是可回收的产品。
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -59,7 +58,13 @@ Result 表：
 ### **SQL**
 
 ```sql
-
+SELECT
+    product_id
+FROM
+    Products
+WHERE
+    low_fats = 'Y'
+    AND recyclable = 'Y';
 ```
 
 <!-- tabs:end -->

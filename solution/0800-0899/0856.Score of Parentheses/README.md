@@ -1,4 +1,4 @@
-# [856. 括号的分数](https://leetcode-cn.com/problems/score-of-parentheses)
+# [856. 括号的分数](https://leetcode.cn/problems/score-of-parentheses)
 
 [English Version](/solution/0800-0899/0856.Score%20of%20Parentheses/README_EN.md)
 
@@ -48,7 +48,6 @@
 	<li><code>S</code>&nbsp;是平衡括号字符串，且只含有&nbsp;<code>(</code>&nbsp;和&nbsp;<code>)</code>&nbsp;。</li>
 	<li><code>2 &lt;= S.length &lt;= 50</code></li>
 </ol>
-
 
 ## 解法
 

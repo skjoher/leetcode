@@ -4,11 +4,11 @@
 
 ## Description
 
-<p>Given an array of integers <code>nums</code> sorted in ascending order, find the starting and ending position of a given <code>target</code> value.</p>
+<p>Given an array of integers <code>nums</code> sorted in non-decreasing order, find the starting and ending position of a given <code>target</code> value.</p>
 
 <p>If <code>target</code> is not found in the array, return <code>[-1, -1]</code>.</p>
 
-<p><strong>Follow up:</strong>&nbsp;Could you write an algorithm with&nbsp;<code>O(log n)</code> runtime complexity?</p>
+<p>You must&nbsp;write an algorithm with&nbsp;<code>O(log n)</code> runtime complexity.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -31,21 +31,224 @@
 	<li><code>-10<sup>9</sup>&nbsp;&lt;= target&nbsp;&lt;= 10<sup>9</sup></code></li>
 </ul>
 
-
 ## Solutions
+
+Binary search.
+
+Template 1:
+
+```java
+boolean check(int x) {}
+
+int search(int left, int right) {
+    while (left < right) {
+        int mid = (left + right) >> 1;
+        if (check(mid)) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return left;
+}
+```
+
+Template 2:
+
+```java
+boolean check(int x) {}
+
+int search(int left, int right) {
+    while (left < right) {
+        int mid = (left + right + 1) >> 1;
+        if (check(mid)) {
+            left = mid;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return left;
+}
+```
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
-
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        l = bisect_left(nums, target)
+        r = bisect_left(nums, target + 1)
+        return [-1, -1] if l == len(nums) or l >= r else [l, r - 1]
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int l = search(nums, target);
+        int r = search(nums, target + 1);
+        return l == nums.length || l >= r ? new int[]{-1, -1} : new int[]{l, r - 1};
+    }
 
+    private int search(int[] nums, int target) {
+        int left = 0, right = nums.length;
+        while (left < right) {
+            int mid = (left + right) >>> 1;
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int l = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+        int r = lower_bound(nums.begin(), nums.end(), target + 1) - nums.begin();
+        if (l == nums.size() || l >= r) return {-1, -1};
+        return {l, r - 1};
+    }
+};
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var searchRange = function (nums, target) {
+    function search(target) {
+        let left = 0,
+            right = nums.length;
+        while (left < right) {
+            const mid = (left + right) >> 1;
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+    const l = search(target);
+    const r = search(target + 1);
+    return l == nums.length || l >= r ? [-1, -1] : [l, r - 1];
+};
+```
+
+### **Go**
+
+```go
+func searchRange(nums []int, target int) []int {
+	search := func(target int) int {
+		left, right := 0, len(nums)
+		for left < right {
+			mid := (left + right) >> 1
+			if nums[mid] >= target {
+				right = mid
+			} else {
+				left = mid + 1
+			}
+		}
+		return left
+	}
+	l, r := search(target), search(target+1)
+	if l == len(nums) || l >= r {
+		return []int{-1, -1}
+	}
+	return []int{l, r - 1}
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let n = nums.len();
+        let search = |target| {
+            let mut left = 0;
+            let mut right = n;
+            while left < right {
+                let mid = left + (right - left) / 2;
+                if nums[mid] < target {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+            left
+        };
+        let start = search(target);
+        let end = search(target + 1) - 1;
+        if start >= n || nums[start] != target {
+            return vec![-1, -1];
+        }
+        vec![start as i32, end as i32]
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function searchRange(nums: number[], target: number): number[] {
+    function search(target) {
+        let left = 0,
+            right = nums.length;
+        while (left < right) {
+            const mid = (left + right) >> 1;
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+    const l = search(target);
+    const r = search(target + 1);
+    return l == nums.length || l >= r ? [-1, -1] : [l, r - 1];
+}
+```
+
+```ts
+function searchRange(nums: number[], target: number): number[] {
+    const n = nums.length;
+    const search = (target: number) => {
+        let left = 0;
+        let right = n;
+        while (left < right) {
+            const mid = (left + right) >>> 1;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    };
+    const start = search(target);
+    const end = search(target + 1) - 1;
+    if (nums[start] !== target) {
+        return [-1, -1];
+    }
+    return [start, end];
+}
 ```
 
 ### **...**

@@ -1,4 +1,4 @@
-# [17.13. Re-Space](https://leetcode-cn.com/problems/re-space-lcci)
+# [17.13. Re-Space](https://leetcode.cn/problems/re-space-lcci)
 
 [中文文档](/lcci/17.13.Re-Space/README.md)
 
@@ -41,13 +41,89 @@ sentence = &quot;jesslookedjustliketimherbrother&quot;
 ### **Python3**
 
 ```python
-
+class Solution:
+    def respace(self, dictionary: List[str], sentence: str) -> int:
+        s = set(dictionary)
+        n = len(sentence)
+        dp = [0] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = dp[i - 1] + 1
+            for j in range(i):
+                if sentence[j:i] in s:
+                    dp[i] = min(dp[i], dp[j])
+        return dp[-1]
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int respace(String[] dictionary, String sentence) {
+        Set<String> dict = new HashSet<>(Arrays.asList(dictionary));
+        int n = sentence.length();
+        int[] dp = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            dp[i] = dp[i - 1] + 1;
+            for (int j = 0; j < i; ++j) {
+                if (dict.contains(sentence.substring(j, i))) {
+                    dp[i] = Math.min(dp[i], dp[j]);
+                }
+            }
+        }
+        return dp[n];
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int respace(vector<string>& dictionary, string sentence) {
+        unordered_set<string> s(dictionary.begin(), dictionary.end());
+        int n = sentence.size();
+        vector<int> dp(n + 1);
+        for (int i = 1; i <= n; ++i) {
+            dp[i] = dp[i - 1] + 1;
+            for (int j = 0; j < i; ++j) {
+                if (s.count(sentence.substr(j, i - j))) {
+                    dp[i] = min(dp[i], dp[j]);
+                }
+            }
+        }
+        return dp[n];
+    }
+};
+```
+
+### **Go**
+
+```go
+func respace(dictionary []string, sentence string) int {
+	s := map[string]bool{}
+	for _, v := range dictionary {
+		s[v] = true
+	}
+	n := len(sentence)
+	dp := make([]int, n+1)
+	for i := 1; i <= n; i++ {
+		dp[i] = dp[i-1] + 1
+		for j := 0; j < i; j++ {
+			if s[sentence[j:i]] {
+				dp[i] = min(dp[i], dp[j])
+			}
+		}
+	}
+	return dp[n]
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

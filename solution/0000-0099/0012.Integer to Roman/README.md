@@ -1,4 +1,4 @@
-# [12. 整数转罗马数字](https://leetcode-cn.com/problems/integer-to-roman)
+# [12. 整数转罗马数字](https://leetcode.cn/problems/integer-to-roman)
 
 [English Version](/solution/0000-0099/0012.Integer%20to%20Roman/README_EN.md)
 
@@ -28,32 +28,32 @@ M             1000</pre>
 	<li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li>
 </ul>
 
-<p>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。</p>
+<p>给你一个整数，将其转为罗马数字。</p>
 
 <p> </p>
 
 <p><strong>示例 1:</strong></p>
 
 <pre>
-<strong>输入:</strong> 3
+<strong>输入:</strong> num = 3
 <strong>输出:</strong> "III"</pre>
 
 <p><strong>示例 2:</strong></p>
 
 <pre>
-<strong>输入:</strong> 4
+<strong>输入:</strong> num = 4
 <strong>输出:</strong> "IV"</pre>
 
 <p><strong>示例 3:</strong></p>
 
 <pre>
-<strong>输入:</strong> 9
+<strong>输入:</strong> num = 9
 <strong>输出:</strong> "IX"</pre>
 
 <p><strong>示例 4:</strong></p>
 
 <pre>
-<strong>输入:</strong> 58
+<strong>输入:</strong> num = 58
 <strong>输出:</strong> "LVIII"
 <strong>解释:</strong> L = 50, V = 5, III = 3.
 </pre>
@@ -61,7 +61,7 @@ M             1000</pre>
 <p><strong>示例 5:</strong></p>
 
 <pre>
-<strong>输入:</strong> 1994
+<strong>输入:</strong> num = 1994
 <strong>输出:</strong> "MCMXCIV"
 <strong>解释:</strong> M = 1000, CM = 900, XC = 90, IV = 4.</pre>
 
@@ -72,7 +72,6 @@ M             1000</pre>
 <ul>
 	<li><code>1 <= num <= 3999</code></li>
 </ul>
-
 
 ## 解法
 
@@ -89,7 +88,21 @@ M             1000</pre>
 ```python
 class Solution:
     def intToRoman(self, num: int) -> str:
-        nums = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+        nums = [
+            (1000, 'M'),
+            (900, 'CM'),
+            (500, 'D'),
+            (400, 'CD'),
+            (100, 'C'),
+            (90, 'XC'),
+            (50, 'L'),
+            (40, 'XL'),
+            (10, 'X'),
+            (9, 'IX'),
+            (5, 'V'),
+            (4, 'IV'),
+            (1, 'I'),
+        ]
         res = []
         for k, v in nums:
             while num >= k:
@@ -125,8 +138,8 @@ class Solution {
 class Solution {
 public:
     string intToRoman(int num) {
-        vector<int> nums{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        vector<string> romans{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        vector<int> nums {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        vector<string> romans {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         string ans;
         for (int i = 0; i < nums.size(); ++i) {
             while (num >= nums[i]) {

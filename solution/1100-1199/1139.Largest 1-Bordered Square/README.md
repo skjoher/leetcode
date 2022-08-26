@@ -1,4 +1,4 @@
-# [1139. 最大的以 1 为边界的正方形](https://leetcode-cn.com/problems/largest-1-bordered-square)
+# [1139. 最大的以 1 为边界的正方形](https://leetcode.cn/problems/largest-1-bordered-square)
 
 [English Version](/solution/1100-1199/1139.Largest%201-Bordered%20Square/README_EN.md)
 
@@ -31,7 +31,6 @@
 	<li><code>1 &lt;= grid[0].length &lt;= 100</code></li>
 	<li><code>grid[i][j]</code> 为&nbsp;<code>0</code>&nbsp;或&nbsp;<code>1</code></li>
 </ul>
-
 
 ## 解法
 

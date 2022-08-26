@@ -1,4 +1,4 @@
-# [1773. 统计匹配检索规则的物品数量](https://leetcode-cn.com/problems/count-items-matching-a-rule)
+# [1773. 统计匹配检索规则的物品数量](https://leetcode.cn/problems/count-items-matching-a-rule)
 
 [English Version](/solution/1700-1799/1773.Count%20Items%20Matching%20a%20Rule/README_EN.md)
 
@@ -48,7 +48,6 @@
 	<li>所有字符串仅由小写字母组成</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -60,7 +59,11 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def countMatches(self, items: List[List[str]], ruleKey: str, ruleValue: str) -> int:
+        count = 0
+        m = {'type': 0, 'color': 1, 'name': 2}
+        return sum([item[m[ruleKey]] == ruleValue for item in items])
 ```
 
 ### **Java**
@@ -68,7 +71,22 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
-
+class Solution {
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        int count = 0;
+        for (List<String> item : items) {
+            String t = item.get(0), c = item.get(1), n = item.get(2);
+            if ("type".equals(ruleKey) && t.equals(ruleValue)) {
+                ++count;
+            } else if ("color".equals(ruleKey) && c.equals(ruleValue)) {
+                ++count;
+            } else if ("name".equals(ruleKey) && n.equals(ruleValue)) {
+                ++count;
+            }
+        }
+        return count;
+    }
+}
 ```
 
 ### **...**

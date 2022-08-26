@@ -34,23 +34,10 @@ M             1000</pre>
 <pre>
 <strong>Input:</strong> num = 3
 <strong>Output:</strong> &quot;III&quot;
+<strong>Explanation:</strong> 3 is represented as 3 ones.
 </pre>
 
 <p><strong>Example 2:</strong></p>
-
-<pre>
-<strong>Input:</strong> num = 4
-<strong>Output:</strong> &quot;IV&quot;
-</pre>
-
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> num = 9
-<strong>Output:</strong> &quot;IX&quot;
-</pre>
-
-<p><strong>Example 4:</strong></p>
 
 <pre>
 <strong>Input:</strong> num = 58
@@ -58,7 +45,7 @@ M             1000</pre>
 <strong>Explanation:</strong> L = 50, V = 5, III = 3.
 </pre>
 
-<p><strong>Example 5:</strong></p>
+<p><strong>Example 3:</strong></p>
 
 <pre>
 <strong>Input:</strong> num = 1994
@@ -73,7 +60,6 @@ M             1000</pre>
 	<li><code>1 &lt;= num &lt;= 3999</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -83,7 +69,21 @@ M             1000</pre>
 ```python
 class Solution:
     def intToRoman(self, num: int) -> str:
-        nums = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+        nums = [
+            (1000, 'M'),
+            (900, 'CM'),
+            (500, 'D'),
+            (400, 'CD'),
+            (100, 'C'),
+            (90, 'XC'),
+            (50, 'L'),
+            (40, 'XL'),
+            (10, 'X'),
+            (9, 'IX'),
+            (5, 'V'),
+            (4, 'IV'),
+            (1, 'I'),
+        ]
         res = []
         for k, v in nums:
             while num >= k:
@@ -117,8 +117,8 @@ class Solution {
 class Solution {
 public:
     string intToRoman(int num) {
-        vector<int> nums{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        vector<string> romans{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        vector<int> nums {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        vector<string> romans {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         string ans;
         for (int i = 0; i < nums.size(); ++i) {
             while (num >= nums[i]) {

@@ -1,4 +1,4 @@
-# [1179. 重新格式化部门表](https://leetcode-cn.com/problems/reformat-department-table)
+# [1179. 重新格式化部门表](https://leetcode.cn/problems/reformat-department-table)
 
 [English Version](/solution/1100-1199/1179.Reformat%20Department%20Table/README_EN.md)
 
@@ -50,7 +50,6 @@ Department 表：
 
 注意，结果表有 13 列 (1个部门 id 列 + 12个月份的收入列)。
 </pre>
-
 
 ## 解法
 

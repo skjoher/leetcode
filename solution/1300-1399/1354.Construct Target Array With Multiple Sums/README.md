@@ -1,4 +1,4 @@
-# [1354. 多次求和构造目标数组](https://leetcode-cn.com/problems/construct-target-array-with-multiple-sums)
+# [1354. 多次求和构造目标数组](https://leetcode.cn/problems/construct-target-array-with-multiple-sums)
 
 [English Version](/solution/1300-1399/1354.Construct%20Target%20Array%20With%20Multiple%20Sums/README_EN.md)
 
@@ -51,7 +51,6 @@
 	<li><code>1 &lt;= target.length&nbsp;&lt;= 5 * 10^4</code></li>
 	<li><code>1 &lt;= target[i] &lt;= 10^9</code></li>
 </ul>
-
 
 ## 解法
 

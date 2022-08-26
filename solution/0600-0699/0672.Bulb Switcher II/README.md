@@ -1,4 +1,4 @@
-# [672. 灯泡开关 Ⅱ](https://leetcode-cn.com/problems/bulb-switcher-ii)
+# [672. 灯泡开关 Ⅱ](https://leetcode.cn/problems/bulb-switcher-ii)
 
 [English Version](/solution/0600-0699/0672.Bulb%20Switcher%20II/README_EN.md)
 
@@ -39,7 +39,6 @@
 </pre>
 
 <p><strong>注意：</strong>&nbsp;<code>n</code>&nbsp;和&nbsp;<code>m</code> 都属于 [0, 1000].</p>
-
 
 ## 解法
 

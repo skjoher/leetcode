@@ -1,4 +1,4 @@
-# [1156. 单字符重复子串的最大长度](https://leetcode-cn.com/problems/swap-for-longest-repeated-character-substring)
+# [1156. 单字符重复子串的最大长度](https://leetcode.cn/problems/swap-for-longest-repeated-character-substring)
 
 [English Version](/solution/1100-1199/1156.Swap%20For%20Longest%20Repeated%20Character%20Substring/README_EN.md)
 
@@ -50,7 +50,6 @@
 	<li><code>1 &lt;= text.length &lt;= 20000</code></li>
 	<li><code>text</code> 仅由小写英文字母组成。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [01.08. Zero Matrix](https://leetcode-cn.com/problems/zero-matrix-lcci)
+# [01.08. Zero Matrix](https://leetcode.cn/problems/zero-matrix-lcci)
 
 [中文文档](/lcci/01.08.Zero%20Matrix/README.md)
 
@@ -97,7 +97,6 @@ class Solution:
                 matrix[i][j] = 0
 
         return matrix
-
 ```
 
 ### **Java**
@@ -139,8 +138,9 @@ class Solution {
  * @param {number[][]} matrix
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
-var setZeroes = function(matrix) {
-    let m = matrix.length, n = matrix[0].length;
+var setZeroes = function (matrix) {
+    let m = matrix.length,
+        n = matrix[0].length;
     let rows = new Array(m).fill(false);
     let cols = new Array(n).fill(false);
     // 标记

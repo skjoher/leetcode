@@ -1,4 +1,4 @@
-# [1469. 寻找所有的独生节点](https://leetcode-cn.com/problems/find-all-the-lonely-nodes)
+# [1469. 寻找所有的独生节点](https://leetcode.cn/problems/find-all-the-lonely-nodes)
 
 [English Version](/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/README_EN.md)
 
@@ -14,7 +14,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/images/e1.png" style="height:202px; width:203px" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/images/e1.png" style="height:202px; width:203px" /></p>
 
 <pre>
 <strong>输入：</strong>root = [1,2,3,null,4]
@@ -26,7 +26,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/images/e2.png" style="height:282px; width:442px" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/images/e2.png" style="height:282px; width:442px" /></p>
 
 <pre>
 <strong>输入：</strong>root = [7,1,4,6,null,5,3,null,null,null,null,null,2]
@@ -37,7 +37,7 @@
 
 <p><strong>示例 3：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/images/tree.png" style="height:202px; width:363px" /> </strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1469.Find%20All%20The%20Lonely%20Nodes/images/tree.png" style="height:202px; width:363px" /> </strong></p>
 
 <pre>
 <strong>输入：</strong>root = [11,99,88,77,null,null,66,55,null,null,44,33,null,null,22]
@@ -68,7 +68,6 @@
 	<li>每个节点的值的取值范围是&nbsp;<code>[1, 10^6]</code>。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -97,6 +96,7 @@ class Solution:
                 self.res.append(root.left.val)
             traverse(root.left)
             traverse(root.right)
+
         self.res = []
         traverse(root)
         return self.res

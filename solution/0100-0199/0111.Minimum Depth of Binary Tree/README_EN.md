@@ -12,7 +12,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0111.Minimum%20Depth%20of%20Binary%20Tree/images/ex_depth.jpg" style="width: 432px; height: 302px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0111.Minimum%20Depth%20of%20Binary%20Tree/images/ex_depth.jpg" style="width: 432px; height: 302px;" />
 <pre>
 <strong>Input:</strong> root = [3,9,20,null,null,15,7]
 <strong>Output:</strong> 2
@@ -48,13 +48,16 @@
 #         self.right = right
 class Solution:
     def minDepth(self, root: TreeNode) -> int:
-        if root is None:
-            return 0
-        if root.left is None:
-            return 1 + self.minDepth(root.right)
-        if root.right is None:
-            return 1 + self.minDepth(root.left)
-        return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
+        def dfs(root):
+            if root is None:
+                return 0
+            if root.left is None:
+                return 1 + dfs(root.right)
+            if root.right is None:
+                return 1 + dfs(root.left)
+            return 1 + min(dfs(root.left), dfs(root.right))
+
+        return dfs(root)
 ```
 
 ### **Java**
@@ -77,16 +80,20 @@ class Solution:
  */
 class Solution {
     public int minDepth(TreeNode root) {
+        return dfs(root);
+    }
+
+    private int dfs(TreeNode root) {
         if (root == null) {
             return 0;
         }
         if (root.left == null) {
-            return 1 + minDepth(root.right);
+            return 1 + dfs(root.right);
         }
         if (root.right == null) {
-            return 1 + minDepth(root.left);
+            return 1 + dfs(root.left);
         }
-        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+        return 1 + Math.min(dfs(root.left), dfs(root.right));
     }
 }
 ```
@@ -106,11 +113,14 @@ class Solution {
  * @param {TreeNode} root
  * @return {number}
  */
-var minDepth = function(root) {
-    if (root == null) return 0;
-    if (root.left == null) return minDepth(root.right) + 1;
-    if (root.right == null) return minDepth(root.left) + 1;
-    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+var minDepth = function (root) {
+    function dfs(root) {
+        if (!root) return 0;
+        if (!root.left) return 1 + dfs(root.right);
+        if (!root.right) return 1 + dfs(root.left);
+        return 1 + Math.min(dfs(root.left), dfs(root.right));
+    }
+    return dfs(root);
 };
 ```
 
@@ -131,18 +141,52 @@ var minDepth = function(root) {
 class Solution {
 public:
     int minDepth(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
-        if (root->left == nullptr) {
-            return 1 + minDepth(root->right);
-        }
-        if (root->right == nullptr) {
-            return 1 + minDepth(root->left);
-        }
-        return 1 + min(minDepth(root->left), minDepth(root->right));
+        return dfs(root);
+    }
+
+    int dfs(TreeNode* root) {
+        if (!root) return 0;
+        if (!root->left) return 1 + dfs(root->right);
+        if (!root->right) return 1 + dfs(root->left);
+        return 1 + min(dfs(root->left), dfs(root->right));
     }
 };
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func minDepth(root *TreeNode) int {
+	var dfs func(root *TreeNode) int
+	dfs = func(root *TreeNode) int {
+		if root == nil {
+			return 0
+		}
+		if root.Left == nil {
+			return 1 + dfs(root.Right)
+		}
+		if root.Right == nil {
+			return 1 + dfs(root.Left)
+		}
+		return 1 + min(dfs(root.Left), dfs(root.Right))
+	}
+	return dfs(root)
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

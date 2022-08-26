@@ -1,4 +1,4 @@
-# [1865. 找出和为指定值的下标对](https://leetcode-cn.com/problems/finding-pairs-with-a-certain-sum)
+# [1865. 找出和为指定值的下标对](https://leetcode.cn/problems/finding-pairs-with-a-certain-sum)
 
 [English Version](/solution/1800-1899/1865.Finding%20Pairs%20With%20a%20Certain%20Sum/README_EN.md)
 
@@ -72,11 +72,10 @@ findSumPairs.count(7);  // 返回 11 ；下标对 (2,1), (2,2), (2,4), (3,1), (3
 
 ```python
 class FindSumPairs:
-
     def __init__(self, nums1: List[int], nums2: List[int]):
         self.nums1 = nums1
         self.nums2 = nums2
-        self.counter = collections.Counter(nums2)
+        self.counter = Counter(nums2)
 
     def add(self, index: int, val: int) -> None:
         old_val = self.nums2[index]
@@ -86,6 +85,7 @@ class FindSumPairs:
 
     def count(self, tot: int) -> int:
         return sum([self.counter[tot - num] for num in self.nums1])
+
 
 # Your FindSumPairs object will be instantiated and called as such:
 # obj = FindSumPairs(nums1, nums2)

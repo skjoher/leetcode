@@ -4,10 +4,7 @@
 
 ## Description
 
-<p>Given an array&nbsp;<code>nums</code>&nbsp;of integers, we need to find the maximum possible sum of elements of the array such that it is divisible by three.</p>
-
-<ol>
-</ol>
+<p>Given an integer array <code>nums</code>, return <em>the <strong>maximum possible sum </strong>of elements of the array such that it is divisible by three</em>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -40,7 +37,6 @@
 	<li><code>1 &lt;= nums.length &lt;= 4 * 10^4</code></li>
 	<li><code>1 &lt;= nums[i] &lt;= 10^4</code></li>
 </ul>
-
 
 ## Solutions
 

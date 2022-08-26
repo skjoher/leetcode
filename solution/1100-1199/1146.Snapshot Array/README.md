@@ -1,4 +1,4 @@
-# [1146. 快照数组](https://leetcode-cn.com/problems/snapshot-array)
+# [1146. 快照数组](https://leetcode.cn/problems/snapshot-array)
 
 [English Version](/solution/1100-1199/1146.Snapshot%20Array/README_EN.md)
 
@@ -40,7 +40,6 @@ snapshotArr.get(0,0);  // 获取 snap_id = 0 的快照中 array[0] 的值，返�
 	<li><code>0 &lt;=&nbsp;snap_id &lt;&nbsp;</code>我们调用&nbsp;<code>snap()</code>&nbsp;的总次数</li>
 	<li><code>0 &lt;=&nbsp;val &lt;= 10^9</code></li>
 </ul>
-
 
 ## 解法
 

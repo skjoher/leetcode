@@ -4,18 +4,18 @@
 
 ## Description
 
-<p>Given a number&nbsp;<code>s</code> in their binary representation. Return the number of steps to reduce it to 1 under the following rules:</p>
+<p>Given the binary representation of an integer as a string <code>s</code>, return <em>the number of steps to reduce it to </em><code>1</code><em> under the following rules</em>:</p>
 
 <ul>
 	<li>
-	<p>If the current number is even, you have to divide it by 2.</p>
+	<p>If the current number is even, you have to divide it by <code>2</code>.</p>
 	</li>
 	<li>
-	<p>If the current number is odd, you have to add 1 to it.</p>
+	<p>If the current number is odd, you have to add <code>1</code> to it.</p>
 	</li>
 </ul>
 
-<p>It&#39;s guaranteed that you can always reach to one for all testcases.</p>
+<p>It is guaranteed that you can always reach one for all test cases.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -57,7 +57,6 @@ Step 1) 2 is even, divide by 2 and obtain 1.&nbsp;
 	<li><code>s[0] == &#39;1&#39;</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -65,13 +64,113 @@ Step 1) 2 is even, divide by 2 and obtain 1.&nbsp;
 ### **Python3**
 
 ```python
-
+class Solution:
+    def numSteps(self, s: str) -> int:
+        carry = False
+        ans = 0
+        for c in s[:0:-1]:
+            if carry:
+                if c == '0':
+                    c = '1'
+                    carry = False
+                else:
+                    c = '0'
+            if c == '1':
+                ans += 1
+                carry = True
+            ans += 1
+        if carry:
+            ans += 1
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int numSteps(String s) {
+        boolean carry = false;
+        int ans = 0;
+        for (int i = s.length() - 1; i > 0; --i) {
+            char c = s.charAt(i);
+            if (carry) {
+                if (c == '0') {
+                    c = '1';
+                    carry = false;
+                } else {
+                    c = '0';
+                }
+            }
+            if (c == '1') {
+                ++ans;
+                carry = true;
+            }
+            ++ans;
+        }
+        if (carry) {
+            ++ans;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int numSteps(string s) {
+        int ans = 0;
+        bool carry = false;
+        for (int i = s.size() - 1; i; --i) {
+            char c = s[i];
+            if (carry) {
+                if (c == '0') {
+                    c = '1';
+                    carry = false;
+                } else
+                    c = '0';
+            }
+            if (c == '1') {
+                ++ans;
+                carry = true;
+            }
+            ++ans;
+        }
+        if (carry) ++ans;
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func numSteps(s string) int {
+	ans := 0
+	carry := false
+	for i := len(s) - 1; i > 0; i-- {
+		c := s[i]
+		if carry {
+			if c == '0' {
+				c = '1'
+				carry = false
+			} else {
+				c = '0'
+			}
+		}
+		if c == '1' {
+			ans++
+			carry = true
+		}
+		ans++
+	}
+	if carry {
+		ans++
+	}
+	return ans
+}
 ```
 
 ### **...**

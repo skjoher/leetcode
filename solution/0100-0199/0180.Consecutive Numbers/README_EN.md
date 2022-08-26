@@ -14,6 +14,7 @@
 | num         | varchar |
 +-------------+---------+
 id is the primary key for this table.
+id is an autoincrement column.
 </pre>
 
 <p>&nbsp;</p>
@@ -22,14 +23,16 @@ id is the primary key for this table.
 
 <p>Return the result table in <strong>any order</strong>.</p>
 
-<p>The query result format is in the following example:</p>
+<p>The query result format is in the following example.</p>
 
 <p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
 <pre>
+<strong>Input:</strong> 
 Logs table:
 +----+-----+
-| Id | Num |
+| id | num |
 +----+-----+
 | 1  | 1   |
 | 2  | 1   |
@@ -39,16 +42,14 @@ Logs table:
 | 6  | 2   |
 | 7  | 2   |
 +----+-----+
-
-Result table:
+<strong>Output:</strong> 
 +-----------------+
 | ConsecutiveNums |
 +-----------------+
 | 1               |
 +-----------------+
-1 is the only number that appears consecutively for at least three times.
+<strong>Explanation:</strong> 1 is the only number that appears consecutively for at least three times.
 </pre>
-
 
 ## Solutions
 
@@ -56,10 +57,27 @@ Result table:
 
 ### **SQL**
 
-```
+```sql
 select distinct(Num) as ConsecutiveNums from Logs Curr where
     Num = (select Num from Logs where id = Curr.id - 1) and
     Num = (select Num from Logs where id = Curr.id - 2)
+```
+
+```sql
+# Write your MySQL query statement below
+SELECT DISTINCT l1.num AS ConsecutiveNums
+FROM
+    logs AS l1,
+    logs AS l2,
+    logs AS l3
+WHERE
+    l1.id = l2.id - 1
+    AND
+    l2.id = l3.id - 1
+    AND
+    l1.num = l2.num
+    AND
+    l2.num = l3.num
 ```
 
 <!-- tabs:end -->

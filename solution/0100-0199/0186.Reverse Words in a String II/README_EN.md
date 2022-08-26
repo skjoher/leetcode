@@ -8,6 +8,8 @@
 
 <p>A <strong>word</strong> is defined as a sequence of non-space characters. The <strong>words</strong> in <code>s</code> will be separated by a single space.</p>
 
+<p>Your code must solve the problem&nbsp;<strong>in-place,</strong> i.e. without allocating extra space.</p>
+
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 <pre><strong>Input:</strong> s = ["t","h","e"," ","s","k","y"," ","i","s"," ","b","l","u","e"]
@@ -27,9 +29,6 @@
 	<li>All the words in <code>s</code> are guaranteed to be separated by a single space.</li>
 </ul>
 
-<p>&nbsp;</p>
-<strong>Follow up:</strong> Could you do it <strong>in-place</strong> without allocating extra space?
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -37,13 +36,105 @@
 ### **Python3**
 
 ```python
+class Solution:
+    def reverseWords(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
 
+        def reverse(s, i, j):
+            while i < j:
+                s[i], s[j] = s[j], s[i]
+                i += 1
+                j -= 1
+
+        i, j, n = 0, 0, len(s)
+        while j < n:
+            if s[j] == ' ':
+                reverse(s, i, j - 1)
+                i = j + 1
+            elif j == n - 1:
+                reverse(s, i, j)
+            j += 1
+        reverse(s, 0, n - 1)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public void reverseWords(char[] s) {
+        int n = s.length;
+        for (int i = 0, j = 0; j < n; ++j) {
+            if (s[j] == ' ') {
+                reverse(s, i, j - 1);
+                i = j + 1;
+            } else if (j == n - 1) {
+                reverse(s, i, j);
+            }
+        }
+        reverse(s, 0, n - 1);
+    }
 
+    private void reverse(char[] s, int i, int j) {
+        for (; i < j; ++i, --j) {
+            char t = s[i];
+            s[i] = s[j];
+            s[j] = t;
+        }
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    void reverseWords(vector<char>& s) {
+        int n = s.size();
+        for (int i = 0, j = 0; j < n; ++j) {
+            if (s[j] == ' ') {
+                reverse(s, i, j - 1);
+                i = j + 1;
+            } else if (j == n - 1) {
+                reverse(s, i, j);
+            }
+        }
+        reverse(s, 0, n - 1);
+    }
+
+    void reverse(vector<char>& s, int i, int j) {
+        for (; i < j; ++i, --j) {
+            swap(s[i], s[j]);
+        }
+    }
+};
+```
+
+### **Go**
+
+```go
+func reverseWords(s []byte) {
+	n := len(s)
+	for i, j := 0, 0; j < n; j++ {
+		if s[j] == ' ' {
+			reverse(s, i, j-1)
+			i = j + 1
+		} else if j == n-1 {
+			reverse(s, i, j)
+		}
+	}
+	reverse(s, 0, n-1)
+}
+
+func reverse(s []byte, i, j int) {
+	for i < j {
+		s[i], s[j] = s[j], s[i]
+		i++
+		j--
+	}
+}
 ```
 
 ### **...**

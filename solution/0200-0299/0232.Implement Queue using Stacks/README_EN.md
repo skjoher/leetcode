@@ -15,14 +15,12 @@
 	<li><code>boolean empty()</code> Returns <code>true</code> if the queue is empty, <code>false</code> otherwise.</li>
 </ul>
 
-<p><b>Notes:</b></p>
+<p><strong>Notes:</strong></p>
 
 <ul>
 	<li>You must use <strong>only</strong> standard operations of a stack, which means only <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, and <code>is empty</code> operations are valid.</li>
 	<li>Depending on your language, the stack may not be supported natively. You may simulate a stack using a list or deque (double-ended queue) as long as you use only a stack&#39;s standard operations.</li>
 </ul>
-
-<p><strong>Follow-up:</strong> Can you implement the queue such that each operation is <strong><a href="https://en.wikipedia.org/wiki/Amortized_analysis" target="_blank">amortized</a></strong> <code>O(1)</code> time complexity? In other words, performing <code>n</code> operations will take overall <code>O(n)</code> time even if one of those operations may take longer.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -52,6 +50,8 @@ myQueue.empty(); // return false
 	<li>All the calls to <code>pop</code> and <code>peek</code> are valid.</li>
 </ul>
 
+<p>&nbsp;</p>
+<p><strong>Follow-up:</strong> Can you implement the queue such that each operation is <strong><a href="https://en.wikipedia.org/wiki/Amortized_analysis" target="_blank">amortized</a></strong> <code>O(1)</code> time complexity? In other words, performing <code>n</code> operations will take overall <code>O(n)</code> time even if one of those operations may take longer.</p>
 
 ## Solutions
 
@@ -61,7 +61,6 @@ myQueue.empty(); // return false
 
 ```python
 class MyQueue:
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -69,13 +68,11 @@ class MyQueue:
         self.s1 = []
         self.s2 = []
 
-
     def push(self, x: int) -> None:
         """
         Push element x to the back of queue.
         """
         self.s1.append(x)
-
 
     def pop(self) -> int:
         """
@@ -91,13 +88,11 @@ class MyQueue:
         self._move()
         return self.s2[-1]
 
-
     def empty(self) -> bool:
         """
         Returns whether the queue is empty.
         """
         return len(self.s1) + len(self.s2) == 0
-
 
     def _move(self):
         """
@@ -168,6 +163,118 @@ class MyQueue {
  * int param_2 = obj.pop();
  * int param_3 = obj.peek();
  * boolean param_4 = obj.empty();
+ */
+```
+
+### **TypeScript**
+
+```ts
+class MyQueue {
+    stack1: number[];
+    stack2: number[];
+    constructor() {
+        this.stack1 = [];
+        this.stack2 = [];
+    }
+
+    push(x: number): void {
+        this.stack1.push(x);
+    }
+
+    pop(): number {
+        if (!this.stack2.length) {
+            while (this.stack1.length) {
+                this.stack2.push(this.stack1.pop());
+            }
+        }
+        return this.stack2.pop();
+    }
+
+    peek(): number {
+        if (!this.stack2.length) {
+            while (this.stack1.length) {
+                this.stack2.push(this.stack1.pop());
+            }
+        }
+        return this.stack2[this.stack2.length - 1];
+    }
+
+    empty(): boolean {
+        return !this.stack1.length && !this.stack2.length;
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
+```
+
+### **Rust**
+
+```rust
+struct MyQueue {
+    in_stack: Vec<i32>,
+    out_stack: Vec<i32>,
+}
+
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl MyQueue {
+
+    fn new() -> Self {
+        Self {
+            in_stack: vec![],
+            out_stack: vec![],
+        }
+    }
+
+    fn push(&mut self, x: i32) {
+        self.in_stack.push(x);
+    }
+
+    fn pop(&mut self) -> i32 {
+        if self.out_stack.is_empty() {
+            self.fill_out();
+        }
+        self.out_stack.pop().unwrap()
+    }
+
+    fn peek(&mut self) -> i32 {
+        if self.out_stack.is_empty() {
+            self.fill_out();
+        }
+        *self.out_stack.last().unwrap()
+    }
+
+    fn empty(&self) -> bool {
+        self.in_stack.is_empty() && self.out_stack.is_empty()
+    }
+
+    fn fill_out(&mut self){
+        let MyQueue { in_stack, out_stack } = self;
+        if out_stack.is_empty() {
+            while !in_stack.is_empty() {
+                out_stack.push(in_stack.pop().unwrap());
+            }
+        }
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * let obj = MyQueue::new();
+ * obj.push(x);
+ * let ret_2: i32 = obj.pop();
+ * let ret_3: i32 = obj.peek();
+ * let ret_4: bool = obj.empty();
  */
 ```
 

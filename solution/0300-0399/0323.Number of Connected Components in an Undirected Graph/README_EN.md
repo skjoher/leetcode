@@ -10,14 +10,14 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0323.Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph/images/conn1-graph.jpg" style="width: 382px; height: 222px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0323.Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph/images/conn1-graph.jpg" style="width: 382px; height: 222px;" />
 <pre>
 <strong>Input:</strong> n = 5, edges = [[0,1],[1,2],[3,4]]
 <strong>Output:</strong> 2
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0323.Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph/images/conn2-graph.jpg" style="width: 382px; height: 222px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0323.Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph/images/conn2-graph.jpg" style="width: 382px; height: 222px;" />
 <pre>
 <strong>Input:</strong> n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]
 <strong>Output:</strong> 1
@@ -35,7 +35,6 @@
 	<li>There are no repeated edges.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -43,13 +42,139 @@
 ### **Python3**
 
 ```python
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
+        p = list(range(n))
+        for a, b in edges:
+            p[find(a)] = find(b)
+        return sum(i == find(i) for i in range(n))
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    private int[] p;
 
+    public int countComponents(int n, int[][] edges) {
+        p = new int[n];
+        for (int i = 0; i < n; ++i) {
+            p[i] = i;
+        }
+        for (int[] e : edges) {
+            int a = e[0], b = e[1];
+            p[find(a)] = find(b);
+        }
+        int ans = 0;
+        for (int i = 0; i < n; ++i) {
+            if (i == find(i)) {
+                ++ans;
+            }
+        }
+        return ans;
+    }
+
+    private int find(int x) {
+        if (p[x] != x) {
+            p[x] = find(p[x]);
+        }
+        return p[x];
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> p;
+
+    int countComponents(int n, vector<vector<int>>& edges) {
+        p.resize(n);
+        for (int i = 0; i < n; ++i) p[i] = i;
+        for (auto& e : edges) {
+            int a = e[0], b = e[1];
+            p[find(a)] = find(b);
+        }
+        int ans = 0;
+        for (int i = 0; i < n; ++i)
+            if (i == find(i))
+                ++ans;
+        return ans;
+    }
+
+    int find(int x) {
+        if (p[x] != x) p[x] = find(p[x]);
+        return p[x];
+    }
+};
+```
+
+### **Go**
+
+```go
+func countComponents(n int, edges [][]int) int {
+	p := make([]int, n)
+	for i := range p {
+		p[i] = i
+	}
+	var find func(x int) int
+	find = func(x int) int {
+		if p[x] != x {
+			p[x] = find(p[x])
+		}
+		return p[x]
+	}
+	for _, e := range edges {
+		a, b := e[0], e[1]
+		p[find(a)] = find(b)
+	}
+	ans := 0
+	for i := 0; i < n; i++ {
+		if i == find(i) {
+			ans++
+		}
+	}
+	return ans
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @return {number}
+ */
+var countComponents = function (n, edges) {
+    let p = new Array(n);
+    for (let i = 0; i < n; ++i) {
+        p[i] = i;
+    }
+    function find(x) {
+        if (p[x] != x) {
+            p[x] = find(p[x]);
+        }
+        return p[x];
+    }
+    for (const [a, b] of edges) {
+        p[find(a)] = find(b);
+    }
+    let ans = 0;
+    for (let i = 0; i < n; ++i) {
+        if (i == find(i)) {
+            ++ans;
+        }
+    }
+    return ans;
+};
 ```
 
 ### **...**

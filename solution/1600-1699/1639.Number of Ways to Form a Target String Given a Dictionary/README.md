@@ -1,4 +1,4 @@
-# [1639. 通过给定词典构造目标字符串的方案数](https://leetcode-cn.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary)
+# [1639. 通过给定词典构造目标字符串的方案数](https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary)
 
 [English Version](/solution/1600-1699/1639.Number%20of%20Ways%20to%20Form%20a%20Target%20String%20Given%20a%20Dictionary/README_EN.md)
 
@@ -76,7 +76,6 @@
 	<li><code>1 <= target.length <= 1000</code></li>
 	<li><code>words[i]</code> 和 <code>target</code> 都仅包含小写英文字母。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1069. 产品销售分析 II](https://leetcode-cn.com/problems/product-sales-analysis-ii)
+# [1069. 产品销售分析 II](https://leetcode.cn/problems/product-sales-analysis-ii)
 
 [English Version](/solution/1000-1099/1069.Product%20Sales%20Analysis%20II/README_EN.md)
 
@@ -67,7 +67,6 @@ Result 表：
 | 200          | 15             |
 +--------------+----------------+</pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -77,7 +76,14 @@ Result 表：
 ### **SQL**
 
 ```sql
-
+# Write your MySQL query statement below
+SELECT
+    product_id,
+    sum(quantity) AS total_quantity
+FROM
+    Sales
+GROUP BY
+    product_id;
 ```
 
 <!-- tabs:end -->

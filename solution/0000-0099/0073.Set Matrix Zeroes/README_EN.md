@@ -4,26 +4,20 @@
 
 ## Description
 
-<p>Given an&nbsp;<code><em>m</em> x <em>n</em></code> matrix. If an element is <strong>0</strong>, set its entire row and column to <strong>0</strong>. Do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank"><strong>in-place</strong></a>.</p>
+<p>Given an <code>m x n</code> integer matrix <code>matrix</code>, if an element is <code>0</code>, set its entire row and column to <code>0</code>&#39;s.</p>
 
-<p><strong>Follow up:</strong></p>
-
-<ul>
-	<li>A straight forward solution using O(<em>m</em><em>n</em>) space is probably a bad idea.</li>
-	<li>A simple improvement uses O(<em>m</em> + <em>n</em>) space, but still not the best solution.</li>
-	<li>Could you devise a constant space solution?</li>
-</ul>
+<p>You must do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in place</a>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat1.jpg" style="width: 450px; height: 169px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat1.jpg" style="width: 450px; height: 169px;" />
 <pre>
 <strong>Input:</strong> matrix = [[1,1,1],[1,0,1],[1,1,1]]
 <strong>Output:</strong> [[1,0,1],[0,0,0],[1,0,1]]
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat2.jpg" style="width: 450px; height: 137px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat2.jpg" style="width: 450px; height: 137px;" />
 <pre>
 <strong>Input:</strong> matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
 <strong>Output:</strong> [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
@@ -39,6 +33,14 @@
 	<li><code>-2<sup>31</sup> &lt;= matrix[i][j] &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 
+<p>&nbsp;</p>
+<p><strong>Follow up:</strong></p>
+
+<ul>
+	<li>A straightforward solution using <code>O(mn)</code> space is probably a bad idea.</li>
+	<li>A simple improvement uses <code>O(m + n)</code> space, but still not the best solution.</li>
+	<li>Could you devise a constant space solution?</li>
+</ul>
 
 ## Solutions
 
@@ -169,6 +171,61 @@ class Solution {
             for (int i = 0; i < m; ++i) {
                 matrix[i][0] = 0;
             }
+        }
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ Do not return anything, modify matrix in-place instead.
+ */
+function setZeroes(matrix: number[][]): void {
+    let m = matrix.length,
+        n = matrix[0].length;
+    let c0 = false,
+        r0 = false;
+    // 遍历第一行
+    for (let i = 0; i < m; i++) {
+        if (!matrix[i][0] && !c0) {
+            c0 = true;
+        }
+    }
+    // 第一列
+    for (let j = 0; j < n; j++) {
+        if (!matrix[0][j] && !r0) {
+            r0 = true;
+        }
+    }
+    // 用第一行、第一列标记全部
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (!matrix[i][j]) {
+                matrix[i][0] = 0;
+                matrix[0][j] = 0;
+            }
+        }
+    }
+    // set
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (!matrix[i][0] || !matrix[0][j]) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+    // set 第一列
+    if (c0) {
+        for (let i = 0; i < m; i++) {
+            matrix[i][0] = 0;
+        }
+    }
+    // 第一行
+    if (r0) {
+        for (let j = 0; j < n; j++) {
+            matrix[0][j] = 0;
         }
     }
 }

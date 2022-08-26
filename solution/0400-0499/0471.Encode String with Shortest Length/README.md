@@ -1,4 +1,4 @@
-# [471. 编码最短长度的字符串](https://leetcode-cn.com/problems/encode-string-with-shortest-length)
+# [471. 编码最短长度的字符串](https://leetcode.cn/problems/encode-string-with-shortest-length)
 
 [English Version](/solution/0400-0499/0471.Encode%20String%20with%20Shortest%20Length/README_EN.md)
 
@@ -67,7 +67,6 @@
 	<li><code>1 <= s.length <= 150</code></li>
 	<li><code>s</code> 由小写英文字母组成</li>
 </ul>
-
 
 ## 解法
 

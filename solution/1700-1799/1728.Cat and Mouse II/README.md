@@ -1,4 +1,4 @@
-# [1728. 猫和老鼠 II](https://leetcode-cn.com/problems/cat-and-mouse-ii)
+# [1728. 猫和老鼠 II](https://leetcode.cn/problems/cat-and-mouse-ii)
 
 [English Version](/solution/1700-1799/1728.Cat%20and%20Mouse%20II/README_EN.md)
 
@@ -43,7 +43,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1728.Cat%20and%20Mouse%20II/images/sample_111_1955.png" style="width: 580px; height: 239px;" /></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1728.Cat%20and%20Mouse%20II/images/sample_111_1955.png" style="width: 580px; height: 239px;" /></strong></p>
 
 <pre>
 <b>输入：</b>grid = ["####F","#C...","M...."], catJump = 1, mouseJump = 2
@@ -53,7 +53,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1728.Cat%20and%20Mouse%20II/images/sample_2_1955.png" style="width: 580px; height: 175px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1728.Cat%20and%20Mouse%20II/images/sample_2_1955.png" style="width: 580px; height: 175px;" /></p>
 
 <pre>
 <b>输入：</b>grid = ["M.C...F"], catJump = 1, mouseJump = 4
@@ -93,7 +93,6 @@
 	<li><code>grid</code> 中只包含一个 <code>'C'</code> ，<code>'M'</code> 和 <code>'F'</code> 。</li>
 	<li><code>1 <= catJump, mouseJump <= 8</code></li>
 </ul>
-
 
 ## 解法
 

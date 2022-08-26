@@ -40,25 +40,18 @@ The maximum distance is 1 with pair (0,1).
 The maximum distance is 2 with pair (2,4).
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> nums1 = [5,4], nums2 = [3,2]
-<strong>Output:</strong> 0
-<strong>Explanation:</strong> There are no valid pairs, so return 0.
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= nums1.length &lt;= 10<sup>5</sup></code></li>
-	<li><code>1 &lt;= nums2.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= nums1.length, nums2.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>1 &lt;= nums1[i], nums2[j] &lt;= 10<sup>5</sup></code></li>
 	<li>Both <code>nums1</code> and <code>nums2</code> are <strong>non-increasing</strong>.</li>
 </ul>
 
 ## Solutions
+
+Binary search.
 
 <!-- tabs:start -->
 
@@ -67,17 +60,17 @@ The maximum distance is 2 with pair (2,4).
 ```python
 class Solution:
     def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
-        res = 0
-        for i in range(len(nums1)):
-            l, r = i, len(nums2) - 1
-            while l <= r:
-                mid = (l + r) >> 1
-                if nums2[mid] >= nums1[i]:
-                    res = max(res, mid - i)
-                    l = mid + 1
+        ans, n = 0, len(nums2)
+        for i, num in enumerate(nums1):
+            left, right = i, n - 1
+            while left < right:
+                mid = (left + right + 1) >> 1
+                if nums2[mid] >= num:
+                    left = mid
                 else:
-                    r = mid - 1
-        return res
+                    right = mid - 1
+            ans = max(ans, left - i)
+        return ans
 ```
 
 ### **Java**
@@ -85,20 +78,21 @@ class Solution:
 ```java
 class Solution {
     public int maxDistance(int[] nums1, int[] nums2) {
-        int res = 0;
-        for (int i = 0; i < nums1.length; ++i) {
-            int l = i, r = nums2.length - 1;
-            while (l <= r) {
-                int mid = (l + r) >>> 1;
+        int ans = 0;
+        int m = nums1.length, n = nums2.length;
+        for (int i = 0; i < m; ++i) {
+            int left = i, right = n - 1;
+            while (left < right) {
+                int mid = (left + right + 1) >> 1;
                 if (nums2[mid] >= nums1[i]) {
-                    res = Math.max(res, mid - i);
-                    l = mid + 1;
+                    left = mid;
                 } else {
-                    r = mid - 1;
+                    right = mid - 1;
                 }
             }
+            ans = Math.max(ans, left - i);
         }
-        return res;
+        return ans;
     }
 }
 ```
@@ -109,22 +103,46 @@ class Solution {
 class Solution {
 public:
     int maxDistance(vector<int>& nums1, vector<int>& nums2) {
-        int res = 0;
-        for (int i = 0; i < nums1.size(); ++i) {
-            int l = i, r = nums2.size() - 1;
-            while (l <= r) {
-                int mid = (l + r) >> 1;
+        int ans = 0;
+        int m = nums1.size(), n = nums2.size();
+        for (int i = 0; i < m; ++i) {
+            int left = i, right = n - 1;
+            while (left < right) {
+                int mid = (left + right + 1) >> 1;
                 if (nums2[mid] >= nums1[i]) {
-                    res = max(res, mid - i);
-                    l = mid + 1;
+                    left = mid;
                 } else {
-                    r = mid - 1;
+                    right = mid - 1;
                 }
             }
+            ans = max(ans, left - i);
         }
-        return res;
+        return ans;
     }
 };
+```
+
+### **Go**
+
+```go
+func maxDistance(nums1 []int, nums2 []int) int {
+	ans, n := 0, len(nums2)
+	for i, num := range nums1 {
+		left, right := i, n-1
+		for left < right {
+			mid := (left + right + 1) >> 1
+			if nums2[mid] >= num {
+				left = mid
+			} else {
+				right = mid - 1
+			}
+		}
+		if ans < left-i {
+			ans = left - i
+		}
+	}
+	return ans
+}
 ```
 
 ### **JavaScript**
@@ -135,22 +153,75 @@ public:
  * @param {number[]} nums2
  * @return {number}
  */
-var maxDistance = function(nums1, nums2) {
-    let res = 0;
-    for (let i = 0; i < nums1.length; i++) {
-        let left = 0, right = nums2.length - 1;
-        while (left <= right) {
-            mid = (left + right) >> 1;
+var maxDistance = function (nums1, nums2) {
+    let ans = 0;
+    let m = nums1.length;
+    let n = nums2.length;
+    for (let i = 0; i < m; ++i) {
+        let left = i;
+        let right = n - 1;
+        while (left < right) {
+            const mid = (left + right + 1) >> 1;
             if (nums2[mid] >= nums1[i]) {
-                res = Math.max(res, mid - i);
-                left = mid + 1;
+                left = mid;
             } else {
                 right = mid - 1;
             }
         }
+        ans = Math.max(ans, left - i);
     }
-    return res;
+    return ans;
 };
+```
+
+### **TypeScript**
+
+```ts
+function maxDistance(nums1: number[], nums2: number[]): number {
+    let ans = 0;
+    let m = nums1.length;
+    let n = nums2.length;
+    for (let i = 0; i < m; ++i) {
+        let left = i;
+        let right = n - 1;
+        while (left < right) {
+            const mid = (left + right + 1) >> 1;
+            if (nums2[mid] >= nums1[i]) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        ans = Math.max(ans, left - i);
+    }
+    return ans;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn max_distance(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
+        let m = nums1.len();
+        let n = nums2.len();
+        let mut res = 0;
+        for i in 0..m {
+            let mut left = i;
+            let mut right = n;
+            while left < right {
+                let mid = left + (right - left) / 2;
+                if nums2[mid] >= nums1[i] {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+            res = res.max((left - i - 1) as i32)
+        }
+        res
+    }
+}
 ```
 
 ### **...**

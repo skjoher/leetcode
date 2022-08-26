@@ -13,16 +13,16 @@
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0426.Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List/images/bstdlloriginalbst.png" style="width: 100%; max-width: 300px;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0426.Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List/images/bstdlloriginalbst.png" style="width: 100%; max-width: 300px;" /></p>
 
 <pre>
 <strong>Input:</strong> root = [4,2,5,1,3]
 
-<img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0426.Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List/images/bstdllreturndll.png" style="width: 100%; max-width: 450px;" />
+<img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0426.Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List/images/bstdllreturndll.png" style="width: 100%; max-width: 450px;" />
 <strong>Output:</strong> [1,2,3,4,5]
 
 <strong>Explanation:</strong> The figure below shows the transformed BST. The solid line indicates the successor relationship, while the dashed line means the predecessor relationship.
-<img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0426.Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List/images/bstdllreturnbst.png" style="width: 100%; max-width: 450px;" />
+<img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0400-0499/0426.Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List/images/bstdllreturnbst.png" style="width: 100%; max-width: 450px;" />
 </pre>
 
 <p><strong>Example 2:</strong></p>
@@ -30,21 +30,6 @@
 <pre>
 <strong>Input:</strong> root = [2,1,3]
 <strong>Output:</strong> [1,2,3]
-</pre>
-
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> root = []
-<strong>Output:</strong> []
-<strong>Explanation:</strong> Input is an empty tree. Output is also an empty Linked List.
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> root = [1]
-<strong>Output:</strong> [1]
 </pre>
 
 <p>&nbsp;</p>
@@ -55,7 +40,6 @@
 	<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
 	<li>All the values of the tree are <strong>unique</strong>.</li>
 </ul>
-
 
 ## Solutions
 
@@ -72,26 +56,30 @@ class Node:
         self.left = left
         self.right = right
 """
+
+
 class Solution:
-    def treeToDoublyList(self, root: 'Node') -> 'Node':
-        def dfs(cur):
-            if cur is None:
+    def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        def dfs(root):
+            if root is None:
                 return
-            dfs(cur.left)
-            if self.pre is None:
-                self.head = cur
+            nonlocal prev, head
+            dfs(root.left)
+            if prev:
+                prev.right = root
+                root.left = prev
             else:
-                self.pre.right = cur
-            cur.left = self.pre
-            self.pre = cur
-            dfs(cur.right)
+                head = root
+            prev = root
+            dfs(root.right)
+
         if root is None:
             return None
-        self.head = self.pre = None
+        head = prev = None
         dfs(root)
-        self.head.left = self.pre
-        self.pre.right = self.head
-        return self.head
+        prev.right = head
+        head.left = prev
+        return head
 ```
 
 ### **Java**
@@ -119,26 +107,131 @@ class Node {
 */
 
 class Solution {
+    private Node prev;
     private Node head;
-    private Node pre;
 
     public Node treeToDoublyList(Node root) {
-        if (root == null) return null;
+        if (root == null) {
+            return null;
+        }
+        prev = null;
+        head = null;
         dfs(root);
-        head.left = pre;
-        pre.right = head;
+        prev.right = head;
+        head.left = prev;
         return head;
     }
 
-    private void dfs(Node cur) {
-        if (cur == null) return;
-        dfs(cur.left);
-        if (pre == null) head = cur;
-        else pre.right = cur;
-        cur.left = pre;
-        pre = cur;
-        dfs(cur.right);
+    private void dfs(Node root) {
+        if (root == null) {
+            return;
+        }
+        dfs(root.left);
+        if (prev != null) {
+            prev.right = root;
+            root.left = prev;
+        } else {
+            head = root;
+        }
+        prev = root;
+        dfs(root.right);
     }
+}
+```
+
+### **C++**
+
+```cpp
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+
+    Node() {}
+
+    Node(int _val) {
+        val = _val;
+        left = NULL;
+        right = NULL;
+    }
+
+    Node(int _val, Node* _left, Node* _right) {
+        val = _val;
+        left = _left;
+        right = _right;
+    }
+};
+*/
+
+class Solution {
+public:
+    Node* prev;
+    Node* head;
+
+    Node* treeToDoublyList(Node* root) {
+        if (!root) return nullptr;
+        prev = nullptr;
+        head = nullptr;
+        dfs(root);
+        prev->right = head;
+        head->left = prev;
+        return head;
+    }
+
+    void dfs(Node* root) {
+        if (!root) return;
+        dfs(root->left);
+        if (prev) {
+            prev->right = root;
+            root->left = prev;
+        } else
+            head = root;
+        prev = root;
+        dfs(root->right);
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ * }
+ */
+
+func treeToDoublyList(root *Node) *Node {
+	if root == nil {
+		return root
+	}
+	var prev, head *Node
+
+	var dfs func(root *Node)
+	dfs = func(root *Node) {
+		if root == nil {
+			return
+		}
+		dfs(root.Left)
+		if prev != nil {
+			prev.Right = root
+			root.Left = prev
+		} else {
+			head = root
+		}
+		prev = root
+		dfs(root.Right)
+	}
+	dfs(root)
+	prev.Right = head
+	head.Left = prev
+	return head
 }
 ```
 
@@ -147,32 +240,38 @@ class Solution {
 ```js
 /**
  * // Definition for a Node.
- * function Node(val,left,right) {
- *    this.val = val;
- *    this.left = left;
- *    this.right = right;
- * };
+ * function Node(val, left, right) {
+ *      this.val = val;
+ *      this.left = left;
+ *      this.right = right;
+ *  };
  */
+
 /**
  * @param {Node} root
  * @return {Node}
  */
 var treeToDoublyList = function (root) {
-  function dfs(cur) {
-    if (!cur) return;
-    dfs(cur.left);
-    if (!pre) head = cur;
-    else pre.right = cur;
-    cur.left = pre;
-    pre = cur;
-    dfs(cur.right);
-  }
-  if (!root) return null;
-  let head, pre;
-  dfs(root);
-  head.left = pre;
-  pre.right = head;
-  return head;
+    if (!root) return root;
+    let prev = null;
+    let head = null;
+
+    function dfs(root) {
+        if (!root) return;
+        dfs(root.left);
+        if (prev) {
+            prev.right = root;
+            root.left = prev;
+        } else {
+            head = root;
+        }
+        prev = root;
+        dfs(root.right);
+    }
+    dfs(root);
+    prev.right = head;
+    head.left = prev;
+    return head;
 };
 ```
 

@@ -1,4 +1,4 @@
-# [面试题 17.20. 连续中值](https://leetcode-cn.com/problems/continuous-median-lcci)
+# [面试题 17.20. 连续中值](https://leetcode.cn/problems/continuous-median-lcci)
 
 [English Version](/lcci/17.20.Continuous%20Median/README_EN.md)
 
@@ -35,9 +35,9 @@ findMedian() -&gt; 2
 
 <!-- 这里可写通用的实现逻辑 -->
 
-- 创建大根堆、小根堆，其中：大根堆存放较小的一半元素，小根堆存放较大的一半元素。
-- 添加元素时，先放入小根堆，然后将小根堆对顶元素弹出并放入大根堆（使得大根堆个数多 1）；若大小根堆元素个数差超过 1，则将大根堆元素弹出放入小根堆。
-- 取中位数时，若大根堆元素较多，取大根堆堆顶，否则取两堆顶元素和的平均值。
+-   创建大根堆、小根堆，其中：大根堆存放较小的一半元素，小根堆存放较大的一半元素。
+-   添加元素时，先放入小根堆，然后将小根堆对顶元素弹出并放入大根堆（使得大根堆个数多 1）；若大小根堆元素个数差超过 1，则将大根堆元素弹出放入小根堆。
+-   取中位数时，若大根堆元素较多，取大根堆堆顶，否则取两堆顶元素和的平均值。
 
 <!-- tabs:start -->
 
@@ -47,7 +47,6 @@ findMedian() -&gt; 2
 
 ```python
 class MedianFinder:
-
     def __init__(self):
         """
         initialize your data structure here.
@@ -56,10 +55,10 @@ class MedianFinder:
         self.max_heap = []
 
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.min_heap, num)
-        heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        heappush(self.min_heap, num)
+        heappush(self.max_heap, -heappop(self.min_heap))
         if len(self.max_heap) - len(self.min_heap) > 1:
-            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+            heappush(self.min_heap, -heappop(self.max_heap))
 
     def findMedian(self) -> float:
         if len(self.max_heap) > len(self.min_heap):

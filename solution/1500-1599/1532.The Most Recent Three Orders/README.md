@@ -1,4 +1,4 @@
-# [1532. 最近的三笔订单](https://leetcode-cn.com/problems/the-most-recent-three-orders)
+# [1532. 最近的三笔订单](https://leetcode.cn/problems/the-most-recent-three-orders)
 
 [English Version](/solution/1500-1599/1532.The%20Most%20Recent%20Three%20Orders/README_EN.md)
 
@@ -101,7 +101,6 @@ Marwan 只有 1 笔订单。
 <ul>
 	<li>你能写出来最近 <code>n</code> 笔订单的通用解决方案吗?</li>
 </ul>
-
 
 ## 解法
 

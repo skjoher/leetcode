@@ -1,4 +1,4 @@
-# [114. 二叉树展开为链表](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list)
+# [114. 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list)
 
 [English Version](/solution/0100-0199/0114.Flatten%20Binary%20Tree%20to%20Linked%20List/README_EN.md)
 
@@ -16,7 +16,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0114.Flatten%20Binary%20Tree%20to%20Linked%20List/images/flaten.jpg" style="width: 500px; height: 226px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0114.Flatten%20Binary%20Tree%20to%20Linked%20List/images/flaten.jpg" style="width: 500px; height: 226px;" />
 <pre>
 <strong>输入：</strong>root = [1,2,5,3,4,null,6]
 <strong>输出：</strong>[1,null,2,null,3,null,4,null,5,null,6]
@@ -49,7 +49,6 @@
 
 <p><strong>进阶：</strong>你可以使用原地算法（<code>O(1)</code> 额外空间）展开这棵树吗？</p>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -61,7 +60,26 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def flatten(self, root: TreeNode) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        while root:
+            if root.left:
+                pre = root.left
+                while pre.right:
+                    pre = pre.right
+                pre.right = root.right
+                root.right = root.left
+                root.left = None
+            root = root.right
 ```
 
 ### **Java**
@@ -69,7 +87,111 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void flatten(TreeNode root) {
+        while (root != null) {
+            if (root.left != null) {
+                // 找到当前节点左子树的最右节点
+                TreeNode pre = root.left;
+                while (pre.right != null) {
+                    pre = pre.right;
+                }
 
+                // 将左子树的最右节点指向原来的右子树
+                pre.right = root.right;
+
+                // 将当前节点指向左子树
+                root.right = root.left;
+                root.left = null;
+            }
+            root = root.right;
+        }
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+/**
+ Do not return anything, modify root in-place instead.
+ */
+function flatten(root: TreeNode | null): void {
+    while (root != null) {
+        if (root.left != null) {
+            let pre = root.left;
+            while (pre.right != null) {
+                pre = pre.right;
+            }
+            pre.right = root.right;
+            root.right = root.left;
+            root.left = null;
+        }
+        root = root.right;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void flatten(TreeNode* root) {
+        while (root) {
+            if (root->left) {
+                TreeNode* pre = root->left;
+                while (pre->right) {
+                    pre = pre->right;
+                }
+                pre->right = root->right;
+                root->right = root->left;
+                root->left = nullptr;
+            }
+            root = root->right;
+        }
+    }
+};
 ```
 
 ### **...**

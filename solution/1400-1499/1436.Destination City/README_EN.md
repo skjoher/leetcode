@@ -48,7 +48,6 @@ Clearly the destination city is &quot;A&quot;.
 	<li>All strings consist of lowercase and uppercase English letters and the space character.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -56,13 +55,87 @@ Clearly the destination city is &quot;A&quot;.
 ### **Python3**
 
 ```python
-
+class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        s = {a for a, _ in paths}
+        return next(b for _, b in paths if b not in s)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        Set<String> s = new HashSet<>();
+        for (var p : paths) {
+            s.add(p.get(0));
+        }
+        for (var p : paths) {
+            if (!s.contains(p.get(1))) {
+                return p.get(1);
+            }
+        }
+        return "";
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        unordered_set<string> s;
+        for (auto& p : paths) {
+            s.insert(p[0]);
+        }
+        for (auto& p : paths) {
+            if (!s.count(p[1])) {
+                return p[1];
+            }
+        }
+        return "";
+    }
+};
+```
+
+### **Go**
+
+```go
+func destCity(paths [][]string) string {
+	s := map[string]bool{}
+	for _, p := range paths {
+		s[p[0]] = true
+	}
+	for _, p := range paths {
+		if !s[p[1]] {
+			return p[1]
+		}
+	}
+	return ""
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {string[][]} paths
+ * @return {string}
+ */
+var destCity = function (paths) {
+    const s = new Set();
+    for (const [a, _] of paths) {
+        s.add(a);
+    }
+    for (const [_, b] of paths) {
+        if (!s.has(b)) {
+            return b;
+        }
+    }
+    return '';
+};
 ```
 
 ### **...**

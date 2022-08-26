@@ -1,4 +1,4 @@
-# [1561. 你可以获得的最大硬币数目](https://leetcode-cn.com/problems/maximum-number-of-coins-you-can-get)
+# [1561. 你可以获得的最大硬币数目](https://leetcode.cn/problems/maximum-number-of-coins-you-can-get)
 
 [English Version](/solution/1500-1599/1561.Maximum%20Number%20of%20Coins%20You%20Can%20Get/README_EN.md)
 
@@ -54,10 +54,13 @@
 	<li><code>1 &lt;= piles[i] &lt;= 10^4</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：贪心**
+
+Bob 取走最小的 1/3，剩余的硬币堆由 Alice 和我按硬币数从高到低依次取走每一堆。
 
 <!-- tabs:start -->
 
@@ -66,7 +69,10 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maxCoins(self, piles: List[int]) -> int:
+        piles.sort()
+        return sum(piles[-2 : len(piles) // 3 - 1 : -2])
 ```
 
 ### **Java**
@@ -74,7 +80,45 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
 
+    public int maxCoins(int[] piles) {
+        Arrays.sort(piles);
+        int ans = 0;
+        for (int i = piles.length - 2; i >= piles.length / 3; i -= 2) {
+            ans += piles[i];
+        }
+        return ans;
+    }
+}
+
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxCoins(vector<int>& piles) {
+        sort(piles.begin(), piles.end());
+        int ans = 0;
+        for (int i = piles.size() - 2; i >= (int)piles.size() / 3; i -= 2) ans += piles[i];
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxCoins(piles []int) int {
+	sort.Ints(piles)
+	ans, n := 0, len(piles)
+	for i := n - 2; i >= n/3; i -= 2 {
+		ans += piles[i]
+	}
+	return ans
+}
 ```
 
 ### **...**

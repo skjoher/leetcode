@@ -1,4 +1,4 @@
-# [480. 滑动窗口中位数](https://leetcode-cn.com/problems/sliding-window-median)
+# [480. 滑动窗口中位数](https://leetcode.cn/problems/sliding-window-median)
 
 [English Version](/solution/0400-0499/0480.Sliding%20Window%20Median/README_EN.md)
 
@@ -44,7 +44,6 @@
 	<li>你可以假设 <code>k</code> 始终有效，即：<code>k</code> 始终小于等于输入的非空数组的元素个数。</li>
 	<li>与真实值误差在 <code>10 ^ -5</code> 以内的答案将被视作正确答案。</li>
 </ul>
-
 
 ## 解法
 

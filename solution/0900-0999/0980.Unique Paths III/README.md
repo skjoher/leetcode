@@ -1,4 +1,4 @@
-# [980. 不同路径 III](https://leetcode-cn.com/problems/unique-paths-iii)
+# [980. 不同路径 III](https://leetcode.cn/problems/unique-paths-iii)
 
 [English Version](/solution/0900-0999/0980.Unique%20Paths%20III/README_EN.md)
 
@@ -55,7 +55,6 @@
 <ul>
 	<li><code>1 &lt;= grid.length * grid[0].length &lt;= 20</code></li>
 </ul>
-
 
 ## 解法
 

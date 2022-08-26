@@ -1,4 +1,4 @@
-# [1681. 最小不兼容性](https://leetcode-cn.com/problems/minimum-incompatibility)
+# [1681. 最小不兼容性](https://leetcode.cn/problems/minimum-incompatibility)
 
 [English Version](/solution/1600-1699/1681.Minimum%20Incompatibility/README_EN.md)
 
@@ -51,7 +51,6 @@
 	<li><code>nums.length</code> 能被 <code>k</code> 整除。</li>
 	<li><code>1 <= nums[i] <= nums.length</code></li>
 </ul>
-
 
 ## 解法
 

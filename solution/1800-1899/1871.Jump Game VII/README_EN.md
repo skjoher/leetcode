@@ -99,7 +99,7 @@ class Solution {
  * @param {number} maxJump
  * @return {boolean}
  */
-var canReach = function(s, minJump, maxJump) {
+var canReach = function (s, minJump, maxJump) {
     let n = s.length;
     let dp = new Array(n).fill(0);
     let sum = new Array(n + 1).fill(0);

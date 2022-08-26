@@ -1,4 +1,4 @@
-# [1364. 顾客的可信联系人数量](https://leetcode-cn.com/problems/number-of-trusted-contacts-of-a-customer)
+# [1364. 顾客的可信联系人数量](https://leetcode.cn/problems/number-of-trusted-contacts-of-a-customer)
 
 [English Version](/solution/1300-1399/1364.Number%20of%20Trusted%20Contacts%20of%20a%20Customer/README_EN.md)
 
@@ -112,7 +112,6 @@ Bob 有两位联系人, 他们中的任何一位都不是可信联系人。
 Alex 只有一位联系人(Alice)，并是一位可信联系人。
 John 没有任何联系人。
 </pre>
-
 
 ## 解法
 

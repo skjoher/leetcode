@@ -26,27 +26,13 @@
 <strong>Output:</strong> &quot;y&quot;
 </pre>
 
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;a&quot;, t = &quot;aa&quot;
-<strong>Output:</strong> &quot;a&quot;
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;ae&quot;, t = &quot;aea&quot;
-<strong>Output:</strong> &quot;a&quot;
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>0 &lt;= s.length &lt;= 1000</code></li>
 	<li><code>t.length == s.length + 1</code></li>
-	<li><code>s</code> and <code>t</code> consist of lower-case English letters.</li>
+	<li><code>s</code> and <code>t</code> consist of lowercase English letters.</li>
 </ul>
 
 ## Solutions
@@ -58,7 +44,7 @@
 ```python
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        counter = collections.Counter(s)
+        counter = Counter(s)
         for c in t:
             if counter[c] <= 0:
                 return c
@@ -84,6 +70,31 @@ class Solution {
             --counter[index];
         }
         return ' ';
+    }
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn find_the_difference(s: String, t: String) -> char {
+        let s = s.as_bytes();
+        let t = t.as_bytes();
+        let n = s.len();
+        let mut count = [0; 26];
+        for i in 0..n {
+            count[(s[i] - b'a') as usize] -= 1;
+            count[(t[i] - b'a') as usize] += 1;
+        }
+        let mut res = *t.last().unwrap();
+        for i in 0..26 {
+            if count[i] == 1 {
+                res = (i as u8) + b'a';
+                break;
+            }
+        }
+        char::from(res)
     }
 }
 ```

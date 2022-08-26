@@ -1,4 +1,4 @@
-# [1335. 工作计划的最低难度](https://leetcode-cn.com/problems/minimum-difficulty-of-a-job-schedule)
+# [1335. 工作计划的最低难度](https://leetcode.cn/problems/minimum-difficulty-of-a-job-schedule)
 
 [English Version](/solution/1300-1399/1335.Minimum%20Difficulty%20of%20a%20Job%20Schedule/README_EN.md)
 
@@ -18,7 +18,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1335.Minimum%20Difficulty%20of%20a%20Job%20Schedule/images/untitled.png" style="height: 304px; width: 365px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1335.Minimum%20Difficulty%20of%20a%20Job%20Schedule/images/untitled.png" style="height: 304px; width: 365px;"></p>
 
 <pre><strong>输入：</strong>jobDifficulty = [6,5,4,3,2,1], d = 2
 <strong>输出：</strong>7
@@ -62,7 +62,6 @@
 	<li><code>0 &lt;=&nbsp;jobDifficulty[i] &lt;= 1000</code></li>
 	<li><code>1 &lt;= d &lt;= 10</code></li>
 </ul>
-
 
 ## 解法
 

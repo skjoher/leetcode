@@ -1,4 +1,4 @@
-# [1130. 叶值的最小代价生成树](https://leetcode-cn.com/problems/minimum-cost-tree-from-leaf-values)
+# [1130. 叶值的最小代价生成树](https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values)
 
 [English Version](/solution/1100-1199/1130.Minimum%20Cost%20Tree%20From%20Leaf%20Values/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>1 &lt;= arr[i] &lt;= 15</code></li>
 	<li>答案保证是一个 32 位带符号整数，即小于&nbsp;<code>2^31</code>。</li>
 </ul>
-
 
 ## 解法
 

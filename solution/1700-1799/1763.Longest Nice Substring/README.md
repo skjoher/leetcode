@@ -1,4 +1,4 @@
-# [1763. 最长的美好子字符串](https://leetcode-cn.com/problems/longest-nice-substring)
+# [1763. 最长的美好子字符串](https://leetcode.cn/problems/longest-nice-substring)
 
 [English Version](/solution/1700-1799/1763.Longest%20Nice%20Substring/README_EN.md)
 
@@ -52,7 +52,6 @@
 	<li><code>s</code> 只包含大写和小写英文字母。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -64,7 +63,20 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def longestNiceSubstring(self, s: str) -> str:
+        n = len(s)
+        ans = ''
+        for i in range(n):
+            lower = upper = 0
+            for j in range(i, n):
+                if s[j].islower():
+                    lower |= 1 << (ord(s[j]) - ord('a'))
+                else:
+                    upper |= 1 << (ord(s[j]) - ord('A'))
+                if lower == upper and j - i + 1 > len(ans):
+                    ans = s[i : j + 1]
+        return ans
 ```
 
 ### **Java**
@@ -72,7 +84,98 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
 
+    public String longestNiceSubstring(String s) {
+        int n = s.length();
+        String ans = "";
+        for (int i = 0; i < n; ++i) {
+            int lower = 0, upper = 0;
+            for (int j = i; j < n; ++j) {
+                char c = s.charAt(j);
+                if (Character.isLowerCase(c)) {
+                    lower |= 1 << (c - 'a');
+                } else {
+                    upper |= 1 << (c - 'A');
+                }
+                if (lower == upper && j - i + 1 > ans.length()) {
+                    ans = s.substring(i, j + 1);
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+```
+
+### **TypeScript**
+
+```ts
+function longestNiceSubstring(s: string): string {
+    const n = s.length;
+    let ans = '';
+    for (let i = 0; i < n; i++) {
+        let lower = 0,
+            upper = 0;
+        for (let j = i; j < n; j++) {
+            const c = s.charCodeAt(j);
+            if (c > 96) {
+                lower |= 1 << (c - 97);
+            } else {
+                upper |= 1 << (c - 65);
+            }
+            if (lower == upper && j - i + 1 > ans.length) {
+                ans = s.substring(i, j + 1);
+            }
+        }
+    }
+    return ans;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    string longestNiceSubstring(string s) {
+        int n = s.size();
+        string ans = "";
+        for (int i = 0; i < n; ++i) {
+            int lower = 0, upper = 0;
+            for (int j = i; j < n; ++j) {
+                if (islower(s[j]))
+                    lower |= 1 << (s[j] - 'a');
+                else
+                    upper |= 1 << (s[j] - 'A');
+                if (lower == upper && j - i + 1 > ans.size()) ans = s.substr(i, j - i + 1);
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func longestNiceSubstring(s string) (ans string) {
+	for i := range s {
+		lower, upper := 0, 0
+		for j := i; j < len(s); j++ {
+			if unicode.IsLower(rune(s[j])) {
+				lower |= 1 << (s[j] - 'a')
+			} else {
+				upper |= 1 << (s[j] - 'A')
+			}
+			if lower == upper && j-i+1 > len(ans) {
+				ans = s[i : j+1]
+			}
+		}
+	}
+	return
+}
 ```
 
 ### **...**

@@ -21,7 +21,7 @@ class Node {
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1650.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20III/images/binarytree.png" style="width: 200px; height: 190px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1650.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20III/images/binarytree.png" style="width: 200px; height: 190px;" />
 <pre>
 <strong>Input:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 <strong>Output:</strong> 3
@@ -29,7 +29,7 @@ class Node {
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1650.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20III/images/binarytree.png" style="width: 200px; height: 190px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1650.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20III/images/binarytree.png" style="width: 200px; height: 190px;" />
 <pre>
 <strong>Input:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
 <strong>Output:</strong> 5
@@ -54,7 +54,6 @@ class Node {
 	<li><code>p</code> and <code>q</code> exist in the tree.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -62,13 +61,108 @@ class Node {
 ### **Python3**
 
 ```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+        self.parent = None
+"""
 
+
+class Solution:
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        a, b = p, q
+        while a != b:
+            a = a.parent if a.parent else q
+            b = b.parent if b.parent else p
+        return a
 ```
 
 ### **Java**
 
 ```java
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node parent;
+};
+*/
 
+class Solution {
+    public Node lowestCommonAncestor(Node p, Node q) {
+        Node a = p, b = q;
+        while (a != b) {
+            a = a.parent == null ? q : a.parent;
+            b = b.parent == null ? p : b.parent;
+        }
+        return a;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* parent;
+};
+*/
+
+class Solution {
+public:
+    Node* lowestCommonAncestor(Node* p, Node* q) {
+        Node* a = p;
+        Node* b = q;
+        while (a != b) {
+            a = a->parent ? a->parent : q;
+            b = b->parent ? b->parent : p;
+        }
+        return a;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Parent *Node
+ * }
+ */
+
+func lowestCommonAncestor(p *Node, q *Node) *Node {
+	a, b := p, q
+	for a != b {
+		if a.Parent != nil {
+			a = a.Parent
+		} else {
+			a = q
+		}
+		if b.Parent != nil {
+			b = b.Parent
+		} else {
+			b = p
+		}
+	}
+	return a
+}
 ```
 
 ### **...**

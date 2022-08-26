@@ -1,4 +1,4 @@
-# [05.03. Reverse Bits](https://leetcode-cn.com/problems/reverse-bits-lcci)
+# [05.03. Reverse Bits](https://leetcode.cn/problems/reverse-bits-lcci)
 
 [中文文档](/lcci/05.03.Reverse%20Bits/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> <code>num</code> = 1775(11011101111<sub>2</sub>)
 
+
+
 <strong>Output:</strong> 8
+
+
 
 </pre>
 
@@ -20,9 +26,15 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> <code>num</code> = 7(0111<sub>2</sub>)
 
+
+
 <strong>Output:</strong> 4
+
+
 
 </pre>
 
@@ -34,17 +46,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

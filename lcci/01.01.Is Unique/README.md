@@ -1,4 +1,4 @@
-# [面试题 01.01. 判定字符是否唯一](https://leetcode-cn.com/problems/is-unique-lcci)
+# [面试题 01.01. 判定字符是否唯一](https://leetcode.cn/problems/is-unique-lcci)
 
 [English Version](/lcci/01.01.Is%20Unique/README_EN.md)
 
@@ -9,13 +9,13 @@
 
 <p><strong>示例 1：</strong></p>
 
-<pre><strong>输入:</strong> <code>s</code> = &quot;leetcode&quot;
+<pre><strong>输入:</strong> s = &quot;leetcode&quot;
 <strong>输出:</strong> false 
 </pre>
 
 <p><strong>示例 2：</strong></p>
 
-<pre><strong>输入:</strong> <code>s</code> = &quot;abc&quot;
+<pre><strong>输入:</strong> s = &quot;abc&quot;
 <strong>输出:</strong> true
 </pre>
 
@@ -47,7 +47,7 @@ class Solution:
             pos = ord(c) - ord('a')
             if (bitmap & (1 << pos)) != 0:
                 return False
-            bitmap |= (1 << pos)
+            bitmap |= 1 << pos
         return True
 ```
 
@@ -59,8 +59,8 @@ class Solution:
 class Solution {
     public boolean isUnique(String astr) {
         int bitmap = 0;
-        for (int i = 0, n = astr.length(); i < n; ++i) {
-            int pos = astr.charAt(i) - 'a';
+        for (char c : astr.toCharArray()) {
+            int pos = c - 'a';
             if ((bitmap & (1 << pos)) != 0) {
                 return false;
             }
@@ -78,14 +78,14 @@ class Solution {
  * @param {string} astr
  * @return {boolean}
  */
- var isUnique = function(astr) {
+var isUnique = function (astr) {
     let bitmap = 0;
     for (let i = 0; i < astr.length; ++i) {
         const pos = astr[i].charCodeAt() - 'a'.charCodeAt();
         if ((bitmap & (1 << pos)) != 0) {
             return false;
         }
-        bitmap |= (1 << pos);
+        bitmap |= 1 << pos;
     }
     return true;
 };
@@ -105,6 +105,25 @@ func isUnique(astr string) bool {
 	}
 	return true
 }
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool isUnique(string astr) {
+        int bitmap = 0;
+        for (char c : astr) {
+            int pos = c - 'a';
+            if ((bitmap & (1 << pos)) != 0) {
+                return false;
+            }
+            bitmap |= (1 << pos);
+        }
+        return true;
+    }
+};
 ```
 
 ### **...**

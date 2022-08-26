@@ -1,4 +1,4 @@
-# [1374. 生成每种字符都是奇数个的字符串](https://leetcode-cn.com/problems/generate-a-string-with-characters-that-have-odd-counts)
+# [1374. 生成每种字符都是奇数个的字符串](https://leetcode.cn/problems/generate-a-string-with-characters-that-have-odd-counts)
 
 [English Version](/solution/1300-1399/1374.Generate%20a%20String%20With%20Characters%20That%20Have%20Odd%20Counts/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>1 &lt;= n &lt;= 500</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -52,7 +51,9 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def generateTheString(self, n: int) -> str:
+        return 'a' * n if n & 1 else 'a' * (n - 1) + 'b'
 ```
 
 ### **Java**
@@ -60,7 +61,50 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public String generateTheString(int n) {
+        return (n % 2 == 1) ? "a".repeat(n) : "a".repeat(n - 1) + "b";
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    string generateTheString(int n) {
+        string ans(n, 'a');
+        if (n % 2 == 0) ans[0] = 'b';
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func generateTheString(n int) string {
+	ans := strings.Repeat("a", n-1)
+	if n%2 == 0 {
+		ans += "b"
+	} else {
+		ans += "a"
+	}
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function generateTheString(n: number): string {
+    const res = new Array(n).fill('a');
+    if (n % 2 === 0) {
+        res[n - 1] = 'b';
+    }
+    return res.join('');
+}
 ```
 
 ### **...**

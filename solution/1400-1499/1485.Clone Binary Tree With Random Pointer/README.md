@@ -1,4 +1,4 @@
-# [1485. 克隆含随机指针的二叉树](https://leetcode-cn.com/problems/clone-binary-tree-with-random-pointer)
+# [1485. 克隆含随机指针的二叉树](https://leetcode.cn/problems/clone-binary-tree-with-random-pointer)
 
 [English Version](/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/README_EN.md)
 
@@ -23,9 +23,10 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/images/e1.png" style="height: 410px; width: 750px;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/images/clone_1.png" style="height: 473px; width: 500px;" /></p>
 
-<pre><strong>输入：</strong>root = [[1,null],null,[4,3],[7,0]]
+<pre>
+<strong>输入：</strong>root = [[1,null],null,[4,3],[7,0]]
 <strong>输出：</strong>[[1,null],null,[4,3],[7,0]]
 <strong>解释：</strong>初始二叉树为 [1,null,4,7] 。
 节点 1 的随机指针指向 null，所以表示为 [1, null] 。
@@ -35,31 +36,21 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/images/e3.png" style="height: 400px; width: 750px;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/images/clone_2.png" style="height: 540px; width: 500px;" /></p>
 
-<pre><strong>输入：</strong>root = [[1,4],null,[1,0],null,[1,5],[1,5]]
+<pre>
+<strong>输入：</strong>root = [[1,4],null,[1,0],null,[1,5],[1,5]]
 <strong>输出：</strong>[[1,4],null,[1,0],null,[1,5],[1,5]]
 <strong>解释：</strong>节点的随机指针可以指向它自身。
 </pre>
 
 <p><strong>示例 3：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/images/e2.png" style="height: 640px; width: 750px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1485.Clone%20Binary%20Tree%20With%20Random%20Pointer/images/e2.png" style="height: 426px; width: 500px;" /></p>
 
-<pre><strong>输入：</strong>root = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]
+<pre>
+<strong>输入：</strong>root = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]
 <strong>输出：</strong>[[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]
-</pre>
-
-<p><strong>示例 4：</strong></p>
-
-<pre><strong>输入：</strong>root = []
-<strong>输出：</strong>[]
-</pre>
-
-<p><strong>示例 5：</strong></p>
-
-<pre><strong>输入：</strong>root = [[1,null],null,[2,null],null,[1,null]]
-<strong>输出：</strong>[[1,null],null,[2,null],null,[1,null]]
 </pre>
 
 <p>&nbsp;</p>
@@ -70,7 +61,6 @@
 	<li><code>tree</code> 中节点数目范围是 <code>[0, 1000]</code></li>
 	<li>每个节点的值的范围是 <code>[1, 10^6]</code></li>
 </ul>
-
 
 ## 解法
 
@@ -83,7 +73,31 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+# Definition for Node.
+# class Node:
+#     def __init__(self, val=0, left=None, right=None, random=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+#         self.random = random
 
+
+class Solution:
+    def copyRandomBinaryTree(self, root: 'Optional[Node]') -> 'Optional[NodeCopy]':
+        def dfs(root):
+            if root is None:
+                return None
+            if root in mp:
+                return mp[root]
+            copy = NodeCopy(root.val)
+            mp[root] = copy
+            copy.left = dfs(root.left)
+            copy.right = dfs(root.right)
+            copy.random = dfs(root.random)
+            return copy
+
+        mp = {}
+        return dfs(root)
 ```
 
 ### **Java**
@@ -91,7 +105,117 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+/**
+ * Definition for Node.
+ * public class Node {
+ *     int val;
+ *     Node left;
+ *     Node right;
+ *     Node random;
+ *     Node() {}
+ *     Node(int val) { this.val = val; }
+ *     Node(int val, Node left, Node right, Node random) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *         this.random = random;
+ *     }
+ * }
+ */
 
+class Solution {
+    private Map<Node, NodeCopy> mp;
+
+    public NodeCopy copyRandomBinaryTree(Node root) {
+        mp = new HashMap<>();
+        return dfs(root);
+    }
+
+    private NodeCopy dfs(Node root) {
+        if (root == null) {
+            return null;
+        }
+        if (mp.containsKey(root)) {
+            return mp.get(root);
+        }
+        NodeCopy copy = new NodeCopy(root.val);
+        mp.put(root, copy);
+        copy.left = dfs(root.left);
+        copy.right = dfs(root.right);
+        copy.random = dfs(root.random);
+        return copy;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for a Node.
+ * struct Node {
+ *     int val;
+ *     Node *left;
+ *     Node *right;
+ *     Node *random;
+ *     Node() : val(0), left(nullptr), right(nullptr), random(nullptr) {}
+ *     Node(int x) : val(x), left(nullptr), right(nullptr), random(nullptr) {}
+ *     Node(int x, Node *left, Node *right, Node *random) : val(x), left(left), right(right), random(random) {}
+ * };
+ */
+
+class Solution {
+public:
+    NodeCopy* copyRandomBinaryTree(Node* root) {
+        unordered_map<Node*, NodeCopy*> mp;
+        return dfs(root, mp);
+    }
+
+    NodeCopy* dfs(Node* root, unordered_map<Node*, NodeCopy*>& mp) {
+        if (!root) return nullptr;
+        if (mp.count(root)) return mp[root];
+        NodeCopy* copy = new NodeCopy(root->val);
+        mp[root] = copy;
+        copy->left = dfs(root->left, mp);
+        copy->right = dfs(root->right, mp);
+        copy->random = dfs(root->random, mp);
+        return copy;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Random *Node
+ * }
+ */
+
+func copyRandomBinaryTree(root *Node) *NodeCopy {
+	mp := make(map[*Node]*NodeCopy)
+	var dfs func(root *Node) *NodeCopy
+	dfs = func(root *Node) *NodeCopy {
+		if root == nil {
+			return nil
+		}
+		if v, ok := mp[root]; ok {
+			return v
+		}
+		copy := &NodeCopy{Val: root.Val}
+		mp[root] = copy
+		copy.Left = dfs(root.Left)
+		copy.Right = dfs(root.Right)
+		copy.Random = dfs(root.Random)
+		return copy
+	}
+	return dfs(root)
+}
 ```
 
 ### **...**

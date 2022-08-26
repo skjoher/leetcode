@@ -1,22 +1,11 @@
 class Solution {
 public:
-    int largestPerimeter(vector<int>& A) {
-        priority_queue<int> q(A.begin(), A.end()) ; // 大顶堆
-        
-        int a, b, c ;
-        b = q.top() ;
-        q.pop() ;
-        c = q.top() ;
-        q.pop() ;
-        while ( !q.empty() )
-        {
-            a = b ;
-            b = c ;
-            c = q.top() ;
-            q.pop() ;
-            if ( b + c > a )
-                return a + b + c ;
+    int largestPerimeter(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        for (int i = nums.size() - 1; i >= 2; --i) {
+            int c = nums[i - 1] + nums[i - 2];
+            if (c > nums[i]) return c + nums[i];
         }
-        return 0 ;
+        return 0;
     }
 };

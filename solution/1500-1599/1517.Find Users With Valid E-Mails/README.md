@@ -1,4 +1,4 @@
-# [1517. 查找拥有有效邮箱的用户](https://leetcode-cn.com/problems/find-users-with-valid-e-mails)
+# [1517. 查找拥有有效邮箱的用户](https://leetcode.cn/problems/find-users-with-valid-e-mails)
 
 [English Version](/solution/1500-1599/1517.Find%20Users%20With%20Valid%20E-Mails/README_EN.md)
 
@@ -63,7 +63,6 @@ user_id （用户 ID）是该表的主键。
 6 号用户的邮箱的域名不是 leetcode。
 7 号用户的邮箱以句点（.）开头。
 </pre>
-
 
 ## 解法
 

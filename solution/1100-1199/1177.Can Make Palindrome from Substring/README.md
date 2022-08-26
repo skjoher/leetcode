@@ -1,4 +1,4 @@
-# [1177. 构建回文串检测](https://leetcode-cn.com/problems/can-make-palindrome-from-substring)
+# [1177. 构建回文串检测](https://leetcode.cn/problems/can-make-palindrome-from-substring)
 
 [English Version](/solution/1100-1199/1177.Can%20Make%20Palindrome%20from%20Substring/README_EN.md)
 
@@ -40,7 +40,6 @@ queries[4] :&nbsp;子串 = &quot;abcda&quot;，可以变成回文的 &quot;abcba
 	<li><code>0 &lt;= queries[i][2] &lt;= s.length</code></li>
 	<li><code>s</code> 中只有小写英文字母</li>
 </ul>
-
 
 ## 解法
 

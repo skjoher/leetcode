@@ -1,4 +1,4 @@
-# [1766. 互质树](https://leetcode-cn.com/problems/tree-of-coprimes)
+# [1766. 互质树](https://leetcode.cn/problems/tree-of-coprimes)
 
 [English Version](/solution/1700-1799/1766.Tree%20of%20Coprimes/README_EN.md)
 
@@ -20,7 +20,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1766.Tree%20of%20Coprimes/images/untitled-diagram.png" style="width: 191px; height: 281px;" /></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1766.Tree%20of%20Coprimes/images/untitled-diagram.png" style="width: 191px; height: 281px;" /></strong></p>
 
 <pre>
 <b>输入：</b>nums = [2,3,3,2], edges = [[0,1],[1,2],[1,3]]
@@ -34,7 +34,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1766.Tree%20of%20Coprimes/images/untitled-diagram1.png" style="width: 441px; height: 291px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1766.Tree%20of%20Coprimes/images/untitled-diagram1.png" style="width: 441px; height: 291px;" /></p>
 
 <pre>
 <strong>输入：</strong>nums = [5,6,10,2,3,6,15], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]
@@ -54,7 +54,6 @@
 	<li><code>0 <= u<sub>j</sub>, v<sub>j</sub> < n</code></li>
 	<li><code>u<sub>j</sub> != v<sub>j</sub></code></li>
 </ul>
-
 
 ## 解法
 

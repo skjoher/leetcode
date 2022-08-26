@@ -1,4 +1,4 @@
-# [201. 数字范围按位与](https://leetcode-cn.com/problems/bitwise-and-of-numbers-range)
+# [201. 数字范围按位与](https://leetcode.cn/problems/bitwise-and-of-numbers-range)
 
 [English Version](/solution/0200-0299/0201.Bitwise%20AND%20of%20Numbers%20Range/README_EN.md)
 
@@ -39,10 +39,13 @@
 	<li><code>0 <= left <= right <= 2<sup>31</sup> - 1</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：位运算**
+
+题目可以转换为求数字的公共二进制前缀。
 
 <!-- tabs:start -->
 
@@ -51,7 +54,11 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def rangeBitwiseAnd(self, left: int, right: int) -> int:
+        while left < right:
+            right &= right - 1
+        return right
 ```
 
 ### **Java**
@@ -59,7 +66,51 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int rangeBitwiseAnd(int left, int right) {
+        while (left < right) {
+            right &= (right - 1);
+        }
+        return right;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        while (left < right) right &= (right - 1);
+        return right;
+    }
+};
+```
+
+### **Go**
+
+```go
+func rangeBitwiseAnd(left int, right int) int {
+	for left < right {
+		right &= (right - 1)
+	}
+	return right
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int RangeBitwiseAnd(int left, int right) {
+        while (left < right)
+        {
+            right &= (right - 1);
+        }
+        return right;
+    }
+}
 ```
 
 ### **...**

@@ -1,4 +1,4 @@
-# [1772. 按受欢迎程度排列功能](https://leetcode-cn.com/problems/sort-features-by-popularity)
+# [1772. 按受欢迎程度排列功能](https://leetcode.cn/problems/sort-features-by-popularity)
 
 [English Version](/solution/1700-1799/1772.Sort%20Features%20by%20Popularity/README_EN.md)
 
@@ -61,7 +61,7 @@
 class Solution:
     def sortFeatures(self, features: List[str], responses: List[str]) -> List[str]:
         feature_set = set(features)
-        counter = collections.Counter()
+        counter = Counter()
         for resp in responses:
             for feat in set(resp.split(' ')):
                 if feat in feature_set:

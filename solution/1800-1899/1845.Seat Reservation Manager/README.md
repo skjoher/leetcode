@@ -1,4 +1,4 @@
-# [1845. 座位预约管理系统](https://leetcode-cn.com/problems/seat-reservation-manager)
+# [1845. 座位预约管理系统](https://leetcode.cn/problems/seat-reservation-manager)
 
 [English Version](/solution/1800-1899/1845.Seat%20Reservation%20Manager/README_EN.md)
 
@@ -50,7 +50,6 @@ seatManager.unreserve(5); // 将座位 5 变为可以预约，现在可预约的
 	<li>对 <code>reserve</code> 和 <code>unreserve</code> 的调用 <strong>总共</strong> 不超过 <code>10<sup>5</sup></code> 次。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -65,15 +64,14 @@ seatManager.unreserve(5); // 将座位 5 变为可以预约，现在可预约的
 
 ```python
 class SeatManager:
-
     def __init__(self, n: int):
         self.q = [i for i in range(1, n + 1)]
 
     def reserve(self) -> int:
-        return heapq.heappop(self.q)
+        return heappop(self.q)
 
     def unreserve(self, seatNumber: int) -> None:
-        heapq.heappush(self.q, seatNumber)
+        heappush(self.q, seatNumber)
 
 
 # Your SeatManager object will be instantiated and called as such:
@@ -96,11 +94,11 @@ class SeatManager {
             q.offer(i);
         }
     }
-    
+
     public int reserve() {
         return q.poll();
     }
-    
+
     public void unreserve(int seatNumber) {
         q.offer(seatNumber);
     }

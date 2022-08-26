@@ -1,4 +1,4 @@
-# [17.10. Find Majority Element](https://leetcode-cn.com/problems/find-majority-element-lcci)
+# [17.10. Find Majority Element](https://leetcode.cn/problems/find-majority-element-lcci)
 
 [中文文档](/lcci/17.10.Find%20Majority%20Element/README.md)
 
@@ -45,13 +45,40 @@ Boyer–Moore majority vote algorithm
 ### **Python3**
 
 ```python
-
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        cnt = m = 0
+        for v in nums:
+            if cnt == 0:
+                m, cnt = v, 1
+            else:
+                cnt += 1 if m == v else -1
+        return m if nums.count(m) > len(nums) // 2 else -1
 ```
 
 ### **Java**
 
 ```java
-
+class Solution {
+    public int majorityElement(int[] nums) {
+        int cnt = 0, m = 0;
+        for (int v : nums) {
+            if (cnt == 0) {
+                m = v;
+                cnt = 1;
+            } else {
+                cnt += (m == v ? 1 : -1);
+            }
+        }
+        cnt = 0;
+        for (int v : nums) {
+            if (m == v) {
+                ++cnt;
+            }
+        }
+        return cnt > nums.length / 2 ? m : -1;
+    }
+}
 ```
 
 ### **JavaScript**
@@ -61,22 +88,105 @@ Boyer–Moore majority vote algorithm
  * @param {number[]} nums
  * @return {number}
  */
-var majorityElement = function(nums) {
-    let candidate = 0, count = 0;
-    for (let num of nums) {
-        if (count == 0) candidate = num;
-        if (candidate == num) {
-            count++;
+var majorityElement = function (nums) {
+    let cnt = 0,
+        m = 0;
+    for (const v of nums) {
+        if (cnt == 0) {
+            m = v;
+            cnt = 1;
         } else {
-            count--;
+            cnt += m == v ? 1 : -1;
         }
     }
-    let n = 0;
-    for (let num of nums) {
-        if (candidate == num) n++;
+    cnt = 0;
+    for (const v of nums) {
+        if (m == v) {
+            ++cnt;
+        }
     }
-    return n > (nums.length / 2) ? candidate : -1;
+    return cnt > nums.length / 2 ? m : -1;
 };
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int cnt = 0, m = 0;
+        for (int& v : nums) {
+            if (cnt == 0) {
+                m = v;
+                cnt = 1;
+            } else
+                cnt += (m == v ? 1 : -1);
+        }
+        cnt = count(nums.begin(), nums.end(), m);
+        return cnt > nums.size() / 2 ? m : -1;
+    }
+};
+```
+
+### **Go**
+
+```go
+func majorityElement(nums []int) int {
+	cnt, m := 0, 0
+	for _, v := range nums {
+		if cnt == 0 {
+			m, cnt = v, 1
+		} else {
+			if m == v {
+				cnt++
+			} else {
+				cnt--
+			}
+		}
+	}
+	cnt = 0
+	for _, v := range nums {
+		if m == v {
+			cnt++
+		}
+	}
+	if cnt > len(nums)/2 {
+		return m
+	}
+	return -1
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int MajorityElement(int[] nums) {
+        int cnt = 0, m = 0;
+        foreach (int v in nums)
+        {
+            if (cnt == 0)
+            {
+                m = v;
+                cnt = 1;
+            }
+            else
+            {
+                cnt += m == v ? 1 : -1;
+            }
+        }
+        cnt = 0;
+        foreach (int v in nums)
+        {
+            if (m == v)
+            {
+                ++cnt;
+            }
+        }
+        return cnt > nums.Length / 2 ? m : -1;
+    }
+}
 ```
 
 ### **...**

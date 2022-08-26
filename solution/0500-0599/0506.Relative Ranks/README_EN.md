@@ -44,7 +44,6 @@
 	<li>All the values in <code>score</code> are <strong>unique</strong>.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -52,13 +51,83 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        n = len(score)
+        idx = list(range(n))
+        idx.sort(key=lambda x: -score[x])
+        top3 = ['Gold Medal', 'Silver Medal', 'Bronze Medal']
+        ans = [None] * n
+        for i in range(n):
+            ans[idx[i]] = top3[i] if i < 3 else str(i + 1)
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public String[] findRelativeRanks(int[] score) {
+        int n = score.length;
+        Integer[] idx = new Integer[n];
+        for (int i = 0; i < n; ++i) {
+            idx[i] = i;
+        }
+        Arrays.sort(idx, (i1, i2) -> score[i2] - score[i1]);
+        String[] ans = new String[n];
+        String[] top3 = new String[]{"Gold Medal", "Silver Medal", "Bronze Medal"};
+        for (int i = 0; i < n; ++i) {
+            ans[idx[i]] = i < 3 ? top3[i] : String.valueOf(i + 1);
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        int n = score.size();
+        vector<pair<int, int>> idx;
+        for (int i = 0; i < n; ++i)
+            idx.push_back(make_pair(score[i], i));
+        sort(idx.begin(), idx.end(),
+            [&](const pair<int, int>& x, const pair<int, int>& y) { return x.first > y.first; });
+        vector<string> ans(n);
+        vector<string> top3 = {"Gold Medal", "Silver Medal", "Bronze Medal"};
+        for (int i = 0; i < n; ++i)
+            ans[idx[i].second] = i < 3 ? top3[i] : to_string(i + 1);
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func findRelativeRanks(score []int) []string {
+	n := len(score)
+	idx := make([][]int, n)
+	for i := 0; i < n; i++ {
+		idx[i] = []int{score[i], i}
+	}
+	sort.Slice(idx, func(i1, i2 int) bool {
+		return idx[i1][0] > idx[i2][0]
+	})
+	ans := make([]string, n)
+	top3 := []string{"Gold Medal", "Silver Medal", "Bronze Medal"}
+	for i := 0; i < n; i++ {
+		if i < 3 {
+			ans[idx[i][1]] = top3[i]
+		} else {
+			ans[idx[i][1]] = strconv.Itoa(i + 1)
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

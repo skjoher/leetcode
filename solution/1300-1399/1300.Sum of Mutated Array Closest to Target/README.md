@@ -1,4 +1,4 @@
-# [1300. 转变数组后最接近目标值的数组和](https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target)
+# [1300. 转变数组后最接近目标值的数组和](https://leetcode.cn/problems/sum-of-mutated-array-closest-to-target)
 
 [English Version](/solution/1300-1399/1300.Sum%20of%20Mutated%20Array%20Closest%20to%20Target/README_EN.md)
 
@@ -41,7 +41,6 @@
 	<li><code>1 &lt;= arr.length &lt;= 10^4</code></li>
 	<li><code>1 &lt;= arr[i], target &lt;= 10^5</code></li>
 </ul>
-
 
 ## 解法
 

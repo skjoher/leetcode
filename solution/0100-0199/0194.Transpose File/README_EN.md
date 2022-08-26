@@ -25,26 +25,13 @@ name alice ryan
 age 21 30
 </pre>
 
-
 ## Solutions
 
 <!-- tabs:start -->
 
-### **Python3**
+### **Bash**
 
-```python
-
-```
-
-### **Java**
-
-```java
-
-```
-
-### **...**
-
-```
+```sh
 
 ```
 

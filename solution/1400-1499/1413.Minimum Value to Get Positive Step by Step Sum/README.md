@@ -1,4 +1,4 @@
-# [1413. 逐步求和得到正数的最小值](https://leetcode-cn.com/problems/minimum-value-to-get-positive-step-by-step-sum)
+# [1413. 逐步求和得到正数的最小值](https://leetcode.cn/problems/minimum-value-to-get-positive-step-by-step-sum)
 
 [English Version](/solution/1400-1499/1413.Minimum%20Value%20to%20Get%20Positive%20Step%20by%20Step%20Sum/README_EN.md)
 
@@ -53,7 +53,6 @@
 	<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -65,7 +64,20 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+class Solution:
+    def minStartValue(self, nums: List[int]) -> int:
+        s, t = 0, inf
+        for num in nums:
+            s += num
+            t = min(t, s)
+        return max(1, 1 - t)
+```
 
+```python
+class Solution:
+    def minStartValue(self, nums: List[int]) -> int:
+        s = list(accumulate(nums))
+        return 1 if min(s) >= 0 else abs(min(s)) + 1
 ```
 
 ### **Java**
@@ -73,7 +85,81 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int minStartValue(int[] nums) {
+        int s = 0;
+        int t = Integer.MAX_VALUE;
+        for (int num : nums) {
+            s += num;
+            t = Math.min(t, s);
+        }
+        return Math.max(1, 1 - t);
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minStartValue(vector<int>& nums) {
+        int s = 0, t = INT_MAX;
+        for (int num : nums) {
+            s += num;
+            t = min(t, s);
+        }
+        return max(1, 1 - t);
+    }
+};
+```
+
+### **Go**
+
+```go
+func minStartValue(nums []int) int {
+	s, t := 0, 10000
+	for _, num := range nums {
+		s += num
+		if s < t {
+			t = s
+		}
+	}
+	if t < 0 {
+		return 1 - t
+	}
+	return 1
+}
+```
+
+### **TypeScript**
+
+```ts
+function minStartValue(nums: number[]): number {
+    let sum = 0;
+    let min = Infinity;
+    for (const num of nums) {
+        sum += num;
+        min = Math.min(min, sum);
+    }
+    return Math.max(1, 1 - min);
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn min_start_value(nums: Vec<i32>) -> i32 {
+        let mut sum = 0;
+        let mut min = i32::MAX;
+        for num in nums.iter() {
+            sum += num;
+            min = min.min(sum);
+        }
+        1.max(1 - min)
+    }
+}
 ```
 
 ### **...**

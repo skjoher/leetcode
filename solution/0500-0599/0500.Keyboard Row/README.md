@@ -1,4 +1,4 @@
-# [500. 键盘行](https://leetcode-cn.com/problems/keyboard-row)
+# [500. 键盘行](https://leetcode.cn/problems/keyboard-row)
 
 [English Version](/solution/0500-0599/0500.Keyboard%20Row/README_EN.md)
 
@@ -16,7 +16,7 @@
 	<li>第三行由字符 <code>"zxcvbnm"</code> 组成。</li>
 </ul>
 
-<p><img alt="American keyboard" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0500.Keyboard%20Row/images/keyboard.png" style="width: 100%; max-width: 600px" /></p>
+<p><img alt="American keyboard" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0500.Keyboard%20Row/images/keyboard.png" style="width: 100%; max-width: 600px" /></p>
 
 <p> </p>
 
@@ -50,7 +50,6 @@
 	<li><code>1 <= words[i].length <= 100</code></li>
 	<li><code>words[i]</code> 由英文字母（小写和大写字母）组成</li>
 </ul>
-
 
 ## 解法
 
@@ -118,6 +117,62 @@ class Solution {
         }
         return res.toArray(new String[0]);
     }
+}
+```
+
+```java
+class Solution {
+    public String[] findWords(String[] words) {
+        String s = "12210111011122000010020202";
+        List<String> res = new ArrayList<>();
+        for (String word : words) {
+            Set<Character> t = new HashSet<>();
+            for (char c : word.toLowerCase().toCharArray()) {
+                t.add(s.charAt(c - 'a'));
+            }
+            if (t.size() == 1) {
+                res.add(word);
+            }
+        }
+        return res.toArray(new String[0]);
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        string s = "12210111011122000010020202";
+        vector<string> ans;
+        for (auto& word : words) {
+            unordered_set<char> t;
+            for (char c : word) t.insert(s[tolower(c) - 'a']);
+            if (t.size() == 1) ans.push_back(word);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func findWords(words []string) []string {
+	s := "12210111011122000010020202"
+	var ans []string
+	for _, word := range words {
+		t := make(map[byte]bool)
+		for _, c := range word {
+			t[s[unicode.ToLower(c)-'a']] = true
+		}
+		if len(t) == 1 {
+			ans = append(ans, word)
+		}
+	}
+	return ans
 }
 ```
 

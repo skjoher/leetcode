@@ -51,6 +51,8 @@ Right sum = nums[1] + nums[2] = 1 + -1 = 0
 	<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>
 </ul>
 
+<p>&nbsp;</p>
+<p><strong>Note:</strong> This question is the same as&nbsp;1991:&nbsp;<a href="https://leetcode.com/problems/find-the-middle-index-in-array/" target="_blank">https://leetcode.com/problems/find-the-middle-index-in-array/</a></p>
 
 ## Solutions
 
@@ -61,12 +63,23 @@ Right sum = nums[1] + nums[2] = 1 + -1 = 0
 ```python
 class Solution:
     def pivotIndex(self, nums: List[int]) -> int:
-        sums = sum(nums)
-        pre_sum = 0
+        s, presum = sum(nums), 0
         for i, v in enumerate(nums):
-            if (pre_sum << 1) == sums - v:
+            if (presum << 1) == s - v:
                 return i
-            pre_sum += v
+            presum += v
+        return -1
+```
+
+```python
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        l, r = 0, sum(nums)
+        for i, v in enumerate(nums):
+            r -= v
+            if l == r:
+                return i
+            l += v
         return -1
 ```
 
@@ -75,20 +88,129 @@ class Solution:
 ```java
 class Solution {
     public int pivotIndex(int[] nums) {
-        int sums = 0;
+        int n = nums.length, s = 0;
         for (int e : nums) {
-            sums += e;
+            s += e;
         }
-        int preSum = 0;
-        for (int i = 0; i < nums.length; ++i) {
-            // preSum == sums - nums[i] - preSum
-            if (preSum << 1 == sums - nums[i]) {
+        int presum = 0;
+        for (int i = 0; i < n; ++i) {
+            // presum == sums - nums[i] - presum
+            if (presum << 1 == s - nums[i]) {
                 return i;
             }
-            preSum += nums[i];
+            presum += nums[i];
         }
         return -1;
     }
+}
+```
+
+```java
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int l = 0, r = 0;
+        for (int v : nums) {
+            r += v;
+        }
+        for (int i = 0; i < nums.length; ++i) {
+            r -= nums[i];
+            if (l == r) {
+                return i;
+            }
+            l += nums[i];
+        }
+        return -1;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function pivotIndex(nums: number[]): number {
+    let l = 0;
+    let r = nums.reduce((a, b) => a + b, 0);
+    for (let i = 0; i < nums.length; ++i) {
+        r -= nums[i];
+        if (l == r) {
+            return i;
+        }
+        l += nums[i];
+    }
+    return -1;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int s = 0;
+        for (int e : nums)
+            s += e;
+        int presum = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (presum * 2 == s - nums[i])
+                return i;
+            presum += nums[i];
+        }
+        return -1;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int l = 0, r = 0;
+        for (int& v : nums) r += v;
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            r -= nums[i];
+            if (l == r) return i;
+            l += nums[i];
+        }
+        return -1;
+    }
+};
+```
+
+### **Go**
+
+```go
+func pivotIndex(nums []int) int {
+	s := 0
+	for _, e := range nums {
+		s += e
+	}
+	presum := 0
+	for i, e := range nums {
+		if presum<<1 == s-e {
+			return i
+		}
+		presum += e
+	}
+	return -1
+}
+```
+
+```go
+func pivotIndex(nums []int) int {
+	l, r := 0, 0
+	for _, v := range nums {
+		r += v
+	}
+	for i, v := range nums {
+		r -= v
+		if l == r {
+			return i
+		}
+		l += v
+	}
+	return -1
 }
 ```
 

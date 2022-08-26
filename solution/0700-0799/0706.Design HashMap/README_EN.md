@@ -45,10 +45,6 @@ myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
 	<li>At most <code>10<sup>4</sup></code> calls will be made to <code>put</code>, <code>get</code>, and <code>remove</code>.</li>
 </ul>
 
-<p>&nbsp;</p>
-<p><strong>Follow up:</strong> Please do not use the built-in HashMap library.</p>
-
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -57,31 +53,17 @@ myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
 
 ```python
 class MyHashMap:
-
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
         self.data = [-1] * 1000001
 
     def put(self, key: int, value: int) -> None:
-        """
-        value will always be non-negative.
-        """
         self.data[key] = value
 
     def get(self, key: int) -> int:
-        """
-        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
-        """
         return self.data[key]
 
     def remove(self, key: int) -> None:
-        """
-        Removes the mapping of the specified value key if this map contains a mapping for the key
-        """
         self.data[key] = -1
-
 
 
 # Your MyHashMap object will be instantiated and called as such:
@@ -95,26 +77,20 @@ class MyHashMap:
 
 ```java
 class MyHashMap {
+    private int[] data = new int[1000001];
 
-    private int[] data;
-
-    /** Initialize your data structure here. */
     public MyHashMap() {
-        data = new int[1000001];
         Arrays.fill(data, -1);
     }
 
-    /** value will always be non-negative. */
     public void put(int key, int value) {
         data[key] = value;
     }
 
-    /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     public int get(int key) {
         return data[key];
     }
 
-    /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     public void remove(int key) {
         data[key] = -1;
     }
@@ -129,10 +105,68 @@ class MyHashMap {
  */
 ```
 
-### **...**
+### **TypeScript**
 
+```ts
+class MyHashMap {
+    data: Array<number>;
+    constructor() {
+        this.data = new Array(10 ** 6 + 1).fill(-1);
+    }
+
+    put(key: number, value: number): void {
+        this.data[key] = value;
+    }
+
+    get(key: number): number {
+        return this.data[key];
+    }
+
+    remove(key: number): void {
+        this.data[key] = -1;
+    }
+}
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * var obj = new MyHashMap()
+ * obj.put(key,value)
+ * var param_2 = obj.get(key)
+ * obj.remove(key)
+ */
 ```
 
+### **C++**
+
+```cpp
+class MyHashMap {
+public:
+    int hash[1000010];
+
+    MyHashMap() {
+        memset(hash, -1, sizeof hash);
+    }
+
+    void put(int key, int value) {
+        hash[key] = value;
+    }
+
+    int get(int key) {
+        return hash[key];
+    }
+
+    void remove(int key) {
+        hash[key] = -1;
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
 ```
 
 <!-- tabs:end -->

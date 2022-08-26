@@ -1,4 +1,4 @@
-# [1851. 包含每个查询的最小区间](https://leetcode-cn.com/problems/minimum-interval-to-include-each-query)
+# [1851. 包含每个查询的最小区间](https://leetcode.cn/problems/minimum-interval-to-include-each-query)
 
 [English Version](/solution/1800-1899/1851.Minimum%20Interval%20to%20Include%20Each%20Query/README_EN.md)
 
@@ -49,7 +49,6 @@
 	<li><code>1 <= left<sub>i</sub> <= right<sub>i</sub> <= 10<sup>7</sup></code></li>
 	<li><code>1 <= queries[j] <= 10<sup>7</sup></code></li>
 </ul>
-
 
 ## 解法
 

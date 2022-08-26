@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {string}
  */
- var sortSentence = function(s) {
+var sortSentence = function (s) {
     let words = s.split(' ');
     let n = words.length;
     let res = new Array(n);

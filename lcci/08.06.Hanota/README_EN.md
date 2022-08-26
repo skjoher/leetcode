@@ -1,4 +1,4 @@
-# [08.06. Hanota](https://leetcode-cn.com/problems/hanota-lcci)
+# [08.06. Hanota](https://leetcode.cn/problems/hanota-lcci)
 
 [中文文档](/lcci/08.06.Hanota/README.md)
 
@@ -18,9 +18,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: A = [2, 1, 0], B = [], C = []
 
+
+
 <strong> Output</strong>: C = [2, 1, 0]
+
+
 
 </pre>
 
@@ -28,9 +34,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: A = [1, 0], B = [], C = []
 
+
+
 <strong> Output</strong>: C = [1, 0]
+
+
 
 </pre>
 
@@ -48,17 +60,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

@@ -35,7 +35,7 @@
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= nums.length &lt;= 5 * 10<sup>5</sup></code></li>
 	<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 
@@ -49,13 +49,146 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        mi, mid = inf, inf
+        for num in nums:
+            if num > mid:
+                return True
+            if num <= mi:
+                mi = num
+            else:
+                mid = num
+        return False
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        int n = nums.length;
+        int[] lmi = new int[n];
+        int[] rmx = new int[n];
+        lmi[0] = Integer.MAX_VALUE;
+        rmx[n - 1] = Integer.MIN_VALUE;
+        for (int i = 1; i < n; ++i) {
+            lmi[i] = Math.min(lmi[i - 1], nums[i - 1]);
+        }
+        for (int i = n - 2; i >= 0; --i) {
+            rmx[i] = Math.max(rmx[i + 1], nums[i + 1]);
+        }
+        for (int i = 0; i < n; ++i) {
+            if (lmi[i] < nums[i] && nums[i] < rmx[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
 
+```java
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        int min = Integer.MAX_VALUE, mid = Integer.MAX_VALUE;
+        for (int num : nums) {
+            if (num > mid) {
+                return true;
+            }
+            if (num <= min) {
+                min = num;
+            } else {
+                mid = num;
+            }
+        }
+        return false;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function increasingTriplet(nums: number[]): boolean {
+    let n = nums.length;
+    if (n < 3) return false;
+    let min = nums[0],
+        mid = Number.MAX_SAFE_INTEGER;
+    for (let num of nums) {
+        if (num <= min) {
+            min = num;
+        } else if (num <= mid) {
+            mid = num;
+        } else if (num > mid) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int mi = INT_MAX, mid = INT_MAX;
+        for (int num : nums) {
+            if (num > mid) return true;
+            if (num <= mi)
+                mi = num;
+            else
+                mid = num;
+        }
+        return false;
+    }
+};
+```
+
+### **Go**
+
+```go
+func increasingTriplet(nums []int) bool {
+	min, mid := math.MaxInt32, math.MaxInt32
+	for _, num := range nums {
+		if num > mid {
+			return true
+		}
+		if num <= min {
+			min = num
+		} else {
+			mid = num
+		}
+	}
+	return false
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn increasing_triplet(nums: Vec<i32>) -> bool {
+        let n = nums.len();
+        if n < 3 {
+            return false;
+        }
+        let mut min = i32::MAX;
+        let mut mid = i32::MAX;
+        for num in nums.into_iter() {
+            if num <= min {
+                min = num;
+            } else if num <= mid {
+                mid = num;
+            } else {
+                return true;
+            }
+        }
+        false
+    }
+}
 ```
 
 ### **...**

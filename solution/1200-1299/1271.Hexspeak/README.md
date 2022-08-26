@@ -1,4 +1,4 @@
-# [1271. 十六进制魔术数字](https://leetcode-cn.com/problems/hexspeak)
+# [1271. 十六进制魔术数字](https://leetcode.cn/problems/hexspeak)
 
 [English Version](/solution/1200-1299/1271.Hexspeak/README_EN.md)
 
@@ -36,7 +36,6 @@
 	<li>给定字符串不会有前导 0 。</li>
 	<li>结果中的所有字母都应该是大写字母。</li>
 </ul>
-
 
 ## 解法
 

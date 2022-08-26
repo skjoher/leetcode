@@ -30,7 +30,6 @@
 	<li><code>nums[i]</code> is either <code>0</code> or <code>1</code>.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -77,18 +76,56 @@ class Solution {
  * @return {number}
  */
 var findMaxConsecutiveOnes = function (nums) {
-  let res = 0,
-    t = 0;
-  for (let num of nums) {
-    if (num == 1) {
-      ++t;
-    } else {
-      res = Math.max(res, t);
-      t = 0;
+    let res = 0,
+        t = 0;
+    for (let num of nums) {
+        if (num == 1) {
+            ++t;
+        } else {
+            res = Math.max(res, t);
+            t = 0;
+        }
     }
-  }
-  return Math.max(res, t);
+    return Math.max(res, t);
 };
+```
+
+### **TypeScript**
+
+```ts
+function findMaxConsecutiveOnes(nums: number[]): number {
+    let res = 0;
+    let count = 0;
+    for (const num of nums) {
+        if (num === 0) {
+            res = Math.max(res, count);
+            count = 0;
+        } else {
+            count++;
+        }
+    }
+    return Math.max(res, count);
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn find_max_consecutive_ones(nums: Vec<i32>) -> i32 {
+        let mut res = 0;
+        let mut count = 0;
+        for num in nums {
+            if num == 0 {
+                res = res.max(count);
+                count = 0;
+            } else {
+                count += 1;
+            }
+        }
+        res.max(count)
+    }
+}
 ```
 
 ### **...**

@@ -1,4 +1,4 @@
-# [1544. 整理字符串](https://leetcode-cn.com/problems/make-the-string-great)
+# [1544. 整理字符串](https://leetcode.cn/problems/make-the-string-great)
 
 [English Version](/solution/1500-1599/1544.Make%20The%20String%20Great/README_EN.md)
 
@@ -56,7 +56,6 @@
 	<li><code>1 <= s.length <= 100</code></li>
 	<li><code>s</code> 只包含小写和大写英文字母</li>
 </ul>
-
 
 ## 解法
 

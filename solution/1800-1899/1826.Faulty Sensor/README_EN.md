@@ -4,7 +4,7 @@
 
 ## Description
 
-<p>An experiment is being conducted in a lab. To ensure accuracy, there are<strong> two </strong>sensors collecting data simultaneously. You are given 2 arrays <code>sensor1</code> and <code>sensor2</code>, where <code>sensor1[i]</code> and <code>sensor2[i]</code> are the <code>i<sup>th</sup></code> data points collected by the two sensors.</p>
+<p>An experiment is being conducted in a lab. To ensure accuracy, there are<strong> two </strong>sensors collecting data simultaneously. You are given two arrays <code>sensor1</code> and <code>sensor2</code>, where <code>sensor1[i]</code> and <code>sensor2[i]</code> are the <code>i<sup>th</sup></code> data points collected by the two sensors.</p>
 
 <p>However, this type of sensor has a chance of being defective, which causes <strong>exactly one</strong> data point to be dropped. After the data is dropped, all the data points to the <strong>right</strong> of the dropped data are <strong>shifted</strong> one place to the left, and the last data point is replaced with some <strong>random value</strong>. It is guaranteed that this random value will <strong>not</strong> be equal to the dropped value.</p>
 
@@ -51,7 +51,6 @@ The fourth data point from sensor 1 is dropped, and the last value of sensor 1 i
 	<li><code>1 &lt;= sensor1[i], sensor2[i] &lt;= 100</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -59,13 +58,78 @@ The fourth data point from sensor 1 is dropped, and the last value of sensor 1 i
 ### **Python3**
 
 ```python
-
+class Solution:
+    def badSensor(self, sensor1: List[int], sensor2: List[int]) -> int:
+        i, n = 0, len(sensor1)
+        while i < n - 1:
+            if sensor1[i] != sensor2[i]:
+                break
+            i += 1
+        while i < n - 1:
+            if sensor1[i + 1] != sensor2[i]:
+                return 1
+            if sensor1[i] != sensor2[i + 1]:
+                return 2
+            i += 1
+        return -1
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int badSensor(int[] sensor1, int[] sensor2) {
+        int i = 0;
+        int n = sensor1.length;
+        for (; i < n - 1 && sensor1[i] == sensor2[i]; ++i) {}
+        for (; i < n - 1; ++i) {
+            if (sensor1[i + 1] != sensor2[i]) {
+                return 1;
+            }
+            if (sensor1[i] != sensor2[i + 1]) {
+                return 2;
+            }
+        }
+        return -1;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int badSensor(vector<int>& sensor1, vector<int>& sensor2) {
+        int i = 0;
+        int n = sensor1.size();
+        for (; i < n - 1 && sensor1[i] == sensor2[i]; ++i) { }
+        for (; i < n - 1; ++i) {
+            if (sensor1[i + 1] != sensor2[i]) return 1;
+            if (sensor1[i] != sensor2[i + 1]) return 2;
+        }
+        return -1;
+    }
+};
+```
+
+### **Go**
+
+```go
+func badSensor(sensor1 []int, sensor2 []int) int {
+	i, n := 0, len(sensor1)
+	for ; i < n-1 && sensor1[i] == sensor2[i]; i++ {
+	}
+	for ; i < n-1; i++ {
+		if sensor1[i+1] != sensor2[i] {
+			return 1
+		}
+		if sensor1[i] != sensor2[i+1] {
+			return 2
+		}
+	}
+	return -1
+}
 ```
 
 ### **...**

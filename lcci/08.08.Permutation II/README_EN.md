@@ -1,4 +1,4 @@
-# [08.08. Permutation II](https://leetcode-cn.com/problems/permutation-ii-lcci)
+# [08.08. Permutation II](https://leetcode.cn/problems/permutation-ii-lcci)
 
 [中文文档](/lcci/08.08.Permutation%20II/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: S = &quot;qqe&quot;
 
+
+
 <strong> Output</strong>: [&quot;eqq&quot;,&quot;qeq&quot;,&quot;qqe&quot;]
+
+
 
 </pre>
 
@@ -20,9 +26,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: S = &quot;ab&quot;
 
+
+
 <strong> Output</strong>: [&quot;ab&quot;, &quot;ba&quot;]
+
+
 
 </pre>
 
@@ -41,11 +53,13 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
+
 
 ```
 
@@ -56,7 +70,7 @@
  * @param {string} S
  * @return {string[]}
  */
-var permutation = function(S) {
+var permutation = function (S) {
     let res = [];
     let arr = [...S];
     arr.sort();
@@ -92,6 +106,7 @@ function dfs(arr, depth, prev, record, res) {
 ### **...**
 
 ```
+
 
 ```
 

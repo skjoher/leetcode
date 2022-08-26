@@ -1,4 +1,4 @@
-# [1000. 合并石头的最低成本](https://leetcode-cn.com/problems/minimum-cost-to-merge-stones)
+# [1000. 合并石头的最低成本](https://leetcode.cn/problems/minimum-cost-to-merge-stones)
 
 [English Version](/solution/1000-1099/1000.Minimum%20Cost%20to%20Merge%20Stones/README_EN.md)
 
@@ -54,7 +54,6 @@
 	<li><code>1 &lt;= stones[i] &lt;= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -83,5 +82,4 @@
 
 ```
 
-<!-- tabs:end -->
 <!-- tabs:end -->

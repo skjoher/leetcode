@@ -4,7 +4,7 @@
 
 ## Description
 
-<p>Given a string <code>s</code>, find the length of the <b>longest substring</b> without repeating characters.</p>
+<p>Given a string <code>s</code>, find the length of the <strong>longest substring</strong> without repeating characters.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -32,13 +32,6 @@
 Notice that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;&quot;
-<strong>Output:</strong> 0
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -46,7 +39,6 @@ Notice that the answer must be a substring, &quot;pwke&quot; is a subsequence an
 	<li><code>0 &lt;= s.length &lt;= 5 * 10<sup>4</sup></code></li>
 	<li><code>s</code> consists of English letters, digits, symbols and spaces.</li>
 </ul>
-
 
 ## Solutions
 
@@ -57,15 +49,15 @@ Notice that the answer must be a substring, &quot;pwke&quot; is a subsequence an
 ```python
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        res, chars = 0, dict()
-        i = j = 0
-        while j < len(s):
-            if s[j] in chars:
-                i = max(i, chars[s[j]] + 1)
-            res = max(res, j - i + 1)
-            chars[s[j]] = j
-            j += 1
-        return res
+        ss = set()
+        i = ans = 0
+        for j, c in enumerate(s):
+            while c in ss:
+                ss.remove(s[i])
+                i += 1
+            ss.add(c)
+            ans = max(ans, j - i + 1)
+        return ans
 ```
 
 ### **Java**
@@ -73,17 +65,192 @@ class Solution:
 ```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int res = 0;
-        Map<Character, Integer> chars = new HashMap<>();
-        for (int i = 0, j = 0; j < s.length(); ++j) {
+        Set<Character> ss = new HashSet<>();
+        int i = 0, ans = 0;
+        for (int j = 0; j < s.length(); ++j) {
             char c = s.charAt(j);
-            if (chars.containsKey(c)) {
-                i = Math.max(i, chars.get(c) + 1);
+            while (ss.contains(c)) {
+                ss.remove(s.charAt(i++));
             }
-            chars.put(c, j);
-            res = Math.max(res, j - i + 1);
+            ss.add(c);
+            ans = Math.max(ans, j - i + 1);
         }
-        return res;
+        return ans;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_set<char> ss;
+        int i = 0, ans = 0;
+        for (int j = 0; j < s.size(); ++j) {
+            while (ss.count(s[j])) ss.erase(s[i++]);
+            ss.insert(s[j]);
+            ans = max(ans, j - i + 1);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func lengthOfLongestSubstring(s string) int {
+	ss := map[byte]bool{}
+	i, ans := 0, 0
+	for j := 0; j < len(s); j++ {
+		for ss[s[j]] {
+			ss[s[i]] = false
+			i++
+		}
+		ss[s[j]] = true
+		ans = max(ans, j-i+1)
+	}
+	return ans
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+    const ss = new Set();
+    let i = 0;
+    let ans = 0;
+    for (let j = 0; j < s.length; ++j) {
+        while (ss.has(s[j])) {
+            ss.delete(s[i++]);
+        }
+        ss.add(s[j]);
+        ans = Math.max(ans, j - i + 1);
+    }
+    return ans;
+};
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int LengthOfLongestSubstring(string s) {
+        var ss = new HashSet<char>();
+        int i = 0, ans = 0;
+        for (int j = 0; j < s.Length; ++j)
+        {
+            while (ss.Contains(s[j]))
+            {
+                ss.Remove(s[i++]);
+            }
+            ss.Add(s[j]);
+            ans = Math.Max(ans, j - i + 1);
+        }
+        return ans;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function lengthOfLongestSubstring(s: string): number {
+    const ss = new Set();
+    let i = 0;
+    let ans = 0;
+    for (let j = 0; j < s.length; ++j) {
+        while (ss.has(s[j])) {
+            ss.delete(s[i++]);
+        }
+        ss.add(s[j]);
+        ans = Math.max(ans, j - i + 1);
+    }
+    return ans;
+}
+```
+
+### **Swift**
+
+```swift
+class Solution {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        var map = [Character: Int]()
+        var currentStartingIndex = 0
+        var i = 0
+        var maxLength = 0
+        for char in s {
+            if map[char] != nil {
+                if map[char]! >= currentStartingIndex {
+                    maxLength = max(maxLength, i - currentStartingIndex)
+                    currentStartingIndex = map[char]! + 1
+                }
+            }
+            map[char] = i
+            i += 1
+        }
+        return max(maxLength, i - currentStartingIndex)
+    }
+}
+```
+
+### **Nim**
+
+```nim
+proc lengthOfLongestSubstring(s: string): int =
+  var
+    i = 0
+    j = 0
+    res = 0
+    literals: set[char] = {}
+
+  while i < s.len:
+    while s[i] in literals:
+      if s[j] in literals:
+        excl(literals, s[j])
+      j += 1
+    literals.incl(s[i]) # Uniform Function Call Syntax f(x) = x.f
+    res = max(res, i - j + 1)
+    i += 1
+
+  result = res # result has the default return value
+```
+
+### **Rust**
+
+```rust
+use std::collections::HashSet;
+
+impl Solution {
+    pub fn length_of_longest_substring(s: String) -> i32 {
+        let s = s.as_bytes();
+        let mut set = HashSet::new();
+        let mut i = 0;
+        s.iter()
+            .map(|c| {
+                while set.contains(&c) {
+                    set.remove(&s[i]);
+                    i += 1;
+                }
+                set.insert(c);
+                set.len()
+            })
+            .max()
+            .unwrap_or(0) as i32
     }
 }
 ```

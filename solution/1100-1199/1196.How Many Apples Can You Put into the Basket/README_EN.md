@@ -4,35 +4,34 @@
 
 ## Description
 
-<p>You have some apples, where <code>arr[i]</code> is the weight of the <code>i</code>-th apple.&nbsp; You also have a basket that can carry up to <code>5000</code> units of weight.</p>
+<p>You have some apples and a basket that can carry up to <code>5000</code> units of weight.</p>
 
-<p>Return the maximum number of apples you can put in the basket.</p>
+<p>Given an integer array <code>weight</code> where <code>weight[i]</code> is the weight of the <code>i<sup>th</sup></code> apple, return <em>the maximum number of apples you can put in the basket</em>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
 <pre>
-<strong>Input:</strong> arr = [100,200,150,1000]
+<strong>Input:</strong> weight = [100,200,150,1000]
 <strong>Output:</strong> 4
-<strong>Explanation: </strong>All 4 apples can be carried by the basket since their sum of weights is 1450.
+<strong>Explanation:</strong> All 4 apples can be carried by the basket since their sum of weights is 1450.
 </pre>
 
 <p><strong>Example 2:</strong></p>
 
 <pre>
-<strong>Input:</strong> arr = [900,950,800,1000,700,800]
+<strong>Input:</strong> weight = [900,950,800,1000,700,800]
 <strong>Output:</strong> 5
-<strong>Explanation: </strong>The sum of weights of the 6 apples exceeds 5000 so we choose any 5 of them.
+<strong>Explanation:</strong> The sum of weights of the 6 apples exceeds 5000 so we choose any 5 of them.
 </pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= arr.length &lt;= 10^3</code></li>
-	<li><code>1 &lt;= arr[i] &lt;= 10^3</code></li>
+	<li><code>1 &lt;= weight.length &lt;= 10<sup>3</sup></code></li>
+	<li><code>1 &lt;= weight[i] &lt;= 10<sup>3</sup></code></li>
 </ul>
-
 
 ## Solutions
 
@@ -41,13 +40,71 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def maxNumberOfApples(self, weight: List[int]) -> int:
+        weight.sort()
+        ans = 0
+        t = 0
+        for v in weight:
+            if t + v > 5000:
+                break
+            t += v
+            ans += 1
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int maxNumberOfApples(int[] weight) {
+        Arrays.sort(weight);
+        int ans = 0, t = 0;
+        for (int v : weight) {
+            if (t + v > 5000) {
+                break;
+            }
+            t += v;
+            ++ans;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxNumberOfApples(vector<int>& weight) {
+        sort(weight.begin(), weight.end());
+        int ans = 0, t = 0;
+        for (int v : weight) {
+            if (t + v > 5000) break;
+            t += v;
+            ++ans;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxNumberOfApples(weight []int) int {
+	sort.Ints(weight)
+	ans, t := 0, 0
+	for _, v := range weight {
+		if t+v > 5000 {
+			break
+		}
+		t += v
+		ans++
+	}
+	return ans
+}
 ```
 
 ### **...**

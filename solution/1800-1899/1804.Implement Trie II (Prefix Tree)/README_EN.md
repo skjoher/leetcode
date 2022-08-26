@@ -57,7 +57,6 @@ trie.countWordsStartingWith(&quot;app&quot;); // return 0
 
 ```python
 class Trie:
-
     def __init__(self):
         self.children = [None] * 26
         self.count = 0
@@ -98,6 +97,7 @@ class Trie:
             node = node.children[index]
         return node
 
+
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
 # obj.insert(word)
@@ -119,7 +119,7 @@ class Trie {
         count = 0;
         preCount = 0;
     }
-    
+
     public void insert(String word) {
         Trie node = this;
         for (int i = 0; i < word.length(); ++i) {
@@ -132,17 +132,17 @@ class Trie {
         }
         node.count += 1;
     }
-    
+
     public int countWordsEqualTo(String word) {
         Trie node = searchPrefix(word);
         return node == null ? 0 : node.count;
     }
-    
+
     public int countWordsStartingWith(String prefix) {
         Trie node = searchPrefix(prefix);
         return node == null ? 0 : node.preCount;
     }
-    
+
     public void erase(String word) {
         Trie node = this;
         for (int i = 0; i < word.length(); ++i) {

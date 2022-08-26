@@ -1,4 +1,4 @@
-# [02.04. Partition List](https://leetcode-cn.com/problems/partition-list-lcci)
+# [02.04. Partition List](https://leetcode.cn/problems/partition-list-lcci)
 
 [中文文档](/lcci/02.04.Partition%20List/README.md)
 
@@ -28,6 +28,7 @@
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
+
 
 class Solution:
     def partition(self, head: ListNode, x: int) -> ListNode:
@@ -116,6 +117,38 @@ public:
         return l1->next;
     }
 };
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function partition(head: ListNode | null, x: number): ListNode | null {
+    if (head == null) {
+        return head;
+    }
+    let cur = head;
+    while (cur.next != null) {
+        let node = cur.next;
+        if (node.val < x) {
+            [head, node.next, cur.next] = [node, head, node.next];
+        } else {
+            cur = cur.next;
+        }
+    }
+    return head;
+}
 ```
 
 ### **...**

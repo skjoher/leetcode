@@ -4,76 +4,40 @@
 
 ## Description
 
-<p><em>This question is the same as &quot;Max Chunks to Make Sorted&quot; except the integers of the given array are not necessarily distinct, the input array could be up to length <code>2000</code>, and the elements could be up to <code>10**8</code>.</em></p>
+<p>You are given an integer array <code>arr</code>.</p>
 
+<p>We split <code>arr</code> into some number of <strong>chunks</strong> (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array.</p>
 
+<p>Return <em>the largest number of chunks we can make to sort the array</em>.</p>
 
-<hr />
-
-
-
-<p>Given an array <code>arr</code> of integers (<strong>not necessarily distinct</strong>), we split the array into some number of &quot;chunks&quot; (partitions), and individually sort each chunk.&nbsp; After concatenating them,&nbsp;the result equals the sorted array.</p>
-
-
-
-<p>What is the most number of chunks we could have made?</p>
-
-
-
+<p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> arr = [5,4,3,2,1]
-
 <strong>Output:</strong> 1
-
 <strong>Explanation:</strong>
-
 Splitting into two or more chunks will not return the required result.
-
 For example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn&#39;t sorted.
-
 </pre>
-
-
 
 <p><strong>Example 2:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> arr = [2,1,3,4,4]
-
 <strong>Output:</strong> 4
-
 <strong>Explanation:</strong>
-
 We can split into two chunks, such as [2, 1], [3, 4, 4].
-
 However, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.
-
 </pre>
 
-
-
-<p><strong>Note:</strong></p>
-
-
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>arr</code> will have length in range <code>[1, 2000]</code>.</li>
-	<li><code>arr[i]</code> will be an integer in range <code>[0, 10**8]</code>.</li>
+	<li><code>1 &lt;= arr.length &lt;= 2000</code></li>
+	<li><code>0 &lt;= arr[i] &lt;= 10<sup>8</sup></code></li>
 </ul>
-
-
-
-<p>&nbsp;</p>
-
-
 
 ## Solutions
 
@@ -82,13 +46,125 @@ However, splitting into [2, 1], [3], [4], [4] is the highest number of chunks po
 ### **Python3**
 
 ```python
-
+class Solution:
+    def maxChunksToSorted(self, arr: List[int]) -> int:
+        stk = []
+        for v in arr:
+            if not stk or v >= stk[-1]:
+                stk.append(v)
+            else:
+                mx = stk.pop()
+                while stk and stk[-1] > v:
+                    stk.pop()
+                stk.append(mx)
+        return len(stk)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int maxChunksToSorted(int[] arr) {
+        Deque<Integer> stk = new ArrayDeque<>();
+        for (int v : arr) {
+            if (stk.isEmpty() || stk.peek() <= v) {
+                stk.push(v);
+            } else {
+                int mx = stk.pop();
+                while (!stk.isEmpty() && stk.peek() > v) {
+                    stk.pop();
+                }
+                stk.push(mx);
+            }
+        }
+        return stk.size();
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        stack<int> stk;
+        for (int& v : arr) {
+            if (stk.empty() || stk.top() <= v)
+                stk.push(v);
+            else {
+                int mx = stk.top();
+                stk.pop();
+                while (!stk.empty() && stk.top() > v) stk.pop();
+                stk.push(mx);
+            }
+        }
+        return stk.size();
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxChunksToSorted(arr []int) int {
+	var stk []int
+	for _, v := range arr {
+		if len(stk) == 0 || stk[len(stk)-1] <= v {
+			stk = append(stk, v)
+		} else {
+			mx := stk[len(stk)-1]
+			stk = stk[:len(stk)-1]
+			for len(stk) > 0 && stk[len(stk)-1] > v {
+				stk = stk[:len(stk)-1]
+			}
+			stk = append(stk, mx)
+		}
+	}
+	return len(stk)
+}
+```
+
+### **TypeScript**
+
+```ts
+function maxChunksToSorted(arr: number[]): number {
+    const stack = [];
+    for (const num of arr) {
+        if (stack.length !== 0 && num < stack[stack.length - 1]) {
+            const max = stack.pop();
+            while (stack.length !== 0 && num < stack[stack.length - 1]) {
+                stack.pop();
+            }
+            stack.push(max);
+        } else {
+            stack.push(num);
+        }
+    }
+    return stack.length;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn max_chunks_to_sorted(arr: Vec<i32>) -> i32 {
+        let mut stack = vec![];
+        for num in arr.iter() {
+            if !stack.is_empty() && num < stack.last().unwrap() {
+                let max = stack.pop().unwrap();
+                while !stack.is_empty() && num < stack.last().unwrap() {
+                    stack.pop();
+                }
+                stack.push(max)
+            } else {
+                stack.push(*num);
+            }
+        }
+        stack.len() as i32
+    }
+}
 ```
 
 ### **...**

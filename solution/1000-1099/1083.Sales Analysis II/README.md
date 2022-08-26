@@ -1,4 +1,4 @@
-# [1083. 销售分析 II](https://leetcode-cn.com/problems/sales-analysis-ii)
+# [1083. 销售分析 II](https://leetcode.cn/problems/sales-analysis-ii)
 
 [English Version](/solution/1000-1099/1083.Sales%20Analysis%20II/README_EN.md)
 
@@ -66,7 +66,6 @@ Result table:
 id 为 1 的买家购买了一部 S8，但是却没有购买 iPhone，而 id 为 3 的买家却同时购买了这 2 部手机。
 
 </pre>
-
 
 ## 解法
 

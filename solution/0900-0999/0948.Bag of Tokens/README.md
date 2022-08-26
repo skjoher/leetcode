@@ -1,4 +1,4 @@
-# [948. 令牌放置](https://leetcode-cn.com/problems/bag-of-tokens)
+# [948. 令牌放置](https://leetcode.cn/problems/bag-of-tokens)
 
 [English Version](/solution/0900-0999/0948.Bag%20of%20Tokens/README_EN.md)
 
@@ -57,7 +57,6 @@
 	<li><code>0 <= tokens.length <= 1000</code></li>
 	<li><code>0 <= tokens[i], P < 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

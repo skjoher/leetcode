@@ -8,17 +8,11 @@
 
 Flip operation&nbsp;consists of change&nbsp;<strong>any</strong>&nbsp;single bit 1 to 0 or change the bit 0 to 1&nbsp;in their binary representation.</p>
 
-
-
 <p>&nbsp;</p>
 
 <p><strong>Example 1:</strong></p>
 
-
-
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1318.Minimum%20Flips%20to%20Make%20a%20OR%20b%20Equal%20to%20c/images/sample_3_1676.png" style="width: 260px; height: 87px;" /></p>
-
-
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1318.Minimum%20Flips%20to%20Make%20a%20OR%20b%20Equal%20to%20c/images/sample_3_1676.png" style="width: 260px; height: 87px;" /></p>
 
 <pre>
 
@@ -28,11 +22,7 @@ Flip operation&nbsp;consists of change&nbsp;<strong>any</strong>&nbsp;single bit
 
 <strong>Explanation: </strong>After flips a = 1 , b = 4 , c = 5 such that (<code>a</code> OR <code>b</code> == <code>c</code>)</pre>
 
-
-
 <p><strong>Example 2:</strong></p>
-
-
 
 <pre>
 
@@ -42,11 +32,7 @@ Flip operation&nbsp;consists of change&nbsp;<strong>any</strong>&nbsp;single bit
 
 </pre>
 
-
-
 <p><strong>Example 3:</strong></p>
-
-
 
 <pre>
 
@@ -56,18 +42,14 @@ Flip operation&nbsp;consists of change&nbsp;<strong>any</strong>&nbsp;single bit
 
 </pre>
 
-
-
 <p>&nbsp;</p>
 
 <p><strong>Constraints:</strong></p>
 
-
-
 <ul>
-	<li><code>1 &lt;= a &lt;= 10^9</code></li>
-	<li><code>1 &lt;= b&nbsp;&lt;= 10^9</code></li>
-	<li><code>1 &lt;= c&nbsp;&lt;= 10^9</code></li>
+    <li><code>1 &lt;= a &lt;= 10^9</code></li>
+    <li><code>1 &lt;= b&nbsp;&lt;= 10^9</code></li>
+    <li><code>1 &lt;= c&nbsp;&lt;= 10^9</code></li>
 </ul>
 
 ## Solutions
@@ -77,13 +59,76 @@ Flip operation&nbsp;consists of change&nbsp;<strong>any</strong>&nbsp;single bit
 ### **Python3**
 
 ```python
-
+class Solution:
+    def minFlips(self, a: int, b: int, c: int) -> int:
+        ans = 0
+        for i in range(31):
+            x, y, z = (a >> i) & 1, (b >> i) & 1, (c >> i) & 1
+            if (x | y) == z:
+                continue
+            if x == 1 and y == 1 and z == 0:
+                ans += 2
+            else:
+                ans += 1
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int minFlips(int a, int b, int c) {
+        int ans = 0;
+        for (int i = 0; i < 31; ++i) {
+            int x = (a >> i) & 1, y = (b >> i) & 1, z = (c >> i) & 1;
+            if ((x | y) == z) {
+                continue;
+            }
+            if (x == 1 && y == 1 && z == 0) {
+                ++ans;
+            }
+            ++ans;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minFlips(int a, int b, int c) {
+        int ans = 0;
+        for (int i = 0; i < 31; ++i) {
+            int x = (a >> i) & 1, y = (b >> i) & 1, z = (c >> i) & 1;
+            if ((x | y) == z) continue;
+            if (x == 1 && y == 1 && z == 0) ++ans;
+            ++ans;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func minFlips(a int, b int, c int) int {
+	ans := 0
+	for i := 0; i < 31; i++ {
+		x, y, z := (a>>i)&1, (b>>i)&1, (c>>i)&1
+		if (x | y) == z {
+			continue
+		}
+		if x == 1 && y == 1 && z == 0 {
+			ans++
+		}
+		ans++
+	}
+	return ans
+}
 ```
 
 ### **...**

@@ -43,21 +43,119 @@
 	<li><code>1 &lt;= piles[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
 
-
 ## Solutions
+
+Binary search.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
-
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        left, right = 1, int(1e9)
+        while left < right:
+            mid = (left + right) >> 1
+            s = sum((x + mid - 1) // mid for x in piles)
+            if s <= h:
+                right = mid
+            else:
+                left = mid + 1
+        return left
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        int left = 1, right = (int) 1e9;
+        while (left < right) {
+            int mid = (left + right) >>> 1;
+            int s = 0;
+            for (int x : piles) {
+                s += (x + mid - 1) / mid;
+            }
+            if (s <= h) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int left = 1, right = 1e9;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            int s = 0;
+            for (int& x : piles) s += (x + mid - 1) / mid;
+            if (s <= h)
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        return left;
+    }
+};
+```
+
+### **Go**
+
+```go
+func minEatingSpeed(piles []int, h int) int {
+	left, right := 1, int(1e9)
+	for left < right {
+		mid := (left + right) >> 1
+		s := 0
+		for _, x := range piles {
+			s += (x + mid - 1) / mid
+		}
+		if s <= h {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+	return left
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int MinEatingSpeed(int[] piles, int h) {
+        int left = 1, right = piles.Max();
+        while (left < right)
+        {
+            int mid = (left + right) >> 1;
+            int s = 0;
+            foreach (int pile in piles)
+            {
+                s += (pile + mid - 1) / mid;
+            }
+            if (s <= h)
+            {
+                right = mid;
+            }
+            else
+            {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+}
 ```
 
 ### **...**

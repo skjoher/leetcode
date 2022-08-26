@@ -1,4 +1,4 @@
-# [17.20. Continuous Median](https://leetcode-cn.com/problems/continuous-median-lcci)
+# [17.20. Continuous Median](https://leetcode.cn/problems/continuous-median-lcci)
 
 [中文文档](/lcci/17.20.Continuous%20Median/README.md)
 
@@ -45,7 +45,6 @@ findMedian() -&gt; 2
 
 ```python
 class MedianFinder:
-
     def __init__(self):
         """
         initialize your data structure here.
@@ -54,10 +53,10 @@ class MedianFinder:
         self.max_heap = []
 
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.min_heap, num)
-        heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        heappush(self.min_heap, num)
+        heappush(self.max_heap, -heappop(self.min_heap))
         if len(self.max_heap) - len(self.min_heap) > 1:
-            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+            heappush(self.min_heap, -heappop(self.max_heap))
 
     def findMedian(self) -> float:
         if len(self.max_heap) > len(self.min_heap):

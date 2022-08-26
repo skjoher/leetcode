@@ -4,15 +4,11 @@
 
 ## Description
 
-<p>Given a <code>sentence</code>&nbsp;that consists of some words separated by a&nbsp;<strong>single space</strong>, and a <code>searchWord</code>.</p>
+<p>Given a <code>sentence</code> that consists of some words separated by a <strong>single space</strong>, and a <code>searchWord</code>, check if <code>searchWord</code> is a prefix of any word in <code>sentence</code>.</p>
 
-<p>You have to check if <code>searchWord</code> is a prefix of any word in <code>sentence</code>.</p>
+<p>Return <em>the index of the word in </em><code>sentence</code><em> (<strong>1-indexed</strong>) where </em><code>searchWord</code><em> is a prefix of this word</em>. If <code>searchWord</code> is a prefix of more than one word, return the index of the first word <strong>(minimum index)</strong>. If there is no such word return <code>-1</code>.</p>
 
-<p>Return <em>the index of the word</em> in <code>sentence</code> where <code>searchWord</code> is a prefix of this word (<strong>1-indexed</strong>).</p>
-
-<p>If <code>searchWord</code> is&nbsp;a prefix of more than one word, return the index of the first word <strong>(minimum index)</strong>. If there is no such word return <strong>-1</strong>.</p>
-
-<p>A <strong>prefix</strong> of a string&nbsp;<code>S</code> is any leading contiguous substring of <code>S</code>.</p>
+<p>A <strong>prefix</strong> of a string <code>s</code> is any leading contiguous substring of <code>s</code>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -39,20 +35,6 @@
 <strong>Explanation:</strong> &quot;you&quot; is not a prefix of any word in the sentence.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> sentence = &quot;i use triple pillow&quot;, searchWord = &quot;pill&quot;
-<strong>Output:</strong> 4
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> sentence = &quot;hello from the other side&quot;, searchWord = &quot;they&quot;
-<strong>Output:</strong> -1
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -60,9 +42,8 @@
 	<li><code>1 &lt;= sentence.length &lt;= 100</code></li>
 	<li><code>1 &lt;= searchWord.length &lt;= 10</code></li>
 	<li><code>sentence</code> consists of lowercase English letters and spaces.</li>
-	<li><code>searchWord</code>&nbsp;consists of lowercase English letters.</li>
+	<li><code>searchWord</code> consists of lowercase English letters.</li>
 </ul>
-
 
 ## Solutions
 
@@ -73,13 +54,9 @@
 ```python
 class Solution:
     def isPrefixOfWord(self, sentence: str, searchWord: str) -> int:
-        words = sentence.split(' ')
-        i, n = 0, len(words)
-        while i < n:
-            word = words[i]
-            if word[: len(searchWord)] == searchWord:
-                return i + 1
-            i += 1
+        for i, s in enumerate(sentence.split(), 1):
+            if s.startswith(searchWord):
+                return i
         return -1
 ```
 
@@ -89,13 +66,74 @@ class Solution:
 class Solution {
     public int isPrefixOfWord(String sentence, String searchWord) {
         String[] words = sentence.split(" ");
-        int i = 0, n = words.length;
-        for (; i < n; ++i) {
-            if (words[i].indexOf(searchWord) == 0) {
+        for (int i = 0; i < words.length; ++i) {
+            if (words[i].startsWith(searchWord)) {
                 return i + 1;
             }
         }
         return -1;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int isPrefixOfWord(string sentence, string searchWord) {
+        stringstream ss(sentence);
+        string s;
+        for (int i = 1; ss >> s; ++i) {
+            if (s.find(searchWord) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+```
+
+### **Go**
+
+```go
+func isPrefixOfWord(sentence string, searchWord string) int {
+	for i, s := range strings.Split(sentence, " ") {
+		if strings.HasPrefix(s, searchWord) {
+			return i + 1
+		}
+	}
+	return -1
+}
+```
+
+### **TypeScript**
+
+```ts
+function isPrefixOfWord(sentence: string, searchWord: string): number {
+    const ss = sentence.split(/\s/);
+    const n = ss.length;
+    for (let i = 0; i < n; i++) {
+        if (ss[i].startsWith(searchWord)) {
+            return i + 1;
+        }
+    }
+    return -1;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn is_prefix_of_word(sentence: String, search_word: String) -> i32 {
+        let ss = sentence.split_whitespace().collect::<Vec<&str>>();
+        for i in 0..ss.len() {
+            if ss[i].starts_with(&search_word) {
+                return (i + 1) as i32;
+            }
+        }
+        -1
     }
 }
 ```

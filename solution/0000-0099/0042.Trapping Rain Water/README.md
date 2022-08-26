@@ -1,4 +1,4 @@
-# [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water)
+# [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water)
 
 [English Version](/solution/0000-0099/0042.Trapping%20Rain%20Water/README_EN.md)
 
@@ -6,13 +6,13 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<p>给定&nbsp;<code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0042.Trapping%20Rain%20Water/images/rainwatertrap.png" style="height: 161px; width: 412px;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0042.Trapping%20Rain%20Water/images/rainwatertrap.png" style="height: 161px; width: 412px;" /></p>
 
 <pre>
 <strong>输入：</strong>height = [0,1,0,2,1,0,1,3,2,1,2,1]
@@ -27,16 +27,15 @@
 <strong>输出：</strong>9
 </pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
 	<li><code>n == height.length</code></li>
-	<li><code>0 <= n <= 3 * 10<sup>4</sup></code></li>
-	<li><code>0 <= height[i] <= 10<sup>5</sup></code></li>
+	<li><code>1 &lt;= n &lt;= 2 * 10<sup>4</sup></code></li>
+	<li><code>0 &lt;= height[i] &lt;= 10<sup>5</sup></code></li>
 </ul>
-
 
 ## 解法
 
@@ -61,17 +60,14 @@ class Solution:
         if n < 3:
             return 0
 
-        left_max = [height[0]] * n
+        lmx, rmx = [height[0]] * n, [height[n - 1]] * n
         for i in range(1, n):
-            left_max[i] = max(left_max[i - 1], height[i])
-
-        right_max = [height[n - 1]] * n
-        for i in range(n - 2, -1, -1):
-            right_max[i] = max(right_max[i + 1], height[i])
+            lmx[i] = max(lmx[i - 1], height[i])
+            rmx[n - 1 - i] = max(rmx[n - i], height[n - 1 - i])
 
         res = 0
         for i in range(n):
-            res += min(left_max[i], right_max[i]) - height[i]
+            res += min(lmx[i], rmx[i]) - height[i]
         return res
 ```
 
@@ -82,27 +78,123 @@ class Solution:
 ```java
 class Solution {
     public int trap(int[] height) {
-        int n;
-        if ((n = height.length) < 3) return 0;
-
-        int[] leftMax = new int[n];
-        leftMax[0] = height[0];
-        for (int i = 1; i < n; ++i) {
-            leftMax[i] = Math.max(leftMax[i - 1], height[i]);
+        int n = height.length;
+        if (n < 3) {
+            return 0;
         }
 
-        int[] rightMax = new int[n];
-        rightMax[n - 1] = height[n - 1];
-        for (int i = n - 2; i >= 0; --i) {
-            rightMax[i] = Math.max(rightMax[i + 1], height[i]);
+        int[] lmx = new int[n];
+        int[] rmx = new int[n];
+        lmx[0] = height[0];
+        rmx[n - 1] = height[n - 1];
+        for (int i = 1; i < n; ++i) {
+            lmx[i] = Math.max(lmx[i - 1], height[i]);
+            rmx[n - 1 - i] = Math.max(rmx[n - i], height[n - i - 1]);
         }
 
         int res = 0;
         for (int i = 0; i < n; ++i) {
-            res += Math.min(leftMax[i], rightMax[i]) - height[i];
+            res += Math.min(lmx[i], rmx[i]) - height[i];
         }
         return res;
     }
+}
+```
+
+### **TypeScript**
+
+```ts
+function trap(height: number[]): number {
+    let ans = 0;
+    let left = 0,
+        right = height.length - 1;
+    let maxLeft = 0,
+        maxRight = 0;
+    while (left < right) {
+        if (height[left] < height[right]) {
+            // move left
+            if (height[left] >= maxLeft) {
+                maxLeft = height[left];
+            } else {
+                ans += maxLeft - height[left];
+            }
+            ++left;
+        } else {
+            // move right
+            if (height[right] >= maxRight) {
+                maxRight = height[right];
+            } else {
+                ans += maxRight - height[right];
+            }
+            --right;
+        }
+    }
+    return ans;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n = height.size();
+        if (n < 3) {
+            return 0;
+        }
+
+        vector<int> lmx(n, height[0]);
+        vector<int> rmx(n, height[n - 1]);
+        for (int i = 1; i < n; ++i) {
+            lmx[i] = max(lmx[i - 1], height[i]);
+            rmx[n - 1 - i] = max(rmx[n - i], height[n - 1 - i]);
+        }
+
+        int res = 0;
+        for (int i = 0; i < n; ++i) {
+            res += min(lmx[i], rmx[i]) - height[i];
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func trap(height []int) int {
+	n := len(height)
+	if n < 3 {
+		return 0
+	}
+
+	lmx, rmx := make([]int, n), make([]int, n)
+	lmx[0], rmx[n-1] = height[0], height[n-1]
+	for i := 1; i < n; i++ {
+		lmx[i] = max(lmx[i-1], height[i])
+		rmx[n-1-i] = max(rmx[n-i], height[n-1-i])
+	}
+
+	res := 0
+	for i := 0; i < n; i++ {
+		res += min(lmx[i], rmx[i]) - height[i]
+	}
+	return res
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 ```
 

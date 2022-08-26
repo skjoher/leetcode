@@ -1,4 +1,4 @@
-# [705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset)
+# [705. 设计哈希集合](https://leetcode.cn/problems/design-hashset)
 
 [English Version](/solution/0700-0799/0705.Design%20HashSet/README_EN.md)
 
@@ -15,7 +15,7 @@
 	<li><code>bool contains(key)</code> 返回哈希集合中是否存在这个值 <code>key</code> 。</li>
 	<li><code>void remove(key)</code> 将给定值 <code>key</code> 从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。</li>
 </ul>
- 
+&nbsp;
 
 <p><strong>示例：</strong></p>
 
@@ -37,19 +37,14 @@ myHashSet.contains(2); // 返回 True
 myHashSet.remove(2);   // set = [1]
 myHashSet.contains(2); // 返回 False ，（已移除）</pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
-	<li><code>0 <= key <= 10<sup>6</sup></code></li>
-	<li>最多调用 <code>10<sup>4</sup></code> 次 <code>add</code>、<code>remove</code> 和 <code>contains</code> 。</li>
+	<li><code>0 &lt;= key &lt;= 10<sup>6</sup></code></li>
+	<li>最多调用 <code>10<sup>4</sup></code> 次 <code>add</code>、<code>remove</code> 和 <code>contains</code></li>
 </ul>
-
-<p> </p>
-
-<p><strong>进阶：</strong>你可以不使用内建的哈希集合库解决此问题吗？</p>
-
 
 ## 解法
 
@@ -65,7 +60,6 @@ myHashSet.contains(2); // 返回 False ，（已移除）</pre>
 
 ```python
 class MyHashSet:
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -85,7 +79,6 @@ class MyHashSet:
         return self.data[key]
 
 
-
 # Your MyHashSet object will be instantiated and called as such:
 # obj = MyHashSet()
 # obj.add(key)
@@ -97,7 +90,7 @@ class MyHashSet:
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-- 可以一次性开辟一个大的数组，存放所有元素。
+-   可以一次性开辟一个大的数组，存放所有元素。
 
 ```java
 class MyHashSet {
@@ -132,7 +125,7 @@ class MyHashSet {
  */
 ```
 
-- 也可以开辟一个大小为 `SIZE` 的数组，数组的每个位置是一个链表。
+-   也可以开辟一个大小为 `SIZE` 的数组，数组的每个位置是一个链表。
 
 ```java
 class MyHashSet {
@@ -187,6 +180,37 @@ class MyHashSet {
  * obj.add(key);
  * obj.remove(key);
  * boolean param_3 = obj.contains(key);
+ */
+```
+
+### **TypeScript**
+
+```ts
+class MyHashSet {
+    data: Array<boolean>;
+    constructor() {
+        this.data = new Array(10 ** 6 + 1).fill(false);
+    }
+
+    add(key: number): void {
+        this.data[key] = true;
+    }
+
+    remove(key: number): void {
+        this.data[key] = false;
+    }
+
+    contains(key: number): boolean {
+        return this.data[key];
+    }
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * var obj = new MyHashSet()
+ * obj.add(key)
+ * obj.remove(key)
+ * var param_3 = obj.contains(key)
  */
 ```
 

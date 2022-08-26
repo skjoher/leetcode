@@ -1,4 +1,4 @@
-# [1771. 由子序列构造的最长回文串的长度](https://leetcode-cn.com/problems/maximize-palindrome-length-from-subsequences)
+# [1771. 由子序列构造的最长回文串的长度](https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences)
 
 [English Version](/solution/1700-1799/1771.Maximize%20Palindrome%20Length%20From%20Subsequences/README_EN.md)
 
@@ -48,7 +48,6 @@
 	<li><code>1 &lt;= word1.length, word2.length &lt;= 1000</code></li>
 	<li><code>word1</code> 和 <code>word2</code> 由小写英文字母组成</li>
 </ul>
-
 
 ## 解法
 

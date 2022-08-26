@@ -1,4 +1,4 @@
-# [01.05. One Away](https://leetcode-cn.com/problems/one-away-lcci)
+# [01.05. One Away](https://leetcode.cn/problems/one-away-lcci)
 
 [中文文档](/lcci/01.05.One%20Away/README.md)
 
@@ -10,7 +10,7 @@
 
 <pre>
 
-<strong>Input:</strong> 
+<strong>Input:</strong>
 
 first = &quot;pale&quot;
 
@@ -24,7 +24,7 @@ second = &quot;ple&quot;
 
 <pre>
 
-<strong>Input:</strong> 
+<strong>Input:</strong>
 
 first = &quot;pales&quot;
 
@@ -128,6 +128,113 @@ public:
         return true;
     }
 };
+```
+
+### **Go**
+
+Similar to [Edit Distance](https://leetcode.cn/problems/edit-distance/) solution
+
+```go
+func oneEditAway(first string, second string) bool {
+	if first == second {
+		return true
+	}
+	m, n := len(first), len(second)
+	dp := make([][]int, m+1)
+	for i := 0; i <= m; i++ {
+		dp[i] = make([]int, n+1)
+	}
+	for i := 0; i <= m; i++ {
+		dp[i][0] = i
+	}
+	for j := 0; j <= n; j++ {
+		dp[0][j] = j
+	}
+	for i := 1; i <= m; i++ {
+		for j := 1; j <= n; j++ {
+			if first[i-1] == second[j-1] {
+				dp[i][j] = dp[i-1][j-1]
+			} else {
+				insert := dp[i][j-1] + 1
+				delete := dp[i-1][j] + 1
+				update := dp[i-1][j-1] + 1
+				dp[i][j] = min(insert, delete, update)
+			}
+		}
+	}
+	return dp[m][n] == 1
+}
+
+func min(x, y, z int) int {
+	if x < y {
+		if x < z {
+			return x
+		}
+		return z
+	}
+	if y < z {
+		return y
+	}
+	return z
+}
+```
+
+### **TypeScript**
+
+```ts
+function oneEditAway(first: string, second: string): boolean {
+    const n = first.length;
+    const m = second.length;
+
+    let count = 0;
+    let i = 0;
+    let j = 0;
+    while (i < n || j < m) {
+        if (first[i] !== second[j]) {
+            count++;
+
+            if (i < n && first[i + 1] === second[j]) {
+                i++;
+            } else if (j < m && first[i] === second[j + 1]) {
+                j++;
+            }
+        }
+        i++;
+        j++;
+    }
+    return count <= 1;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn one_edit_away(first: String, second: String) -> bool {
+        let (f_len, s_len) = (first.len(), second.len());
+        let (first, second) = (first.as_bytes(), second.as_bytes());
+        let (mut i, mut j) = (0, 0);
+        let mut count = 0;
+        while i < f_len && j < s_len {
+            if first[i] != second[j] {
+                if count > 0 {
+                    return false;
+                }
+
+                count += 1;
+                if i + 1 < f_len && first[i + 1] == second[j] {
+                    i += 1;
+                } else if j + 1 < s_len && first[i] == second[j + 1] {
+                    j += 1;
+                }
+            }
+            i += 1;
+            j += 1;
+        }
+        count += f_len - i + s_len - j;
+        count <= 1
+    }
+}
 ```
 
 ### **...**

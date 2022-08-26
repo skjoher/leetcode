@@ -1,4 +1,4 @@
-# [16.13. Bisect Squares](https://leetcode-cn.com/problems/bisect-squares-lcci)
+# [16.13. Bisect Squares](https://leetcode.cn/problems/bisect-squares-lcci)
 
 [中文文档](/lcci/16.13.Bisect%20Squares/README.md)
 
@@ -14,15 +14,27 @@
 
 <pre>
 
+
+
 <strong>Input: </strong>
+
+
 
 square1 = {-1, -1, 2}
 
+
+
 square2 = {0, -1, 2}
+
+
 
 <strong>Output:</strong> {-1,0,2,0}
 
+
+
 <strong>Explanation:</strong> y = 0 is the line that can cut these two squares in half.
+
+
 
 </pre>
 
@@ -41,17 +53,20 @@ square2 = {0, -1, 2}
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

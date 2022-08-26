@@ -39,7 +39,7 @@ twoSum.find(7);  // No two integers sum up to 7, return false
 <ul>
 	<li><code>-10<sup>5</sup> &lt;= number &lt;= 10<sup>5</sup></code></li>
 	<li><code>-2<sup>31</sup> &lt;= value &lt;= 2<sup>31</sup> - 1</code></li>
-	<li>At most <code>5 * 10<sup>4</sup></code> calls will be made to <code>add</code> and <code>find</code>.</li>
+	<li>At most <code>10<sup>4</sup></code> calls will be made to <code>add</code> and <code>find</code>.</li>
 </ul>
 
 ## Solutions
@@ -50,12 +50,11 @@ twoSum.find(7);  // No two integers sum up to 7, return false
 
 ```python
 class TwoSum:
-
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.counter = collections.Counter()
+        self.counter = Counter()
 
     def add(self, number: int) -> None:
         """
@@ -93,12 +92,12 @@ class TwoSum {
     public TwoSum() {
         counter = new HashMap<>();
     }
-    
+
     /** Add the number to an internal data structure.. */
     public void add(int number) {
         counter.put(number, counter.getOrDefault(number, 0) + 1);
     }
-    
+
     /** Find if there exists any pair of numbers which sum is equal to the value. */
     public boolean find(int value) {
         for (int num : counter.keySet()) {

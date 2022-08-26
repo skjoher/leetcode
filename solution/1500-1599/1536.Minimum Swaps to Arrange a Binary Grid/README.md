@@ -1,4 +1,4 @@
-# [1536. 排布二进制网格的最少交换次数](https://leetcode-cn.com/problems/minimum-swaps-to-arrange-a-binary-grid)
+# [1536. 排布二进制网格的最少交换次数](https://leetcode.cn/problems/minimum-swaps-to-arrange-a-binary-grid)
 
 [English Version](/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/README_EN.md)
 
@@ -18,7 +18,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/images/fw.jpg" style="height: 141px; width: 750px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/images/fw.jpg" style="height: 141px; width: 750px;"></p>
 
 <pre><strong>输入：</strong>grid = [[0,0,1],[1,1,0],[1,0,0]]
 <strong>输出：</strong>3
@@ -26,7 +26,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/images/e2.jpg" style="height: 270px; width: 270px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/images/e2.jpg" style="height: 270px; width: 270px;"></p>
 
 <pre><strong>输入：</strong>grid = [[0,1,1,0],[0,1,1,0],[0,1,1,0],[0,1,1,0]]
 <strong>输出：</strong>-1
@@ -35,7 +35,7 @@
 
 <p><strong>示例 3：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/images/e3.jpg" style="height: 210px; width: 210px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1536.Minimum%20Swaps%20to%20Arrange%20a%20Binary%20Grid/images/e3.jpg" style="height: 210px; width: 210px;"></p>
 
 <pre><strong>输入：</strong>grid = [[1,0,0],[1,1,0],[1,1,1]]
 <strong>输出：</strong>0
@@ -51,7 +51,6 @@
 	<li><code>1 &lt;= n&nbsp;&lt;= 200</code></li>
 	<li><code>grid[i][j]</code>&nbsp;要么是&nbsp;<code>0</code>&nbsp;要么是&nbsp;<code>1</code>&nbsp;。</li>
 </ul>
-
 
 ## 解法
 

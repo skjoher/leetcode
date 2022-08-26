@@ -1,4 +1,4 @@
-# [1696. 跳跃游戏 VI](https://leetcode-cn.com/problems/jump-game-vi)
+# [1696. 跳跃游戏 VI](https://leetcode.cn/problems/jump-game-vi)
 
 [English Version](/solution/1600-1699/1696.Jump%20Game%20VI/README_EN.md)
 
@@ -47,7 +47,6 @@
 	<li> <code>1 <= nums.length, k <= 10<sup>5</sup></code></li>
 	<li><code>-10<sup>4</sup> <= nums[i] <= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

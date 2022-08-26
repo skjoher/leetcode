@@ -1,4 +1,4 @@
-# [1698. 字符串的不同子字符串个数](https://leetcode-cn.com/problems/number-of-distinct-substrings-in-a-string)
+# [1698. 字符串的不同子字符串个数](https://leetcode.cn/problems/number-of-distinct-substrings-in-a-string)
 
 [English Version](/solution/1600-1699/1698.Number%20of%20Distinct%20Substrings%20in%20a%20String/README_EN.md)
 
@@ -38,7 +38,6 @@
 
 <p><b>进阶：</b>你可以以 <code>O(n)</code> 时间复杂度解决此问题吗？</p>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -50,7 +49,10 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def countDistinct(self, s: str) -> int:
+        n = len(s)
+        return len({s[i:j] for i in range(n) for j in range(i + 1, n + 1)})
 ```
 
 ### **Java**
@@ -58,7 +60,52 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int countDistinct(String s) {
+        Set<String> ss = new HashSet<>();
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j <= n; ++j) {
+                ss.add(s.substring(i, j));
+            }
+        }
+        return ss.size();
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int countDistinct(string s) {
+        unordered_set<string_view> ss;
+        int n = s.size();
+        string_view t, v = s;
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j <= n; ++j) {
+                t = v.substr(i, j - i);
+                ss.insert(t);
+            }
+        }
+        return ss.size();
+    }
+};
+```
+
+### **Go**
+
+```go
+func countDistinct(s string) int {
+	ss := map[string]bool{}
+	for i := range s {
+		for j := i + 1; j <= len(s); j++ {
+			ss[s[i:j]] = true
+		}
+	}
+	return len(ss)
+}
 ```
 
 ### **...**

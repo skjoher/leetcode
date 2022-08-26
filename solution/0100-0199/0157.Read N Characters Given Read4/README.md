@@ -1,4 +1,4 @@
-# [157. 用 Read4 读取 N 个字符](https://leetcode-cn.com/problems/read-n-characters-given-read4)
+# [157. 用 Read4 读取 N 个字符](https://leetcode.cn/problems/read-n-characters-given-read4)
 
 [English Version](/solution/0100-0199/0157.Read%20N%20Characters%20Given%20Read4/README_EN.md)
 
@@ -86,7 +86,6 @@ read4(buf4); // read4 返回 0。现在 buf = &quot;&quot;，fp 指向文件末�
 	<li><code>read</code>&nbsp; 函数只在每个测试用例调用一次。</li>
 	<li>你可以假定目标缓存数组&nbsp;<code>buf</code> 保证有足够的空间存下 n 个字符。&nbsp;</li>
 </ul>
-
 
 ## 解法
 

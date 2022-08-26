@@ -1,4 +1,4 @@
-# [1262. 可被三整除的最大和](https://leetcode-cn.com/problems/greatest-sum-divisible-by-three)
+# [1262. 可被三整除的最大和](https://leetcode.cn/problems/greatest-sum-divisible-by-three)
 
 [English Version](/solution/1200-1299/1262.Greatest%20Sum%20Divisible%20by%20Three/README_EN.md)
 
@@ -41,7 +41,6 @@
 	<li><code>1 &lt;= nums.length &lt;= 4 * 10^4</code></li>
 	<li><code>1 &lt;= nums[i] &lt;= 10^4</code></li>
 </ul>
-
 
 ## 解法
 

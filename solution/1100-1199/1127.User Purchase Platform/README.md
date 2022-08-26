@@ -1,4 +1,4 @@
-# [1127. 用户购买平台](https://leetcode-cn.com/problems/user-purchase-platform)
+# [1127. 用户购买平台](https://leetcode.cn/problems/user-purchase-platform)
 
 [English Version](/solution/1100-1199/1127.User%20Purchase%20Platform/README_EN.md)
 
@@ -53,7 +53,6 @@ Result table:
 +------------+----------+--------------+-------------+ 
 在 2019-07-01, 用户1 <strong>同时 </strong>使用桌面端和手机端购买, 用户2 <strong>仅 </strong>使用了手机端购买，而用户3 <strong>仅 </strong>使用了桌面端购买。
 在 2019-07-02, 用户2 <strong>仅 </strong>使用了手机端购买, 用户3 <strong>仅 </strong>使用了桌面端购买，且没有用户 <strong>同时 </strong>使用桌面端和手机端购买。</pre>
-
 
 ## 解法
 

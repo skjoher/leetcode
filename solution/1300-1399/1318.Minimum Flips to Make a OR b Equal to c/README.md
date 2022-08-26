@@ -1,4 +1,4 @@
-# [1318. 或运算的最小翻转次数](https://leetcode-cn.com/problems/minimum-flips-to-make-a-or-b-equal-to-c)
+# [1318. 或运算的最小翻转次数](https://leetcode.cn/problems/minimum-flips-to-make-a-or-b-equal-to-c)
 
 [English Version](/solution/1300-1399/1318.Minimum%20Flips%20to%20Make%20a%20OR%20b%20Equal%20to%20c/README_EN.md)
 
@@ -16,7 +16,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1318.Minimum%20Flips%20to%20Make%20a%20OR%20b%20Equal%20to%20c/images/sample_3_1676.png" style="height: 87px; width: 260px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1318.Minimum%20Flips%20to%20Make%20a%20OR%20b%20Equal%20to%20c/images/sample_3_1676.png" style="height: 87px; width: 260px;"></p>
 
 <pre><strong>输入：</strong>a = 2, b = 6, c = 5
 <strong>输出：</strong>3
@@ -44,10 +44,13 @@
 	<li><code>1 &lt;= c&nbsp;&lt;= 10^9</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：位运算**
+
+逐位提取 a, b, c 对应二进制位，进行比较计数。
 
 <!-- tabs:start -->
 
@@ -56,7 +59,18 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def minFlips(self, a: int, b: int, c: int) -> int:
+        ans = 0
+        for i in range(31):
+            x, y, z = (a >> i) & 1, (b >> i) & 1, (c >> i) & 1
+            if (x | y) == z:
+                continue
+            if x == 1 and y == 1 and z == 0:
+                ans += 2
+            else:
+                ans += 1
+        return ans
 ```
 
 ### **Java**
@@ -64,7 +78,59 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int minFlips(int a, int b, int c) {
+        int ans = 0;
+        for (int i = 0; i < 31; ++i) {
+            int x = (a >> i) & 1, y = (b >> i) & 1, z = (c >> i) & 1;
+            if ((x | y) == z) {
+                continue;
+            }
+            if (x == 1 && y == 1 && z == 0) {
+                ++ans;
+            }
+            ++ans;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minFlips(int a, int b, int c) {
+        int ans = 0;
+        for (int i = 0; i < 31; ++i) {
+            int x = (a >> i) & 1, y = (b >> i) & 1, z = (c >> i) & 1;
+            if ((x | y) == z) continue;
+            if (x == 1 && y == 1 && z == 0) ++ans;
+            ++ans;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func minFlips(a int, b int, c int) int {
+	ans := 0
+	for i := 0; i < 31; i++ {
+		x, y, z := (a>>i)&1, (b>>i)&1, (c>>i)&1
+		if (x | y) == z {
+			continue
+		}
+		if x == 1 && y == 1 && z == 0 {
+			ans++
+		}
+		ans++
+	}
+	return ans
+}
 ```
 
 ### **...**

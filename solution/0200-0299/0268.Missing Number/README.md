@@ -1,4 +1,4 @@
-# [268. 丢失的数字](https://leetcode-cn.com/problems/missing-number)
+# [268. 丢失的数字](https://leetcode.cn/problems/missing-number)
 
 [English Version](/solution/0200-0299/0268.Missing%20Number/README_EN.md)
 
@@ -6,17 +6,12 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给定一个包含 <code>[0, n]</code> 中 <code>n</code> 个数的数组 <code>nums</code> ，找出 <code>[0, n]</code> 这个范围内没有出现在数组中的那个数。</p>
-
-<p> </p>
-
-<p><strong>进阶：</strong></p>
+<p>给定一个包含 <code>[0, n]</code>&nbsp;中&nbsp;<code>n</code>&nbsp;个数的数组 <code>nums</code> ，找出 <code>[0, n]</code> 这个范围内没有出现在数组中的那个数。</p>
 
 <ul>
-	<li>你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?</li>
 </ul>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
@@ -46,17 +41,20 @@
 <strong>输出：</strong>1
 <b>解释：</b>n = 1，因为有 1 个数字，所以所有的数字都在范围 [0,1] 内。1 是丢失的数字，因为它没有出现在 nums 中。</pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
 	<li><code>n == nums.length</code></li>
-	<li><code>1 <= n <= 10<sup>4</sup></code></li>
-	<li><code>0 <= nums[i] <= n</code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>
+	<li><code>0 &lt;= nums[i] &lt;= n</code></li>
 	<li><code>nums</code> 中的所有数字都 <strong>独一无二</strong></li>
 </ul>
 
+<p>&nbsp;</p>
+
+<p><strong>进阶：</strong>你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?</p>
 
 ## 解法
 
@@ -77,7 +75,7 @@ class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         res = len(nums)
         for i, v in enumerate(nums):
-            res ^= (i ^ v)
+            res ^= i ^ v
         return res
 ```
 
@@ -85,7 +83,7 @@ class Solution:
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-- 异或
+-   异或
 
 ```java
 class Solution {
@@ -99,7 +97,7 @@ class Solution {
 }
 ```
 
-- 数学
+-   数学
 
 ```java
 class Solution {
@@ -110,6 +108,35 @@ class Solution {
         }
         return res;
     }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        int res = n;
+        for (int i = 0; i < n; ++i) {
+            res ^= (i ^ nums[i]);
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func missingNumber(nums []int) int {
+	n := len(nums)
+	res := n
+	for i := 0; i < n; i++ {
+		res ^= (i ^ nums[i])
+	}
+	return res
 }
 ```
 

@@ -1,4 +1,4 @@
-# [621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler)
+# [621. 任务调度器](https://leetcode.cn/problems/task-scheduler)
 
 [English Version](/solution/0600-0699/0621.Task%20Scheduler/README_EN.md)
 
@@ -53,7 +53,6 @@
 	<li><code>tasks[i]</code> 是大写英文字母</li>
 	<li><code>n</code> 的取值范围为 <code>[0, 100]</code></li>
 </ul>
-
 
 ## 解法
 

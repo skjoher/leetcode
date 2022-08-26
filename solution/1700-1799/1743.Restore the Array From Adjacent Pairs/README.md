@@ -1,4 +1,4 @@
-# [1743. 从相邻元素对还原数组](https://leetcode-cn.com/problems/restore-the-array-from-adjacent-pairs)
+# [1743. 从相邻元素对还原数组](https://leetcode.cn/problems/restore-the-array-from-adjacent-pairs)
 
 [English Version](/solution/1700-1799/1743.Restore%20the%20Array%20From%20Adjacent%20Pairs/README_EN.md)
 
@@ -54,10 +54,15 @@
 	<li>题目数据保证存在一些以 <code>adjacentPairs</code> 作为元素对的数组 <code>nums</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：哈希表**
+
+从度为一的点开始遍历图，可以用 DFS，也可以直接遍历。
+
+时间复杂度 $O(n)$，空间复杂度 $O(n)$。
 
 <!-- tabs:start -->
 
@@ -66,7 +71,49 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+        g = defaultdict(list)
+        for a, b in adjacentPairs:
+            g[a].append(b)
+            g[b].append(a)
+        n = len(adjacentPairs) + 1
+        ans = [0] * n
+        for i, v in g.items():
+            if len(v) == 1:
+                ans[0] = i
+                ans[1] = v[0]
+                break
+        for i in range(2, n):
+            v = g[ans[i - 1]]
+            ans[i] = v[0] if v[1] == ans[i - 2] else v[1]
+        return ans
+```
 
+```python
+class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+        def dfs(i):
+            if i in vis:
+                return
+            vis.add(i)
+            ans.append(i)
+            for j in g[i]:
+                dfs(j)
+
+        g = defaultdict(list)
+        for a, b in adjacentPairs:
+            g[a].append(b)
+            g[b].append(a)
+        ans = []
+        vis = set()
+        start = -1
+        for i, v in g.items():
+            if len(v) == 1:
+                start = i
+                break
+        dfs(start)
+        return ans
 ```
 
 ### **Java**
@@ -74,7 +121,194 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] restoreArray(int[][] adjacentPairs) {
+        int n = adjacentPairs.length + 1;
+        Map<Integer, List<Integer>> g = new HashMap<>();
+        for (int[] e : adjacentPairs) {
+            int a = e[0], b = e[1];
+            g.computeIfAbsent(a, k -> new ArrayList<>()).add(b);
+            g.computeIfAbsent(b, k -> new ArrayList<>()).add(a);
+        }
+        int[] ans = new int[n];
+        for (Map.Entry<Integer, List<Integer>> entry : g.entrySet()) {
+            if (entry.getValue().size() == 1) {
+                ans[0] = entry.getKey();
+                ans[1] = entry.getValue().get(0);
+                break;
+            }
+        }
+        for (int i = 2; i < n; ++i) {
+            List<Integer> v = g.get(ans[i - 1]);
+            ans[i] = v.get(1) == ans[i - 2] ? v.get(0) : v.get(1);
+        }
+        return ans;
+    }
+}
+```
 
+```java
+class Solution {
+    public int[] restoreArray(int[][] adjacentPairs) {
+        int n = adjacentPairs.length + 1;
+        Map<Integer, List<Integer>> g = new HashMap<>();
+        for (int[] e : adjacentPairs) {
+            int a = e[0], b = e[1];
+            g.computeIfAbsent(a, k -> new ArrayList<>()).add(b);
+            g.computeIfAbsent(b, k -> new ArrayList<>()).add(a);
+        }
+        List<Integer> ans = new ArrayList<>();
+        Set<Integer> vis = new HashSet<>();
+        int start = -1;
+        for (Map.Entry<Integer, List<Integer>> entry : g.entrySet()) {
+            if (entry.getValue().size() == 1) {
+                start = entry.getKey();
+                break;
+            }
+        }
+        dfs(g, ans, vis, start);
+        return ans.stream().mapToInt(Integer::valueOf).toArray();
+    }
+
+    private void dfs(Map<Integer, List<Integer>> g, List<Integer> ans, Set<Integer> vis, int i) {
+        if (vis.contains(i)) {
+            return;
+        }
+        vis.add(i);
+        ans.add(i);
+        for (int j : g.get(i)) {
+            dfs(g, ans, vis, j);
+        }
+    }
+}
+```
+
+### **Go**
+
+```go
+func restoreArray(adjacentPairs [][]int) []int {
+	n := len(adjacentPairs) + 1
+	g := map[int][]int{}
+	for _, e := range adjacentPairs {
+		a, b := e[0], e[1]
+		g[a] = append(g[a], b)
+		g[b] = append(g[b], a)
+	}
+	ans := make([]int, n)
+	for k, v := range g {
+		if len(v) == 1 {
+			ans[0] = k
+			ans[1] = v[0]
+			break
+		}
+	}
+	for i := 2; i < n; i++ {
+		v := g[ans[i-1]]
+		ans[i] = v[0]
+		if v[0] == ans[i-2] {
+			ans[i] = v[1]
+		}
+	}
+	return ans
+}
+```
+
+```go
+func restoreArray(adjacentPairs [][]int) []int {
+	g := map[int][]int{}
+	for _, e := range adjacentPairs {
+		a, b := e[0], e[1]
+		g[a] = append(g[a], b)
+		g[b] = append(g[b], a)
+	}
+	ans := []int{}
+	vis := map[int]bool{}
+	var start int
+	for i, v := range g {
+		if len(v) == 1 {
+			start = i
+			break
+		}
+	}
+	var dfs func(i int)
+	dfs = func(i int) {
+		if vis[i] {
+			return
+		}
+		vis[i] = true
+		ans = append(ans, i)
+		for _, j := range g[i] {
+			dfs(j)
+		}
+	}
+	dfs(start)
+	return ans
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+        int n = adjacentPairs.size() + 1;
+        unordered_map<int, vector<int>> g;
+        for (auto& e : adjacentPairs) {
+            int a = e[0], b = e[1];
+            g[a].push_back(b);
+            g[b].push_back(a);
+        }
+        vector<int> ans(n);
+        for (auto& [k, v] : g) {
+            if (v.size() == 1) {
+                ans[0] = k;
+                ans[1] = v[0];
+                break;
+            }
+        }
+        for (int i = 2; i < n; ++i) {
+            auto v = g[ans[i - 1]];
+            ans[i] = v[0] == ans[i - 2] ? v[1] : v[0];
+        }
+        return ans;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+        int n = adjacentPairs.size() + 1;
+        unordered_map<int, vector<int>> g;
+        for (auto& e : adjacentPairs) {
+            int a = e[0], b = e[1];
+            g[a].push_back(b);
+            g[b].push_back(a);
+        }
+        vector<int> ans;
+        unordered_set<int> vis;
+        int start = -1;
+        for (auto& [k, v] : g) {
+            if (v.size() == 1) {
+                start = k;
+                break;
+            }
+        }
+        dfs(g, ans, vis, start);
+        return ans;
+    }
+
+    void dfs(unordered_map<int, vector<int>>& g, vector<int>& ans, unordered_set<int>& vis, int i) {
+        if (vis.count(i)) return;
+        ans.push_back(i);
+        vis.insert(i);
+        for (int j : g[i]) {
+            dfs(g, ans, vis, j);
+        }
+    }
+};
 ```
 
 ### **...**

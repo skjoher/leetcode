@@ -1,4 +1,4 @@
-# [1439. 有序矩阵中的第 k 个最小数组和](https://leetcode-cn.com/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows)
+# [1439. 有序矩阵中的第 k 个最小数组和](https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows)
 
 [English Version](/solution/1400-1499/1439.Find%20the%20Kth%20Smallest%20Sum%20of%20a%20Matrix%20With%20Sorted%20Rows/README_EN.md)
 
@@ -51,7 +51,6 @@
 	<li><code>1 &lt;= mat[i][j] &lt;= 5000</code></li>
 	<li><code>mat[i]</code> 是一个非递减数组</li>
 </ul>
-
 
 ## 解法
 

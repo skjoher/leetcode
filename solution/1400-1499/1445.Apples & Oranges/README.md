@@ -1,4 +1,4 @@
-# [1445. 苹果和桔子](https://leetcode-cn.com/problems/apples-oranges)
+# [1445. 苹果和桔子](https://leetcode.cn/problems/apples-oranges)
 
 [English Version](/solution/1400-1499/1445.Apples%20%26%20Oranges/README_EN.md)
 
@@ -59,17 +59,27 @@ Result 表:
 在 2020-05-04, 卖了 15 个苹果 和 16 个桔子 (差异为 15 - 16 = -1).
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+`CASE WHEN` + `GROUP BY`。
 
 <!-- tabs:start -->
 
 ### **SQL**
 
 ```sql
-
+# Write your MySQL query statement below
+SELECT
+    sale_date AS SALE_DATE,
+    sum(
+        CASE WHEN fruit = 'oranges' THEN -sold_num ELSE sold_num END
+    ) AS DIFF
+FROM
+    Sales
+GROUP BY sale_date
+ORDER BY sale_date;
 ```
 
 <!-- tabs:end -->

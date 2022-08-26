@@ -1,4 +1,4 @@
-# [1674. 使数组互补的最少操作次数](https://leetcode-cn.com/problems/minimum-moves-to-make-array-complementary)
+# [1674. 使数组互补的最少操作次数](https://leetcode.cn/problems/minimum-moves-to-make-array-complementary)
 
 [English Version](/solution/1600-1699/1674.Minimum%20Moves%20to%20Make%20Array%20Complementary/README_EN.md)
 
@@ -53,7 +53,6 @@ nums[3] + nums[0] = 3 + 1 = 4.
 	<li><code>1 <= nums[i] <= limit <= 10<sup>5</sup></code></li>
 	<li><code>n</code> 是偶数。</li>
 </ul>
-
 
 ## 解法
 

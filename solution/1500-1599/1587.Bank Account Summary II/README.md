@@ -1,4 +1,4 @@
-# [1587. 银行账户概要 II](https://leetcode-cn.com/problems/bank-account-summary-ii)
+# [1587. 银行账户概要 II](https://leetcode.cn/problems/bank-account-summary-ii)
 
 [English Version](/solution/1500-1599/1587.Bank%20Account%20Summary%20II/README_EN.md)
 
@@ -79,33 +79,27 @@ Bob 的余额为1000.
 Charlie 的余额为(6000 + 6000 - 4000) = 8000.
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
 <!-- tabs:start -->
 
-### **Python3**
+### **SQL**
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-```python
-
-```
-
-### **Java**
-
-<!-- 这里可写当前语言的特殊实现逻辑 -->
-
-```java
-
-```
-
-### **...**
-
-```
-
+```sql
+SELECT
+    u.name,
+    SUM(t.amount) AS balance
+FROM
+    users AS u
+    JOIN transactions AS t ON u.account = t.account
+GROUP BY
+    name
+HAVING
+    SUM(t.amount) > 10000;
 ```
 
 <!-- tabs:end -->

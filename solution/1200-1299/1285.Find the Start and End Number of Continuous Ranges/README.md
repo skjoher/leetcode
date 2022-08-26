@@ -1,4 +1,4 @@
-# [1285. 找到连续区间的开始和结束数字](https://leetcode-cn.com/problems/find-the-start-and-end-number-of-continuous-ranges)
+# [1285. 找到连续区间的开始和结束数字](https://leetcode.cn/problems/find-the-start-and-end-number-of-continuous-ranges)
 
 [English Version](/solution/1200-1299/1285.Find%20the%20Start%20and%20End%20Number%20of%20Continuous%20Ranges/README_EN.md)
 
@@ -24,9 +24,14 @@ id 是上表的主键。
 
 <p>将查询表按照 <code>start_id</code>&nbsp;排序。</p>
 
-<p>查询结果格式如下面的例子：</p>
+<p>查询结果格式如下面的例子。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
 
 <pre>
+<strong>输入：</strong>
 Logs 表：
 +------------+
 | log_id     |
@@ -38,8 +43,7 @@ Logs 表：
 | 8          |
 | 10         |
 +------------+
-
-结果表：
+<strong>输出：</strong>
 +------------+--------------+
 | start_id   | end_id       |
 +------------+--------------+
@@ -47,14 +51,13 @@ Logs 表：
 | 7          | 8            |
 | 10         | 10           |
 +------------+--------------+
+<strong>解释：</strong>
 结果表应包含 Logs 表中的所有区间。
 从 1 到 3 在表中。
 从 4 到 6 不在表中。
 从 7 到 8 在表中。
 9 不在表中。
-10 在表中。
-</pre>
-
+10 在表中。</pre>
 
 ## 解法
 
@@ -65,7 +68,14 @@ Logs 表：
 ### **SQL**
 
 ```sql
-
+SELECT
+  MIN(log_id) AS start_id,
+  MAX(log_id) AS end_id
+FROM (SELECT
+  log_id,
+  log_id - ROW_NUMBER() OVER (ORDER BY log_id) AS rk
+FROM Logs) t
+GROUP BY rk;
 ```
 
 <!-- tabs:end -->

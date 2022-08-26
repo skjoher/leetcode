@@ -1,4 +1,4 @@
-# [1774. 最接近目标价格的甜点成本](https://leetcode-cn.com/problems/closest-dessert-cost)
+# [1774. 最接近目标价格的甜点成本](https://leetcode.cn/problems/closest-dessert-cost)
 
 [English Version](/solution/1700-1799/1774.Closest%20Dessert%20Cost/README_EN.md)
 
@@ -79,7 +79,6 @@
 	<li><code>1 <= baseCosts[i], toppingCosts[i] <= 10<sup>4</sup></code></li>
 	<li><code>1 <= target <= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

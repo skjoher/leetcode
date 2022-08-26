@@ -1,4 +1,4 @@
-# [760. 找出变位映射](https://leetcode-cn.com/problems/find-anagram-mappings)
+# [760. 找出变位映射](https://leetcode.cn/problems/find-anagram-mappings)
 
 [English Version](/solution/0700-0799/0760.Find%20Anagram%20Mappings/README_EN.md)
 
@@ -38,7 +38,6 @@ B = [50, 12, 32, 46, 28]
 
 <p>&nbsp;</p>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -52,7 +51,7 @@ B = [50, 12, 32, 46, 28]
 ```python
 class Solution:
     def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        mapper = collections.defaultdict(set)
+        mapper = defaultdict(set)
         for i, num in enumerate(nums2):
             mapper[num].add(i)
         return [mapper[num].pop() for num in nums1]
@@ -67,9 +66,7 @@ class Solution {
     public int[] anagramMappings(int[] nums1, int[] nums2) {
         Map<Integer, Set<Integer>> map = new HashMap<>();
         for (int i = 0; i < nums2.length; ++i) {
-            Set<Integer> s = map.getOrDefault(nums2[i], new HashSet<>());
-            s.add(i);
-            map.put(nums2[i], s);
+            map.computeIfAbsent(nums2[i], k -> new HashSet<>()).add(i);
         }
         int[] res = new int[nums1.length];
         for (int i = 0; i < nums1.length; ++i) {

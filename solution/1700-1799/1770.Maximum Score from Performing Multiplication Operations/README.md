@@ -1,4 +1,4 @@
-# [1770. 执行乘法运算的最大分数](https://leetcode-cn.com/problems/maximum-score-from-performing-multiplication-operations)
+# [1770. 执行乘法运算的最大分数](https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations)
 
 [English Version](/solution/1700-1799/1770.Maximum%20Score%20from%20Performing%20Multiplication%20Operations/README_EN.md)
 
@@ -54,7 +54,6 @@
 	<li><code>m &lt;= n &lt;= 10<sup>5</sup></code><code> </code></li>
 	<li><code>-1000 &lt;= nums[i], multipliers[i] &lt;= 1000</code></li>
 </ul>
-
 
 ## 解法
 

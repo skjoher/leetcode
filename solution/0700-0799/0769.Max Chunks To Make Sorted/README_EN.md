@@ -4,69 +4,42 @@
 
 ## Description
 
-<p>Given an array <code>arr</code> that is a permutation of <code>[0, 1, ..., arr.length - 1]</code>, we split the array into some number of &quot;chunks&quot; (partitions), and individually sort each chunk.&nbsp; After concatenating them,&nbsp;the result equals the sorted array.</p>
+<p>You are given an integer array <code>arr</code> of length <code>n</code> that represents a permutation of the integers in the range <code>[0, n - 1]</code>.</p>
 
+<p>We split <code>arr</code> into some number of <strong>chunks</strong> (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array.</p>
 
+<p>Return <em>the largest number of chunks we can make to sort the array</em>.</p>
 
-<p>What is the most number of chunks we could have made?</p>
-
-
-
+<p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> arr = [4,3,2,1,0]
-
 <strong>Output:</strong> 1
-
 <strong>Explanation:</strong>
-
 Splitting into two or more chunks will not return the required result.
-
 For example, splitting into [4, 3], [2, 1, 0] will result in [3, 4, 0, 1, 2], which isn&#39;t sorted.
-
 </pre>
-
-
 
 <p><strong>Example 2:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> arr = [1,0,2,3,4]
-
 <strong>Output:</strong> 4
-
 <strong>Explanation:</strong>
-
 We can split into two chunks, such as [1, 0], [2, 3, 4].
-
 However, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible.
-
 </pre>
 
-
-
-<p><strong>Note:</strong></p>
-
-
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>arr</code> will have length in range <code>[1, 10]</code>.</li>
-	<li><code>arr[i]</code> will be a permutation of <code>[0, 1, ..., arr.length - 1]</code>.</li>
-
+	<li><code>n == arr.length</code></li>
+	<li><code>1 &lt;= n &lt;= 10</code></li>
+	<li><code>0 &lt;= arr[i] &lt; n</code></li>
+	<li>All the elements of <code>arr</code> are <strong>unique</strong>.</li>
 </ul>
-
-
-
-<p>&nbsp;</p>
-
-
 
 ## Solutions
 
@@ -75,13 +48,106 @@ However, splitting into [1, 0], [2], [3], [4] is the highest number of chunks po
 ### **Python3**
 
 ```python
-
+class Solution:
+    def maxChunksToSorted(self, arr: List[int]) -> int:
+        mx = ans = 0
+        for i, v in enumerate(arr):
+            mx = max(mx, v)
+            if i == mx:
+                ans += 1
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int maxChunksToSorted(int[] arr) {
+        int ans = 0;
+        int mx = 0;
+        for (int i = 0; i < arr.length; ++i) {
+            mx = Math.max(mx, arr[i]);
+            if (i == mx) {
+                ++ans;
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        int ans = 0;
+        int mx = 0;
+        for (int i = 0; i < arr.size(); ++i) {
+            mx = max(mx, arr[i]);
+            ans += i == mx;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxChunksToSorted(arr []int) int {
+	ans, mx := 0, 0
+	for i, v := range arr {
+		mx = max(mx, v)
+		if i == mx {
+			ans++
+		}
+	}
+	return ans
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+### **TypeScript**
+
+```ts
+function maxChunksToSorted(arr: number[]): number {
+    const n = arr.length;
+    let ans = 0;
+    let max = 0;
+    for (let i = 0; i < n; i++) {
+        max = Math.max(arr[i], max);
+        if (max == i) {
+            ans++;
+        }
+    }
+    return ans;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn max_chunks_to_sorted(arr: Vec<i32>) -> i32 {
+        let mut res = 0;
+        let mut max = 0;
+        for i in 0..arr.len() {
+            max = max.max(arr[i]);
+            if max == i as i32 {
+                res += 1;
+            }
+        }
+        res
+    }
+}
 ```
 
 ### **...**

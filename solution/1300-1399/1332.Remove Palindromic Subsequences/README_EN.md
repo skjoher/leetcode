@@ -47,7 +47,6 @@ Remove palindromic subsequence &quot;baab&quot; then &quot;b&quot;.
 	<li><code>s[i]</code> is either <code>&#39;a&#39;</code> or <code>&#39;b&#39;</code>.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -55,13 +54,98 @@ Remove palindromic subsequence &quot;baab&quot; then &quot;b&quot;.
 ### **Python3**
 
 ```python
-
+class Solution:
+    def removePalindromeSub(self, s: str) -> int:
+        if not s:
+            return 0
+        if s[::-1] == s:
+            return 1
+        return 2
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int removePalindromeSub(String s) {
+        if (s.length() == 0) {
+            return 0;
+        }
+        if (new StringBuilder(s).reverse().toString().equals(s)) {
+            return 1;
+        }
+        return 2;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function removePalindromeSub(s: string): number {
+    if (s.length == 0) return 0;
+    if (s == s.split('').reverse().join('')) return 1;
+    return 2;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int removePalindromeSub(string s) {
+        if (s.empty())
+            return 0;
+        string t = s;
+        reverse(s.begin(), s.end());
+        if (s == t)
+            return 1;
+        return 2;
+    }
+};
+```
+
+### **Go**
+
+```go
+func removePalindromeSub(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+	if s == reverse(s) {
+		return 1
+	}
+	return 2
+}
+
+func reverse(s string) string {
+	r := []byte(s)
+	for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {
+		r[i], r[j] = r[j], r[i]
+	}
+	return string(r)
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn remove_palindrome_sub(s: String) -> i32 {
+        let mut l = 0;
+        let mut r = s.len() - 1;
+        let s: Vec<char> = s.chars().collect();
+        while l < r {
+            if s[l] != s[r] {
+                return 2;
+            }
+            l += 1;
+            r -= 1;
+        }
+        1
+    }
+}
 ```
 
 ### **...**

@@ -1,4 +1,4 @@
-# [27. 移除元素](https://leetcode-cn.com/problems/remove-element)
+# [27. 移除元素](https://leetcode.cn/problems/remove-element)
 
 [English Version](/solution/0000-0099/0027.Remove%20Element/README_EN.md)
 
@@ -61,7 +61,6 @@ for (int i = 0; i < len; i++) {
 	<li><code>0 <= val <= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -109,8 +108,10 @@ public:
     int removeElement(vector<int>& nums, int val) {
         int cnt = 0, n = nums.size();
         for (int i = 0; i < n; ++i) {
-            if (nums[i] == val) ++cnt;
-            else nums[i - cnt] = nums[i];
+            if (nums[i] == val)
+                ++cnt;
+            else
+                nums[i - cnt] = nums[i];
         }
         return n - cnt;
     }
@@ -126,13 +127,13 @@ public:
  * @return {number}
  */
 var removeElement = function (nums, val) {
-  let cnt = 0;
-  const n = nums.length;
-  for (let i = 0; i < n; ++i) {
-    if (nums[i] == val) ++cnt;
-    else nums[i - cnt] = nums[i];
-  }
-  return n - cnt;
+    let cnt = 0;
+    const n = nums.length;
+    for (let i = 0; i < n; ++i) {
+        if (nums[i] == val) ++cnt;
+        else nums[i - cnt] = nums[i];
+    }
+    return n - cnt;
 };
 ```
 
@@ -149,6 +150,23 @@ func removeElement(nums []int, val int) int {
         }
     }
     return n - cnt
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
+        let mut len = 0;
+        for i in 0..nums.len() {
+            if nums[i] != val {
+                nums[len] = nums[i];
+                len += 1;
+            }
+        }
+        len as i32
+    }
 }
 ```
 

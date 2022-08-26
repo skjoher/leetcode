@@ -1,4 +1,4 @@
-# [1553. 吃掉 N 个橘子的最少天数](https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges)
+# [1553. 吃掉 N 个橘子的最少天数](https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges)
 
 [English Version](/solution/1500-1599/1553.Minimum%20Number%20of%20Days%20to%20Eat%20N%20Oranges/README_EN.md)
 
@@ -63,10 +63,11 @@
 	<li><code>1 &lt;= n &lt;= 2*10^9</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：记忆化搜索**
 
 <!-- tabs:start -->
 
@@ -75,7 +76,15 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+class Solution:
+    def minDays(self, n: int) -> int:
+        @cache
+        def dfs(n):
+            if n < 2:
+                return n
+            return 1 + min(n % 2 + dfs(n // 2), n % 3 + dfs(n // 3))
 
+        return dfs(n)
 ```
 
 ### **Java**
@@ -83,7 +92,71 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    private Map<Integer, Integer> f = new HashMap<>();
 
+    public int minDays(int n) {
+        return dfs(n);
+    }
+
+    private int dfs(int n) {
+        if (n < 2) {
+            return n;
+        }
+        if (f.containsKey(n)) {
+            return f.get(n);
+        }
+        int res = 1 + Math.min(n % 2 + dfs(n / 2), n % 3 + dfs(n / 3));
+        f.put(n, res);
+        return res;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    unordered_map<int, int> f;
+
+    int minDays(int n) {
+        return dfs(n);
+    }
+
+    int dfs(int n) {
+        if (n < 2) return n;
+        if (f.count(n)) return f[n];
+        int res = 1 + min(n % 2 + dfs(n / 2), n % 3 + dfs(n / 3));
+        f[n] = res;
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func minDays(n int) int {
+	f := map[int]int{0: 0, 1: 1}
+	var dfs func(int) int
+	dfs = func(n int) int {
+		if v, ok := f[n]; ok {
+			return v
+		}
+		res := 1 + min(n%2+dfs(n/2), n%3+dfs(n/3))
+		f[n] = res
+		return res
+	}
+	return dfs(n)
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

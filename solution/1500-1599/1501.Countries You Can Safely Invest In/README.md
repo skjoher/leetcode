@@ -1,4 +1,4 @@
-# [1501. 可以放心投资的国家](https://leetcode-cn.com/problems/countries-you-can-safely-invest-in)
+# [1501. 可以放心投资的国家](https://leetcode.cn/problems/countries-you-can-safely-invest-in)
 
 [English Version](/solution/1500-1599/1501.Countries%20You%20Can%20Safely%20Invest%20In/README_EN.md)
 
@@ -110,7 +110,6 @@ Result 表:
 全球平均通话时长 = (2 * (33 + 4 + 59 + 102 + 330 + 5 + 13 + 3 + 1 + 7)) / 20 = 55.70000
 所以, Peru是唯一的平均通话时长大于全球平均通话时长的国家, 也是唯一的推荐投资的国家.
 </pre>
-
 
 ## 解法
 

@@ -49,7 +49,6 @@ In all outcomes, your friend wins.
 	<li><code>1 &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -57,13 +56,56 @@ In all outcomes, your friend wins.
 ### **Python3**
 
 ```python
-
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return n % 4 != 0
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public boolean canWinNim(int n) {
+        return n % 4 != 0;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function canWinNim(n: number): boolean {
+    return n % 4 != 0;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool canWinNim(int n) {
+        return n % 4 != 0;
+    }
+};
+```
+
+### **Go**
+
+```go
+func canWinNim(n int) bool {
+	return n%4 != 0
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn can_win_nim(n: i32) -> bool {
+        n % 4 != 0
+    }
+}
 ```
 
 ### **...**

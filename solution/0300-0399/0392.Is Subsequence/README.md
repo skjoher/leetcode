@@ -1,4 +1,4 @@
-# [392. 判断子序列](https://leetcode-cn.com/problems/is-subsequence)
+# [392. 判断子序列](https://leetcode.cn/problems/is-subsequence)
 
 [English Version](/solution/0300-0399/0392.Is%20Subsequence/README_EN.md)
 
@@ -44,12 +44,11 @@
 	<li>两个字符串都只由小写字符组成。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
-双指针遍历即可。
+**方法一：双指针**
 
 <!-- tabs:start -->
 
@@ -60,8 +59,7 @@
 ```python
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        m, n = len(s), len(t)
-        i = j = 0
+        i, j, m, n = 0, 0, len(s), len(t)
         while i < m and j < n:
             if s[i] == t[j]:
                 i += 1
@@ -86,6 +84,54 @@ class Solution {
         }
         return i == m;
     }
+}
+```
+
+### **TypeScript**
+
+```ts
+function isSubsequence(s: string, t: string): boolean {
+    let m = s.length,
+        n = t.length;
+    let i = 0;
+    for (let j = 0; j < n && i < m; ++j) {
+        if (s.charAt(i) == t.charAt(j)) {
+            ++i;
+        }
+    }
+    return i == m;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int m = s.size(), n = t.size();
+        int i = 0, j = 0;
+        while (i < m && j < n) {
+            if (s[i] == t[j]) ++i;
+            ++j;
+        }
+        return i == m;
+    }
+};
+```
+
+### **Go**
+
+```go
+func isSubsequence(s string, t string) bool {
+	i, j, m, n := 0, 0, len(s), len(t)
+	for i < m && j < n {
+		if s[i] == t[j] {
+			i++
+		}
+		j++
+	}
+	return i == m
 }
 ```
 

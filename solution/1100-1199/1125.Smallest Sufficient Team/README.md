@@ -1,4 +1,4 @@
-# [1125. 最小的必要团队](https://leetcode-cn.com/problems/smallest-sufficient-team)
+# [1125. 最小的必要团队](https://leetcode.cn/problems/smallest-sufficient-team)
 
 [English Version](/solution/1100-1199/1125.Smallest%20Sufficient%20Team/README_EN.md)
 
@@ -49,7 +49,6 @@
 	<li><code>people[i]</code> 中的每个技能是 <code>req_skills</code> 中的技能</li>
 	<li>题目数据保证「必要团队」一定存在</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1535. 找出数组游戏的赢家](https://leetcode-cn.com/problems/find-the-winner-of-an-array-game)
+# [1535. 找出数组游戏的赢家](https://leetcode.cn/problems/find-the-winner-of-an-array-game)
 
 [English Version](/solution/1500-1599/1535.Find%20the%20Winner%20of%20an%20Array%20Game/README_EN.md)
 
@@ -21,7 +21,7 @@
 <pre><strong>输入：</strong>arr = [2,1,3,5,4,6,7], k = 2
 <strong>输出：</strong>5
 <strong>解释：</strong>一起看一下本场游戏每回合的情况：
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1535.Find%20the%20Winner%20of%20an%20Array%20Game/images/q-example.png" style="height: 90px; width: 400px;">
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1535.Find%20the%20Winner%20of%20an%20Array%20Game/images/q-example.png" style="height: 90px; width: 400px;">
 因此将进行 4 回合比赛，其中 5 是赢家，因为它连胜 2 回合。
 </pre>
 
@@ -54,7 +54,6 @@
 	<li><code>arr</code> 所含的整数 <strong>各不相同</strong> 。</li>
 	<li><code>1 &lt;= k &lt;= 10^9</code></li>
 </ul>
-
 
 ## 解法
 

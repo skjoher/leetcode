@@ -1,4 +1,4 @@
-# [1362. 最接近的因数](https://leetcode-cn.com/problems/closest-divisors)
+# [1362. 最接近的因数](https://leetcode.cn/problems/closest-divisors)
 
 [English Version](/solution/1300-1399/1362.Closest%20Divisors/README_EN.md)
 
@@ -43,7 +43,6 @@
 <ul>
 	<li><code>1 &lt;= num &lt;= 10^9</code></li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [194. 转置文件](https://leetcode-cn.com/problems/transpose-file)
+# [194. 转置文件](https://leetcode.cn/problems/transpose-file)
 
 [English Version](/solution/0100-0199/0194.Transpose%20File/README_EN.md)
 
@@ -29,32 +29,17 @@ name alice ryan
 age 21 30
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
 <!-- tabs:start -->
 
-### **Python3**
+### **Bash**
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-```python
-
-```
-
-### **Java**
-
-<!-- 这里可写当前语言的特殊实现逻辑 -->
-
-```java
-
-```
-
-### **...**
-
-```
+```sh
 
 ```
 

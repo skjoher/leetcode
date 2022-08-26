@@ -1,4 +1,4 @@
-# [面试题 16.17. 连续数列](https://leetcode-cn.com/problems/contiguous-sequence-lcci)
+# [面试题 16.17. 连续数列](https://leetcode.cn/problems/contiguous-sequence-lcci)
 
 [English Version](/lcci/16.17.Contiguous%20Sequence/README_EN.md)
 
@@ -32,6 +32,7 @@
 
 ```python
 
+
 ```
 
 ### **Java**
@@ -39,6 +40,7 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+
 
 ```
 
@@ -49,7 +51,7 @@
  * @param {number[]} nums
  * @return {number}
  */
- var maxSubArray = function(nums) {
+var maxSubArray = function (nums) {
     let dp = [-Infinity];
     for (let i = 0; i < nums.length; i++) {
         let cur = nums[i];
@@ -62,6 +64,7 @@
 ### **...**
 
 ```
+
 
 ```
 

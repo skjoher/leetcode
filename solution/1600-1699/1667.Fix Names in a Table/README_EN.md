@@ -23,11 +23,13 @@ This table contains the ID and the name of the user. The name consists of only l
 
 <p>Return the result table ordered by <code>user_id</code>.</p>
 
-<p>The query result format is in the following example:</p>
+<p>The query result format is in the following example.</p>
 
 <p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
 
 <pre>
+<strong>Input:</strong> 
 Users table:
 +---------+-------+
 | user_id | name  |
@@ -35,8 +37,7 @@ Users table:
 | 1       | aLice |
 | 2       | bOB   |
 +---------+-------+
-
-Result table:
+<strong>Output:</strong> 
 +---------+-------+
 | user_id | name  |
 +---------+-------+
@@ -45,15 +46,37 @@ Result table:
 +---------+-------+
 </pre>
 
-
 ## Solutions
 
 <!-- tabs:start -->
 
 ### **SQL**
 
-```sql
+MySQL
 
+```sql
+SELECT
+    user_id,
+    CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTRING(name, 2))) AS name
+FROM
+    users
+ORDER BY
+    user_id;
+```
+
+SQL Server
+
+```sql
+SELECT
+    user_id,
+    CONCAT(
+        UPPER(LEFT(name, 1)),
+        LOWER(SUBSTRING(name, 2, DATALENGTH(name)))
+    ) AS name
+FROM
+    users
+ORDER BY
+    user_id;
 ```
 
 <!-- tabs:end -->

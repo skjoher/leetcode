@@ -1,4 +1,4 @@
-# [656. 金币路径](https://leetcode-cn.com/problems/coin-path)
+# [656. 金币路径](https://leetcode.cn/problems/coin-path)
 
 [English Version](/solution/0600-0699/0656.Coin%20Path/README_EN.md)
 
@@ -42,7 +42,6 @@
 </ol>
 
 <p>&nbsp;</p>
-
 
 ## 解法
 

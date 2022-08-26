@@ -4,9 +4,9 @@
 
 ## Description
 
-<p>Given an array <code>arr</code>&nbsp;of positive integers&nbsp;sorted in a <strong>strictly increasing order</strong>, and an integer <code><font face="monospace">k</font></code>.</p>
+<p>Given an array <code>arr</code> of positive integers sorted in a <strong>strictly increasing order</strong>, and an integer <code>k</code>.</p>
 
-<p><em>Find the </em><font face="monospace"><code>k<sup>th</sup></code></font><em>&nbsp;positive integer that is missing from this array.</em></p>
+<p>Return <em>the</em> <code>k<sup>th</sup></code> <em><strong>positive</strong> integer that is <strong>missing</strong> from this array.</em></p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -35,21 +35,94 @@
 	<li><code>arr[i] &lt; arr[j]</code> for <code>1 &lt;= i &lt; j &lt;= arr.length</code></li>
 </ul>
 
+<p>&nbsp;</p>
+<p><strong>Follow up:</strong></p>
+
+<p>Could you solve this problem in less than O(n) complexity?</p>
 
 ## Solutions
+
+Binary search.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
-
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        if arr[0] > k:
+            return k
+        left, right = 0, len(arr)
+        while left < right:
+            mid = (left + right) >> 1
+            if arr[mid] - mid - 1 >= k:
+                right = mid
+            else:
+                left = mid + 1
+        return arr[left - 1] + k - (arr[left - 1] - (left - 1) - 1)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        if (arr[0] > k) {
+            return k;
+        }
+        int left = 0, right = arr.length;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            if (arr[mid] - mid - 1 >= k) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return arr[left - 1] + k - (arr[left - 1] - (left - 1) - 1);
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        if (arr[0] > k) return k;
+        int left = 0, right = arr.size();
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            if (arr[mid] - mid - 1 >= k)
+                right = mid;
+            else
+                left = mid + 1;
+        }
+        return arr[left - 1] + k - (arr[left - 1] - (left - 1) - 1);
+    }
+};
+```
+
+### **Go**
+
+```go
+func findKthPositive(arr []int, k int) int {
+	if arr[0] > k {
+		return k
+	}
+	left, right := 0, len(arr)
+	for left < right {
+		mid := (left + right) >> 1
+		if arr[mid]-mid-1 >= k {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+	return arr[left-1] + k - (arr[left-1] - (left - 1) - 1)
+}
 ```
 
 ### **...**

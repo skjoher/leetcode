@@ -32,10 +32,9 @@ increasing.
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>0 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
-
 
 ## Solutions
 
@@ -46,9 +45,21 @@ increasing.
 ```python
 class Solution:
     def findLengthOfLCIS(self, nums: List[int]) -> int:
+        res, n = 1, len(nums)
+        i = 0
+        while i < n:
+            j = i + 1
+            while j < n and nums[j] > nums[j - 1]:
+                j += 1
+            res = max(res, j - i)
+            i = j
+        return res
+```
+
+```python
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
         n = len(nums)
-        if n < 2:
-            return n
         res = f = 1
         for i in range(1, n):
             f = 1 + (f if nums[i - 1] < nums[i] else 0)
@@ -61,15 +72,87 @@ class Solution:
 ```java
 class Solution {
     public int findLengthOfLCIS(int[] nums) {
-        int n;
-        if ((n = nums.length) < 2) return n;
-        int res = 1, f = 1;
-        for (int i = 1; i < n; ++i) {
+        int res = 1;
+        for (int i = 1, f = 1; i < nums.length; ++i) {
             f = 1 + (nums[i - 1] < nums[i] ? f : 0);
             res = Math.max(res, f);
         }
         return res;
     }
+}
+```
+
+```java
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        int res = 1;
+        for (int i = 0, n = nums.length; i < n;) {
+            int j = i + 1;
+            while (j < n && nums[j] > nums[j - 1]) {
+                ++j;
+            }
+            res = Math.max(res, j - i);
+            i = j;
+        }
+        return res;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int findLengthOfLCIS(vector<int>& nums) {
+        int res = 1;
+        for (int i = 1, f = 1; i < nums.size(); ++i) {
+            f = 1 + (nums[i - 1] < nums[i] ? f : 0);
+            res = max(res, f);
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func findLengthOfLCIS(nums []int) int {
+	res, f := 1, 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i-1] < nums[i] {
+			f += 1
+			res = max(res, f)
+		} else {
+			f = 1
+		}
+	}
+	return res
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+### **TypeScript**
+
+```ts
+function findLengthOfLCIS(nums: number[]): number {
+    const n = nums.length;
+    let res = 1;
+    let i = 0;
+    for (let j = 1; j < n; j++) {
+        if (nums[j - 1] >= nums[j]) {
+            res = Math.max(res, j - i);
+            i = j;
+        }
+    }
+    return Math.max(res, n - i);
 }
 ```
 

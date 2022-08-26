@@ -29,7 +29,6 @@
 	<li><code>s</code> consists of only lowercase English letters.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -37,13 +36,29 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def removeVowels(self, s: str) -> str:
+        res = []
+        for c in s:
+            if c not in {'a', 'e', 'i', 'o', 'u'}:
+                res.append(c)
+        return ''.join(res)
 ```
 
 ### **Java**
 
 ```java
-
+class Solution {
+    public String removeVowels(String s) {
+        StringBuilder res = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')) {
+                res.append(c);
+            }
+        }
+        return res.toString();
+    }
+}
 ```
 
 ### **...**

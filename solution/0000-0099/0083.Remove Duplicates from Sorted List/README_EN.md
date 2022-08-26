@@ -8,14 +8,14 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0083.Remove%20Duplicates%20from%20Sorted%20List/images/list1.jpg" style="width: 302px; height: 242px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0083.Remove%20Duplicates%20from%20Sorted%20List/images/list1.jpg" style="width: 302px; height: 242px;" />
 <pre>
 <strong>Input:</strong> head = [1,1,2]
 <strong>Output:</strong> [1,2]
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0083.Remove%20Duplicates%20from%20Sorted%20List/images/list2.jpg" style="width: 542px; height: 222px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0083.Remove%20Duplicates%20from%20Sorted%20List/images/list2.jpg" style="width: 542px; height: 222px;" />
 <pre>
 <strong>Input:</strong> head = [1,1,2,3,3]
 <strong>Output:</strong> [1,2,3]
@@ -30,7 +30,6 @@
 	<li>The list is guaranteed to be <strong>sorted</strong> in ascending order.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -44,7 +43,7 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def deleteDuplicates(self, head: ListNode) -> ListNode:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         cur = head
         while cur and cur.next:
             if cur.val == cur.next.val:
@@ -52,6 +51,25 @@ class Solution:
             else:
                 cur = cur.next
         return head
+```
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(1000)
+        cur = dummy
+        while head:
+            if head.val != cur.val:
+                cur.next = head
+                cur = cur.next
+            head = head.next
+        cur.next = None
+        return dummy.next
 ```
 
 ### **Java**

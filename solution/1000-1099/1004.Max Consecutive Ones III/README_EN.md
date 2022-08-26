@@ -33,7 +33,6 @@ Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 	<li><code>0 &lt;= k &lt;= nums.length</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -41,13 +40,133 @@ Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 ### **Python3**
 
 ```python
-
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        l = r = -1
+        while r < len(nums) - 1:
+            r += 1
+            if nums[r] == 0:
+                k -= 1
+            if k < 0:
+                l += 1
+                if nums[l] == 0:
+                    k += 1
+        return r - l
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int l = 0, r = 0;
+        while (r < nums.length) {
+            if (nums[r++] == 0) {
+                --k;
+            }
+            if (k < 0 && nums[l++] == 0) {
+                ++k;
+            }
+        }
+        return r - l;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int l = 0, r = 0;
+        while (r < nums.size()) {
+            if (nums[r++] == 0) --k;
+            if (k < 0 && nums[l++] == 0) ++k;
+        }
+        return r - l;
+    }
+};
+```
+
+### **Go**
+
+```go
+func longestOnes(nums []int, k int) int {
+	l, r := -1, -1
+	for r < len(nums)-1 {
+		r++
+		if nums[r] == 0 {
+			k--
+		}
+		if k < 0 {
+			l++
+			if nums[l] == 0 {
+				k++
+			}
+		}
+	}
+	return r - l
+}
+```
+
+### **TypeScript**
+
+```ts
+function longestOnes(nums: number[], k: number): number {
+    const n = nums.length;
+    let l = 0;
+    for (const num of nums) {
+        if (num === 0) {
+            k--;
+        }
+        if (k < 0 && nums[l++] === 0) {
+            k++;
+        }
+    }
+    return n - l;
+}
+```
+
+```ts
+function longestOnes(nums: number[], k: number): number {
+    const n = nums.length;
+    let l = 0;
+    let res = k;
+    const count = [0, 0];
+    for (let r = 0; r < n; r++) {
+        count[nums[r]]++;
+        res = Math.max(res, r - l);
+        while (count[0] > k) {
+            count[nums[l]]--;
+            l++;
+        }
+    }
+    return Math.max(res, n - l);
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn longest_ones(nums: Vec<i32>, mut k: i32) -> i32 {
+        let n = nums.len();
+        let mut l = 0;
+        for num in nums.iter() {
+            if num == &0 {
+                k -= 1;
+            }
+            if k < 0 {
+                if nums[l] == 0 {
+                    k += 1;
+                }
+                l += 1;
+            }
+        }
+        (n - l) as i32
+    }
+}
 ```
 
 ### **...**
@@ -56,5 +175,4 @@ Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 
 ```
 
-<!-- tabs:end -->
 <!-- tabs:end -->

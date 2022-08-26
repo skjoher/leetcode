@@ -1,4 +1,4 @@
-# [1814. 统计一个数组中好对子的数目](https://leetcode-cn.com/problems/count-nice-pairs-in-an-array)
+# [1814. 统计一个数组中好对子的数目](https://leetcode.cn/problems/count-nice-pairs-in-an-array)
 
 [English Version](/solution/1800-1899/1814.Count%20Nice%20Pairs%20in%20an%20Array/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>0 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
-
 
 ## 解法
 

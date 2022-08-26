@@ -1,4 +1,4 @@
-# [1045. 买下所有产品的客户](https://leetcode-cn.com/problems/customers-who-bought-all-products)
+# [1045. 买下所有产品的客户](https://leetcode.cn/problems/customers-who-bought-all-products)
 
 [English Version](/solution/1000-1099/1045.Customers%20Who%20Bought%20All%20Products/README_EN.md)
 
@@ -61,7 +61,6 @@ Result 表：
 +-------------+
 购买了所有产品（5 和 6）的客户的 id 是 1 和 3 。
 </pre>
-
 
 ## 解法
 

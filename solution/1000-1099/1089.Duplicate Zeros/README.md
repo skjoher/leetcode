@@ -1,4 +1,4 @@
-# [1089. 复写零](https://leetcode-cn.com/problems/duplicate-zeros)
+# [1089. 复写零](https://leetcode.cn/problems/duplicate-zeros)
 
 [English Version](/solution/1000-1099/1089.Duplicate%20Zeros/README_EN.md)
 
@@ -37,10 +37,25 @@
 	<li><code>0 &lt;= arr[i] &lt;= 9</code></li>
 </ol>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+由于是原地修改，所以不能直接将 0 的后一位直接修改为 0，这会丢失元素数据。
+
+若选择插入，则会导致元素位置调整，时间复杂度偏高。
+
+**方法一：模拟**
+
+开辟一个等长数组，将 `arr` 复刻一份，再进行简单模拟即可。
+
+-   时间复杂度：$O(n)$。
+-   空间复杂度：$O(n)$。
+
+**方法二：双指针**
+
+-   时间复杂度：$O(n)$。
+-   空间复杂度：$O(1)$。
 
 <!-- tabs:start -->
 
@@ -49,7 +64,27 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        n = len(arr)
+        i, k = -1, 0
+        while k < n:
+            i += 1
+            k += 1 if arr[i] else 2
+        j = n - 1
+        if k == n + 1:
+            arr[j] = 0
+            i, j = i - 1, j - 1
+        while ~j:
+            if arr[i] == 0:
+                arr[j] = arr[j - 1] = arr[i]
+                j -= 1
+            else:
+                arr[j] = arr[i]
+            i, j = i - 1, j - 1
 ```
 
 ### **Java**
@@ -57,7 +92,143 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public void duplicateZeros(int[] arr) {
+        int n = arr.length;
+        int i = -1, k = 0;
+        while (k < n) {
+            ++i;
+            k += arr[i] > 0 ? 1 : 2;
+        }
+        int j = n - 1;
+        if (k == n + 1) {
+            arr[j--] = 0;
+            --i;
+        }
+        while (j >= 0) {
+            arr[j] = arr[i];
+            if (arr[i] == 0) {
+                arr[--j] = arr[i];
+            }
+            --i;
+            --j;
+        }
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    void duplicateZeros(vector<int>& arr) {
+        int n = arr.size();
+        int i = -1, k = 0;
+        while (k < n) {
+            ++i;
+            k += arr[i] ? 1 : 2;
+        }
+        int j = n - 1;
+        if (k == n + 1) {
+            arr[j--] = 0;
+            --i;
+        }
+        while (~j) {
+            arr[j] = arr[i];
+            if (arr[i] == 0) arr[--j] = arr[i];
+            --i;
+            --j;
+        }
+    }
+};
+```
+
+### **Go**
+
+```go
+func duplicateZeros(arr []int) {
+	n := len(arr)
+	i, k := -1, 0
+	for k < n {
+		i, k = i+1, k+1
+		if arr[i] == 0 {
+			k++
+		}
+	}
+	j := n - 1
+	if k == n+1 {
+		arr[j] = 0
+		i, j = i-1, j-1
+	}
+	for j >= 0 {
+		arr[j] = arr[i]
+		if arr[i] == 0 {
+			j--
+			arr[j] = arr[i]
+		}
+		i, j = i-1, j-1
+	}
+}
+```
+
+### **C**
+
+```c
+void duplicateZeros(int* arr, int arrSize){
+    int i = 0;
+    int j = 0;
+    while (j < arrSize) {
+        if (arr[i] == 0) {
+            j++;
+        }
+        i++;
+        j++;
+    }
+    i--;
+    j--;
+    while (i >= 0) {
+        if (arr[i] == 0) {
+            if (j < arrSize) {
+                arr[j] = arr[i];
+            }
+            j--;
+        }
+        arr[j] = arr[i];
+        i--;
+        j--;
+    }
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn duplicate_zeros(arr: &mut Vec<i32>) {
+        let n = arr.len();
+        let mut i = 0;
+        let mut j = 0;
+        while j < n {
+            if arr[i] == 0 {
+                j += 1;
+            }
+            j += 1;
+            i += 1;
+        }
+        while i > 0 {
+            if arr[i - 1] == 0 {
+                if j <= n {
+                    arr[j - 1] = arr[i - 1];
+                }
+                j -= 1;
+            }
+            arr[j - 1] = arr[i - 1];
+            i -= 1;
+            j -= 1;
+        }
+    }
+}
 ```
 
 ### **...**

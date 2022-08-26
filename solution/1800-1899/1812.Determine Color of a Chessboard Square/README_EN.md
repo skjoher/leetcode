@@ -6,7 +6,7 @@
 
 <p>You are given <code>coordinates</code>, a string that represents the coordinates of a square of the chessboard. Below is a chessboard for your reference.</p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1812.Determine%20Color%20of%20a%20Chessboard%20Square/images/screenshot-2021-02-20-at-22159-pm.png" style="width: 400px; height: 396px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1812.Determine%20Color%20of%20a%20Chessboard%20Square/images/screenshot-2021-02-20-at-22159-pm.png" style="width: 400px; height: 396px;" /></p>
 
 <p>Return <code>true</code><em> if the square is white, and </em><code>false</code><em> if the square is black</em>.</p>
 
@@ -45,7 +45,6 @@
 	<li><code>&#39;1&#39; &lt;= coordinates[1] &lt;= &#39;8&#39;</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -79,7 +78,7 @@ class Solution {
  * @param {string} coordinates
  * @return {boolean}
  */
- var squareIsWhite = function(coordinates) {
+var squareIsWhite = function (coordinates) {
     let x = coordinates.charAt(0).charCodeAt() - 'a'.charCodeAt() + 1;
     let y = Number(coordinates.charAt(1));
     return ((x + y) & 1) == 1;

@@ -1,4 +1,4 @@
-# [1470. 重新排列数组](https://leetcode-cn.com/problems/shuffle-the-array)
+# [1470. 重新排列数组](https://leetcode.cn/problems/shuffle-the-array)
 
 [English Version](/solution/1400-1499/1470.Shuffle%20the%20Array/README_EN.md)
 
@@ -41,7 +41,6 @@
 	<li><code>1 &lt;= nums[i] &lt;= 10^3</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -53,7 +52,13 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        ans = []
+        for i in range(n):
+            ans.append(nums[i])
+            ans.append(nums[i + n])
+        return ans
 ```
 
 ### **Java**
@@ -61,7 +66,57 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] shuffle(int[] nums, int n) {
+        int[] ans = new int[n << 1];
+        for (int i = 0, j = 0; i < n; ++i) {
+            ans[j++] = nums[i];
+            ans[j++] = nums[i + n];
+        }
+        return ans;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function shuffle(nums: number[], n: number): number[] {
+    let ans = [];
+    for (let i = 0; i < n; i++) {
+        ans.push(nums[i], nums[n + i]);
+    }
+    return ans;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> shuffle(vector<int>& nums, int n) {
+        vector<int> ans;
+        for (int i = 0; i < n; ++i) {
+            ans.push_back(nums[i]);
+            ans.push_back(nums[i + n]);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func shuffle(nums []int, n int) []int {
+	var ans []int
+	for i := 0; i < n; i++ {
+		ans = append(ans, nums[i])
+		ans = append(ans, nums[i+n])
+	}
+	return ans
+}
 ```
 
 ### **...**

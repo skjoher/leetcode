@@ -1,4 +1,4 @@
-# [1023. 驼峰式匹配](https://leetcode-cn.com/problems/camelcase-matching)
+# [1023. 驼峰式匹配](https://leetcode.cn/problems/camelcase-matching)
 
 [English Version](/solution/1000-1099/1023.Camelcase%20Matching/README_EN.md)
 
@@ -48,7 +48,6 @@
 	<li><code>1 &lt;= pattern.length &lt;= 100</code></li>
 	<li>所有字符串都仅由大写和小写英文字母组成。</li>
 </ol>
-
 
 ## 解法
 

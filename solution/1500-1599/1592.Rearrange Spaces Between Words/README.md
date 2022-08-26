@@ -1,4 +1,4 @@
-# [1592. 重新排列单词间的空格](https://leetcode-cn.com/problems/rearrange-spaces-between-words)
+# [1592. 重新排列单词间的空格](https://leetcode.cn/problems/rearrange-spaces-between-words)
 
 [English Version](/solution/1500-1599/1592.Rearrange%20Spaces%20Between%20Words/README_EN.md)
 
@@ -55,7 +55,6 @@
 	<li><code>text</code> 由小写英文字母和 <code>&#39; &#39;</code> 组成</li>
 	<li><code>text</code> 中至少包含一个单词</li>
 </ul>
-
 
 ## 解法
 

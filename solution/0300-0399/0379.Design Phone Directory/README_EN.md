@@ -45,7 +45,6 @@ phoneDirectory.check(2);   // Number 2 is available again, return true.
 	<li>At most <code>2 * 10<sup>4</sup></code> calls will be made to <code>get</code>, <code>check</code>, and <code>release</code>.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -54,7 +53,6 @@ phoneDirectory.check(2);   // Number 2 is available again, return true.
 
 ```python
 class PhoneDirectory:
-
     def __init__(self, maxNumbers: int):
         """
         Initialize your data structure here

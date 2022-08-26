@@ -1,4 +1,4 @@
-# [17.26. Sparse Similarity](https://leetcode-cn.com/problems/sparse-similarity-lcci)
+# [17.26. Sparse Similarity](https://leetcode.cn/problems/sparse-similarity-lcci)
 
 [中文文档](/lcci/17.26.Sparse%20Similarity/README.md)
 
@@ -12,29 +12,55 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 
+
+
 
 <code>[
 
+
+
 &nbsp; [14, 15, 100, 9, 3],
+
+
 
 &nbsp; [32, 1, 9, 3, 5],
 
+
+
 &nbsp; [15, 29, 2, 6, 8, 7],
+
+
 
 &nbsp; [7, 10]
 
+
+
 ]</code>
+
+
 
 <strong>Output:</strong>
 
+
+
 [
+
+
 
 &nbsp; &quot;0,1: 0.2500&quot;,
 
+
+
 &nbsp; &quot;0,2: 0.1000&quot;,
 
+
+
 &nbsp; &quot;2,3: 0.1429&quot;
+
+
 
 ]</pre>
 
@@ -54,17 +80,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

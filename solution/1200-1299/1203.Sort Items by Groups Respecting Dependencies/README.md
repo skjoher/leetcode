@@ -1,4 +1,4 @@
-# [1203. 项目管理](https://leetcode-cn.com/problems/sort-items-by-groups-respecting-dependencies)
+# [1203. 项目管理](https://leetcode.cn/problems/sort-items-by-groups-respecting-dependencies)
 
 [English Version](/solution/1200-1299/1203.Sort%20Items%20by%20Groups%20Respecting%20Dependencies/README_EN.md)
 
@@ -21,7 +21,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1203.Sort%20Items%20by%20Groups%20Respecting%20Dependencies/images/1359_ex1.png" style="height: 181px; width: 191px;" /></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1203.Sort%20Items%20by%20Groups%20Respecting%20Dependencies/images/1359_ex1.png" style="height: 181px; width: 191px;" /></strong></p>
 
 <pre>
 <strong>输入：</strong>n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]
@@ -49,7 +49,6 @@
 	<li><code>i != beforeItems[i][j]</code></li>
 	<li><code>beforeItems[i]</code> 不含重复元素</li>
 </ul>
-
 
 ## 解法
 

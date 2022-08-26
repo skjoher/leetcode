@@ -1,4 +1,4 @@
-# [17.18. Shortest Supersequence](https://leetcode-cn.com/problems/shortest-supersequence-lcci)
+# [17.18. Shortest Supersequence](https://leetcode.cn/problems/shortest-supersequence-lcci)
 
 [中文文档](/lcci/17.18.Shortest%20Supersequence/README.md)
 
@@ -12,11 +12,19 @@
 
 <pre>
 
+
+
 <strong>Input:</strong>
 
-big = <code>[7,5,9,0,2,1,3,<strong>5,7,9,1</strong>,1,5,8,8,9,7]
 
-small = [1,5,9]</code>
+
+big = [7,5,9,0,2,1,3,<strong>5,7,9,1</strong>,1,5,8,8,9,7]
+
+
+
+small = [1,5,9]
+
+
 
 <strong>Output: </strong>[7,10]</pre>
 
@@ -24,11 +32,19 @@ small = [1,5,9]</code>
 
 <pre>
 
+
+
 <strong>Input:</strong>
 
-big = <code>[1,2,3]
 
-small = [4]</code>
+
+big = [1,2,3]
+
+
+
+small = [4]
+
+
 
 <strong>Output: </strong>[]</pre>
 
@@ -47,17 +63,20 @@ small = [4]</code>
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

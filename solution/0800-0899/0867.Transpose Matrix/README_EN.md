@@ -8,7 +8,7 @@
 
 <p>The <strong>transpose</strong> of a matrix is the matrix flipped over its main diagonal, switching the matrix&#39;s row and column indices.</p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0800-0899/0867.Transpose%20Matrix/images/hint_transpose.png" style="width: 600px; height: 197px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0800-0899/0867.Transpose%20Matrix/images/hint_transpose.png" style="width: 600px; height: 197px;" /></p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -36,7 +36,6 @@
 	<li><code>-10<sup>9</sup> &lt;= matrix[i][j] &lt;= 10<sup>9</sup></code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -46,12 +45,7 @@
 ```python
 class Solution:
     def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
-        m, n = len(matrix), len(matrix[0])
-        res = [[0] * m for _ in range(n)]
-        for i in range(n):
-            for j in range(m):
-                res[i][j] = matrix[j][i]
-        return res
+        return list(zip(*matrix))
 ```
 
 ### **Java**
@@ -60,14 +54,46 @@ class Solution:
 class Solution {
     public int[][] transpose(int[][] matrix) {
         int m = matrix.length, n = matrix[0].length;
-        int[][] res = new int[n][m];
+        int[][] ans = new int[n][m];
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
-                res[i][j] = matrix[j][i];
+                ans[i][j] = matrix[j][i];
             }
         }
-        return res;
+        return ans;
     }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+        int m = matrix.size(), n = matrix[0].size();
+        vector<vector<int>> ans(n, vector<int>(m));
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < m; ++j)
+                ans[i][j] = matrix[j][i];
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func transpose(matrix [][]int) [][]int {
+	m, n := len(matrix), len(matrix[0])
+	ans := make([][]int, n)
+	for i := range ans {
+		ans[i] = make([]int, m)
+		for j := range ans[i] {
+			ans[i][j] = matrix[j][i]
+		}
+	}
+	return ans
 }
 ```
 
@@ -79,16 +105,15 @@ class Solution {
  * @return {number[][]}
  */
 var transpose = function (matrix) {
-  const m = matrix.length,
-    n = matrix[0].length;
-  let res = [];
-  for (let i = 0; i < n; ++i) {
-    res[i] = [];
-    for (let j = 0; j < m; ++j) {
-      res[i][j] = matrix[j][i];
+    const m = matrix.length;
+    const n = matrix[0].length;
+    const ans = new Array(n).fill(0).map(() => new Array(m).fill(0));
+    for (let i = 0; i < n; ++i) {
+        for (let j = 0; j < m; ++j) {
+            ans[i][j] = matrix[j][i];
+        }
     }
-  }
-  return res;
+    return ans;
 };
 ```
 

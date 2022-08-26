@@ -1,4 +1,4 @@
-# [620. 有趣的电影](https://leetcode-cn.com/problems/not-boring-movies)
+# [620. 有趣的电影](https://leetcode.cn/problems/not-boring-movies)
 
 [English Version](/solution/0600-0699/0620.Not%20Boring%20Movies/README_EN.md)
 
@@ -39,7 +39,6 @@
 
 <p>&nbsp;</p>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -48,12 +47,12 @@
 
 ### **SQL**
 
-```
+```sql
 SELECT *
 FROM cinema
 WHERE description NOT LIKE '%boring%'
-        AND mod(id,2)=1
-ORDER BY  rating desc;
+        AND mod(id, 2) = 1
+ORDER BY rating desc;
 ```
 
 <!-- tabs:end -->

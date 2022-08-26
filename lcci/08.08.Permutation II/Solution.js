@@ -2,7 +2,7 @@
  * @param {string} S
  * @return {string[]}
  */
- var permutation = function(S) {
+var permutation = function (S) {
     let res = [];
     let arr = [...S];
     arr.sort();

@@ -1,4 +1,4 @@
-# [193. 有效电话号码](https://leetcode-cn.com/problems/valid-phone-numbers)
+# [193. 有效电话号码](https://leetcode.cn/problems/valid-phone-numbers)
 
 [English Version](/solution/0100-0199/0193.Valid%20Phone%20Numbers/README_EN.md)
 
@@ -31,32 +31,17 @@
 (123) 456-7890
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
 <!-- tabs:start -->
 
-### **Python3**
+### **Bash**
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-```python
-
-```
-
-### **Java**
-
-<!-- 这里可写当前语言的特殊实现逻辑 -->
-
-```java
-
-```
-
-### **...**
-
-```
+```sh
 
 ```
 

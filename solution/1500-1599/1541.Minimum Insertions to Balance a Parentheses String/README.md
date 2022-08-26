@@ -1,4 +1,4 @@
-# [1541. 平衡括号字符串的最少插入次数](https://leetcode-cn.com/problems/minimum-insertions-to-balance-a-parentheses-string)
+# [1541. 平衡括号字符串的最少插入次数](https://leetcode.cn/problems/minimum-insertions-to-balance-a-parentheses-string)
 
 [English Version](/solution/1500-1599/1541.Minimum%20Insertions%20to%20Balance%20a%20Parentheses%20String/README_EN.md)
 
@@ -64,7 +64,6 @@
 	<li><code>1 &lt;= s.length &lt;= 10^5</code></li>
 	<li><code>s</code>&nbsp;只包含&nbsp;<code>&#39;(&#39;</code> 和&nbsp;<code>&#39;)&#39;</code>&nbsp;。</li>
 </ul>
-
 
 ## 解法
 

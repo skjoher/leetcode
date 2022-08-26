@@ -14,7 +14,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0600-0699/0671.Second%20Minimum%20Node%20In%20a%20Binary%20Tree/images/smbt1.jpg" style="width: 431px; height: 302px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0600-0699/0671.Second%20Minimum%20Node%20In%20a%20Binary%20Tree/images/smbt1.jpg" style="width: 431px; height: 302px;" />
 <pre>
 <strong>Input:</strong> root = [2,2,5,null,null,5,7]
 <strong>Output:</strong> 5
@@ -22,7 +22,7 @@
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0600-0699/0671.Second%20Minimum%20Node%20In%20a%20Binary%20Tree/images/smbt2.jpg" style="width: 321px; height: 182px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0600-0699/0671.Second%20Minimum%20Node%20In%20a%20Binary%20Tree/images/smbt2.jpg" style="width: 321px; height: 182px;" />
 <pre>
 <strong>Input:</strong> root = [2,2,2]
 <strong>Output:</strong> -1
@@ -38,7 +38,6 @@
 	<li><code>root.val == min(root.left.val, root.right.val)</code>&nbsp;for each internal node of the tree.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -46,13 +45,139 @@
 ### **Python3**
 
 ```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findSecondMinimumValue(self, root: TreeNode) -> int:
+        def dfs(root, val):
+            if root:
+                dfs(root.left, val)
+                dfs(root.right, val)
+                nonlocal ans
+                if root.val > val:
+                    ans = root.val if ans == -1 else min(ans, root.val)
 
+        ans = -1
+        dfs(root, root.val)
+        return ans
 ```
 
 ### **Java**
 
 ```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int ans;
 
+    public int findSecondMinimumValue(TreeNode root) {
+        ans = -1;
+        dfs(root, root.val);
+        return ans;
+    }
+
+    private void dfs(TreeNode root, int val) {
+        if (root != null) {
+            dfs(root.left, val);
+            dfs(root.right, val);
+            if (root.val > val) {
+                ans = ans == -1 ? root.val : Math.min(ans, root.val);
+            }
+        }
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int ans;
+
+    int findSecondMinimumValue(TreeNode* root) {
+        ans = -1;
+        dfs(root, root->val);
+        return ans;
+    }
+
+    void dfs(TreeNode* root, int val) {
+        if (!root) return;
+        dfs(root->left, val);
+        dfs(root->right, val);
+        if (root->val > val) ans = ans == -1 ? root->val : min(ans, root->val);
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func findSecondMinimumValue(root *TreeNode) int {
+	ans := -1
+
+	var dfs func(root *TreeNode, val int)
+	dfs = func(root *TreeNode, val int) {
+		if root == nil {
+			return
+		}
+		dfs(root.Left, val)
+		dfs(root.Right, val)
+		if root.Val > val {
+			if ans == -1 {
+				ans = root.Val
+			} else {
+				ans = min(ans, root.Val)
+			}
+		}
+	}
+
+	dfs(root, root.Val)
+	return ans
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

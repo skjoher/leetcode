@@ -47,7 +47,6 @@ seatManager.unreserve(5); // Unreserve seat 5, so now the available seats are [5
 	<li>At most <code>10<sup>5</sup></code> calls <strong>in total</strong> will be made to <code>reserve</code> and <code>unreserve</code>.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -56,15 +55,14 @@ seatManager.unreserve(5); // Unreserve seat 5, so now the available seats are [5
 
 ```python
 class SeatManager:
-
     def __init__(self, n: int):
         self.q = [i for i in range(1, n + 1)]
 
     def reserve(self) -> int:
-        return heapq.heappop(self.q)
+        return heappop(self.q)
 
     def unreserve(self, seatNumber: int) -> None:
-        heapq.heappush(self.q, seatNumber)
+        heappush(self.q, seatNumber)
 
 
 # Your SeatManager object will be instantiated and called as such:
@@ -85,11 +83,11 @@ class SeatManager {
             q.offer(i);
         }
     }
-    
+
     public int reserve() {
         return q.poll();
     }
-    
+
     public void unreserve(int seatNumber) {
         q.offer(seatNumber);
     }

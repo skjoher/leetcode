@@ -1,10 +1,9 @@
 class TimeMap:
-
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.ktv = collections.defaultdict(list)
+        self.ktv = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
         self.ktv[key].append((timestamp, value))
@@ -13,9 +12,8 @@ class TimeMap:
         if key not in self.ktv:
             return ''
         tv = self.ktv[key]
-        i = bisect.bisect_right(tv, (timestamp, chr(127)))
+        i = bisect_right(tv, (timestamp, chr(127)))
         return tv[i - 1][1] if i else ''
-        
 
 
 # Your TimeMap object will be instantiated and called as such:

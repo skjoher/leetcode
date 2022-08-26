@@ -1,4 +1,4 @@
-# [1092. 最短公共超序列](https://leetcode-cn.com/problems/shortest-common-supersequence)
+# [1092. 最短公共超序列](https://leetcode.cn/problems/shortest-common-supersequence)
 
 [English Version](/solution/1000-1099/1092.Shortest%20Common%20Supersequence/README_EN.md)
 
@@ -30,7 +30,6 @@ str2 = &quot;cab&quot; 是 &quot;cabac&quot; 的一个子串，因为我们可�
 	<li><code>1 &lt;= str1.length, str2.length &lt;= 1000</code></li>
 	<li><code>str1</code> 和&nbsp;<code>str2</code>&nbsp;都由小写英文字母组成。</li>
 </ol>
-
 
 ## 解法
 

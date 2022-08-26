@@ -1,4 +1,4 @@
-# [1454. 活跃用户](https://leetcode-cn.com/problems/active-users)
+# [1454. 活跃用户](https://leetcode.cn/problems/active-users)
 
 [English Version](/solution/1400-1499/1454.Active%20Users/README_EN.md)
 
@@ -82,7 +82,6 @@ id = 7 的用户 Jonathon 在不同的 6 天内登录了 7 次, , 6 天中有 5 
 
 <p><strong>进阶问题:</strong><br />
 如果活跃用户是那些至少连续 <code>n</code> 天登录账户的用户, 你能否写出通用的解决方案?</p>
-
 
 ## 解法
 

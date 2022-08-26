@@ -15,7 +15,7 @@
 	<li>Repeat the process until you form the string <code>target</code>.</li>
 </ul>
 
-<p><strong>Notice</strong>&nbsp;that you can use <strong>multiple characters</strong> from the <strong>same string</strong> in <code>words</code> provided the conditions above are met.</p>
+<p><strong>Notice</strong> that you can use <strong>multiple characters</strong> from the <strong>same string</strong> in <code>words</code> provided the conditions above are met.</p>
 
 <p>Return <em>the number of ways to form <code>target</code> from <code>words</code></em>. Since the answer may be too large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>
 
@@ -46,20 +46,6 @@
 &quot;bab&quot; -&gt; index 1 (&quot;a<u>b</u>ba&quot;), index 2 (&quot;ba<u>a</u>b&quot;), index 3 (&quot;baa<u>b</u>&quot;)
 </pre>
 
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> words = [&quot;abcd&quot;], target = &quot;abcd&quot;
-<strong>Output:</strong> 1
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> words = [&quot;abab&quot;,&quot;baba&quot;,&quot;abba&quot;,&quot;baab&quot;], target = &quot;abba&quot;
-<strong>Output:</strong> 16
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -70,7 +56,6 @@
 	<li><code>1 &lt;= target.length &lt;= 1000</code></li>
 	<li><code>words[i]</code> and <code>target</code> contain only lowercase English letters.</li>
 </ul>
-
 
 ## Solutions
 

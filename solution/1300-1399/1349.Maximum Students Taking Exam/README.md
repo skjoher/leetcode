@@ -1,4 +1,4 @@
-# [1349. 参加考试的最大学生数](https://leetcode-cn.com/problems/maximum-students-taking-exam)
+# [1349. 参加考试的最大学生数](https://leetcode.cn/problems/maximum-students-taking-exam)
 
 [English Version](/solution/1300-1399/1349.Maximum%20Students%20Taking%20Exam/README_EN.md)
 
@@ -16,7 +16,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1349.Maximum%20Students%20Taking%20Exam/images/image.png" style="height: 197px; width: 339px;"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1349.Maximum%20Students%20Taking%20Exam/images/image.png" style="height: 197px; width: 339px;"></p>
 
 <pre><strong>输入：</strong>seats = [[&quot;#&quot;,&quot;.&quot;,&quot;#&quot;,&quot;#&quot;,&quot;.&quot;,&quot;#&quot;],
 &nbsp;             [&quot;.&quot;,&quot;#&quot;,&quot;#&quot;,&quot;#&quot;,&quot;#&quot;,&quot;.&quot;],
@@ -58,7 +58,6 @@
 	<li><code>1 &lt;= m &lt;= 8</code></li>
 	<li><code>1 &lt;= n &lt;= 8</code></li>
 </ul>
-
 
 ## 解法
 

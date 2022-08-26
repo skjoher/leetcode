@@ -10,18 +10,26 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<pre><strong>Input:</strong> num = "69"
-<strong>Output:</strong> true
-</pre><p><strong>Example 2:</strong></p>
-<pre><strong>Input:</strong> num = "88"
-<strong>Output:</strong> true
-</pre><p><strong>Example 3:</strong></p>
-<pre><strong>Input:</strong> num = "962"
-<strong>Output:</strong> false
-</pre><p><strong>Example 4:</strong></p>
-<pre><strong>Input:</strong> num = "1"
+
+<pre>
+<strong>Input:</strong> num = &quot;69&quot;
 <strong>Output:</strong> true
 </pre>
+
+<p><strong>Example 2:</strong></p>
+
+<pre>
+<strong>Input:</strong> num = &quot;88&quot;
+<strong>Output:</strong> true
+</pre>
+
+<p><strong>Example 3:</strong></p>
+
+<pre>
+<strong>Input:</strong> num = &quot;962&quot;
+<strong>Output:</strong> false
+</pre>
+
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -30,7 +38,6 @@
 	<li><code>num</code> consists of only digits.</li>
 	<li><code>num</code> does not contain any leading zeros except for zero itself.</li>
 </ul>
-
 
 ## Solutions
 
@@ -49,6 +56,7 @@ class Solution:
             if a == '9':
                 return b == '6'
             return False
+
         n = len(num)
         i, j = 0, n - 1
         while i <= j:

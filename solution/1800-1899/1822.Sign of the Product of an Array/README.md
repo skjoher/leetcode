@@ -1,4 +1,4 @@
-# [1822. 数组元素积的符号](https://leetcode-cn.com/problems/sign-of-the-product-of-an-array)
+# [1822. 数组元素积的符号](https://leetcode.cn/problems/sign-of-the-product-of-an-array)
 
 [English Version](/solution/1800-1899/1822.Sign%20of%20the%20Product%20of%20an%20Array/README_EN.md)
 
@@ -57,6 +57,8 @@
 
 <!-- 这里可写通用的实现逻辑 -->
 
+不可模拟乘积过程，给定的范围有可能导致数值溢出，只关注数值的符号变化即可。
+
 <!-- tabs:start -->
 
 ### **Python3**
@@ -100,13 +102,69 @@ class Solution {
  * @return {number}
  */
 var arraySign = function (nums) {
-  let res = 1;
-  for (let num of nums) {
-    if (num == 0) return 0;
-    if (num < 0) res *= -1;
-  }
-  return res;
+    let res = 1;
+    for (let num of nums) {
+        if (num == 0) return 0;
+        if (num < 0) res *= -1;
+    }
+    return res;
 };
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int arraySign(vector<int>& nums) {
+        int res = 1;
+        for (auto& num : nums) {
+            if (num == 0) {
+                return 0;
+            }
+            if (num < 0) {
+                res *= -1;
+            }
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func arraySign(nums []int) int {
+	res := 1
+	for _, num := range nums {
+		if num == 0 {
+			return 0
+		}
+		if num < 0 {
+			res *= -1
+		}
+	}
+	return res
+}
+```
+
+### **Rust**
+
+```rust
+use std::cmp::Ordering;
+impl Solution {
+    pub fn array_sign(nums: Vec<i32>) -> i32 {
+        let mut res = 1;
+        for num in nums.iter() {
+            match num.cmp(&0) {
+                Ordering::Equal => return 0,
+                Ordering::Less => res *= -1,
+                Ordering::Greater => {}
+            }
+        }
+        res
+    }
+}
 ```
 
 ### **...**

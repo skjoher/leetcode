@@ -36,7 +36,6 @@
 	<li><code>s</code> consists of only lowercase English letters.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -46,14 +45,7 @@
 ```python
 class Solution:
     def canPermutePalindrome(self, s: str) -> bool:
-        mapper = {}
-        for ch in s:
-            mapper[ch] = mapper.get(ch, 0) + 1
-        cnt = 0
-        for _, v in mapper.items():
-            if v % 2 != 0:
-                cnt += 1
-        return cnt <= 1
+        return sum(v % 2 for v in Counter(s).values()) <= 1
 ```
 
 ### **Java**
@@ -61,20 +53,68 @@ class Solution:
 ```java
 class Solution {
     public boolean canPermutePalindrome(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0, n = s.length(); i < n; ++i) {
-            char ch = s.charAt(i);
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        int[] cnt = new int[26];
+        for (char c : s.toCharArray()) {
+            ++cnt[c - 'a'];
         }
-        int cnt = 0;
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if (entry.getValue() % 2 != 0) {
-                ++cnt;
-            }
+        int n = 0;
+        for (int v : cnt) {
+            n += v % 2;
         }
-        return cnt <= 1;
+        return n < 2;
     }
 }
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool canPermutePalindrome(string s) {
+        vector<int> cnt(26);
+        for (char& c : s) ++cnt[c - 'a'];
+        int n = 0;
+        for (int& v : cnt) n += v & 1;
+        return n < 2;
+    }
+};
+```
+
+### **Go**
+
+```go
+func canPermutePalindrome(s string) bool {
+	cnt := make([]int, 26)
+	for _, c := range s {
+		cnt[c-'a']++
+	}
+	n := 0
+	for _, v := range cnt {
+		n += v & 1
+	}
+	return n < 2
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var canPermutePalindrome = function (s) {
+    let ss = new Set();
+    for (let c of s) {
+        if (ss.has(c)) {
+            ss.delete(c);
+        } else {
+            ss.add(c);
+        }
+    }
+    return ss.size < 2;
+};
 ```
 
 ### **...**

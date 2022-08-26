@@ -1,4 +1,4 @@
-# [1666. 改变二叉树的根节点](https://leetcode-cn.com/problems/change-the-root-of-a-binary-tree)
+# [1666. 改变二叉树的根节点](https://leetcode.cn/problems/change-the-root-of-a-binary-tree)
 
 [English Version](/solution/1600-1699/1666.Change%20the%20Root%20of%20a%20Binary%20Tree/README_EN.md)
 
@@ -22,7 +22,7 @@
 <p> </p>
 
 <p><strong>示例 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1666.Change%20the%20Root%20of%20a%20Binary%20Tree/images/fliptree.png" style="width: 400px; height: 298px;">
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1666.Change%20the%20Root%20of%20a%20Binary%20Tree/images/fliptree.png" style="width: 400px; height: 298px;">
 <pre><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 7
 <strong>输出:</strong> [7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]
 </pre>
@@ -43,7 +43,6 @@
 	<li>所有的 <code>Node.val</code> 都是<strong>唯一</strong>的。</li>
 	<li><code>leaf</code> 存在于树中。</li>
 </ul>
-
 
 ## 解法
 

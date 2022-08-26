@@ -11,7 +11,7 @@
 <ol>
 	<li>Read in and ignore any leading whitespace.</li>
 	<li>Check if the next character (if not already at the end of the string) is <code>&#39;-&#39;</code> or <code>&#39;+&#39;</code>. Read this character in if it is either. This determines if the final result is negative or positive respectively. Assume the result is positive if neither is present.</li>
-	<li>Read in next the characters until the next non-digit charcter or the end of the input is reached. The rest of the string is ignored.</li>
+	<li>Read in next the characters until the next non-digit character or the end of the input is reached. The rest of the string is ignored.</li>
 	<li>Convert these digits into an integer (i.e. <code>&quot;123&quot; -&gt; 123</code>, <code>&quot;0032&quot; -&gt; 32</code>). If no digits were read, then the integer is <code>0</code>. Change the sign as necessary (from step 2).</li>
 	<li>If the integer is out of the 32-bit signed integer range <code>[-2<sup>31</sup>, 2<sup>31</sup> - 1]</code>, then clamp the integer so that it remains in the range. Specifically, integers less than <code>-2<sup>31</sup></code> should be clamped to <code>-2<sup>31</sup></code>, and integers greater than <code>2<sup>31</sup> - 1</code> should be clamped to <code>2<sup>31</sup> - 1</code>.</li>
 	<li>Return the integer as the final result.</li>
@@ -73,38 +73,6 @@ The parsed integer is 4193.
 Since 4193 is in the range [-2<sup>31</sup>, 2<sup>31</sup> - 1], the final result is 4193.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;words and 987&quot;
-<strong>Output:</strong> 0
-<strong>Explanation:
-</strong>Step 1: &quot;words and 987&quot; (no characters read because there is no leading whitespace)
-         ^
-Step 2: &quot;words and 987&quot; (no characters read because there is neither a &#39;-&#39; nor &#39;+&#39;)
-         ^
-Step 3: &quot;words and 987&quot; (reading stops immediately because there is a non-digit &#39;w&#39;)
-         ^
-The parsed integer is 0 because no digits were read.
-Since 0 is in the range [-2<sup>31</sup>, 2<sup>31</sup> - 1], the final result is 0.
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;-91283472332&quot;
-<strong>Output:</strong> -2147483648
-<strong>Explanation:
-</strong>Step 1: &quot;-91283472332&quot; (no characters read because there is no leading whitespace)
-         ^
-Step 2: &quot;<u>-</u>91283472332&quot; (&#39;-&#39; is read, so the result should be negative)
-          ^
-Step 3: &quot;-<u>91283472332</u>&quot; (&quot;91283472332&quot; is read in)
-                     ^
-The parsed integer is -91283472332.
-Since -91283472332 is less than the lower bound of the range [-2<sup>31</sup>, 2<sup>31</sup> - 1], the final result is clamped to -2<sup>31</sup> = -2147483648.<strong><span style="display: none;"> </span></strong>
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -112,7 +80,6 @@ Since -91283472332 is less than the lower bound of the range [-2<sup>31</sup>, 2
 	<li><code>0 &lt;= s.length &lt;= 200</code></li>
 	<li><code>s</code> consists of English letters (lower-case and upper-case), digits (<code>0-9</code>), <code>&#39; &#39;</code>, <code>&#39;+&#39;</code>, <code>&#39;-&#39;</code>, and <code>&#39;.&#39;</code>.</li>
 </ul>
-
 
 ## Solutions
 
@@ -137,7 +104,7 @@ class Solution:
         sign = -1 if s[i] == '-' else 1
         if s[i] in ['-', '+']:
             i += 1
-        res, flag = 0, (2 ** 31 - 1) // 10
+        res, flag = 0, (2**31 - 1) // 10
         while i < n:
             # not a number, exit the loop
             if not s[i].isdigit():
@@ -145,7 +112,7 @@ class Solution:
             c = int(s[i])
             # if overflows
             if res > flag or (res == flag and c > 7):
-                return 2 ** 31 - 1 if sign > 0 else -2 ** 31
+                return 2**31 - 1 if sign > 0 else -(2**31)
             res = res * 10 + c
             i += 1
         return sign * res
@@ -177,6 +144,46 @@ class Solution {
         }
         return sign * res;
     }
+}
+```
+
+### **Go**
+
+```go
+func myAtoi(s string) int {
+	i, n := 0, len(s)
+	num := 0
+
+	for i < n && s[i] == ' ' {
+		i++
+	}
+	if i == n {
+		return 0
+	}
+
+	sign := 1
+	if s[i] == '-' {
+		sign = -1
+		i++
+	} else if s[i] == '+' {
+		i++
+	}
+
+	for i < n && s[i] >= '0' && s[i] <= '9' {
+		num = num*10 + int(s[i]-'0')
+		i++
+		if num > math.MaxInt32 {
+			break
+		}
+	}
+
+	if num > math.MaxInt32 {
+		if sign == -1 {
+			return math.MinInt32
+		}
+		return math.MaxInt32
+	}
+	return sign * num
 }
 ```
 

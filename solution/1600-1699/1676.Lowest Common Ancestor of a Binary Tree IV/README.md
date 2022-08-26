@@ -1,4 +1,4 @@
-# [1676. 二叉树的最近公共祖先 IV](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree-iv)
+# [1676. 二叉树的最近公共祖先 IV](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree-iv)
 
 [English Version](/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/README_EN.md)
 
@@ -13,14 +13,14 @@
 <p> </p>
 
 <p><strong>示例 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
 <pre><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [4,7]
 <strong>输出:</strong> 2
 <strong>解释:</strong> 节点 4 和 7 的最近公共祖先是 2。
 </pre>
 
 <p><strong>示例 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
 <pre><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [1]
 <strong>输出:</strong> 1
 <strong>解释:</strong> 单个节点的最近公共祖先是该节点本身。
@@ -28,14 +28,14 @@
 </pre>
 
 <p><strong>示例 3:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
 <pre><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [7,6,2,4]
 <strong>输出:</strong> 5
 <strong>解释:</strong> 节点 7、6、2 和 4 的最近公共祖先节点是 5。
 </pre>
 
 <p><strong>示例 4:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1676.Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20IV/images/binarytree.png">
 <pre><strong>输入:</strong> root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [0,1,2,3,4,5,6,7,8]
 <strong>输出:</strong> 3
 <strong>解释:</strong> 树中所有节点的最近公共祖先是根节点。
@@ -53,10 +53,11 @@
 	<li>所有的 <code>nodes[i]</code> 都是互不相同的。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：哈希表 + DFS**
 
 <!-- tabs:start -->
 
@@ -65,7 +66,28 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
+
+class Solution:
+    def lowestCommonAncestor(
+        self, root: 'TreeNode', nodes: 'List[TreeNode]'
+    ) -> 'TreeNode':
+        def dfs(root):
+            if root is None or root.val in s:
+                return root
+            left, right = dfs(root.left), dfs(root.right)
+            if left and right:
+                return root
+            return left or right
+
+        s = {node.val for node in nodes}
+        return dfs(root)
 ```
 
 ### **Java**
@@ -73,7 +95,74 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    private Set<Integer> s = new HashSet<>();
 
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
+        for (TreeNode node : nodes) {
+            s.add(node.val);
+        }
+        return dfs(root);
+    }
+
+    private TreeNode dfs(TreeNode root) {
+        if (root == null || s.contains(root.val)) {
+            return root;
+        }
+        TreeNode left = dfs(root.left);
+        TreeNode right = dfs(root.right);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return root;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    unordered_set<int> s;
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, vector<TreeNode*>& nodes) {
+        for (auto node : nodes) s.insert(node->val);
+        return dfs(root);
+    }
+
+    TreeNode* dfs(TreeNode* root) {
+        if (!root || s.count(root->val)) return root;
+        auto left = dfs(root->left);
+        auto right = dfs(root->right);
+        if (!left) return right;
+        if (!right) return left;
+        return root;
+    }
+};
 ```
 
 ### **...**

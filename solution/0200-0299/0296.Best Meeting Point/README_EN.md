@@ -12,7 +12,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0296.Best%20Meeting%20Point/images/meetingpoint-grid.jpg" style="width: 413px; height: 253px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0200-0299/0296.Best%20Meeting%20Point/images/meetingpoint-grid.jpg" style="width: 413px; height: 253px;" />
 <pre>
 <strong>Input:</strong> grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]
 <strong>Output:</strong> 6
@@ -38,7 +38,6 @@ So return 6.
 	<li><code>grid[i][j]</code> is either <code>0</code> or <code>1</code>.</li>
 	<li>There will be <strong>at least two</strong> friends in the <code>grid</code>.</li>
 </ul>
-
 
 ## Solutions
 

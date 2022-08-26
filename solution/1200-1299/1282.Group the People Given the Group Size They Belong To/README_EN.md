@@ -41,7 +41,6 @@ Other possible solutions are [[2,1,6],[5],[0,4,3]] and [[5],[0,6,2],[4,3,1]].
 	<li><code>1 &lt;=&nbsp;groupSizes[i] &lt;= n</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -49,13 +48,119 @@ Other possible solutions are [[2,1,6],[5],[0,4,3]] and [[5],[0,6,2],[4,3,1]].
 ### **Python3**
 
 ```python
-
+class Solution:
+    def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
+        g = defaultdict(list)
+        for i, v in enumerate(groupSizes):
+            g[v].append(i)
+        return [v[j : j + i] for i, v in g.items() for j in range(0, len(v), i)]
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public List<List<Integer>> groupThePeople(int[] groupSizes) {
+        int n = groupSizes.length;
+        List<Integer>[] g = new List[n + 1];
+        for (int i = 0; i < g.length; ++i) {
+            g[i] = new ArrayList<>();
+        }
+        for (int i = 0; i < n; ++i) {
+            g[groupSizes[i]].add(i);
+        }
+        List<List<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i < g.length; ++i) {
+            List<Integer> v = g[i];
+            for (int j = 0; j < v.size(); j += i) {
+                ans.add(v.subList(j, j + i));
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> groupThePeople(vector<int>& groupSizes) {
+        int n = groupSizes.size();
+        vector<vector<int>> g(n + 1);
+        for (int i = 0; i < n; ++i) g[groupSizes[i]].push_back(i);
+        vector<vector<int>> ans;
+        for (int i = 0; i < g.size(); ++i) {
+            for (int j = 0; j < g[i].size(); j += i) {
+                vector<int> t(g[i].begin() + j, g[i].begin() + j + i);
+                ans.push_back(t);
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func groupThePeople(groupSizes []int) [][]int {
+	n := len(groupSizes)
+	g := make([][]int, n+1)
+	for i, v := range groupSizes {
+		g[v] = append(g[v], i)
+	}
+	ans := [][]int{}
+	for i, v := range g {
+		for j := 0; j < len(v); j += i {
+			ans = append(ans, v[j:j+i])
+		}
+	}
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function groupThePeople(groupSizes: number[]): number[][] {
+    const res = [];
+    const map = new Map<number, number[]>();
+    const n = groupSizes.length;
+    for (let i = 0; i < n; i++) {
+        const size = groupSizes[i];
+        map.set(size, [...(map.get(size) ?? []), i]);
+        const arr = map.get(size);
+        if (arr.length === size) {
+            res.push(arr);
+            map.set(size, []);
+        }
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+use std::collections::HashMap;
+impl Solution {
+    pub fn group_the_people(group_sizes: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut res = vec![];
+        let mut map = HashMap::new();
+        for i in 0..group_sizes.len() {
+            let size = group_sizes[i] as usize;
+            let arr = map.entry(size).or_insert(vec![]);
+            arr.push(i as i32);
+            if arr.len() == size {
+                res.push(arr.clone());
+                arr.clear();
+            }
+        }
+        res
+    }
+}
 ```
 
 ### **...**

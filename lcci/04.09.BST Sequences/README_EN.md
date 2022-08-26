@@ -1,4 +1,4 @@
-# [04.09. BST Sequences](https://leetcode-cn.com/problems/bst-sequences-lcci)
+# [04.09. BST Sequences](https://leetcode.cn/problems/bst-sequences-lcci)
 
 [中文文档](/lcci/04.09.BST%20Sequences/README.md)
 
@@ -12,11 +12,19 @@ Given the following tree:</p>
 
 <pre>
 
+
+
         2
+
+
 
        / \
 
+
+
       1   3
+
+
 
 </pre>
 
@@ -24,13 +32,23 @@ Given the following tree:</p>
 
 <pre>
 
+
+
 [
+
+
 
    [2,1,3],
 
+
+
    [2,3,1]
 
+
+
 ]
+
+
 
 </pre>
 
@@ -42,17 +60,20 @@ Given the following tree:</p>
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

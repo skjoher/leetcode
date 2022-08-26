@@ -1,4 +1,4 @@
-# [1568. 使陆地分离的最少天数](https://leetcode-cn.com/problems/minimum-number-of-days-to-disconnect-island)
+# [1568. 使陆地分离的最少天数](https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island)
 
 [English Version](/solution/1500-1599/1568.Minimum%20Number%20of%20Days%20to%20Disconnect%20Island/README_EN.md)
 
@@ -18,7 +18,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1568.Minimum%20Number%20of%20Days%20to%20Disconnect%20Island/images/1926_island.png" style="height: 139px; width: 498px;"></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1568.Minimum%20Number%20of%20Days%20to%20Disconnect%20Island/images/1926_island.png" style="height: 139px; width: 498px;"></strong></p>
 
 <pre><strong>输入：</strong>grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]]
 <strong>输出：</strong>2
@@ -65,7 +65,6 @@
 	<li><code>1 &lt;= grid.length, grid[i].length &lt;= 30</code></li>
 	<li><code>grid[i][j]</code> 为 <code>0</code> 或 <code>1</code></li>
 </ul>
-
 
 ## 解法
 

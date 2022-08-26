@@ -12,7 +12,7 @@
 
 <p>An N-ary tree can be serialized as represented in its level order traversal where each group of children is separated by the <code>null</code> value (see examples).</p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1506.Find%20Root%20of%20N-Ary%20Tree/images/sample_4_964.png" style="width: 296px; height: 241px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1506.Find%20Root%20of%20N-Ary%20Tree/images/sample_4_964.png" style="width: 296px; height: 241px;" /></p>
 
 <p>For example, the above tree is serialized as <code>[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]</code>.</p>
 
@@ -28,7 +28,7 @@
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1506.Find%20Root%20of%20N-Ary%20Tree/images/narytreeexample.png" style="width: 100%; max-width: 300px;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1506.Find%20Root%20of%20N-Ary%20Tree/images/narytreeexample.png" style="width: 100%; max-width: 300px;" /></p>
 
 <pre>
 <strong>Input:</strong> tree = [1,null,3,2,4,null,5,6]
@@ -42,7 +42,7 @@ The input data and serialized Node(1) are the same, so the test passes.
 
 <p><strong>Example 2:</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1506.Find%20Root%20of%20N-Ary%20Tree/images/sample_4_964.png" style="width: 296px; height: 241px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1506.Find%20Root%20of%20N-Ary%20Tree/images/sample_4_964.png" style="width: 296px; height: 241px;" /></p>
 
 <pre>
 <strong>Input:</strong> tree = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
@@ -64,7 +64,6 @@ The input data and serialized Node(1) are the same, so the test passes.
 	<li>Could you solve this problem in constant space complexity with a linear time algorithm?</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -72,13 +71,142 @@ The input data and serialized Node(1) are the same, so the test passes.
 ### **Python3**
 
 ```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children if children is not None else []
+"""
 
+
+class Solution:
+    def findRoot(self, tree: List['Node']) -> 'Node':
+        xorsum = 0
+        for node in tree:
+            xorsum ^= node.val
+            for child in node.children:
+                xorsum ^= child.val
+
+        for node in tree:
+            if node.val == xorsum:
+                return node
 ```
 
 ### **Java**
 
 ```java
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
 
+
+    public Node() {
+        children = new ArrayList<Node>();
+    }
+
+    public Node(int _val) {
+        val = _val;
+        children = new ArrayList<Node>();
+    }
+
+    public Node(int _val,ArrayList<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+    public Node findRoot(List<Node> tree) {
+        int xor = 0;
+        for (Node node : tree) {
+            xor ^= node.val;
+            for (Node child : node.children) {
+                xor ^= child.val;
+            }
+        }
+        for (Node node :tree) {
+            if (node.val == xor) {
+                return node;
+            }
+        }
+        return null;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> children;
+
+    Node() {}
+
+    Node(int _val) {
+        val = _val;
+    }
+
+    Node(int _val, vector<Node*> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+public:
+    Node* findRoot(vector<Node*> tree) {
+        int xorsum = 0;
+        for (auto& node : tree) {
+            xorsum ^= node->val;
+            for (auto& child : node->children) {
+                xorsum ^= child->val;
+            }
+        }
+        for (auto& node : tree) {
+            if (node->val == xorsum) {
+                return node;
+            }
+        }
+        return nullptr;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Children []*Node
+ * }
+ */
+
+func findRoot(tree []*Node) *Node {
+	xorsum := 0
+	for _, node := range tree {
+		xorsum ^= node.Val
+		for _, child := range node.Children {
+			xorsum ^= child.Val
+		}
+	}
+	for _, node := range tree {
+		if node.Val == xorsum {
+			return node
+		}
+	}
+	return nil
+}
 ```
 
 ### **...**

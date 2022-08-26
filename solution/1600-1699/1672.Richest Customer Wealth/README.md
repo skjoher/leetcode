@@ -1,4 +1,4 @@
-# [1672. 最富有客户的资产总量](https://leetcode-cn.com/problems/richest-customer-wealth)
+# [1672. 最富有客户的资产总量](https://leetcode.cn/problems/richest-customer-wealth)
 
 [English Version](/solution/1600-1699/1672.Richest%20Customer%20Wealth/README_EN.md)
 
@@ -49,7 +49,6 @@
 	<li><code>1 &lt;= accounts[i][j] &lt;= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -61,7 +60,9 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maximumWealth(self, accounts: List[List[int]]) -> int:
+        return max(sum(account) for account in accounts)
 ```
 
 ### **Java**
@@ -69,7 +70,97 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int res = 0;
+        for (int[] account : accounts) {
+            int t = 0;
+            for (int money : account) {
+                t += money;
+            }
+            res = Math.max(res, t);
+        }
+        return res;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
+        int res = 0;
+        for (auto& account : accounts)
+            res = max(res, accumulate(account.begin(), account.end(), 0));
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maximumWealth(accounts [][]int) int {
+	res := 0
+	for _, account := range accounts {
+		t := 0
+		for _, money := range account {
+			t += money
+		}
+		if t > res {
+			res = t
+		}
+	}
+	return res
+}
+```
+
+### **TypeScript**
+
+```ts
+function maximumWealth(accounts: number[][]): number {
+    return accounts.reduce(
+        (res, account) =>
+            Math.max(
+                res,
+                account.reduce((p, v) => p + v),
+            ),
+        0,
+    );
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
+        accounts
+            .iter()
+            .map(|account| account.iter().sum())
+            .max()
+            .unwrap()
+    }
+}
+```
+
+### **Kotlin**
+
+```kotlin
+class Solution {
+    fun maximumWealth(accounts: Array<IntArray>): Int {
+        var max = 0
+        for (account in accounts) {
+            val sum = account.sum()
+            if (sum > max) {
+                max = sum
+            }
+        }
+        return max
+    }
+}
 ```
 
 ### **...**

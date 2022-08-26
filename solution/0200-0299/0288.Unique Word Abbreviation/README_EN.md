@@ -31,18 +31,16 @@
 
 <pre>
 <strong>Input</strong>
-[&quot;ValidWordAbbr&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;]
-[[[&quot;deer&quot;, &quot;door&quot;, &quot;cake&quot;, &quot;card&quot;]], [&quot;dear&quot;], [&quot;cart&quot;], [&quot;cane&quot;], [&quot;make&quot;]]
+[&quot;ValidWordAbbr&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;, &quot;isUnique&quot;]
+[[[&quot;deer&quot;, &quot;door&quot;, &quot;cake&quot;, &quot;card&quot;]], [&quot;dear&quot;], [&quot;cart&quot;], [&quot;cane&quot;], [&quot;make&quot;], [&quot;cake&quot;]]
 <strong>Output</strong>
-[null, false, true, false, true]
+[null, false, true, false, true, true]
 
 <strong>Explanation</strong>
 ValidWordAbbr validWordAbbr = new ValidWordAbbr([&quot;deer&quot;, &quot;door&quot;, &quot;cake&quot;, &quot;card&quot;]);
-validWordAbbr.isUnique(&quot;dear&quot;); // return false, dictionary word &quot;deer&quot; and word &quot;dear&quot; have the same abbreviation
-&nbsp;                               // &quot;d2r&quot; but are not the same.
+validWordAbbr.isUnique(&quot;dear&quot;); // return false, dictionary word &quot;deer&quot; and word &quot;dear&quot; have the same abbreviation &quot;d2r&quot; but are not the same.
 validWordAbbr.isUnique(&quot;cart&quot;); // return true, no words in the dictionary have the abbreviation &quot;c2t&quot;.
-validWordAbbr.isUnique(&quot;cane&quot;); // return false, dictionary word &quot;cake&quot; and word &quot;cane&quot; have the same abbreviation 
-                                // &quot;c2e&quot; but are not the same.
+validWordAbbr.isUnique(&quot;cane&quot;); // return false, dictionary word &quot;cake&quot; and word &quot;cane&quot; have the same abbreviation  &quot;c2e&quot; but are not the same.
 validWordAbbr.isUnique(&quot;make&quot;); // return true, no words in the dictionary have the abbreviation &quot;m2e&quot;.
 validWordAbbr.isUnique(&quot;cake&quot;); // return true, because &quot;cake&quot; is already in the dictionary and no other word in the dictionary has &quot;c2e&quot; abbreviation.
 </pre>
@@ -67,25 +65,19 @@ validWordAbbr.isUnique(&quot;cake&quot;); // return true, because &quot;cake&quo
 
 ```python
 class ValidWordAbbr:
-
     def __init__(self, dictionary: List[str]):
-        self.words = {}
+        self.words = defaultdict(set)
         for word in dictionary:
-            abbr = self._word_abbr(word)
-            vals = self.words.get(abbr, set())
-            vals.add(word)
-            self.words[abbr] = vals
+            abbr = self.word_abbr(word)
+            self.words[abbr].add(word)
 
     def isUnique(self, word: str) -> bool:
-        abbr = self._word_abbr(word)
-        vals = self.words.get(abbr)
-        return vals is None or (len(vals) == 1 and word in vals)
+        abbr = self.word_abbr(word)
+        words = self.words[abbr]
+        return not words or (len(words) == 1 and word in words)
 
-    def _word_abbr(self, word: str) -> str:
-        n = len(word)
-        if n < 3:
-            return word
-        return f'{word[0]}{n - 2}{word[n - 1]}'
+    def word_abbr(self, s):
+        return s if len(s) < 3 else f'{s[0]}{len(s) - 2}{s[-1]}'
 
 
 # Your ValidWordAbbr object will be instantiated and called as such:
@@ -102,27 +94,20 @@ class ValidWordAbbr {
     public ValidWordAbbr(String[] dictionary) {
         words = new HashMap<>();
         for (String word : dictionary) {
-            String abbr = wordAbbr(word);
-            Set<String> vals = words.getOrDefault(abbr, new HashSet<>());
-            vals.add(word);
-            words.put(abbr, vals);
+            String abbr = abbr(word);
+            words.computeIfAbsent(abbr, k -> new HashSet<>()).add(word);
         }
     }
 
     public boolean isUnique(String word) {
-        String abbr = wordAbbr(word);
+        String abbr = abbr(word);
         Set<String> vals = words.get(abbr);
         return vals == null || (vals.size() == 1 && vals.contains(word));
     }
 
-    private String wordAbbr(String word) {
-        int n = word.length();
-        if (n < 3) {
-            return word;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(word.charAt(0)).append(n - 2).append(word.charAt(n - 1));
-        return sb.toString();
+    private String abbr(String s) {
+        int n = s.length();
+        return n < 3 ? s : s.charAt(0) + Integer.toString(n - 2) + s.charAt(n - 1);
     }
 }
 
@@ -130,6 +115,80 @@ class ValidWordAbbr {
  * Your ValidWordAbbr object will be instantiated and called as such:
  * ValidWordAbbr obj = new ValidWordAbbr(dictionary);
  * boolean param_1 = obj.isUnique(word);
+ */
+```
+
+### **C++**
+
+```cpp
+class ValidWordAbbr {
+public:
+    unordered_map<string, unordered_set<string>> words;
+
+    ValidWordAbbr(vector<string>& dictionary) {
+        for (auto word : dictionary) {
+            auto abbr = wordAbbr(word);
+            words[abbr].insert(word);
+        }
+    }
+
+    bool isUnique(string word) {
+        auto abbr = wordAbbr(word);
+        if (!words.count(abbr)) return true;
+        auto vals = words[abbr];
+        return vals.size() == 1 && vals.count(word);
+    }
+
+    string wordAbbr(string s) {
+        int n = s.size();
+        return n < 3 ? s : s.substr(0, 1) + to_string(n - 2) + s.substr(n - 1, 1);
+    }
+};
+
+/**
+ * Your ValidWordAbbr object will be instantiated and called as such:
+ * ValidWordAbbr* obj = new ValidWordAbbr(dictionary);
+ * bool param_1 = obj->isUnique(word);
+ */
+```
+
+### **Go**
+
+```go
+type ValidWordAbbr struct {
+	words map[string]map[string]bool
+}
+
+func Constructor(dictionary []string) ValidWordAbbr {
+	words := make(map[string]map[string]bool)
+	for _, word := range dictionary {
+		abbr := wordAbbr(word)
+		if words[abbr] == nil {
+			words[abbr] = make(map[string]bool)
+		}
+		words[abbr][word] = true
+	}
+	return ValidWordAbbr{words}
+}
+
+func (this *ValidWordAbbr) IsUnique(word string) bool {
+	abbr := wordAbbr(word)
+	words := this.words[abbr]
+	return words == nil || (len(words) == 1 && words[word])
+}
+
+func wordAbbr(s string) string {
+	n := len(s)
+	if n <= 2 {
+		return s
+	}
+	return s[0:1] + strconv.Itoa(n-2) + s[n-1:]
+}
+
+/**
+ * Your ValidWordAbbr object will be instantiated and called as such:
+ * obj := Constructor(dictionary);
+ * param_1 := obj.IsUnique(word);
  */
 ```
 

@@ -1,4 +1,4 @@
-# [1113. 报告的记录](https://leetcode-cn.com/problems/reported-posts)
+# [1113. 报告的记录](https://leetcode.cn/problems/reported-posts)
 
 [English Version](/solution/1100-1199/1113.Reported%20Posts/README_EN.md)
 
@@ -56,7 +56,6 @@ Result table:
 +---------------+--------------+ 
 注意，我们只关心报告数量非零的结果。
 </pre>
-
 
 ## 解法
 

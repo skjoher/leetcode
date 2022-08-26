@@ -1,4 +1,4 @@
-# [1440. 计算布尔表达式的值](https://leetcode-cn.com/problems/evaluate-boolean-expression)
+# [1440. 计算布尔表达式的值](https://leetcode.cn/problems/evaluate-boolean-expression)
 
 [English Version](/solution/1400-1499/1440.Evaluate%20Boolean%20Expression/README_EN.md)
 
@@ -76,7 +76,6 @@ Result 表:
 +--------------+----------+---------------+-------+
 如上所示, 你需要通过使用 Variables 表来找到 Expressions 表中的每一个布尔表达式的值.
 </pre>
-
 
 ## 解法
 

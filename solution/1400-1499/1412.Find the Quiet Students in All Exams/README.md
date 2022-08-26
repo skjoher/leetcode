@@ -1,4 +1,4 @@
-# [1412. 查找成绩处于中游的学生](https://leetcode-cn.com/problems/find-the-quiet-students-in-all-exams)
+# [1412. 查找成绩处于中游的学生](https://leetcode.cn/problems/find-the-quiet-students-in-all-exams)
 
 [English Version](/solution/1400-1499/1412.Find%20the%20Quiet%20Students%20in%20All%20Exams/README_EN.md)
 
@@ -87,7 +87,6 @@ Result 表：
 学生 2 和 5 没有在任一场测验中获得了最高分或者最低分。
 因为学生 5 从来没有参加过任何测验, 所以他被排除于结果表。
 由此, 我们仅仅返回学生 2 的信息。</pre>
-
 
 ## 解法
 

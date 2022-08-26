@@ -4,15 +4,15 @@
 
 ## Description
 
-<p>Given a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.</p>
+<p>Given the <code>head</code> of a linked list, return <em>the node where the cycle begins. If there is no cycle, return </em><code>null</code>.</p>
 
-<p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the&nbsp;<code>next</code>&nbsp;pointer. Internally, <code>pos</code>&nbsp;is used to denote the index of the node that&nbsp;tail&#39;s&nbsp;<code>next</code>&nbsp;pointer is connected to.&nbsp;<strong>Note that&nbsp;<code>pos</code>&nbsp;is not passed as a parameter</strong>.</p>
+<p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the <code>next</code> pointer. Internally, <code>pos</code> is used to denote the index of the node that tail&#39;s <code>next</code> pointer is connected to (<strong>0-indexed</strong>). It is <code>-1</code> if there is no cycle. <strong>Note that</strong> <code>pos</code> <strong>is not passed as a parameter</strong>.</p>
 
-<p><strong>Notice</strong> that you <strong>should not modify</strong> the linked list.</p>
+<p><strong>Do not modify</strong> the linked list.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0142.Linked%20List%20Cycle%20II/images/circularlinkedlist.png" style="height: 145px; width: 450px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0142.Linked%20List%20Cycle%20II/images/circularlinkedlist.png" style="height: 145px; width: 450px;" />
 <pre>
 <strong>Input:</strong> head = [3,2,0,-4], pos = 1
 <strong>Output:</strong> tail connects to node index 1
@@ -20,7 +20,7 @@
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0142.Linked%20List%20Cycle%20II/images/circularlinkedlist_test2.png" style="height: 105px; width: 201px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0142.Linked%20List%20Cycle%20II/images/circularlinkedlist_test2.png" style="height: 105px; width: 201px;" />
 <pre>
 <strong>Input:</strong> head = [1,2], pos = 0
 <strong>Output:</strong> tail connects to node index 0
@@ -28,7 +28,7 @@
 </pre>
 
 <p><strong>Example 3:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0142.Linked%20List%20Cycle%20II/images/circularlinkedlist_test3.png" style="height: 65px; width: 65px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0142.Linked%20List%20Cycle%20II/images/circularlinkedlist_test3.png" style="height: 65px; width: 65px;" />
 <pre>
 <strong>Input:</strong> head = [1], pos = -1
 <strong>Output:</strong> no cycle
@@ -47,7 +47,6 @@
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Can you solve it using <code>O(1)</code> (i.e. constant) memory?</p>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -61,15 +60,14 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
         slow = fast = head
         has_cycle = False
-        while fast and fast.next:
+        while not has_cycle and fast and fast.next:
             slow, fast = slow.next, fast.next.next
-            if slow == fast:
-                has_cycle = True
-                break
+            has_cycle = slow == fast
         if not has_cycle:
             return None
         p = head
@@ -96,13 +94,10 @@ public class Solution {
     public ListNode detectCycle(ListNode head) {
         ListNode slow = head, fast = head;
         boolean hasCycle = false;
-        while (fast != null && fast.next != null) {
+        while (!hasCycle && fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow == fast) {
-                hasCycle = true;
-                break;
-            }
+            hasCycle = slow == fast;
         }
         if (!hasCycle) {
             return null;
@@ -114,6 +109,141 @@ public class Solution {
         }
         return p;
     }
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function detectCycle(head: ListNode | null): ListNode | null {
+    let slow = head,
+        fast = head;
+    while (fast) {
+        slow = slow.next;
+        if (!fast.next) return null;
+        fast = fast.next.next;
+
+        if (fast == slow) {
+            let cur = head;
+            while (cur != slow) {
+                slow = slow.next;
+                cur = cur.next;
+            }
+            return cur;
+        }
+    }
+    return null;
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* detectCycle(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        bool hasCycle = false;
+        while (!hasCycle && fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            hasCycle = slow == fast;
+        }
+        if (!hasCycle) {
+            return nullptr;
+        }
+        ListNode* p = head;
+        while (p != slow) {
+            p = p->next;
+            slow = slow->next;
+        }
+        return p;
+    }
+};
+```
+
+### **JavaScript**
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+    let slow = head;
+    let fast = head;
+    let hasCycle = false;
+    while (!hasCycle && fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        hasCycle = slow == fast;
+    }
+    if (!hasCycle) {
+        return null;
+    }
+    let p = head;
+    while (p != slow) {
+        p = p.next;
+        slow = slow.next;
+    }
+    return p;
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func detectCycle(head *ListNode) *ListNode {
+    slow, fast := head, head
+    hasCycle := false
+    for !hasCycle && fast != nil && fast.Next != nil {
+        slow, fast = slow.Next, fast.Next.Next
+        hasCycle = slow == fast
+    }
+    if !hasCycle {
+        return nil
+    }
+    p := head
+    for p != slow {
+        p, slow = p.Next, slow.Next
+    }
+    return p
 }
 ```
 

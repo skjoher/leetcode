@@ -1,4 +1,4 @@
-# [1791. 找出星型图的中心节点](https://leetcode-cn.com/problems/find-center-of-star-graph)
+# [1791. 找出星型图的中心节点](https://leetcode.cn/problems/find-center-of-star-graph)
 
 [English Version](/solution/1700-1799/1791.Find%20Center%20of%20Star%20Graph/README_EN.md)
 
@@ -13,7 +13,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1791.Find%20Center%20of%20Star%20Graph/images/star_graph.png" style="width: 331px; height: 321px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1791.Find%20Center%20of%20Star%20Graph/images/star_graph.png" style="width: 331px; height: 321px;" />
 <pre>
 <strong>输入：</strong>edges = [[1,2],[2,3],[4,2]]
 <strong>输出：</strong>2
@@ -40,7 +40,6 @@
 	<li>题目数据给出的 <code>edges</code> 表示一个有效的星型图</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -52,7 +51,9 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+        return edges[0][0] if edges[0][0] in edges[1] else edges[0][1]
 ```
 
 ### **Java**
@@ -60,7 +61,64 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int findCenter(int[][] edges) {
+        int a = edges[0][0], b = edges[0][1];
+        int c = edges[1][0], d = edges[1][1];
+        return a == c || a == d ? a : b;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function findCenter(edges: number[][]): number {
+    for (let num of edges[0]) {
+        if (edges[1].includes(num)) {
+            return num;
+        }
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        int a = edges[0][0], b = edges[0][1];
+        int c = edges[1][0], d = edges[1][1];
+        return a == c || a == d ? a : b;
+    }
+};
+```
+
+### **Go**
+
+```go
+func findCenter(edges [][]int) int {
+	a, b := edges[0][0], edges[0][1]
+	c, d := edges[1][0], edges[1][1]
+	if a == c || a == d {
+		return a
+	}
+	return b
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn find_center(edges: Vec<Vec<i32>>) -> i32 {
+        if edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1] {
+            return edges[0][0];
+        }
+        edges[0][1]
+    }
+}
 ```
 
 ### **...**

@@ -1,4 +1,4 @@
-# [02.03. Delete Middle Node](https://leetcode-cn.com/problems/delete-middle-node-lcci)
+# [02.03. Delete Middle Node](https://leetcode.cn/problems/delete-middle-node-lcci)
 
 [中文文档](/lcci/02.03.Delete%20Middle%20Node/README.md)
 
@@ -30,6 +30,7 @@
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
+
 
 class Solution:
     def deleteNode(self, node):
@@ -74,10 +75,46 @@ class Solution {
  * @param {ListNode} node
  * @return {void} Do not return anything, modify node in-place instead.
  */
- var deleteNode = function(node) {
-    node.val = node.next.val
-    node.next = node.next.next
+var deleteNode = function (node) {
+    node.val = node.next.val;
+    node.next = node.next.next;
 };
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func deleteNode(node *ListNode) {
+	node.Val = node.Next.Val
+	node.Next = node.Next.Next
+}
 ```
 
 ### **...**

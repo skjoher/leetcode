@@ -1,4 +1,4 @@
-# [858. 镜面反射](https://leetcode-cn.com/problems/mirror-reflection)
+# [858. 镜面反射](https://leetcode.cn/problems/mirror-reflection)
 
 [English Version](/solution/0800-0899/0858.Mirror%20Reflection/README_EN.md)
 
@@ -20,7 +20,7 @@
 <strong>输入： </strong>p = 2, q = 1
 <strong>输出： </strong>2
 <strong>解释： </strong>这条光线在第一次被反射回左边的墙时就遇到了接收器 2 。
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0800-0899/0858.Mirror%20Reflection/images/reflection.png" style="height: 217px; width: 218px;" /></pre>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0800-0899/0858.Mirror%20Reflection/images/reflection.png" style="height: 217px; width: 218px;" /></pre>
 
 <p> </p>
 
@@ -30,7 +30,6 @@
 	<li><code>1 <= p <= 1000</code></li>
 	<li><code>0 <= q <= p</code></li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1170. 比较字符串最小字母出现频次](https://leetcode-cn.com/problems/compare-strings-by-frequency-of-the-smallest-character)
+# [1170. 比较字符串最小字母出现频次](https://leetcode.cn/problems/compare-strings-by-frequency-of-the-smallest-character)
 
 [English Version](/solution/1100-1199/1170.Compare%20Strings%20by%20Frequency%20of%20the%20Smallest%20Character/README_EN.md)
 
@@ -42,7 +42,6 @@
 	<li><code>1 <= queries[i].length, words[i].length <= 10</code></li>
 	<li><code>queries[i][j]</code>、<code>words[i][j]</code> 都由小写英文字母组成</li>
 </ul>
-
 
 ## 解法
 

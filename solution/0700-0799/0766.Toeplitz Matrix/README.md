@@ -1,4 +1,4 @@
-# [766. 托普利茨矩阵](https://leetcode-cn.com/problems/toeplitz-matrix)
+# [766. 托普利茨矩阵](https://leetcode.cn/problems/toeplitz-matrix)
 
 [English Version](/solution/0700-0799/0766.Toeplitz%20Matrix/README_EN.md)
 
@@ -13,7 +13,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0700-0799/0766.Toeplitz%20Matrix/images/ex1.jpg" style="width: 322px; height: 242px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0700-0799/0766.Toeplitz%20Matrix/images/ex1.jpg" style="width: 322px; height: 242px;" />
 <pre>
 <strong>输入：</strong>matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]
 <strong>输出：</strong>true
@@ -24,7 +24,7 @@
 </pre>
 
 <p><strong>示例 2：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0700-0799/0766.Toeplitz%20Matrix/images/ex2.jpg" style="width: 162px; height: 162px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0700-0799/0766.Toeplitz%20Matrix/images/ex2.jpg" style="width: 162px; height: 162px;" />
 <pre>
 <strong>输入：</strong>matrix = [[1,2],[2,2]]
 <strong>输出：</strong>false
@@ -50,7 +50,6 @@
 	<li>如果矩阵存储在磁盘上，并且内存有限，以至于一次最多只能将矩阵的一行加载到内存中，该怎么办？</li>
 	<li>如果矩阵太大，以至于一次只能将不完整的一行加载到内存中，该怎么办？</li>
 </ul>
-
 
 ## 解法
 

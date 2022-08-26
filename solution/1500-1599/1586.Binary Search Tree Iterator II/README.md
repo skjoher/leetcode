@@ -1,4 +1,4 @@
-# [1586. 二叉搜索树迭代器 II](https://leetcode-cn.com/problems/binary-search-tree-iterator-ii)
+# [1586. 二叉搜索树迭代器 II](https://leetcode.cn/problems/binary-search-tree-iterator-ii)
 
 [English Version](/solution/1500-1599/1586.Binary%20Search%20Tree%20Iterator%20II/README_EN.md)
 
@@ -26,7 +26,7 @@
 
 <p><strong>示例 1:</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1586.Binary%20Search%20Tree%20Iterator%20II/images/untitled-diagram-1.png" style="height: 201px; width: 201px;"></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1586.Binary%20Search%20Tree%20Iterator%20II/images/untitled-diagram-1.png" style="height: 201px; width: 201px;"></strong></p>
 
 <pre><strong>输入</strong>
 [&quot;BSTIterator&quot;, &quot;next&quot;, &quot;next&quot;, &quot;prev&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;next&quot;, &quot;next&quot;, &quot;next&quot;, &quot;hasNext&quot;, &quot;hasPrev&quot;, &quot;prev&quot;, &quot;prev&quot;]
@@ -60,7 +60,6 @@ bSTIterator.prev(); // 状态变为 [3, 7, &lt;u&gt;9&lt;/u&gt;, 15, 20], 返回
 	<li><code>0 &lt;= Node.val &lt;= 10<sup>6</sup></code></li>
 	<li>最多调用&nbsp;10<sup>5</sup>&nbsp;次&nbsp;<code>hasNext</code>、&nbsp;<code>next</code>、&nbsp;<code>hasPrev</code>&nbsp;和&nbsp;<code>prev</code>&nbsp;。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1290. 二进制链表转整数](https://leetcode-cn.com/problems/convert-binary-number-in-a-linked-list-to-integer)
+# [1290. 二进制链表转整数](https://leetcode.cn/problems/convert-binary-number-in-a-linked-list-to-integer)
 
 [English Version](/solution/1200-1299/1290.Convert%20Binary%20Number%20in%20a%20Linked%20List%20to%20Integer/README_EN.md)
 
@@ -14,7 +14,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1290.Convert%20Binary%20Number%20in%20a%20Linked%20List%20to%20Integer/images/graph-1.png" style="height: 108px; width: 426px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1290.Convert%20Binary%20Number%20in%20a%20Linked%20List%20to%20Integer/images/graph-1.png" style="height: 108px; width: 426px;"></p>
 
 <pre><strong>输入：</strong>head = [1,0,1]
 <strong>输出：</strong>5
@@ -59,7 +59,9 @@
 
 <!-- 这里可写通用的实现逻辑 -->
 
-先求链表长度 n，再遍历链表，累加求得结果。
+遍历链表。
+
+当遍历到链表某个结点，先将已有结果 res 乘以 2（即左移 1 位：`<< 1`），再加上当前结点的值，得出已遍历过的结点的十进制值。最后返回 res 即可。
 
 <!-- tabs:start -->
 
@@ -74,18 +76,13 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     def getDecimalValue(self, head: ListNode) -> int:
-        n, cur = 0, head
-        while cur:
-            n += 1
-            cur = cur.next
-        res, cur = 0, head
-        while cur:
-            n -= 1
-            if cur.val == 1:
-                res += (2 ** (n))
-            cur = cur.next
+        res = 0
+        while head:
+            res = (res << 1) + head.val
+            head = head.next
         return res
 ```
 
@@ -104,18 +101,93 @@ class Solution:
  */
 class Solution {
     public int getDecimalValue(ListNode head) {
-        int n = 0;
-        for (ListNode cur = head; cur != null; cur = cur.next) {
-            ++n;
-        }
         int res = 0;
-        for (ListNode cur = head; cur != null; cur = cur.next) {
-            --n;
-            if (cur.val == 1) {
-                res += Math.pow(2, n);
-            }
+        while (head != null) {
+            res = (res << 1) + head.val;
+            head = head.next;
         }
         return res;
+    }
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {number}
+ */
+var getDecimalValue = function (head) {
+    let res = 0;
+    while (head != null) {
+        res = (res << 1) + head.val;
+        head = head.next;
+    }
+    return res;
+};
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        int res = 0;
+        while (head != NULL) {
+            res = (res << 1) + head->val;
+            head = head->next;
+        }
+        return res;
+    }
+};
+```
+
+### **Rust**
+
+```rust
+// Definition for singly-linked list.
+// #[derive(PartialEq, Eq, Clone, Debug)]
+// pub struct ListNode {
+//   pub val: i32,
+//   pub next: Option<Box<ListNode>>
+// }
+//
+// impl ListNode {
+//   #[inline]
+//   fn new(val: i32) -> Self {
+//     ListNode {
+//       next: None,
+//       val
+//     }
+//   }
+// }
+impl Solution {
+    pub fn get_decimal_value(head: Option<Box<ListNode>>) -> i32 {
+        let mut cur = &head;
+        let mut res = 0;
+        while let Some(node) = cur {
+            res <<= 1;
+            res |= node.val;
+            cur = &node.next;
+        }
+        res
     }
 }
 ```

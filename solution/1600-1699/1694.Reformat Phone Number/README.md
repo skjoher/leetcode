@@ -1,4 +1,4 @@
-# [1694. 重新格式化电话号码](https://leetcode-cn.com/problems/reformat-phone-number)
+# [1694. 重新格式化电话号码](https://leetcode.cn/problems/reformat-phone-number)
 
 [English Version](/solution/1600-1699/1694.Reformat%20Phone%20Number/README_EN.md)
 
@@ -82,7 +82,6 @@
 	<li><code>number</code> 由数字和字符 <code>'-'</code> 及 <code>' '</code> 组成。</li>
 	<li><code>number</code> 中至少含 <strong>2</strong> 个数字。</li>
 </ul>
-
 
 ## 解法
 

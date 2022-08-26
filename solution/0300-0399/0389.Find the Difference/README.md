@@ -1,4 +1,4 @@
-# [389. 找不同](https://leetcode-cn.com/problems/find-the-difference)
+# [389. 找不同](https://leetcode.cn/problems/find-the-difference)
 
 [English Version](/solution/0300-0399/0389.Find%20the%20Difference/README_EN.md)
 
@@ -6,37 +6,27 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给定两个字符串 <em><strong>s</strong></em> 和 <em><strong>t</strong></em>，它们只包含小写字母。</p>
+<p>给定两个字符串 <code>s</code> 和 <code>t</code>&nbsp;，它们只包含小写字母。</p>
 
-<p>字符串&nbsp;<strong><em>t</em></strong>&nbsp;由字符串&nbsp;<strong><em>s</em></strong>&nbsp;随机重排，然后在随机位置添加一个字母。</p>
+<p>字符串 <code>t</code>&nbsp;由字符串 <code>s</code> 随机重排，然后在随机位置添加一个字母。</p>
 
-<p>请找出在 <em><strong>t</strong></em> 中被添加的字母。</p>
+<p>请找出在 <code>t</code>&nbsp;中被添加的字母。</p>
 
 <p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
-<pre><strong>输入：</strong>s = &quot;abcd&quot;, t = &quot;abcde&quot;
-<strong>输出：</strong>&quot;e&quot;
-<strong>解释：</strong>&#39;e&#39; 是那个被添加的字母。
+<pre>
+<strong>输入：</strong>s = "abcd", t = "abcde"
+<strong>输出：</strong>"e"
+<strong>解释：</strong>'e' 是那个被添加的字母。
 </pre>
 
 <p><strong>示例 2：</strong></p>
 
-<pre><strong>输入：</strong>s = &quot;&quot;, t = &quot;y&quot;
-<strong>输出：</strong>&quot;y&quot;
-</pre>
-
-<p><strong>示例 3：</strong></p>
-
-<pre><strong>输入：</strong>s = &quot;a&quot;, t = &quot;aa&quot;
-<strong>输出：</strong>&quot;a&quot;
-</pre>
-
-<p><strong>示例 4：</strong></p>
-
-<pre><strong>输入：</strong>s = &quot;ae&quot;, t = &quot;aea&quot;
-<strong>输出：</strong>&quot;a&quot;
+<pre>
+<strong>输入：</strong>s = "", t = "y"
+<strong>输出：</strong>"y"
 </pre>
 
 <p>&nbsp;</p>
@@ -64,7 +54,7 @@
 ```python
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        counter = collections.Counter(s)
+        counter = Counter(s)
         for c in t:
             if counter[c] <= 0:
                 return c
@@ -92,6 +82,31 @@ class Solution {
             --counter[index];
         }
         return ' ';
+    }
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn find_the_difference(s: String, t: String) -> char {
+        let s = s.as_bytes();
+        let t = t.as_bytes();
+        let n = s.len();
+        let mut count = [0; 26];
+        for i in 0..n {
+            count[(s[i] - b'a') as usize] -= 1;
+            count[(t[i] - b'a') as usize] += 1;
+        }
+        let mut res = *t.last().unwrap();
+        for i in 0..26 {
+            if count[i] == 1 {
+                res = (i as u8) + b'a';
+                break;
+            }
+        }
+        char::from(res)
     }
 }
 ```

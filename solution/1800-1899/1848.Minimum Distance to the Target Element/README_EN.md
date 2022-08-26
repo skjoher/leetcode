@@ -24,7 +24,7 @@
 <pre>
 <strong>Input:</strong> nums = [1], target = 1, start = 0
 <strong>Output:</strong> 0
-<strong>Explanation:</strong> nums[0] = 1 is the only value equal to target, so the answer is abs(0 - 0) = 1.
+<strong>Explanation:</strong> nums[0] = 1 is the only value equal to target, so the answer is abs(0 - 0) = 0.
 </pre>
 
 <p><strong>Example 3:</strong></p>
@@ -54,7 +54,7 @@
 ```python
 class Solution:
     def getMinDistance(self, nums: List[int], target: int, start: int) -> int:
-        res = float('inf')
+        res = inf
         for i, num in enumerate(nums):
             if num == target:
                 res = min(res, abs(i - start))

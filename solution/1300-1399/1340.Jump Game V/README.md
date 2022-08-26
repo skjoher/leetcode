@@ -1,4 +1,4 @@
-# [1340. 跳跃游戏 V](https://leetcode-cn.com/problems/jump-game-v)
+# [1340. 跳跃游戏 V](https://leetcode.cn/problems/jump-game-v)
 
 [English Version](/solution/1300-1399/1340.Jump%20Game%20V/README_EN.md)
 
@@ -23,7 +23,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1340.Jump%20Game%20V/images/meta-chart.jpeg" style="height: 419px; width: 633px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1300-1399/1340.Jump%20Game%20V/images/meta-chart.jpeg" style="height: 419px; width: 633px;"></p>
 
 <pre><strong>输入：</strong>arr = [6,4,14,6,8,13,9,7,10,6,12], d = 2
 <strong>输出：</strong>4
@@ -67,7 +67,6 @@
 	<li><code>1 &lt;= arr[i] &lt;= 10^5</code></li>
 	<li><code>1 &lt;= d &lt;= arr.length</code></li>
 </ul>
-
 
 ## 解法
 

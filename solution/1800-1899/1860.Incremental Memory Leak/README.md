@@ -1,4 +1,4 @@
-# [1860. 增长的内存泄露](https://leetcode-cn.com/problems/incremental-memory-leak)
+# [1860. 增长的内存泄露](https://leetcode.cn/problems/incremental-memory-leak)
 
 [English Version](/solution/1800-1899/1860.Incremental%20Memory%20Leak/README_EN.md)
 
@@ -97,7 +97,7 @@ class Solution {
  * @param {number} memory2
  * @return {number[]}
  */
-var memLeak = function(memory1, memory2) {
+var memLeak = function (memory1, memory2) {
     let i = 1;
     while (memory1 >= i || memory2 >= i) {
         if (memory1 >= memory2) {

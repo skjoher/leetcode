@@ -1,4 +1,4 @@
-# [1243. 数组变换](https://leetcode-cn.com/problems/array-transformation)
+# [1243. 数组变换](https://leetcode.cn/problems/array-transformation)
 
 [English Version](/solution/1200-1299/1243.Array%20Transformation/README_EN.md)
 
@@ -47,7 +47,6 @@
 	<li><code>1 &lt;= arr.length &lt;= 100</code></li>
 	<li><code>1 &lt;= arr[i] &lt;= 100</code></li>
 </ol>
-
 
 ## 解法
 

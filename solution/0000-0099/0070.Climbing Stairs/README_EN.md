@@ -37,7 +37,6 @@
 	<li><code>1 &lt;= n &lt;= 45</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -94,14 +93,14 @@ public:
  * @return {number}
  */
 var climbStairs = function (n) {
-  let a = 0,
-    b = 1;
-  for (let i = 0; i < n; ++i) {
-    const c = a + b;
-    a = b;
-    b = c;
-  }
-  return b;
+    let a = 0,
+        b = 1;
+    for (let i = 0; i < n; ++i) {
+        const c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
 };
 ```
 
@@ -114,6 +113,35 @@ func climbStairs(n int) int {
         a, b = b, a + b
     }
     return b
+}
+```
+
+### **TypeScript**
+
+```ts
+function climbStairs(n: number): number {
+    let p = 1;
+    let q = 1;
+    for (let i = 1; i < n; i++) {
+        [p, q] = [q, p + q];
+    }
+    return q;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn climb_stairs(n: i32) -> i32 {
+        let (mut p, mut q) = (1, 1);
+        for i in 1..n {
+            let t = p + q;
+            p = q;
+            q = t;
+        }
+        q
+    }
 }
 ```
 

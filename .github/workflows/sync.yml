@@ -1,8 +1,9 @@
-name: Sync
+name: sync
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -17,10 +18,10 @@ jobs:
           source-repo: git@github.com:doocs/leetcode.git
           destination-repo: git@gitee.com:Doocs/leetcode.git
 
-      - name: Build Gitee Pages
-        uses: yanglbme/gitee-pages-action@main
-        with:
-          gitee-username: yanglbme
-          gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          gitee-repo: doocs/leetcode
-          branch: main
+      # - name: Build Gitee Pages
+      #   uses: yanglbme/gitee-pages-action@main
+      #   with:
+      #     gitee-username: yanglbme
+      #     gitee-password: ${{ secrets.GITEE_PASSWORD }}
+      #     gitee-repo: Doocs/leetcode
+      #     branch: main

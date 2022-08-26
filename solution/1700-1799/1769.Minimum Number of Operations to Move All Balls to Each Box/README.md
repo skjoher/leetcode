@@ -1,4 +1,4 @@
-# [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode-cn.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box)
+# [1769. 移动所有球到每个盒子所需的最小操作数](https://leetcode.cn/problems/minimum-number-of-operations-to-move-all-balls-to-each-box)
 
 [English Version](/solution/1700-1799/1769.Minimum%20Number%20of%20Operations%20to%20Move%20All%20Balls%20to%20Each%20Box/README_EN.md)
 
@@ -41,7 +41,6 @@
 	<li><code>boxes[i]</code> 为 <code>'0'</code> 或 <code>'1'</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -53,7 +52,22 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def minOperations(self, boxes: str) -> List[int]:
+        n = len(boxes)
+        res = [0] * n
+        total = 0
+        for i, b in enumerate(boxes):
+            if b == '1':
+                res[0] += i
+                total += 1
+        left, right = 0, total
+        for i in range(1, n):
+            if boxes[i - 1] == '1':
+                left += 1
+                right -= 1
+            res[i] = res[i - 1] + left - right
+        return res
 ```
 
 ### **Java**
@@ -61,7 +75,81 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] minOperations(String boxes) {
+        int n = boxes.length();
+        int[] res = new int[n];
+        int total = 0;
+        for (int i = 0; i < n; ++i) {
+            if (boxes.charAt(i) == '1') {
+                res[0] += i;
+                ++total;
+            }
+        }
+        int left = 0, right = total;
+        for (int i = 1; i < n; ++i) {
+            if (boxes.charAt(i - 1) == '1') {
+                ++left;
+                --right;
+            }
+            res[i] = res[i - 1] + left - right;
+        }
+        return res;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> minOperations(string boxes) {
+        int n = boxes.size();
+        vector<int> res(n);
+        int total = 0;
+        for (int i = 0; i < n; ++i) {
+            if (boxes[i] == '1') {
+                res[0] += i;
+                ++total;
+            }
+        }
+        int left = 0, right = total;
+        for (int i = 1; i < n; ++i) {
+            if (boxes[i - 1] == '1') {
+                ++left;
+                --right;
+            }
+            res[i] = res[i - 1] + left - right;
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func minOperations(boxes string) []int {
+	n := len(boxes)
+	res := make([]int, n)
+	total := 0
+	for i, b := range boxes {
+		if b == '1' {
+			res[0] += i
+			total++
+		}
+	}
+	left, right := 0, total
+	for i := 1; i < n; i++ {
+		if boxes[i-1] == '1' {
+			left++
+			right--
+		}
+		res[i] = res[i-1] + left - right
+	}
+	return res
+}
 ```
 
 ### **...**

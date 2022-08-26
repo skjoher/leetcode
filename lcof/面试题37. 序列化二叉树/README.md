@@ -1,26 +1,27 @@
-# [面试题 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
+# [面试题 37. 序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)
 
 ## 题目描述
 
 <!-- 这里写题目描述 -->
 
-请实现两个函数，分别用来序列化和反序列化二叉树。
+<p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
 
-**示例:**
+<p>你需要设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
 
-```
-你可以将以下二叉树：
+<p><strong>提示：</strong>输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅&nbsp;<a href="https://support.leetcode.cn/hc/kb/article/1194353/">LeetCode 序列化二叉树的格式</a>。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
 
-    1
-   / \
-  2   3
-     / \
-    4   5
+<p>&nbsp;</p>
 
-序列化为 "[1,2,3,null,null,4,5]"
-```
+<p><strong>示例：</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/lcof/%E9%9D%A2%E8%AF%95%E9%A2%9837.%20%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/images/serdeser.jpg" style="width: 442px; height: 324px;" />
+<pre>
+<strong>输入：</strong>root = [1,2,3,null,null,4,5]
+<strong>输出：</strong>[1,2,3,null,null,4,5]
+</pre>
 
-注意：本题与主站 297 题相同：https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
+<p>&nbsp;</p>
+
+<p>注意：本题与主站 297 题相同：<a href="https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/">https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/</a></p>
 
 ## 解法
 
@@ -42,8 +43,8 @@
 #         self.left = None
 #         self.right = None
 
-class Codec:
 
+class Codec:
     def serialize(self, root):
         """Encodes a tree to a single string.
 
@@ -52,7 +53,7 @@ class Codec:
         """
         if not root:
             return '[]'
-        queue = collections.deque()
+        queue = deque()
         queue.append(root)
         res = []
         while queue:
@@ -65,7 +66,6 @@ class Codec:
                 res.append('null')
         return f'[{",".join(res)}]'
 
-
     def deserialize(self, data):
         """Decodes your encoded data to tree.
 
@@ -74,7 +74,7 @@ class Codec:
         """
         if not data or data == '[]':
             return None
-        queue = collections.deque()
+        queue = deque()
         nodes = data[1:-1].split(',')
         root = TreeNode(nodes[0])
         queue.append(root)
@@ -169,6 +169,8 @@ public class Codec {
 
 ### **JavaScript**
 
+层序遍历：
+
 ```js
 /**
  * Definition for a binary tree node.
@@ -185,20 +187,20 @@ public class Codec {
  * @return {string}
  */
 var serialize = function (root) {
-  if (!root) return "[]";
-  let queue = [root];
-  let res = "";
-  while (queue.length) {
-    let node = queue.shift();
-    if (node) {
-      res += node.val + ",";
-      queue.push(node.left);
-      queue.push(node.right);
-    } else {
-      res += "null" + ",";
+    if (!root) return '[]';
+    let queue = [root];
+    let res = '';
+    while (queue.length) {
+        let node = queue.shift();
+        if (node) {
+            res += node.val + ',';
+            queue.push(node.left);
+            queue.push(node.right);
+        } else {
+            res += 'null' + ',';
+        }
     }
-  }
-  return `[${res.substring(0, res.length - 1)}]`;
+    return `[${res.substring(0, res.length - 1)}]`;
 };
 
 /**
@@ -208,30 +210,137 @@ var serialize = function (root) {
  * @return {TreeNode}
  */
 var deserialize = function (data) {
-  if (!data || data.length <= 2) return null;
-  let arr = data.substring(1, data.length - 1).split(",");
-  let root = new TreeNode(arr.shift());
-  let queue = [root];
-  while (queue.length) {
-    let node = queue.shift();
-    let leftVal = arr.shift();
-    if (leftVal !== "null") {
-      node.left = new TreeNode(leftVal);
-      queue.push(node.left);
+    if (!data || data.length <= 2) return null;
+    let arr = data.substring(1, data.length - 1).split(',');
+    let root = new TreeNode(arr.shift());
+    let queue = [root];
+    while (queue.length) {
+        let node = queue.shift();
+        let leftVal = arr.shift();
+        if (leftVal !== 'null') {
+            node.left = new TreeNode(leftVal);
+            queue.push(node.left);
+        }
+        let rightVal = arr.shift();
+        if (rightVal !== 'null') {
+            node.right = new TreeNode(rightVal);
+            queue.push(node.right);
+        }
     }
-    let rightVal = arr.shift();
-    if (rightVal !== "null") {
-      node.right = new TreeNode(rightVal);
-      queue.push(node.right);
-    }
-  }
-  return root;
+    return root;
 };
 
 /**
  * Your functions will be called as such:
  * deserialize(serialize(root));
  */
+```
+
+前序遍历：
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var serialize = function (root) {
+    if (root == null) {
+        return '#';
+    }
+    const { val, left, right } = root;
+    return `${val},${serialize(left)},${serialize(right)}`;
+};
+
+/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */
+var deserialize = function (data) {
+    const vals = data.split(',');
+    let index = 0;
+    const dfs = () => {
+        if (vals[index] == '#') {
+            index++;
+            return null;
+        }
+        const res = new TreeNode(vals[index++]);
+        res.left = dfs();
+        res.right = dfs();
+        return res;
+    };
+    return dfs();
+};
+
+/**
+ * Your functions will be called as such:
+ * deserialize(serialize(root));
+ */
+```
+
+### **C#**
+
+```cs
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Codec {
+    public string serialize(TreeNode root) {
+        return rserialize(root, "");
+    }
+
+    public TreeNode deserialize(string data) {
+        string[] dataArray = data.Split(",");
+        LinkedList<string> dataList = new LinkedList<string>(dataArray.ToList());
+        return rdeserialize(dataList);
+    }
+
+    public string rserialize(TreeNode root, string str) {
+        if (root == null) {
+            str += "None,";
+        } else {
+            str += root.val.ToString() + ",";
+            str = rserialize(root.left, str);
+            str = rserialize(root.right, str);
+        }
+        return str;
+    }
+
+    public TreeNode rdeserialize(LinkedList<string> dataList) {
+        if (dataList.First.Value.Equals("None")) {
+            dataList.RemoveFirst();
+            return null;
+        }
+
+        TreeNode root = new TreeNode(int.Parse(dataList.First.Value));
+        dataList.RemoveFirst();
+        root.left = rdeserialize(dataList);
+        root.right = rdeserialize(dataList);
+
+        return root;
+    }
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));
 ```
 
 ### **...**

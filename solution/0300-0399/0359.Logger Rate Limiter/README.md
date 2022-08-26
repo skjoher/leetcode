@@ -1,4 +1,4 @@
-# [359. 日志速率限制器](https://leetcode-cn.com/problems/logger-rate-limiter)
+# [359. 日志速率限制器](https://leetcode.cn/problems/logger-rate-limiter)
 
 [English Version](/solution/0300-0399/0359.Logger%20Rate%20Limiter/README_EN.md)
 
@@ -63,7 +63,6 @@ logger.shouldPrintMessage(11, "foo"); // 11 >= 11 ，返回 true ，下一次 "f
 
 ```python
 class Logger:
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -129,7 +128,7 @@ class Logger {
  * Initialize your data structure here.
  */
 var Logger = function () {
-  this.limiter = {};
+    this.limiter = {};
 };
 
 /**
@@ -141,12 +140,12 @@ var Logger = function () {
  * @return {boolean}
  */
 Logger.prototype.shouldPrintMessage = function (timestamp, message) {
-  const t = this.limiter[message] || 0;
-  if (t > timestamp) {
-    return false;
-  }
-  this.limiter[message] = timestamp + 10;
-  return true;
+    const t = this.limiter[message] || 0;
+    if (t > timestamp) {
+        return false;
+    }
+    this.limiter[message] = timestamp + 10;
+    return true;
 };
 
 /**

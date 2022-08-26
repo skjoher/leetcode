@@ -1,4 +1,4 @@
-# [02.08. Linked List Cycle](https://leetcode-cn.com/problems/linked-list-cycle-lcci)
+# [02.08. Linked List Cycle](https://leetcode.cn/problems/linked-list-cycle-lcci)
 
 [中文文档](/lcci/02.08.Linked%20List%20Cycle/README.md)
 
@@ -49,19 +49,19 @@ Can you solve it without using additional space?</p>
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
-        fast = slow = p = head
-        while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-            if fast == slow:
-                break
-        if fast is None or fast.next is None:
+        slow = fast = head
+        has_cycle = False
+        while not has_cycle and fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+            has_cycle = slow == fast
+        if not has_cycle:
             return None
-        while slow != p:
-            p = p.next
-            slow = slow.next
+        p = head
+        while p != slow:
+            p, slow = p.next, slow.next
         return p
 ```
 
@@ -81,20 +81,122 @@ class Solution:
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-         ListNode fast = head, slow = head;
-         while (fast != null && fast.next != null) {
-             fast = fast.next.next;
-             slow = slow.next;
-             if (fast == slow) break;
-         }
-         if (fast == null || fast.next == null) return null;
-         ListNode p = head;
-         while (p != slow) {
-             p = p.next;
-             slow = slow.next;
-         }
-         return p;
+        ListNode slow = head, fast = head;
+        boolean hasCycle = false;
+        while (!hasCycle && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            hasCycle = slow == fast;
+        }
+        if (!hasCycle) {
+            return null;
+        }
+        ListNode p = head;
+        while (p != slow) {
+            p = p.next;
+            slow = slow.next;
+        }
+        return p;
     }
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* detectCycle(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        bool hasCycle = false;
+        while (!hasCycle && fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            hasCycle = slow == fast;
+        }
+        if (!hasCycle) {
+            return nullptr;
+        }
+        ListNode* p = head;
+        while (p != slow) {
+            p = p->next;
+            slow = slow->next;
+        }
+        return p;
+    }
+};
+```
+
+### **JavaScript**
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+    let slow = head;
+    let fast = head;
+    let hasCycle = false;
+    while (!hasCycle && fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        hasCycle = slow == fast;
+    }
+    if (!hasCycle) {
+        return null;
+    }
+    let p = head;
+    while (p != slow) {
+        p = p.next;
+        slow = slow.next;
+    }
+    return p;
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func detectCycle(head *ListNode) *ListNode {
+	slow, fast := head, head
+	hasCycle := false
+	for !hasCycle && fast != nil && fast.Next != nil {
+		slow, fast = slow.Next, fast.Next.Next
+		hasCycle = slow == fast
+	}
+	if !hasCycle {
+		return nil
+	}
+	p := head
+	for p != slow {
+		p, slow = p.Next, slow.Next
+	}
+	return p
 }
 ```
 

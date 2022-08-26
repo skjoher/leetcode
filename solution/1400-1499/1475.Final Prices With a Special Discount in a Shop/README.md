@@ -1,4 +1,4 @@
-# [1475. 商品折扣后的最终价格](https://leetcode-cn.com/problems/final-prices-with-a-special-discount-in-a-shop)
+# [1475. 商品折扣后的最终价格](https://leetcode.cn/problems/final-prices-with-a-special-discount-in-a-shop)
 
 [English Version](/solution/1400-1499/1475.Final%20Prices%20With%20a%20Special%20Discount%20in%20a%20Shop/README_EN.md)
 
@@ -47,10 +47,13 @@
 	<li><code>1 &lt;= prices[i] &lt;= 10^3</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：单调栈**
+
+时间复杂度 $O(n)$，其中 $n$ 表示 $prices$ 的长度。
 
 <!-- tabs:start -->
 
@@ -59,7 +62,15 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        stk = []
+        ans = prices[:]
+        for i, v in enumerate(prices):
+            while stk and prices[stk[-1]] >= v:
+                ans[stk.pop()] -= v
+            stk.append(i)
+        return ans
 ```
 
 ### **Java**
@@ -67,7 +78,100 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] finalPrices(int[] prices) {
+        Deque<Integer> stk = new ArrayDeque<>();
+        int n = prices.length;
+        int[] ans = new int[n];
+        for (int i = 0; i < n; ++i) {
+            ans[i] = prices[i];
+            while (!stk.isEmpty() && prices[stk.peek()] >= prices[i]) {
+                ans[stk.pop()] -= prices[i];
+            }
+            stk.push(i);
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        stack<int> stk;
+        vector<int> ans = prices;
+        for (int i = 0; i < prices.size(); ++i) {
+            while (!stk.empty() && prices[stk.top()] >= prices[i]) {
+                ans[stk.top()] -= prices[i];
+                stk.pop();
+            }
+            stk.push(i);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func finalPrices(prices []int) []int {
+	var stk []int
+	n := len(prices)
+	ans := make([]int, n)
+	for i, v := range prices {
+		ans[i] = v
+		for len(stk) > 0 && prices[stk[len(stk)-1]] >= v {
+			ans[stk[len(stk)-1]] -= v
+			stk = stk[:len(stk)-1]
+		}
+		stk = append(stk, i)
+	}
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function finalPrices(prices: number[]): number[] {
+    const n = prices.length;
+    const stack = [];
+    const res = new Array(n);
+    for (let i = n - 1; i >= 0; i--) {
+        const price = prices[i];
+        while (stack.length !== 0 && stack[stack.length - 1] > price) {
+            stack.pop();
+        }
+        res[i] = price - (stack[stack.length - 1] ?? 0);
+        stack.push(price);
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn final_prices(prices: Vec<i32>) -> Vec<i32> {
+        let n = prices.len();
+        let mut stack = Vec::new();
+        let mut res = vec![0; n];
+        for i in (0..n).rev() {
+            let price = prices[i];
+            while !stack.is_empty() && *stack.last().unwrap() > price {
+                stack.pop();
+            }
+            res[i] = price - stack.last().unwrap_or(&0);
+            stack.push(price);
+        }
+        res
+    }
+}
 ```
 
 ### **...**

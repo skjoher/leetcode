@@ -44,12 +44,10 @@ Therefore, you can&#39;t travel around the circuit once no matter where you star
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>gas.length == n</code></li>
-	<li><code>cost.length == n</code></li>
-	<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>
+	<li><code>n == gas.length == cost.length</code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>
 	<li><code>0 &lt;= gas[i], cost[i] &lt;= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## Solutions
 
@@ -58,13 +56,91 @@ Therefore, you can&#39;t travel around the circuit once no matter where you star
 ### **Python3**
 
 ```python
-
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        n = len(gas)
+        i = j = n - 1
+        cnt = s = 0
+        while cnt < n:
+            s += gas[j] - cost[j]
+            cnt += 1
+            j = (j + 1) % n
+            while s < 0 and cnt < n:
+                i -= 1
+                s += gas[i] - cost[i]
+                cnt += 1
+        return -1 if s < 0 else i
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int n = gas.length;
+        int i = n - 1, j = n - 1;
+        int cnt = 0, s = 0;
+        while (cnt < n) {
+            s += gas[j] - cost[j];
+            ++cnt;
+            j = (j + 1) % n;
+            while (s < 0 && cnt < n) {
+                --i;
+                s += gas[i] - cost[i];
+                ++cnt;
+            }
+        }
+        return s < 0 ? -1 : i;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int n = gas.size();
+        int i = n - 1, j = n - 1;
+        int cnt = 0, s = 0;
+        while (cnt < n) {
+            s += gas[j] - cost[j];
+            ++cnt;
+            j = (j + 1) % n;
+            while (s < 0 && cnt < n) {
+                --i;
+                s += gas[i] - cost[i];
+                ++cnt;
+            }
+        }
+        return s < 0 ? -1 : i;
+    }
+};
+```
+
+### **Go**
+
+```go
+func canCompleteCircuit(gas []int, cost []int) int {
+    n := len(gas)
+    i, j := n - 1, n - 1
+    cnt, s := 0, 0
+    for cnt < n {
+        s += gas[j] - cost[j]
+        cnt++
+        j = (j + 1) % n
+        for s < 0 && cnt < n {
+            i--
+            s += gas[i] - cost[i]
+            cnt++
+        }
+    }
+    if s < 0 {
+        return -1
+    }
+    return i
+}
 ```
 
 ### **...**

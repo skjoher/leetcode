@@ -37,13 +37,6 @@ we can combine 1 and 1 to get 0, so the array converts to [1], then that&#39;s t
 <strong>Output:</strong> 5
 </pre>
 
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> stones = [1,2]
-<strong>Output:</strong> 1
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -52,21 +45,201 @@ we can combine 1 and 1 to get 0, so the array converts to [1], then that&#39;s t
 	<li><code>1 &lt;= stones[i] &lt;= 100</code></li>
 </ul>
 
-
 ## Solutions
+
+Dynamic programming.
+
+This question can be converted to calculate how many stones a knapsack with a capacity of `sum / 2` can hold.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
+class Solution:
+    def lastStoneWeightII(self, stones: List[int]) -> int:
+        s = sum(stones)
+        m, n = len(stones), s >> 1
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(n + 1):
+                dp[i][j] = dp[i - 1][j]
+                if stones[i - 1] <= j:
+                    dp[i][j] = max(
+                        dp[i][j], dp[i - 1][j - stones[i - 1]] + stones[i - 1]
+                    )
+        return s - 2 * dp[-1][-1]
+```
 
+```python
+class Solution:
+    def lastStoneWeightII(self, stones: List[int]) -> int:
+        s = sum(stones)
+        m, n = len(stones), s >> 1
+        dp = [0] * (n + 1)
+        for v in stones:
+            for j in range(n, v - 1, -1):
+                dp[j] = max(dp[j], dp[j - v] + v)
+        return s - dp[-1] * 2
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int lastStoneWeightII(int[] stones) {
+        int s = 0;
+        for (int v : stones) {
+            s += v;
+        }
+        int m = stones.length;
+        int n = s >> 1;
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 0; j <= n; ++j) {
+                dp[i][j] = dp[i - 1][j];
+                if (stones[i - 1] <= j) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - stones[i - 1]] + stones[i - 1]);
+                }
+            }
+        }
+        return s - dp[m][n] * 2;
+    }
+}
+```
 
+```java
+class Solution {
+    public int lastStoneWeightII(int[] stones) {
+        int s = 0;
+        for (int v : stones) {
+            s += v;
+        }
+        int m = stones.length;
+        int n = s >> 1;
+        int[] dp = new int[n + 1];
+        for (int v : stones) {
+            for (int j = n; j >= v; --j) {
+                dp[j] = Math.max(dp[j], dp[j - v] + v);
+            }
+        }
+        return s - dp[n] * 2;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int lastStoneWeightII(vector<int>& stones) {
+        int s = accumulate(stones.begin(), stones.end(), 0);
+        int m = stones.size(), n = s >> 1;
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 0; j <= n; ++j) {
+                dp[i][j] = dp[i - 1][j];
+                if (stones[i - 1] <= j) dp[i][j] = max(dp[i][j], dp[i - 1][j - stones[i - 1]] + stones[i - 1]);
+            }
+        }
+        return s - dp[m][n] * 2;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    int lastStoneWeightII(vector<int>& stones) {
+        int s = accumulate(stones.begin(), stones.end(), 0);
+        int n = s >> 1;
+        vector<int> dp(n + 1);
+        for (int& v : stones)
+            for (int j = n; j >= v; --j)
+                dp[j] = max(dp[j], dp[j - v] + v);
+        return s - dp[n] * 2;
+    }
+};
+```
+
+### **Go**
+
+```go
+func lastStoneWeightII(stones []int) int {
+	s := 0
+	for _, v := range stones {
+		s += v
+	}
+	m, n := len(stones), s>>1
+	dp := make([][]int, m+1)
+	for i := range dp {
+		dp[i] = make([]int, n+1)
+	}
+	for i := 1; i <= m; i++ {
+		for j := 0; j <= n; j++ {
+			dp[i][j] = dp[i-1][j]
+			if stones[i-1] <= j {
+				dp[i][j] = max(dp[i][j], dp[i-1][j-stones[i-1]]+stones[i-1])
+			}
+		}
+	}
+	return s - dp[m][n]*2
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+```go
+func lastStoneWeightII(stones []int) int {
+	s := 0
+	for _, v := range stones {
+		s += v
+	}
+	n := s >> 1
+	dp := make([]int, n+1)
+	for _, v := range stones {
+		for j := n; j >= v; j-- {
+			dp[j] = max(dp[j], dp[j-v]+v)
+		}
+	}
+	return s - dp[n]*2
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[]} stones
+ * @return {number}
+ */
+var lastStoneWeightII = function (stones) {
+    let s = 0;
+    for (let v of stones) {
+        s += v;
+    }
+    const n = s >> 1;
+    let dp = new Array(n + 1).fill(0);
+    for (let v of stones) {
+        for (let j = n; j >= v; --j) {
+            dp[j] = Math.max(dp[j], dp[j - v] + v);
+        }
+    }
+    return s - dp[n] * 2;
+};
 ```
 
 ### **...**

@@ -1,4 +1,4 @@
-# [1077. 项目员工 III](https://leetcode-cn.com/problems/project-employees-iii)
+# [1077. 项目员工 III](https://leetcode.cn/problems/project-employees-iii)
 
 [English Version](/solution/1000-1099/1077.Project%20Employees%20III/README_EN.md)
 
@@ -69,7 +69,6 @@ Result 表：
 | 2           | 1             |
 +-------------+---------------+
 employee_id 为 1 和 3 的员工在 project_id 为 1 的项目中拥有最丰富的经验。在 project_id 为 2 的项目中，employee_id 为 1 的员工拥有最丰富的经验。</pre>
-
 
 ## 解法
 

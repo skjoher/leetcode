@@ -6,6 +6,8 @@
 
 <p>You are given a <strong>sorted unique</strong> integer array <code>nums</code>.</p>
 
+<p>A <strong>range</strong> <code>[a,b]</code> is the set of all integers from <code>a</code> to <code>b</code> (inclusive).</p>
+
 <p>Return <em>the <strong>smallest sorted</strong> list of ranges that <strong>cover all the numbers in the array exactly</strong></em>. That is, each element of <code>nums</code> is covered by exactly one of the ranges, and there is no integer <code>x</code> such that <code>x</code> is in one of the ranges but not in <code>nums</code>.</p>
 
 <p>Each range <code>[a,b]</code> in the list should be output as:</p>
@@ -39,27 +41,6 @@
 [8,9] --&gt; &quot;8-&gt;9&quot;
 </pre>
 
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> nums = []
-<strong>Output:</strong> []
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> nums = [-1]
-<strong>Output:</strong> [&quot;-1&quot;]
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> nums = [0]
-<strong>Output:</strong> [&quot;0&quot;]
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -70,7 +51,6 @@
 	<li><code>nums</code> is sorted in ascending order.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -78,13 +58,115 @@
 ### **Python3**
 
 ```python
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        def make(nums, i, j):
+            return str(nums[i]) if i == j else f'{nums[i]}->{nums[j]}'
 
+        i = j = 0
+        n = len(nums)
+        res = []
+        while j < n:
+            while j + 1 < n and nums[j] + 1 == nums[j + 1]:
+                j += 1
+            res.append(make(nums, i, j))
+            i = j + 1
+            j = i
+        return res
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> res = new ArrayList<>();
+        for (int i = 0, j = 0, n = nums.length; j < n;) {
+            while (j + 1 < n && nums[j] + 1 == nums[j + 1]) {
+                ++j;
+            }
+            res.add(make(nums, i, j));
+            i = j + 1;
+            j = i;
+        }
+        return res;
+    }
 
+    private String make(int[] nums, int i, int j) {
+        return i == j ? String.valueOf(nums[i]) : String.format("%d->%d", nums[i], nums[j]);
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<string> summaryRanges(vector<int>& nums) {
+        vector<string> res;
+        for (int i = 0, j = 0, n = nums.size(); j < n;) {
+            while (j + 1 < n && nums[j] + 1 == nums[j + 1]) ++j;
+            res.push_back(make(nums, i, j));
+            i = j + 1;
+            j = i;
+        }
+        return res;
+    }
+
+    string make(vector<int>& nums, int i, int j) {
+        return i == j ? to_string(nums[i]) : to_string(nums[i]) + "->" + to_string(nums[j]);
+    }
+};
+```
+
+### **Go**
+
+```go
+func summaryRanges(nums []int) []string {
+	var res []string
+	for i, j, n := 0, 0, len(nums); j < n; {
+		for j+1 < n && nums[j]+1 == nums[j+1] {
+			j++
+		}
+		res = append(res, make(nums, i, j))
+		i = j + 1
+		j = i
+	}
+	return res
+}
+
+func make(nums []int, i, j int) string {
+	if i == j {
+		return strconv.Itoa(nums[i])
+	}
+	return strconv.Itoa(nums[i]) + "->" + strconv.Itoa(nums[j])
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public IList<string> SummaryRanges(int[] nums) {
+        var res = new List<string>();
+        for (int i = 0, j = 0, n = nums.Length; j < n;)
+        {
+            while (j + 1 < n && nums[j] + 1 == nums[j + 1])
+            {
+                ++j;
+            }
+            res.Add(make(nums, i, j));
+            i = j + 1;
+            j = i;
+        }
+        return res;
+    }
+
+    public string make(int[] nums, int i, int j) {
+        return i == j ? nums[i].ToString() : string.Format("{0}->{1}", nums[i], nums[j]);
+    }
+}
 ```
 
 ### **...**

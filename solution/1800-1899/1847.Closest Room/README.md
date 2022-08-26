@@ -1,4 +1,4 @@
-# [1847. 最近的房间](https://leetcode-cn.com/problems/closest-room)
+# [1847. 最近的房间](https://leetcode.cn/problems/closest-room)
 
 [English Version](/solution/1800-1899/1847.Closest%20Room/README_EN.md)
 
@@ -53,7 +53,6 @@
 	<li><code>1 <= roomId<sub>i</sub>, preferred<sub>j</sub> <= 10<sup>7</sup></code></li>
 	<li><code>1 <= size<sub>i</sub>, minSize<sub>j</sub> <= 10<sup>7</sup></code></li>
 </ul>
-
 
 ## 解法
 

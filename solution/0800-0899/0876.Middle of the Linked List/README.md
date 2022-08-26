@@ -1,4 +1,4 @@
-# [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list)
+# [876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)
 
 [English Version](/solution/0800-0899/0876.Middle%20of%20the%20Linked%20List/README_EN.md)
 
@@ -87,6 +87,109 @@ class Solution {
             fast = fast.next.next;
         }
         return slow;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function middleNode(head: ListNode | null): ListNode | null {
+    let fast = head,
+        slow = head;
+    while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    return slow;
+}
+```
+
+### **C++**
+
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func middleNode(head *ListNode) *ListNode {
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
+		slow, fast = slow.Next, fast.Next.Next
+	}
+	return slow
+}
+```
+
+### **Rust**
+
+```rust
+// Definition for singly-linked list.
+// #[derive(PartialEq, Eq, Clone, Debug)]
+// pub struct ListNode {
+//   pub val: i32,
+//   pub next: Option<Box<ListNode>>
+// }
+//
+// impl ListNode {
+//   #[inline]
+//   fn new(val: i32) -> Self {
+//     ListNode {
+//       next: None,
+//       val
+//     }
+//   }
+// }
+impl Solution {
+    pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        let mut slow = &head;
+        let mut fast = &head;
+        while fast.is_some() && fast.as_ref().unwrap().next.is_some() {
+            slow = &slow.as_ref().unwrap().next;
+            fast = &fast.as_ref().unwrap().next.as_ref().unwrap().next;
+        }
+        slow.clone()
     }
 }
 ```

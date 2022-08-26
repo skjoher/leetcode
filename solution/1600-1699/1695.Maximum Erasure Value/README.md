@@ -1,4 +1,4 @@
-# [1695. 删除子数组的最大得分](https://leetcode-cn.com/problems/maximum-erasure-value)
+# [1695. 删除子数组的最大得分](https://leetcode.cn/problems/maximum-erasure-value)
 
 [English Version](/solution/1600-1699/1695.Maximum%20Erasure%20Value/README_EN.md)
 
@@ -38,7 +38,6 @@
 	<li><code>1 <= nums.length <= 10<sup>5</sup></code></li>
 	<li><code>1 <= nums[i] <= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1801. 积压订单中的订单总数](https://leetcode-cn.com/problems/number-of-orders-in-the-backlog)
+# [1801. 积压订单中的订单总数](https://leetcode.cn/problems/number-of-orders-in-the-backlog)
 
 [English Version](/solution/1800-1899/1801.Number%20of%20Orders%20in%20the%20Backlog/README_EN.md)
 
@@ -29,7 +29,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1801.Number%20of%20Orders%20in%20the%20Backlog/images/ex1.png" style="width: 450px; height: 479px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1801.Number%20of%20Orders%20in%20the%20Backlog/images/ex1.png" style="width: 450px; height: 479px;" />
 <pre>
 <strong>输入：</strong>orders = [[10,5,0],[15,2,1],[25,1,1],[30,4,0]]
 <strong>输出：</strong>6
@@ -42,7 +42,7 @@
 </pre>
 
 <p><strong>示例 2：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1801.Number%20of%20Orders%20in%20the%20Backlog/images/ex2.png" style="width: 450px; height: 584px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1801.Number%20of%20Orders%20in%20the%20Backlog/images/ex2.png" style="width: 450px; height: 584px;" />
 <pre>
 <strong>输入：</strong>orders = [[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]
 <strong>输出：</strong>999999984
@@ -63,7 +63,6 @@
 	<li><code>1 <= price<sub>i</sub>, amount<sub>i</sub> <= 10<sup>9</sup></code></li>
 	<li><code>orderType<sub>i</sub></code> 为 <code>0</code> 或 <code>1</code></li>
 </ul>
-
 
 ## 解法
 

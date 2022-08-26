@@ -1,4 +1,4 @@
-# [04.08. First Common Ancestor](https://leetcode-cn.com/problems/first-common-ancestor-lcci)
+# [04.08. First Common Ancestor](https://leetcode.cn/problems/first-common-ancestor-lcci)
 
 [中文文档](/lcci/04.08.First%20Common%20Ancestor/README.md)
 
@@ -67,8 +67,11 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    def lowestCommonAncestor(
+        self, root: TreeNode, p: TreeNode, q: TreeNode
+    ) -> TreeNode:
         if root is None or root == p or root == q:
             return root
         left = self.lowestCommonAncestor(root.left, p, q)

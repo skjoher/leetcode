@@ -1,4 +1,4 @@
-# [1677. 发票中的产品金额](https://leetcode-cn.com/problems/products-worth-over-invoices)
+# [1677. 发票中的产品金额](https://leetcode.cn/problems/products-worth-over-invoices)
 
 [English Version](/solution/1600-1699/1677.Product%27s%20Worth%20Over%20Invoices/README_EN.md)
 
@@ -18,8 +18,6 @@
 product_id 是这张表的主键
 表中含有产品 id 、产品名称。产品名称都是小写的英文字母，产品名称都是唯一的
 </pre>
-
-<p> </p>
 
 <p><code>Invoice </code>表：</p>
 
@@ -44,9 +42,9 @@ refunded 已退款金额
 
 <p> </p>
 
-<p>要求写一个SQL查询，返回全部发票中每个产品的产品名称、总应缴款项、总已支付金额、总已取消金额、总已退款金额</p>
+<p>要求写一个SQL查询，对于所有产品，返回每个产品的产品名称，以及全部发票累计的总应缴款项、总已支付金额、总已取消金额、总已退款金额。</p>
 
-<p>查询结果按<code> product_name</code>排序</p>
+<p>查询结果按 <code>product_name</code> 排序</p>
 
 <p>示例：</p>
 
@@ -85,7 +83,6 @@ Result 表：
 - ham 的总已取消金额为 5 + 0 = 5
 - ham 的总已退款金额为 0 + 3 = 3
 </pre>
-
 
 ## 解法
 

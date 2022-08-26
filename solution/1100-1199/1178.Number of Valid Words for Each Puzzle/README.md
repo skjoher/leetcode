@@ -1,4 +1,4 @@
-# [1178. 猜字谜](https://leetcode-cn.com/problems/number-of-valid-words-for-each-puzzle)
+# [1178. 猜字谜](https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle)
 
 [English Version](/solution/1100-1199/1178.Number%20of%20Valid%20Words%20for%20Each%20Puzzle/README_EN.md)
 
@@ -48,7 +48,6 @@ puzzles = ["aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"]
 	<li><code>words[i][j]</code>, <code>puzzles[i][j]</code> 都是小写英文字母。</li>
 	<li>每个 <code>puzzles[i]</code> 所包含的字符都不重复。</li>
 </ul>
-
 
 ## 解法
 

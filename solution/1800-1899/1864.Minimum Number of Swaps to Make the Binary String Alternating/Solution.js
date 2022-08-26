@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
- var minSwaps = function(s) {
+var minSwaps = function (s) {
     let n = s.length;
     let n1 = [...s].reduce((a, c) => parseInt(c) + a, 0);
     let n0 = n - n1;

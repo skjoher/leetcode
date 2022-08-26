@@ -1,4 +1,4 @@
-# [1716. 计算力扣银行的钱](https://leetcode-cn.com/problems/calculate-money-in-leetcode-bank)
+# [1716. 计算力扣银行的钱](https://leetcode.cn/problems/calculate-money-in-leetcode-bank)
 
 [English Version](/solution/1700-1799/1716.Calculate%20Money%20in%20Leetcode%20Bank/README_EN.md)
 
@@ -43,10 +43,11 @@
 	<li><code>1 &lt;= n &lt;= 1000</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+等差数列。
 
 <!-- tabs:start -->
 
@@ -55,7 +56,10 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def totalMoney(self, n: int) -> int:
+        a, b = divmod(n, 7)
+        return (28 + 28 + 7 * (a - 1)) * a // 2 + (a * 2 + b + 1) * b // 2
 ```
 
 ### **Java**
@@ -63,7 +67,33 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int totalMoney(int n) {
+        int a = n / 7, b = n % 7;
+        return (28 + 28 + 7 * (a - 1)) * a / 2 + (a * 2 + b + 1) * b / 2;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int totalMoney(int n) {
+        int a = n / 7, b = n % 7;
+        return (28 + 28 + 7 * (a - 1)) * a / 2 + (a * 2 + b + 1) * b / 2;
+    }
+};
+```
+
+### **Go**
+
+```go
+func totalMoney(n int) int {
+	a, b := n/7, n%7
+	return (28+28+7*(a-1))*a/2 + (a*2+b+1)*b/2
+}
 ```
 
 ### **...**

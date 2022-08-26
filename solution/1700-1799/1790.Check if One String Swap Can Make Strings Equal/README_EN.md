@@ -33,13 +33,6 @@
 <strong>Explanation:</strong> The two strings are already equal, so no string swap operation is required.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s1 = &quot;abcd&quot;, s2 = &quot;dcba&quot;
-<strong>Output:</strong> false
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -49,7 +42,6 @@
 	<li><code>s1</code> and <code>s2</code> consist of only lowercase English letters.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -57,13 +49,109 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def areAlmostEqual(self, s1: str, s2: str) -> bool:
+        cnt, n = 0, len(s1)
+        c1 = c2 = None
+        for i in range(n):
+            if s1[i] != s2[i]:
+                cnt += 1
+                if (cnt == 2 and (s1[i] != c2 or s2[i] != c1)) or cnt > 2:
+                    return False
+                c1, c2 = s1[i], s2[i]
+        return cnt == 0 or cnt == 2
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public boolean areAlmostEqual(String s1, String s2) {
+        int n = s1.length();
+        int cnt = 0;
+        char c1 = 0;
+        char c2 = 0;
+        for (int i = 0; i < n; ++i) {
+            char t1 = s1.charAt(i), t2 = s2.charAt(i);
+            if (t1 != t2) {
+                ++cnt;
+                if ((cnt == 2 && (c1 != t2 || c2 != t1)) || cnt > 2) {
+                    return false;
+                }
+                c1 = t1;
+                c2 = t2;
+            }
+        }
+        return cnt == 0 || cnt == 2;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool areAlmostEqual(string s1, string s2) {
+        char c1 = 0, c2 = 0;
+        int n = s1.size();
+        int cnt = 0;
+        for (int i = 0; i < n; ++i) {
+            if (s1[i] != s2[i]) {
+                ++cnt;
+                if ((cnt == 2 && (c1 != s2[i] || c2 != s1[i])) || cnt > 2) return false;
+                c1 = s1[i];
+                c2 = s2[i];
+            }
+        }
+        return cnt == 0 || cnt == 2;
+    }
+};
+```
+
+### **Go**
+
+```go
+func areAlmostEqual(s1 string, s2 string) bool {
+	var c1, c2 byte
+	cnt, n := 0, len(s1)
+	for i := 0; i < n; i++ {
+		if s1[i] != s2[i] {
+			cnt++
+			if (cnt == 2 && (c1 != s2[i] || c2 != s1[i])) || cnt > 2 {
+				return false
+			}
+			c1, c2 = s1[i], s2[i]
+		}
+	}
+	return cnt == 0 || cnt == 2
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn are_almost_equal(s1: String, s2: String) -> bool {
+        let (s1, s2) = (s1.as_bytes(), s2.as_bytes());
+        let n = s1.len();
+        let mut indexs = vec![];
+        for i in 0..n {
+            let (c1, c2) = (s1[i], s2[i]);
+            if c1 != c2 {
+                indexs.push(i);
+                if indexs.len() > 2 {
+                    return false;
+                }
+            }
+        }
+        let size = indexs.len();
+        if size == 2 {
+            return s1[indexs[0]] == s2[indexs[1]] && s2[indexs[0]] == s1[indexs[1]];
+        }
+        size != 1
+    }
+}
 ```
 
 ### **...**

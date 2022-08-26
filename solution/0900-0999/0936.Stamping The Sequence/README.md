@@ -1,4 +1,4 @@
-# [936. 戳印序列](https://leetcode-cn.com/problems/stamping-the-sequence)
+# [936. 戳印序列](https://leetcode.cn/problems/stamping-the-sequence)
 
 [English Version](/solution/0900-0999/0936.Stamping%20The%20Sequence/README_EN.md)
 
@@ -43,7 +43,6 @@
 	<li><code>1 &lt;= stamp.length &lt;= target.length &lt;= 1000</code></li>
 	<li><code>stamp</code> 和&nbsp;<code>target</code>&nbsp;只包含小写字母。</li>
 </ol>
-
 
 ## 解法
 

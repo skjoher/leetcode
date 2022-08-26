@@ -1,4 +1,4 @@
-# [1829. 每个查询的最大异或值](https://leetcode-cn.com/problems/maximum-xor-for-each-query)
+# [1829. 每个查询的最大异或值](https://leetcode.cn/problems/maximum-xor-for-each-query)
 
 [English Version](/solution/1800-1899/1829.Maximum%20XOR%20for%20Each%20Query/README_EN.md)
 
@@ -60,10 +60,11 @@
 	<li><code>nums</code>​​​ 中的数字已经按 <strong>升序</strong> 排好序。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+前缀异或。
 
 <!-- tabs:start -->
 
@@ -72,7 +73,20 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
+        n = len(nums)
+        s = [0] * (n + 1)
+        for i, x in enumerate(nums):
+            s[i + 1] = s[i] ^ x
+        ans = []
+        for x in s[:0:-1]:
+            t = 0
+            for i in range(maximumBit):
+                if ((x >> i) & 1) == 0:
+                    t |= 1 << i
+            ans.append(t)
+        return ans
 ```
 
 ### **Java**
@@ -80,7 +94,71 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] getMaximumXor(int[] nums, int maximumBit) {
+        int n = nums.length;
+        int[] s = new int[n + 1];
+        for (int i = 0; i < n; ++i) {
+            s[i + 1] = s[i] ^ nums[i];
+        }
+        int[] ans = new int[n];
+        for (int i = n; i > 0; --i) {
+            int t = 0, x = s[i];
+            for (int j = 0; j < maximumBit; ++j) {
+                if (((x >> j) & 1) == 0) {
+                    t |= (1 << j);
+                }
+            }
+            ans[n - i] = t;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> getMaximumXor(vector<int>& nums, int maximumBit) {
+        int n = nums.size();
+        vector<int> s(n + 1);
+        for (int i = 0; i < n; ++i) s[i + 1] = s[i] ^ nums[i];
+        vector<int> ans;
+        for (int i = n; i > 0; --i) {
+            int t = 0, x = s[i];
+            for (int j = 0; j < maximumBit; ++j) {
+                if (((x >> j) & 1) == 0) t |= (1 << j);
+            }
+            ans.push_back(t);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func getMaximumXor(nums []int, maximumBit int) []int {
+	n := len(nums)
+	s := make([]int, n+1)
+	for i, v := range nums {
+		s[i+1] = s[i] ^ v
+	}
+	var ans []int
+	for i := n; i > 0; i-- {
+		t, x := 0, s[i]
+		for j := 0; j < maximumBit; j++ {
+			if ((x >> j) & 1) == 0 {
+				t |= (1 << j)
+			}
+		}
+		ans = append(ans, t)
+	}
+	return ans
+}
 ```
 
 ### **...**

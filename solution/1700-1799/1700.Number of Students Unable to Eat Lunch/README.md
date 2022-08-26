@@ -1,4 +1,4 @@
-# [1700. 无法吃午餐的学生数量](https://leetcode-cn.com/problems/number-of-students-unable-to-eat-lunch)
+# [1700. 无法吃午餐的学生数量](https://leetcode.cn/problems/number-of-students-unable-to-eat-lunch)
 
 [English Version](/solution/1700-1799/1700.Number%20of%20Students%20Unable%20to%20Eat%20Lunch/README_EN.md)
 
@@ -70,7 +70,7 @@
 ```python
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        counter = collections.Counter(students)
+        counter = Counter(students)
         for i, sandwich in enumerate(sandwiches):
             if counter[sandwich] == 0:
                 return len(students) - i

@@ -40,25 +40,8 @@ There are no other valid combinations.
 <pre>
 <strong>Input:</strong> k = 4, n = 1
 <strong>Output:</strong> []
-<strong>Explanation:</strong> There are no valid combinations. [1,2,1] is not valid because 1 is used twice.
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> k = 3, n = 2
-<strong>Output:</strong> []
 <strong>Explanation:</strong> There are no valid combinations.
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> k = 9, n = 45
-<strong>Output:</strong> [[1,2,3,4,5,6,7,8,9]]
-<strong>Explanation:</strong>
-1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 = 45
-​​​​​​​There are no other valid combinations.
+Using 4 different numbers in the range [1,9], the smallest sum we can get is 1+2+3+4 = 10 and since 10 &gt; 1, there are no valid combination.
 </pre>
 
 <p>&nbsp;</p>
@@ -69,21 +52,118 @@ There are no other valid combinations.
 	<li><code>1 &lt;= n &lt;= 60</code></li>
 </ul>
 
-
 ## Solutions
+
+DFS.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        def dfs(i, s, t):
+            if i > 9 or s > n or len(t) > k:
+                return
+            if s == n and len(t) == k:
+                ans.append(t[:])
+                return
+            i += 1
+            t.append(i)
+            dfs(i, s + i, t)
+            t.pop()
+            dfs(i, s, t)
 
+        ans = []
+        dfs(0, 0, [])
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    private List<List<Integer>> ans;
 
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        ans = new ArrayList<>();
+        dfs(0, n, k, new ArrayList<>());
+        return ans;
+    }
+
+    private void dfs(int i, int n, int k, List<Integer> t) {
+        if (i > 9 || n < 0 || t.size() > k) {
+            return;
+        }
+        if (n == 0 && t.size() == k) {
+            ans.add(new ArrayList<>(t));
+            return;
+        }
+        ++i;
+        t.add(i);
+        dfs(i, n - i, k, t);
+        t.remove(t.size() - 1);
+        dfs(i, n, k, t);
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> ans;
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> t;
+        dfs(0, n, k, t);
+        return ans;
+    }
+
+    void dfs(int i, int n, int k, vector<int>& t) {
+        if (i > 9 || n < 0 || t.size() > k) return;
+        if (n == 0 && t.size() == k) {
+            ans.push_back(t);
+            return;
+        }
+        ++i;
+        t.push_back(i);
+        dfs(i, n - i, k, t);
+        t.pop_back();
+        dfs(i, n, k, t);
+    }
+};
+```
+
+### **Go**
+
+```go
+func combinationSum3(k int, n int) [][]int {
+	var ans [][]int
+	var t []int
+	var dfs func(i, n int, t []int)
+	dfs = func(i, n int, t []int) {
+		if i > 9 || n < 0 || len(t) > k {
+			return
+		}
+		if n == 0 && len(t) == k {
+			cp := make([]int, len(t))
+			copy(cp, t)
+			ans = append(ans, cp)
+			return
+		}
+		i++
+		t = append(t, i)
+		dfs(i, n-i, t)
+		t = t[:len(t)-1]
+		dfs(i, n, t)
+	}
+
+	dfs(0, n, t)
+	return ans
+}
 ```
 
 ### **...**

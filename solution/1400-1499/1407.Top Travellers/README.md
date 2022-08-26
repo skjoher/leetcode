@@ -1,4 +1,4 @@
-# [1407. 排名靠前的旅行者](https://leetcode-cn.com/problems/top-travellers)
+# [1407. 排名靠前的旅行者](https://leetcode.cn/problems/top-travellers)
 
 [English Version](/solution/1400-1499/1407.Top%20Travellers/README_EN.md)
 
@@ -88,7 +88,6 @@ Bob, Jonathan, Alex 和 Alice 只有一次行程，我们只按此次行程的�
 Donald 没有任何行程, 他的旅行距离为 0。
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -98,7 +97,15 @@ Donald 没有任何行程, 他的旅行距离为 0。
 ### **SQL**
 
 ```sql
-
+SELECT name,
+    COALESCE(SUM(distance), 0) AS travelled_distance
+FROM Users AS u
+    LEFT JOIN Rides AS r ON u.id = r.user_id
+GROUP BY
+    name
+ORDER BY
+    travelled_distance DESC,
+    name;
 ```
 
 <!-- tabs:end -->

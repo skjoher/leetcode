@@ -1,4 +1,4 @@
-# [1478. 安排邮筒](https://leetcode-cn.com/problems/allocate-mailboxes)
+# [1478. 安排邮筒](https://leetcode.cn/problems/allocate-mailboxes)
 
 [English Version](/solution/1400-1499/1478.Allocate%20Mailboxes/README_EN.md)
 
@@ -16,7 +16,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1478.Allocate%20Mailboxes/images/sample_11_1816.png" style="height: 154px; width: 454px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1478.Allocate%20Mailboxes/images/sample_11_1816.png" style="height: 154px; width: 454px;"></p>
 
 <pre><strong>输入：</strong>houses = [1,4,8,10,20], k = 3
 <strong>输出：</strong>5
@@ -26,7 +26,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1478.Allocate%20Mailboxes/images/sample_2_1816.png" style="height: 154px; width: 433px;"></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1478.Allocate%20Mailboxes/images/sample_2_1816.png" style="height: 154px; width: 433px;"></strong></p>
 
 <pre><strong>输入：</strong>houses = [2,3,5,12,18], k = 2
 <strong>输出：</strong>9
@@ -57,7 +57,6 @@
 	<li><code>1 &lt;= k &lt;= n</code></li>
 	<li>数组&nbsp;<code>houses</code>&nbsp;中的整数互不相同。</li>
 </ul>
-
 
 ## 解法
 

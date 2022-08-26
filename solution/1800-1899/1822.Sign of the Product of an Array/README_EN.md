@@ -90,13 +90,69 @@ class Solution {
  * @return {number}
  */
 var arraySign = function (nums) {
-  let res = 1;
-  for (let num of nums) {
-    if (num == 0) return 0;
-    if (num < 0) res *= -1;
-  }
-  return res;
+    let res = 1;
+    for (let num of nums) {
+        if (num == 0) return 0;
+        if (num < 0) res *= -1;
+    }
+    return res;
 };
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int arraySign(vector<int>& nums) {
+        int res = 1;
+        for (auto& num : nums) {
+            if (num == 0) {
+                return 0;
+            }
+            if (num < 0) {
+                res *= -1;
+            }
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func arraySign(nums []int) int {
+	res := 1
+	for _, num := range nums {
+		if num == 0 {
+			return 0
+		}
+		if num < 0 {
+			res *= -1
+		}
+	}
+	return res
+}
+```
+
+### **Rust**
+
+```rust
+use std::cmp::Ordering;
+impl Solution {
+    pub fn array_sign(nums: Vec<i32>) -> i32 {
+        let mut res = 1;
+        for num in nums.iter() {
+            match num.cmp(&0) {
+                Ordering::Equal => return 0,
+                Ordering::Less => res *= -1,
+                Ordering::Greater => {}
+            }
+        }
+        res
+    }
+}
 ```
 
 ### **...**

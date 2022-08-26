@@ -1,4 +1,4 @@
-# [1510. 石子游戏 IV](https://leetcode-cn.com/problems/stone-game-iv)
+# [1510. 石子游戏 IV](https://leetcode.cn/problems/stone-game-iv)
 
 [English Version](/solution/1500-1599/1510.Stone%20Game%20IV/README_EN.md)
 
@@ -62,7 +62,6 @@
 <ul>
 	<li><code>1 &lt;= n &lt;= 10^5</code></li>
 </ul>
-
 
 ## 解法
 

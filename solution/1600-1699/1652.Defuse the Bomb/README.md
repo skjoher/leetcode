@@ -1,4 +1,4 @@
-# [1652. 拆炸弹](https://leetcode-cn.com/problems/defuse-the-bomb)
+# [1652. 拆炸弹](https://leetcode.cn/problems/defuse-the-bomb)
 
 [English Version](/solution/1600-1699/1652.Defuse%20the%20Bomb/README_EN.md)
 
@@ -56,7 +56,6 @@
 	<li><code>1 <= code[i] <= 100</code></li>
 	<li><code>-(n - 1) <= k <= n - 1</code></li>
 </ul>
-
 
 ## 解法
 

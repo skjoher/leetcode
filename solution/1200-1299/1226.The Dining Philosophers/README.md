@@ -1,4 +1,4 @@
-# [1226. 哲学家进餐](https://leetcode-cn.com/problems/the-dining-philosophers)
+# [1226. 哲学家进餐](https://leetcode.cn/problems/the-dining-philosophers)
 
 [English Version](/solution/1200-1299/1226.The%20Dining%20Philosophers/README_EN.md)
 
@@ -14,7 +14,7 @@
 
 <p>设计一个进餐规则（并行算法）使得每个哲学家都不会挨饿；也就是说，在没有人知道别人什么时候想吃东西或思考的情况下，每个哲学家都可以在吃饭和思考之间一直交替下去。</p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1226.The%20Dining%20Philosophers/images/an_illustration_of_the_dining_philosophers_problem.png" style="height: 415px; width: 400px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1226.The%20Dining%20Philosophers/images/an_illustration_of_the_dining_philosophers_problem.png" style="height: 415px; width: 400px;"></p>
 
 <p><em>问题描述和图片来自维基百科&nbsp;<a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank">wikipedia.org</a></em></p>
 
@@ -56,7 +56,6 @@ output[i] = [a, b, c] (3个整数)
 	<li><code>1 &lt;= n &lt;= 60</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -87,7 +86,7 @@ public:
     using Act = function<void()>;
 
     void wantsToEat(int philosopher, Act pickLeftFork, Act pickRightFork, Act eat, Act putLeftFork, Act putRightFork) {
-		/* 这一题实际上是用到了C++17中的scoped_lock知识。
+        /* 这一题实际上是用到了C++17中的scoped_lock知识。
 		   作用是传入scoped_lock(mtx1, mtx2)两个锁，然后在作用范围内，依次顺序上锁mtx1和mtx2；然后在作用范围结束时，再反续解锁mtx2和mtx1。
 		   从而保证了philosopher1有动作的时候，philosopher2无法操作；但是philosopher3和philosopher4不受影响 */
         std::scoped_lock lock(mutexes_[philosopher], mutexes_[philosopher >= 4 ? 0 : philosopher + 1]);

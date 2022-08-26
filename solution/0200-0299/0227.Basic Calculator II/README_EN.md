@@ -8,6 +8,10 @@
 
 <p>The integer division should truncate toward zero.</p>
 
+<p>You may assume that the given expression is always valid. All intermediate results will be in the range of <code>[-2<sup>31</sup>, 2<sup>31</sup> - 1]</code>.</p>
+
+<p><strong>Note:</strong> You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as <code>eval()</code>.</p>
+
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 <pre><strong>Input:</strong> s = "3+2*2"
@@ -29,7 +33,6 @@
 	<li>All the integers in the expression are non-negative integers in the range <code>[0, 2<sup>31</sup> - 1]</code>.</li>
 	<li>The answer is <strong>guaranteed</strong> to fit in a <strong>32-bit integer</strong>.</li>
 </ul>
-
 
 ## Solutions
 

@@ -6,8 +6,6 @@
 
 <p>You are given two strings <code>firstString</code> and <code>secondString</code> that are <strong>0-indexed</strong> and consist only of lowercase English letters. Count the number of index quadruples <code>(i,j,a,b)</code> that satisfy the following conditions:</p>
 
-
-
 <ul>
 	<li><code>0 &lt;= i &lt;= j &lt; firstString.length</code></li>
 	<li><code>0 &lt;= a &lt;= b &lt; secondString.length</code></li>
@@ -15,51 +13,27 @@
 	<li><code>j - a</code> is the <strong>minimum</strong> possible value among all quadruples that satisfy the previous conditions.</li>
 </ul>
 
-
-
 <p>Return <em>the <strong>number</strong> of such quadruples</em>.</p>
 
-
-
 <p>&nbsp;</p>
-
 <p><strong>Example 1:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> firstString = &quot;abcd&quot;, secondString = &quot;bccda&quot;
-
 <strong>Output:</strong> 1
-
 <strong>Explanation:</strong> The quadruple (0,0,4,4) is the only one that satisfies all the conditions and minimizes j - a.
-
 </pre>
-
-
 
 <p><strong>Example 2:</strong></p>
 
-
-
 <pre>
-
 <strong>Input:</strong> firstString = &quot;ab&quot;, secondString = &quot;cd&quot;
-
 <strong>Output:</strong> 0
-
 <strong>Explanation:</strong> There are no quadruples satisfying all the conditions.
-
 </pre>
 
-
-
 <p>&nbsp;</p>
-
 <p><strong>Constraints:</strong></p>
-
-
 
 <ul>
 	<li><code>1 &lt;= firstString.length, secondString.length &lt;= 2 * 10<sup>5</sup></code></li>

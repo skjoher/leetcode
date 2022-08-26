@@ -1,4 +1,4 @@
-# [1294. 不同国家的天气类型](https://leetcode-cn.com/problems/weather-type-in-each-country)
+# [1294. 不同国家的天气类型](https://leetcode.cn/problems/weather-type-in-each-country)
 
 [English Version](/solution/1200-1299/1294.Weather%20Type%20in%20Each%20Country/README_EN.md)
 
@@ -96,7 +96,6 @@ China 11 月的平均 weather_state 为 (16 + 18 + 21) / 3 = 18.333 所以天气
 Morocco 11 月的平均 weather_state 为 (25 + 27 + 31) / 3 = 27.667 所以天气类型为 Hot。
 我们并不知道 Spain 在 11 月的 weather_state 情况所以无需将他包含在结果中。
 </pre>
-
 
 ## 解法
 

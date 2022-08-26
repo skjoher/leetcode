@@ -1,4 +1,4 @@
-# [1800. 最大升序子数组和](https://leetcode-cn.com/problems/maximum-ascending-subarray-sum)
+# [1800. 最大升序子数组和](https://leetcode.cn/problems/maximum-ascending-subarray-sum)
 
 [English Version](/solution/1800-1899/1800.Maximum%20Ascending%20Subarray%20Sum/README_EN.md)
 
@@ -54,7 +54,6 @@
 	<li><code>1 <= nums[i] <= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -66,7 +65,17 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maxAscendingSum(self, nums: List[int]) -> int:
+        res, cur = 0, nums[0]
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i - 1]:
+                cur += nums[i]
+            else:
+                res = max(res, cur)
+                cur = nums[i]
+        res = max(res, cur)
+        return res
 ```
 
 ### **Java**
@@ -74,7 +83,84 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int maxAscendingSum(int[] nums) {
+        int cur = nums[0];
+        int res = 0;
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] > nums[i - 1]) {
+                cur += nums[i];
+            } else {
+                res = Math.max(res, cur);
+                cur = nums[i];
+            }
+        }
+        res = Math.max(res, cur);
+        return res;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function maxAscendingSum(nums: number[]): number {
+    let res = 0,
+        sum = nums[0];
+    for (let i = 1; i < nums.length; ++i) {
+        if (nums[i] > nums[i - 1]) {
+            sum += nums[i];
+        } else {
+            res = Math.max(res, sum);
+            sum = nums[i];
+        }
+    }
+    res = Math.max(res, sum);
+    return res;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxAscendingSum(vector<int>& nums) {
+        int res = 0, cur = nums[0];
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] > nums[i - 1]) {
+                cur += nums[i];
+            } else {
+                res = max(res, cur);
+                cur = nums[i];
+            }
+        }
+        res = max(res, cur);
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxAscendingSum(nums []int) int {
+	res, cur := 0, nums[0]
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			cur += nums[i]
+		} else {
+			if res < cur {
+				res = cur
+			}
+			cur = nums[i]
+		}
+	}
+	if res < cur {
+		res = cur
+	}
+	return res
+}
 ```
 
 ### **...**

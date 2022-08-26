@@ -1,4 +1,4 @@
-# [1159. 市场分析 II](https://leetcode-cn.com/problems/market-analysis-ii)
+# [1159. 市场分析 II](https://leetcode.cn/problems/market-analysis-ii)
 
 [English Version](/solution/1100-1199/1159.Market%20Analysis%20II/README_EN.md)
 
@@ -104,7 +104,6 @@ id 为 1 的用户的查询结果是 no，因为他什么也没有卖出
 id为 2 和 3 的用户的查询结果是 yes，因为他们卖出的第二件商品的品牌是他们自己最喜爱的品牌
 id为 4 的用户的查询结果是 no，因为他卖出的第二件商品的品牌不是他最喜爱的品牌
 </pre>
-
 
 ## 解法
 

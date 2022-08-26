@@ -24,7 +24,7 @@
 
 <p>Given a string <code>s</code> containing only digits, return <em>the <strong>number</strong> of ways to <strong>decode</strong> it</em>.</p>
 
-<p>The answer is guaranteed to fit in a <strong>32-bit</strong> integer.</p>
+<p>The test cases are generated so that the answer fits in a <strong>32-bit</strong> integer.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -46,16 +46,6 @@
 <p><strong>Example 3:</strong></p>
 
 <pre>
-<strong>Input:</strong> s = &quot;0&quot;
-<strong>Output:</strong> 0
-<strong>Explanation:</strong> There is no character that is mapped to a number starting with 0.
-The only valid mappings with 0 are &#39;J&#39; -&gt; &quot;10&quot; and &#39;T&#39; -&gt; &quot;20&quot;, neither of which start with 0.
-Hence, there are no valid ways to decode this since all digits need to be mapped.
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
 <strong>Input:</strong> s = &quot;06&quot;
 <strong>Output:</strong> 0
 <strong>Explanation:</strong> &quot;06&quot; cannot be mapped to &quot;F&quot; because of the leading zero (&quot;6&quot; is different from &quot;06&quot;).
@@ -69,8 +59,9 @@ Hence, there are no valid ways to decode this since all digits need to be mapped
 	<li><code>s</code> contains only digits and may contain leading zero(s).</li>
 </ul>
 
-
 ## Solutions
+
+Dynamic programming.
 
 <!-- tabs:start -->
 
@@ -151,6 +142,81 @@ class Solution {
             b = c;
         }
         return c;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int numDecodings(string s) {
+        int n = s.size();
+        vector<int> dp(n + 1);
+        dp[0] = 1;
+        for (int i = 1; i <= n; ++i) {
+            if (s[i - 1] != '0') {
+                dp[i] += dp[i - 1];
+            }
+            if (i > 1 && s[i - 2] != '0') {
+                if ((s[i - 2] - '0') * 10 + s[i - 1] - '0' <= 26) {
+                    dp[i] += dp[i - 2];
+                }
+            }
+        }
+        return dp[n];
+    }
+};
+```
+
+### **Go**
+
+```go
+func numDecodings(s string) int {
+	n := len(s)
+	dp := make([]int, n+1)
+	dp[0] = 1
+	for i := 1; i <= n; i++ {
+		if s[i-1] != '0' {
+			dp[i] += dp[i-1]
+		}
+		if i > 1 && s[i-2] != '0' {
+			if (s[i-2]-'0')*10+(s[i-1]-'0') <= 26 {
+				dp[i] += dp[i-2]
+			}
+		}
+	}
+	return dp[n]
+}
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int NumDecodings(string s) {
+        if (s.Length == 0) return 0;
+
+        var f0 = 1;
+        var f1 = 1;
+        var f2 = 1;
+        for (var i = 0; i < s.Length; ++i)
+        {
+            f0 = f1;
+            f1 = f2;
+            f2 = 0;
+            var two = i > 0 ? int.Parse(string.Format("{0}{1}", s[i - 1], s[i])) : 0;
+            if (two >= 10 && two <= 26)
+            {
+               f2 += f0;
+            }
+            if (s[i] != '0')
+            {
+                f2 += f1;
+            }
+        }
+        return f2;
     }
 }
 ```

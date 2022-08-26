@@ -6,6 +6,8 @@
 
 <p>Given two non-negative integers, <code>num1</code> and <code>num2</code> represented as string, return <em>the sum of</em> <code>num1</code> <em>and</em> <code>num2</code> <em>as a string</em>.</p>
 
+<p>You must solve the problem without using any built-in library for handling large integers (such as <code>BigInteger</code>). You must also not convert the inputs to integers directly.</p>
+
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
@@ -37,10 +39,6 @@
 	<li><code>num1</code> and <code>num2</code> don&#39;t have any leading zeros except for the zero itself.</li>
 </ul>
 
-<p>&nbsp;</p>
-<p><strong>Follow up:</strong> Could you solve it without using any built-in <code>BigInteger</code> library or converting the inputs to integer directly?</p>
-
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -50,15 +48,14 @@
 ```python
 class Solution:
     def addStrings(self, num1: str, num2: str) -> str:
-        n1, n2 = len(num1) - 1, len(num2) - 1
-        carry = 0
-        res = []
-        while n1 >= 0 or n2 >= 0 or carry > 0:
-            carry += (0 if n1 < 0 else int(num1[n1])) + (0 if n2 < 0 else int(num2[n2]))
-            res.append(str(carry % 10))
-            carry //= 10
-            n1, n2 = n1 - 1, n2 - 1
-        return ''.join(res[::-1])
+        i, j, carry = len(num1) - 1, len(num2) - 1, 0
+        ans = []
+        while i >= 0 or j >= 0 or carry:
+            carry += (0 if i < 0 else int(num1[i])) + (0 if j < 0 else int(num2[j]))
+            carry, v = divmod(carry, 10)
+            ans.append(str(v))
+            i, j = i - 1, j - 1
+        return ''.join(ans[::-1])
 ```
 
 ### **Java**
@@ -66,15 +63,121 @@ class Solution:
 ```java
 class Solution {
     public String addStrings(String num1, String num2) {
-        int n1 = num1.length() - 1, n2 = num2.length() - 1;
-        int carry = 0;
-        StringBuilder sb = new StringBuilder();
-        while (n1 >= 0 || n2 >= 0 || carry > 0) {
-            carry += (n1 < 0 ? 0 : num1.charAt(n1--) - '0') + (n2 < 0 ? 0 : num2.charAt(n2--) - '0');
-            sb.append(carry % 10);
+        StringBuilder ans = new StringBuilder();
+        int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
+        for (; i >= 0 || j >= 0 || carry > 0; --i, --j) {
+            carry += (i < 0 ? 0 : num1.charAt(i) - '0') + (j < 0 ? 0 : num2.charAt(j) - '0');
+            ans.append(carry % 10);
             carry /= 10;
         }
-        return sb.reverse().toString();
+        return ans.reverse().toString();
+    }
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+var addStrings = function (num1, num2) {
+    let ans = [];
+    let [i, j, carry] = [num1.length - 1, num2.length - 1, 0];
+    for (; i >= 0 || j >= 0 || carry; --i, --j) {
+        carry += i < 0 ? 0 : parseInt(num1.charAt(i), 10);
+        carry += j < 0 ? 0 : parseInt(num2.charAt(j), 10);
+        ans.push(carry % 10);
+        carry = Math.floor(carry / 10);
+    }
+    return ans.reverse().join('');
+};
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        string ans;
+        int i = num1.size() - 1, j = num2.size() - 1, carry = 0;
+        for (; i >= 0 || j >= 0 || carry; --i, --j) {
+            carry += (i < 0 ? 0 : num1[i] - '0') + (j < 0 ? 0 : num2[j] - '0');
+            ans += to_string(carry % 10);
+            carry /= 10;
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func addStrings(num1 string, num2 string) string {
+	ans := ""
+	i, j, carry := len(num1)-1, len(num2)-1, 0
+	for ; i >= 0 || j >= 0 || carry != 0; i, j = i-1, j-1 {
+		if i >= 0 {
+			carry += int(num1[i] - '0')
+		}
+		if j >= 0 {
+			carry += int(num2[j] - '0')
+		}
+		ans = strconv.Itoa(carry%10) + ans
+		carry /= 10
+	}
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function addStrings(num1: string, num2: string): string {
+    const res = [];
+    let i = num1.length - 1;
+    let j = num2.length - 1;
+    let isOver = false;
+    while (i >= 0 || j >= 0 || isOver) {
+        const x = Number(num1[i--]) || 0;
+        const y = Number(num2[j--]) || 0;
+        const sum = x + y + (isOver ? 1 : 0);
+        isOver = sum >= 10;
+        res.push(sum % 10);
+    }
+    return res.reverse().join('');
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn add_strings(num1: String, num2: String) -> String {
+        let mut res = vec![];
+        let s1 = num1.as_bytes();
+        let s2 = num2.as_bytes();
+        let (mut i, mut j) = (s1.len(), s2.len());
+        let mut is_over = false;
+        while i != 0 || j != 0 || is_over {
+            let mut sum = if is_over { 1 } else { 0 };
+            if i != 0 {
+                sum += (s1[i - 1] - b'0') as i32;
+                i -= 1;
+            }
+            if j != 0 {
+                sum += (s2[j - 1] - b'0') as i32;
+                j -= 1;
+            }
+            is_over = sum >= 10;
+            res.push((sum % 10).to_string());
+        }
+        res.into_iter().rev().collect()
     }
 }
 ```

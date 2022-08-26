@@ -18,7 +18,7 @@
 <pre>
 <strong>Input:</strong> s = &quot;aba&quot;, t = &quot;baba&quot;
 <strong>Output:</strong> 6
-<strong>Explanation: </strong>The following are the pairs of substrings from s and t that differ by exactly 1 character:
+<strong>Explanation:</strong> The following are the pairs of substrings from s and t that differ by exactly 1 character:
 (&quot;<u>a</u>ba&quot;, &quot;<u>b</u>aba&quot;)
 (&quot;<u>a</u>ba&quot;, &quot;ba<u>b</u>a&quot;)
 (&quot;ab<u>a</u>&quot;, &quot;<u>b</u>aba&quot;)
@@ -27,29 +27,17 @@
 (&quot;a<u>b</u>a&quot;, &quot;bab<u>a</u>&quot;)
 The underlined portions are the substrings that are chosen from s and t.
 </pre>
+
 ​​<strong>Example 2:</strong>
 
 <pre>
 <strong>Input:</strong> s = &quot;ab&quot;, t = &quot;bb&quot;
 <strong>Output:</strong> 3
-<strong>Explanation: </strong>The following are the pairs of substrings from s and t that differ by 1 character:
+<strong>Explanation:</strong> The following are the pairs of substrings from s and t that differ by 1 character:
 (&quot;<u>a</u>b&quot;, &quot;<u>b</u>b&quot;)
 (&quot;<u>a</u>b&quot;, &quot;b<u>b</u>&quot;)
 (&quot;<u>ab</u>&quot;, &quot;<u>bb</u>&quot;)
 ​​​​The underlined portions are the substrings that are chosen from s and t.
-</pre>
-<strong>Example 3:</strong>
-
-<pre>
-<strong>Input:</strong> s = &quot;a&quot;, t = &quot;a&quot;
-<strong>Output:</strong> 0
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;abe&quot;, t = &quot;bbc&quot;
-<strong>Output:</strong> 10
 </pre>
 
 <p>&nbsp;</p>
@@ -60,7 +48,6 @@ The underlined portions are the substrings that are chosen from s and t.
 	<li><code>s</code> and <code>t</code> consist of lowercase English letters only.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -68,13 +55,93 @@ The underlined portions are the substrings that are chosen from s and t.
 ### **Python3**
 
 ```python
-
+class Solution:
+    def countSubstrings(self, s: str, t: str) -> int:
+        m, n = len(s), len(t)
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if s[i] != t[j]:
+                    l = r = 1
+                    while i - l >= 0 and j - l >= 0 and s[i - l] == t[j - l]:
+                        l += 1
+                    while i + r < m and j + r < n and s[i + r] == t[j + r]:
+                        r += 1
+                    ans += l * r
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int countSubstrings(String s, String t) {
+        int m = s.length(), n = t.length();
+        int ans = 0;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (s.charAt(i) != t.charAt(j)) {
+                    int l = 1, r = 1;
+                    while (i - l >= 0 && j - l >= 0 && s.charAt(i - l) == t.charAt(j - l)) {
+                        ++l;
+                    }
+                    while (i + r < m && j + r < n && s.charAt(i + r) == t.charAt(j + r)) {
+                        ++r;
+                    }
+                    ans += l * r;
+                }
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int countSubstrings(string s, string t) {
+        int m = s.size(), n = t.size();
+        int ans = 0;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (s[i] == t[j]) continue;
+                int l = 1, r = 1;
+                while (i - l >= 0 && j - l >= 0 && s[i - l] == t[j - l]) ++l;
+                while (i + r < m && j + r < n && s[i + r] == t[j + r]) ++r;
+                ans += l * r;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func countSubstrings(s string, t string) int {
+	m, n := len(s), len(t)
+	ans := 0
+	for i := range s {
+		for j := range t {
+			if s[i] == t[j] {
+				continue
+			}
+			l, r := 1, 1
+			for i-l >= 0 && j-l >= 0 && s[i-l] == t[j-l] {
+				l++
+			}
+			for i+r < m && j+r < n && s[i+r] == t[j+r] {
+				r++
+			}
+			ans += l * r
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

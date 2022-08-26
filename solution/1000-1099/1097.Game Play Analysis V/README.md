@@ -1,4 +1,4 @@
-# [1097. 游戏玩法分析 V](https://leetcode-cn.com/problems/game-play-analysis-v)
+# [1097. 游戏玩法分析 V](https://leetcode.cn/problems/game-play-analysis-v)
 
 [English Version](/solution/1000-1099/1097.Game%20Play%20Analysis%20V/README_EN.md)
 
@@ -26,7 +26,7 @@
 
 <p>玩家的 <strong>安装日期</strong> 定义为该玩家的第一个登录日。</p>
 
-<p>玩家的 <strong>第一天留存率</strong> 定义为：假定安装日期为 <code>X</code> 的玩家的数量为 <code>N</code> ，其中在 <code>X</code> 之后的某一天重新登录的玩家数量为 <code>M</code> ，<code>M/N</code> 就是第一天留存率，<strong>四舍五入到小数点后两位</strong>。</p>
+<p>玩家的 <strong>第一天留存率</strong> 定义为：假定安装日期为 <code>X</code> 的玩家的数量为 <code>N</code> ，其中在 <code>X</code> 之后的一天重新登录的玩家数量为 <code>M</code> ，<code>M/N</code> 就是第一天留存率，<strong>四舍五入到小数点后两位</strong>。</p>
 
 <p>编写一个 SQL 查询，报告所有安装日期、当天安装游戏的玩家数量和玩家的第一天留存率。</p>
 
@@ -56,7 +56,6 @@ Result 表：
 玩家 1 和 3 在 2016-03-01 安装了游戏，但只有玩家 1 在 2016-03-02 重新登录，所以 2016-03-01 的第一天留存率是 1/2=0.50
 玩家 2 在 2017-06-25 安装了游戏，但在 2017-06-26 没有重新登录，因此 2017-06-25 的第一天留存率为 0/1=0.00
 </pre>
-
 
 ## 解法
 

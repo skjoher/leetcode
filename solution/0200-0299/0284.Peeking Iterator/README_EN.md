@@ -4,16 +4,18 @@
 
 ## Description
 
-<p>Design an iterator that supports the <code>peek</code> operation on a list in addition to the <code>hasNext</code> and the <code>next</code> operations.</p>
+<p>Design an iterator that supports the <code>peek</code> operation on an existing iterator in addition to the <code>hasNext</code> and the <code>next</code> operations.</p>
 
 <p>Implement the <code>PeekingIterator</code> class:</p>
 
 <ul>
-	<li><code>PeekingIterator(int[] nums)</code> Initializes the object with the given integer array <code>nums</code>.</li>
+	<li><code>PeekingIterator(Iterator&lt;int&gt; nums)</code> Initializes the object with the given integer iterator <code>iterator</code>.</li>
 	<li><code>int next()</code> Returns the next element in the array and moves the pointer to the next element.</li>
-	<li><code>bool hasNext()</code> Returns <code>true</code> if there are still elements in the array.</li>
+	<li><code>boolean hasNext()</code> Returns <code>true</code> if there are still elements in the array.</li>
 	<li><code>int peek()</code> Returns the next element in the array <strong>without</strong> moving the pointer.</li>
 </ul>
+
+<p><strong>Note:</strong> Each language may have a different implementation of the constructor and <code>Iterator</code>, but they all support the <code>int next()</code> and <code>boolean hasNext()</code> functions.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -74,6 +76,7 @@ peekingIterator.hasNext(); // return False
 #         Returns the next element in the iteration.
 #         :rtype: int
 #         """
+
 
 class PeekingIterator:
     def __init__(self, iterator):
@@ -162,6 +165,114 @@ class PeekingIterator implements Iterator<Integer> {
 	public boolean hasNext() {
 	    return hasPeeked || iterator.hasNext();
 	}
+}
+```
+
+### **C++**
+
+```cpp
+/*
+ * Below is the interface for Iterator, which is already defined for you.
+ * **DO NOT** modify the interface for Iterator.
+ *
+ *  class Iterator {
+ *		struct Data;
+ * 		Data* data;
+ *  public:
+ *		Iterator(const vector<int>& nums);
+ * 		Iterator(const Iterator& iter);
+ *
+ * 		// Returns the next element in the iteration.
+ *		int next();
+ *
+ *		// Returns true if the iteration has more elements.
+ *		bool hasNext() const;
+ *	};
+ */
+
+class PeekingIterator : public Iterator {
+public:
+    PeekingIterator(const vector<int>& nums)
+        : Iterator(nums) {
+        // Initialize any member here.
+        // **DO NOT** save a copy of nums and manipulate it directly.
+        // You should only use the Iterator interface methods.
+        hasPeeked = false;
+    }
+
+    // Returns the next element in the iteration without advancing the iterator.
+    int peek() {
+        if (!hasPeeked) {
+            peekedElement = Iterator::next();
+            hasPeeked = true;
+        }
+        return peekedElement;
+    }
+
+    // hasNext() and next() should behave the same as in the Iterator interface.
+    // Override them if needed.
+    int next() {
+        if (!hasPeeked) return Iterator::next();
+        hasPeeked = false;
+        return peekedElement;
+    }
+
+    bool hasNext() const {
+        return hasPeeked || Iterator::hasNext();
+    }
+
+private:
+    bool hasPeeked;
+    int peekedElement;
+};
+```
+
+### **Go**
+
+```go
+/*   Below is the interface for Iterator, which is already defined for you.
+ *
+ *   type Iterator struct {
+ *
+ *   }
+ *
+ *   func (this *Iterator) hasNext() bool {
+ *		// Returns true if the iteration has more elements.
+ *   }
+ *
+ *   func (this *Iterator) next() int {
+ *		// Returns the next element in the iteration.
+ *   }
+ */
+
+type PeekingIterator struct {
+	iter          *Iterator
+	hasPeeked     bool
+	peekedElement int
+}
+
+func Constructor(iter *Iterator) *PeekingIterator {
+	return &PeekingIterator{iter, iter.hasNext(), iter.next()}
+}
+
+func (this *PeekingIterator) hasNext() bool {
+	return this.hasPeeked || this.iter.hasNext()
+}
+
+func (this *PeekingIterator) next() int {
+	if !this.hasPeeked {
+		return this.iter.next()
+	}
+	this.hasPeeked = false
+	return this.peekedElement
+}
+
+func (this *PeekingIterator) peek() int {
+	if !this.hasPeeked {
+		this.peekedElement = this.iter.next()
+		this.hasPeeked = true
+	}
+	return this.peekedElement
 }
 ```
 

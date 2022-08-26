@@ -1,4 +1,4 @@
-# [1566. 重复至少 K 次且长度为 M 的模式](https://leetcode-cn.com/problems/detect-pattern-of-length-m-repeated-k-or-more-times)
+# [1566. 重复至少 K 次且长度为 M 的模式](https://leetcode.cn/problems/detect-pattern-of-length-m-repeated-k-or-more-times)
 
 [English Version](/solution/1500-1599/1566.Detect%20Pattern%20of%20Length%20M%20Repeated%20K%20or%20More%20Times/README_EN.md)
 
@@ -59,7 +59,6 @@
 	<li><code>1 &lt;= m&nbsp;&lt;= 100</code></li>
 	<li><code>2 &lt;= k&nbsp;&lt;= 100</code></li>
 </ul>
-
 
 ## 解法
 

@@ -50,7 +50,6 @@ Hence, answer = [10,25]
 	<li><code>1 &lt;= seats<sub>i</sub> &lt;= 10<sup>4</sup></code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -65,9 +64,39 @@ class Solution:
             delta[first - 1] += seats
             if last < n:
                 delta[last] -= seats
-        for i in range(n - 1):
-            delta[i + 1] += delta[i]
-        return delta
+        return list(accumulate(delta))
+```
+
+```python
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    @staticmethod
+    def lowbit(x):
+        return x & -x
+
+    def update(self, x, delta):
+        while x <= self.n:
+            self.c[x] += delta
+            x += BinaryIndexedTree.lowbit(x)
+
+    def query(self, x):
+        s = 0
+        while x:
+            s += self.c[x]
+            x -= BinaryIndexedTree.lowbit(x)
+        return s
+
+
+class Solution:
+    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
+        tree = BinaryIndexedTree(n)
+        for first, last, seats in bookings:
+            tree.update(first, seats)
+            tree.update(last + 1, -seats)
+        return [tree.query(i + 1) for i in range(n)]
 ```
 
 ### **Java**
@@ -91,6 +120,54 @@ class Solution {
 }
 ```
 
+```java
+class Solution {
+    public int[] corpFlightBookings(int[][] bookings, int n) {
+        BinaryIndexedTree tree = new BinaryIndexedTree(n);
+        for (int[] booking : bookings) {
+            int first = booking[0], last = booking[1], seats = booking[2];
+            tree.update(first, seats);
+            tree.update(last + 1, -seats);
+        }
+        int[] ans = new int[n];
+        for (int i = 0; i < n; ++i) {
+            ans[i] = tree.query(i + 1);
+        }
+        return ans;
+    }
+}
+
+class BinaryIndexedTree {
+    private int n;
+    private int[] c;
+
+    public BinaryIndexedTree(int n) {
+        this.n = n;
+        c = new int[n + 1];
+    }
+
+    public void update(int x, int delta) {
+        while (x <= n) {
+            c[x] += delta;
+            x += lowbit(x);
+        }
+    }
+
+    public int query(int x) {
+        int s = 0;
+        while (x > 0) {
+            s += c[x];
+            x -= lowbit(x);
+        }
+        return s;
+    }
+
+    public static int lowbit(int x) {
+        return x & -x;
+    }
+}
+```
+
 ### **JavaScript**
 
 ```js
@@ -99,17 +176,15 @@ class Solution {
  * @param {number} n
  * @return {number[]}
  */
-var corpFlightBookings = function(bookings, n) {
+var corpFlightBookings = function (bookings, n) {
     let delta = new Array(n).fill(0);
-    for (let book of bookings) {
-        let [start, end, num] = book;
-        start -= 1;
-        delta[start] += num;
+    for (let [start, end, num] of bookings) {
+        delta[start - 1] += num;
         if (end != n) {
             delta[end] -= num;
         }
     }
-    for (let i = 1; i < n; i++) {
+    for (let i = 1; i < n; ++i) {
         delta[i] += delta[i - 1];
     }
     return delta;
@@ -123,7 +198,7 @@ class Solution {
 public:
     vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
         vector<int> delta(n);
-        for (auto &booking : bookings) {
+        for (auto& booking : bookings) {
             int first = booking[0], last = booking[1], seats = booking[2];
             delta[first - 1] += seats;
             if (last < n) {
@@ -138,29 +213,117 @@ public:
 };
 ```
 
-### **JavaScript**
+```cpp
+class BinaryIndexedTree {
+public:
+    int n;
+    vector<int> c;
 
-```js
-/**
- * @param {number[][]} bookings
- * @param {number} n
- * @return {number[]}
- */
-var corpFlightBookings = function(bookings, n) {
-    let delta = new Array(n).fill(0);
-    for (let book of bookings) {
-        let [start, end, num] = book;
-        start -= 1;
-        delta[start] += num;
-        if (end != n) {
-            delta[end] -= num;
+    BinaryIndexedTree(int _n): n(_n), c(_n + 1){}
+
+    void update(int x, int delta) {
+        while (x <= n)
+        {
+            c[x] += delta;
+            x += lowbit(x);
         }
     }
-    for (let i = 1; i < n; i++) {
-        delta[i] += delta[i - 1];
+
+    int query(int x) {
+        int s = 0;
+        while (x > 0)
+        {
+            s += c[x];
+            x -= lowbit(x);
+        }
+        return s;
     }
-    return delta;
+
+    int lowbit(int x) {
+        return x & -x;
+    }
 };
+
+class Solution {
+public:
+    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n) {
+        BinaryIndexedTree* tree = new BinaryIndexedTree(n);
+        for (auto& booking : bookings)
+        {
+            int first = booking[0], last = booking[1], seats = booking[2];
+            tree->update(first, seats);
+            tree->update(last + 1, -seats);
+        }
+        vector<int> ans;
+        for (int i = 0; i < n; ++i) ans.push_back(tree->query(i + 1));
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func corpFlightBookings(bookings [][]int, n int) []int {
+	delta := make([]int, n)
+	for _, booking := range bookings {
+		first, last, seats := booking[0], booking[1], booking[2]
+		delta[first-1] += seats
+		if last < n {
+			delta[last] -= seats
+		}
+	}
+	for i := 0; i < n-1; i++ {
+		delta[i+1] += delta[i]
+	}
+	return delta
+}
+```
+
+```go
+type BinaryIndexedTree struct {
+	n int
+	c []int
+}
+
+func newBinaryIndexedTree(n int) *BinaryIndexedTree {
+	c := make([]int, n+1)
+	return &BinaryIndexedTree{n, c}
+}
+
+func (this *BinaryIndexedTree) lowbit(x int) int {
+	return x & -x
+}
+
+func (this *BinaryIndexedTree) update(x, delta int) {
+	for x <= this.n {
+		this.c[x] += delta
+		x += this.lowbit(x)
+	}
+}
+
+func (this *BinaryIndexedTree) query(x int) int {
+	s := 0
+	for x > 0 {
+		s += this.c[x]
+		x -= this.lowbit(x)
+	}
+	return s
+}
+
+func corpFlightBookings(bookings [][]int, n int) []int {
+	tree := newBinaryIndexedTree(n)
+	for _, booking := range bookings {
+		first, last, seats := booking[0], booking[1], booking[2]
+		tree.update(first, seats)
+		tree.update(last+1, -seats)
+	}
+	ans := make([]int, n)
+	for i := range ans {
+		ans[i] = tree.query(i + 1)
+	}
+	return ans
+}
 ```
 
 ### **...**

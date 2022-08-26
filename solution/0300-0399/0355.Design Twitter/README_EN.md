@@ -55,14 +55,13 @@ twitter.getNewsFeed(1);  // User 1&#39;s news feed should return a list with 1 t
 
 ```python
 class Twitter:
-
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.user_tweets = collections.defaultdict(list)
-        self.user_following = collections.defaultdict(set)
-        self.tweets = collections.defaultdict()
+        self.user_tweets = defaultdict(list)
+        self.user_following = defaultdict(set)
+        self.tweets = defaultdict()
         self.time = 0
 
     def postTweet(self, userId: int, tweetId: int) -> None:
@@ -82,7 +81,7 @@ class Twitter:
         users.add(userId)
         tweets = [self.user_tweets[u][::-1][:10] for u in users]
         tweets = sum(tweets, [])
-        return heapq.nlargest(10, tweets, key=lambda tweet: self.tweets[tweet])
+        return nlargest(10, tweets, key=lambda tweet: self.tweets[tweet])
 
     def follow(self, followerId: int, followeeId: int) -> None:
         """
@@ -97,7 +96,6 @@ class Twitter:
         following = self.user_following[followerId]
         if followeeId in following:
             following.remove(followeeId)
-
 
 
 # Your Twitter object will be instantiated and called as such:
@@ -124,15 +122,13 @@ class Twitter {
         tweets = new HashMap<>();
         time = 0;
     }
-    
+
     /** Compose a new tweet. */
     public void postTweet(int userId, int tweetId) {
-        List<Integer> userTweet = userTweets.getOrDefault(userId, new ArrayList<>());
-        userTweet.add(tweetId);
-        userTweets.put(userId, userTweet);
+        userTweets.computeIfAbsent(userId, k -> new ArrayList<>()).add(tweetId);
         tweets.put(tweetId, ++time);
     }
-    
+
     /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
     public List<Integer> getNewsFeed(int userId) {
         Set<Integer> following = userFollowing.getOrDefault(userId, new HashSet<>());
@@ -153,19 +149,15 @@ class Twitter {
         }
         return res;
     }
-    
+
     /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
     public void follow(int followerId, int followeeId) {
-        Set<Integer> following = userFollowing.getOrDefault(followerId, new HashSet<>());
-        following.add(followeeId);
-        userFollowing.put(followerId, following);
+        userFollowing.computeIfAbsent(followerId, k -> new HashSet<>()).add(followeeId);
     }
-    
+
     /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
     public void unfollow(int followerId, int followeeId) {
-        Set<Integer> following = userFollowing.getOrDefault(followerId, new HashSet<>());
-        following.remove(followeeId);
-        userFollowing.put(followerId, following);
+        userFollowing.computeIfAbsent(followerId, k -> new HashSet<>()).remove(followeeId);
     }
 }
 

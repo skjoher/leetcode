@@ -1,4 +1,4 @@
-# [1833. 雪糕的最大数量](https://leetcode-cn.com/problems/maximum-ice-cream-bars)
+# [1833. 雪糕的最大数量](https://leetcode.cn/problems/maximum-ice-cream-bars)
 
 [English Version](/solution/1800-1899/1833.Maximum%20Ice%20Cream%20Bars/README_EN.md)
 
@@ -48,10 +48,11 @@
 	<li><code>1 &lt;= coins &lt;= 10<sup>8</sup></code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+注意数据范围，题目很容易误导我们使用 01 背包（会超时），其实这题就是简单贪心，优先选择定价小的雪糕。
 
 <!-- tabs:start -->
 
@@ -60,7 +61,17 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
+        costs.sort()
+        ans = 0
+        for c in costs:
+            if coins < c:
+                break
+            else:
+                ans += 1
+                coins -= c
+        return ans
 ```
 
 ### **Java**
@@ -68,7 +79,49 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int maxIceCream(int[] costs, int coins) {
+        Arrays.sort(costs);
+        int ans = 0, n = costs.length;
+        for (int i = 0; i < n && coins >= costs[i]; i++) {
+            ans++;
+            coins -= costs[i];
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxIceCream(vector<int>& costs, int coins) {
+        sort(costs.begin(), costs.end());
+        int ans = 0;
+        for (int i = 0; i < costs.size() && coins >= costs[i]; ++i) {
+            ++ans;
+            coins -= costs[i];
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxIceCream(costs []int, coins int) int {
+	sort.Ints(costs)
+	n := len(costs)
+	ans := 0
+	for i := 0; i < n && coins >= costs[i]; i++ {
+		ans++
+		coins -= costs[i]
+	}
+	return ans
+}
 ```
 
 ### **...**

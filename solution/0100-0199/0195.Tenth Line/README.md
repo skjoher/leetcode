@@ -1,4 +1,4 @@
-# [195. 第十行](https://leetcode-cn.com/problems/tenth-line)
+# [195. 第十行](https://leetcode.cn/problems/tenth-line)
 
 [English Version](/solution/0100-0199/0195.Tenth%20Line/README_EN.md)
 
@@ -33,32 +33,17 @@ Line 10
 1. 如果文件少于十行，你应当输出什么？<br>
 2. 至少有三种不同的解法，请尝试尽可能多的方法来解题。</p>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
 <!-- tabs:start -->
 
-### **Python3**
+### **Bash**
 
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
-```python
-
-```
-
-### **Java**
-
-<!-- 这里可写当前语言的特殊实现逻辑 -->
-
-```java
-
-```
-
-### **...**
-
-```
+```sh
 
 ```
 

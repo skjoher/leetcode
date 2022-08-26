@@ -1,4 +1,4 @@
-# [1053. 交换一次的先前排列](https://leetcode-cn.com/problems/previous-permutation-with-one-swap)
+# [1053. 交换一次的先前排列](https://leetcode.cn/problems/previous-permutation-with-one-swap)
 
 [English Version](/solution/1000-1099/1053.Previous%20Permutation%20With%20One%20Swap/README_EN.md)
 
@@ -52,7 +52,6 @@
 	<li><code>1 <= arr.length <= 10<sup>4</sup></code></li>
 	<li><code>1 <= arr[i] <= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

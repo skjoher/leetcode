@@ -1,4 +1,4 @@
-# [1615. 最大网络秩](https://leetcode-cn.com/problems/maximal-network-rank)
+# [1615. 最大网络秩](https://leetcode.cn/problems/maximal-network-rank)
 
 [English Version](/solution/1600-1699/1615.Maximal%20Network%20Rank/README_EN.md)
 
@@ -18,7 +18,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1615.Maximal%20Network%20Rank/images/ex1.png" style="width: 292px; height: 172px;" /></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1615.Maximal%20Network%20Rank/images/ex1.png" style="width: 292px; height: 172px;" /></strong></p>
 
 <pre>
 <strong>输入：</strong>n = 4, roads = [[0,1],[0,3],[1,2],[1,3]]
@@ -28,7 +28,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1615.Maximal%20Network%20Rank/images/ex2.png" style="width: 292px; height: 172px;" /></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1615.Maximal%20Network%20Rank/images/ex2.png" style="width: 292px; height: 172px;" /></strong></p>
 
 <pre>
 <strong>输入：</strong>n = 5, roads = [[0,1],[0,3],[1,2],[1,3],[2,3],[2,4]]
@@ -56,7 +56,6 @@
 	<li><code>a<sub>i</sub> != b<sub>i</sub></code></li>
 	<li>每对城市之间 <strong>最多只有一条</strong> 道路相连</li>
 </ul>
-
 
 ## 解法
 

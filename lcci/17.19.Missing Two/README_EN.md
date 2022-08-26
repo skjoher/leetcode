@@ -1,4 +1,4 @@
-# [17.19. Missing Two](https://leetcode-cn.com/problems/missing-two-lcci)
+# [17.19. Missing Two](https://leetcode.cn/problems/missing-two-lcci)
 
 [中文文档](/lcci/17.19.Missing%20Two/README.md)
 
@@ -12,7 +12,7 @@
 
 <pre>
 
-<strong>Input:</strong> <code>[1]</code>
+<strong>Input:</strong> [1]
 
 <strong>Output: </strong>[2,3]</pre>
 
@@ -20,7 +20,7 @@
 
 <pre>
 
-<strong>Input:</strong> <code>[2,3]</code>
+<strong>Input:</strong> [2,3]
 
 <strong>Output: </strong>[1,4]</pre>
 
@@ -42,9 +42,9 @@ class Solution:
         res, n = 0, len(nums)
         for i in range(n):
             res ^= nums[i]
-            res ^= (i + 1)
-        res ^= (n + 1)
-        res ^= (n + 2)
+            res ^= i + 1
+        res ^= n + 1
+        res ^= n + 2
         pos = 0
         while (res & 1) == 0:
             pos += 1

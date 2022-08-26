@@ -24,7 +24,7 @@ buf4[] is a destination, not a source. The results from read4 will be copied to 
 </pre>
 
 <p>Below is a high-level example of how <code>read4</code> works:</p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0157.Read%20N%20Characters%20Given%20Read4/images/157_example.png" style="width: 600px; height: 403px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0157.Read%20N%20Characters%20Given%20Read4/images/157_example.png" style="width: 600px; height: 403px;" />
 <pre>
 File file(&quot;abcde<code>&quot;); // File is &quot;</code>abcde<code>&quot;, initially file pointer (fp) points to &#39;a&#39;
 char[] buf4 = new char[4]; // Create buffer with enough space to store characters
@@ -84,14 +84,6 @@ Note that &quot;abc&quot; is the file&#39;s content, not buf. buf is the destina
 <strong>Explanation:</strong> After calling your read method, buf should contain &quot;abcdABCD1234&quot;. We read a total of 12 characters from the file, so return 12.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> file = &quot;leetcode&quot;, n = 5
-<strong>Output:</strong> 5
-<strong>Explanation:</strong> After calling your read method, buf should contain &quot;leetc&quot;. We read a total of 5 characters from the file, so return 5.
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -100,7 +92,6 @@ Note that &quot;abc&quot; is the file&#39;s content, not buf. buf is the destina
 	<li><code>file</code> consist of English letters and digits.</li>
 	<li><code>1 &lt;= n &lt;= 1000</code></li>
 </ul>
-
 
 ## Solutions
 

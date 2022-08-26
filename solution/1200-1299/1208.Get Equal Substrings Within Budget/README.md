@@ -1,4 +1,4 @@
-# [1208. 尽可能使字符串相等](https://leetcode-cn.com/problems/get-equal-substrings-within-budget)
+# [1208. 尽可能使字符串相等](https://leetcode.cn/problems/get-equal-substrings-within-budget)
 
 [English Version](/solution/1200-1299/1208.Get%20Equal%20Substrings%20Within%20Budget/README_EN.md)
 
@@ -51,10 +51,11 @@
 	<li><code>s</code> 和 <code>t</code> 都只含小写英文字母。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+前缀和 + 二分查找。
 
 <!-- tabs:start -->
 
@@ -63,7 +64,30 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+class Solution:
+    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
+        n = len(s)
+        presum = [0] * (n + 1)
+        for i in range(n):
+            presum[i + 1] = presum[i] + abs(ord(s[i]) - ord(t[i]))
+        left, right = 0, n
 
+        def check(l):
+            i = 0
+            while i + l - 1 < n:
+                j = i + l - 1
+                if presum[j + 1] - presum[i] <= maxCost:
+                    return True
+                i += 1
+            return False
+
+        while left < right:
+            mid = (left + right + 1) >> 1
+            if check(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left
 ```
 
 ### **Java**
@@ -71,7 +95,110 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int equalSubstring(String s, String t, int maxCost) {
+        int n = s.length();
+        int[] presum = new int[n + 1];
+        for (int i = 0; i < n; ++i) {
+            presum[i + 1] = presum[i] + Math.abs(s.charAt(i) - t.charAt(i));
+        }
+        int left = 0, right = n;
+        while (left < right) {
+            int mid = (left + right + 1) >>> 1;
+            if (check(mid, presum, maxCost, n)) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
 
+    private boolean check(int l, int[] s, int maxCost, int n) {
+        int i = 0;
+        while (i + l - 1 < n) {
+            int j = i + l - 1;
+            if (s[j + 1] - s[i] <= maxCost) {
+                return true;
+            }
+            ++i;
+        }
+        return false;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int equalSubstring(string s, string t, int maxCost) {
+        int n = s.size();
+        vector<int> presum(n + 1);
+        for (int i = 0; i < n; ++i) presum[i + 1] = presum[i] + abs(s[i] - t[i]);
+        int left = 0, right = n;
+        while (left < right) {
+            int mid = left + right + 1 >> 1;
+            if (check(mid, presum, maxCost, n))
+                left = mid;
+            else
+                right = mid - 1;
+        }
+        return left;
+    }
+
+    bool check(int l, vector<int>& s, int maxCost, int n) {
+        int i = 0;
+        while (i + l - 1 < n) {
+            int j = i + l - 1;
+            if (s[j + 1] - s[i] <= maxCost) return true;
+            ++i;
+        }
+        return false;
+    }
+};
+```
+
+### **Go**
+
+```go
+func equalSubstring(s string, t string, maxCost int) int {
+	n := len(s)
+	presum := make([]int, n+1)
+	for i, c := range s {
+		presum[i+1] = presum[i] + abs(int(c)-int(t[i]))
+	}
+
+	left, right := 0, n
+	check := func(l int) bool {
+		i := 0
+		for i+l-1 < n {
+			j := i + l - 1
+			if presum[j+1]-presum[i] <= maxCost {
+				return true
+			}
+			i++
+		}
+		return false
+	}
+	for left < right {
+		mid := (left + right + 1) >> 1
+		if check(mid) {
+			left = mid
+		} else {
+			right = mid - 1
+		}
+	}
+	return left
+}
+
+func abs(x int) int {
+	if x > 0 {
+		return x
+	}
+	return -x
+}
 ```
 
 ### **...**

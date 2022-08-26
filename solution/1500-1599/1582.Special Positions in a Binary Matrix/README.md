@@ -1,4 +1,4 @@
-# [1582. 二进制矩阵中的特殊位置](https://leetcode-cn.com/problems/special-positions-in-a-binary-matrix)
+# [1582. 二进制矩阵中的特殊位置](https://leetcode.cn/problems/special-positions-in-a-binary-matrix)
 
 [English Version](/solution/1500-1599/1582.Special%20Positions%20in%20a%20Binary%20Matrix/README_EN.md)
 
@@ -59,7 +59,6 @@
 	<li><code>1 &lt;= rows, cols &lt;= 100</code></li>
 	<li><code>mat[i][j]</code> 是 <code>0</code> 或 <code>1</code></li>
 </ul>
-
 
 ## 解法
 

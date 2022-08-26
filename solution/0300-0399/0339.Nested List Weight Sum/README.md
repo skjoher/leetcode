@@ -1,4 +1,4 @@
-# [339. 嵌套列表权重和](https://leetcode-cn.com/problems/nested-list-weight-sum)
+# [339. 嵌套列表权重和](https://leetcode.cn/problems/nested-list-weight-sum)
 
 [English Version](/solution/0300-0399/0339.Nested%20List%20Weight%20Sum/README_EN.md)
 
@@ -16,7 +16,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0339.Nested%20List%20Weight%20Sum/images/nestedlistweightsumex1.png" style="width: 405px; height: 99px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0339.Nested%20List%20Weight%20Sum/images/nestedlistweightsumex1.png" style="width: 405px; height: 99px;" /></p>
 
 <pre>
 <strong>输入：</strong>nestedList = [[1,1],2,[1,1]]
@@ -24,7 +24,7 @@
 <strong>解释：</strong>因为列表中有四个深度为 2 的 1 ，和一个深度为 1 的 2。</pre>
 
 <p><strong>示例 2：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0339.Nested%20List%20Weight%20Sum/images/nestedlistweightsumex2.png" style="width: 315px; height: 106px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0339.Nested%20List%20Weight%20Sum/images/nestedlistweightsumex2.png" style="width: 315px; height: 106px;" />
 <pre>
 <strong>输入：</strong>nestedList = [1,[4,[6]]]
 <strong>输出：</strong>27 
@@ -64,7 +64,7 @@ DFS 实现。
 # This is the interface that allows for creating nested lists.
 # You should not implement it, or speculate about its implementation
 # """
-#class NestedInteger:
+# class NestedInteger:
 #    def __init__(self, value=None):
 #        """
 #        If value is not specified, initializes an empty list.
@@ -112,6 +112,7 @@ class Solution:
                 else:
                     depth_sum += dfs(item.getList(), depth + 1)
             return depth_sum
+
         return dfs(nestedList, 1)
 ```
 
@@ -213,18 +214,18 @@ class Solution {
  * @return {number}
  */
 var depthSum = function (nestedList) {
-  const dfs = (nestedList, depth) => {
-    let depthSum = 0;
-    for (const item of nestedList) {
-      if (item.isInteger()) {
-        depthSum += item.getInteger() * depth;
-      } else {
-        depthSum += dfs(item.getList(), depth + 1);
-      }
-    }
-    return depthSum;
-  };
-  return dfs(nestedList, 1);
+    const dfs = (nestedList, depth) => {
+        let depthSum = 0;
+        for (const item of nestedList) {
+            if (item.isInteger()) {
+                depthSum += item.getInteger() * depth;
+            } else {
+                depthSum += dfs(item.getList(), depth + 1);
+            }
+        }
+        return depthSum;
+    };
+    return dfs(nestedList, 1);
 };
 ```
 

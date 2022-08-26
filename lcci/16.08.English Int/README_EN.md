@@ -1,4 +1,4 @@
-# [16.08. English Int](https://leetcode-cn.com/problems/english-int-lcci)
+# [16.08. English Int](https://leetcode.cn/problems/english-int-lcci)
 
 [中文文档](/lcci/16.08.English%20Int/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 123
 
+
+
 <strong>Output:</strong> &quot;One Hundred Twenty Three&quot;
+
+
 
 </pre>
 
@@ -20,7 +26,11 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 12345
+
+
 
 <strong>Output:</strong> &quot;Twelve Thousand Three Hundred Forty Five&quot;</pre>
 
@@ -28,7 +38,11 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 1234567
+
+
 
 <strong>Output:</strong> &quot;One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven&quot;</pre>
 
@@ -36,7 +50,11 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 1234567891
+
+
 
 <strong>Output:</strong> &quot;One Billion Two Hundred Thirty Four Million Five Hundred Sixty Seven Thousand Eight Hundred Ninety One&quot;</pre>
 
@@ -48,17 +66,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

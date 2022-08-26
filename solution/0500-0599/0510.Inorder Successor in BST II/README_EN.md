@@ -21,7 +21,7 @@ class Node {
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0510.Inorder%20Successor%20in%20BST%20II/images/285_example_1.png" style="width: 122px; height: 117px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0510.Inorder%20Successor%20in%20BST%20II/images/285_example_1.png" style="width: 122px; height: 117px;" />
 <pre>
 <strong>Input:</strong> tree = [2,1,3], node = 1
 <strong>Output:</strong> 2
@@ -29,32 +29,11 @@ class Node {
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0510.Inorder%20Successor%20in%20BST%20II/images/285_example_2.png" style="width: 246px; height: 229px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0510.Inorder%20Successor%20in%20BST%20II/images/285_example_2.png" style="width: 246px; height: 229px;" />
 <pre>
 <strong>Input:</strong> tree = [5,3,6,2,4,null,null,1], node = 6
 <strong>Output:</strong> null
 <strong>Explanation:</strong> There is no in-order successor of the current node, so the answer is null.
-</pre>
-
-<p><strong>Example 3:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0510.Inorder%20Successor%20in%20BST%20II/images/285_example_34.png" style="width: 438px; height: 335px;" />
-<pre>
-<strong>Input:</strong> tree = [15,6,18,3,7,17,20,2,4,null,13,null,null,null,null,null,null,null,null,9], node = 15
-<strong>Output:</strong> 17
-</pre>
-
-<p><strong>Example 4:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0510.Inorder%20Successor%20in%20BST%20II/images/285_example_34.png" style="width: 438px; height: 335px;" />
-<pre>
-<strong>Input:</strong> tree = [15,6,18,3,7,17,20,2,4,null,13,null,null,null,null,null,null,null,null,9], node = 13
-<strong>Output:</strong> 15
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> tree = [0], node = 0
-<strong>Output:</strong> null
 </pre>
 
 <p>&nbsp;</p>
@@ -69,7 +48,6 @@ class Node {
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Could you solve it without looking up any of the node&#39;s values?</p>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -77,13 +55,143 @@ class Node {
 ### **Python3**
 
 ```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+        self.parent = None
+"""
 
+
+class Solution:
+    def inorderSuccessor(self, node: 'Node') -> 'Optional[Node]':
+        if node.right:
+            node = node.right
+            while node.left:
+                node = node.left
+            return node
+        while node.parent and node == node.parent.right:
+            node = node.parent
+        return node.parent
 ```
 
 ### **Java**
 
 ```java
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node parent;
+};
+*/
 
+class Solution {
+
+    public Node inorderSuccessor(Node node) {
+        if (node.right != null) {
+            node = node.right;
+            while (node.left != null) {
+                node = node.left;
+            }
+            return node;
+        }
+        while (node.parent != null && node == node.parent.right) {
+            node = node.parent;
+        }
+        return node.parent;
+    }
+}
+
+```
+
+### **C++**
+
+```cpp
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    Node* parent;
+};
+*/
+
+class Solution {
+public:
+    Node* inorderSuccessor(Node* node) {
+        if (node->right) {
+            node = node->right;
+            while (node->left) node = node->left;
+            return node;
+        }
+        while (node->parent && node == node->parent->right) node = node->parent;
+        return node->parent;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Parent *Node
+ * }
+ */
+
+func inorderSuccessor(node *Node) *Node {
+    if node.Right != nil {
+        node = node.Right
+        for node.Left != nil {
+            node = node.Left
+        }
+        return node
+    }
+    for node.Parent != nil && node == node.Parent.Right {
+        node = node.Parent
+    }
+    return node.Parent
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * // Definition for a Node.
+ * function Node(val) {
+ *    this.val = val;
+ *    this.left = null;
+ *    this.right = null;
+ *    this.parent = null;
+ * };
+ */
+
+/**
+ * @param {Node} node
+ * @return {Node}
+ */
+var inorderSuccessor = function (node) {
+    if (node.right) {
+        node = node.right;
+        while (node.left) node = node.left;
+        return node;
+    }
+    while (node.parent && node == node.parent.right) node = node.parent;
+    return node.parent;
+};
 ```
 
 ### **...**

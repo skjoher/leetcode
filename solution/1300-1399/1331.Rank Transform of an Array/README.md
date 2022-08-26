@@ -1,4 +1,4 @@
-# [1331. 数组序号转换](https://leetcode-cn.com/problems/rank-transform-of-an-array)
+# [1331. 数组序号转换](https://leetcode.cn/problems/rank-transform-of-an-array)
 
 [English Version](/solution/1300-1399/1331.Rank%20Transform%20of%20an%20Array/README_EN.md)
 
@@ -46,10 +46,11 @@
 	<li><code>-10<sup>9</sup>&nbsp;&lt;= arr[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+**方法一：离散化**
 
 <!-- tabs:start -->
 
@@ -58,7 +59,17 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+class Solution:
+    def arrayRankTransform(self, arr: List[int]) -> List[int]:
+        t = sorted(set(arr))
+        return [bisect_left(t, x) + 1 for x in arr]
+```
 
+```python
+class Solution:
+    def arrayRankTransform(self, arr: List[int]) -> List[int]:
+        m = {v: i for i, v in enumerate(sorted(set(arr)), 1)}
+        return [m[v] for v in arr]
 ```
 
 ### **Java**
@@ -66,7 +77,101 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] arrayRankTransform(int[] arr) {
+        Set<Integer> s = new HashSet<>();
+        for (int v : arr) {
+            s.add(v);
+        }
+        List<Integer> alls = new ArrayList<>(s);
+        alls.sort((a, b) -> a - b);
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int i = 0; i < alls.size(); ++i) {
+            m.put(alls.get(i), i + 1);
+        }
+        int[] ans = new int[arr.length];
+        for (int i = 0; i < arr.length; ++i) {
+            ans[i] = m.get(arr[i]);
+        }
+        return ans;
+    }
+}
+```
 
+```java
+class Solution {
+    public int[] arrayRankTransform(int[] arr) {
+        Set<Integer> s = new HashSet<>();
+        for (int v : arr) {
+            s.add(v);
+        }
+        List<Integer> alls = new ArrayList<>(s);
+        alls.sort((a, b) -> a - b);
+        int n = arr.length;
+        int[] ans = new int[n];
+        for (int i = 0; i < n; ++i) {
+            ans[i] = Collections.binarySearch(alls, arr[i]) + 1;
+        }
+        return ans;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> arrayRankTransform(vector<int>& arr) {
+        unordered_set<int> s(arr.begin(), arr.end());
+        vector<int> alls(s.begin(), s.end());
+        sort(alls.begin(), alls.end());
+        unordered_map<int, int> m;
+        for (int i = 0; i < alls.size(); ++i) m[alls[i]] = i + 1;
+        vector<int> ans;
+        for (int v : arr) ans.push_back(m[v]);
+        return ans;
+    }
+};
+```
+
+```cpp
+class Solution {
+public:
+    vector<int> arrayRankTransform(vector<int>& arr) {
+        unordered_set<int> s(arr.begin(), arr.end());
+        vector<int> alls(s.begin(), s.end());
+        sort(alls.begin(), alls.end());
+        vector<int> ans;
+        for (int v: arr) ans.push_back(lower_bound(alls.begin(), alls.end(), v) - alls.begin() + 1);
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func arrayRankTransform(arr []int) []int {
+	s := make(map[int]bool)
+	for _, v := range arr {
+		s[v] = true
+	}
+	var alls []int
+	for v := range s {
+		alls = append(alls, v)
+	}
+	sort.Ints(alls)
+	m := make(map[int]int)
+	for i, v := range alls {
+		m[v] = i + 1
+	}
+	var ans []int
+	for _, v := range arr {
+		ans = append(ans, m[v])
+	}
+	return ans
+}
 ```
 
 ### **...**

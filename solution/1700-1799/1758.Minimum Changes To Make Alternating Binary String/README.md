@@ -1,4 +1,4 @@
-# [1758. 生成交替二进制字符串的最少操作数](https://leetcode-cn.com/problems/minimum-changes-to-make-alternating-binary-string)
+# [1758. 生成交替二进制字符串的最少操作数](https://leetcode.cn/problems/minimum-changes-to-make-alternating-binary-string)
 
 [English Version](/solution/1700-1799/1758.Minimum%20Changes%20To%20Make%20Alternating%20Binary%20String/README_EN.md)
 
@@ -44,7 +44,6 @@
 	<li><code>s[i]</code> 是 <code>'0'</code> 或 <code>'1'</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -56,7 +55,12 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def minOperations(self, s: str) -> int:
+        cnt = 0
+        for i, c in enumerate(s):
+            cnt += c == '01'[i & 1]
+        return min(cnt, len(s) - cnt)
 ```
 
 ### **Java**
@@ -64,7 +68,30 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int minOperations(String s) {
+        int cnt = 0, n = s.length();
+        for (int i = 0; i < n; ++i) {
+            cnt += (s.charAt(i) == "01".charAt(i & 1) ? 1 : 0);
+        }
+        return Math.min(cnt, n - cnt);
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minOperations(string s) {
+        int cnt = 0, n = s.size();
+        for (int i = 0; i < n; ++i) {
+            cnt += s[i] == "01"[i & 1];
+        }
+        return min(cnt, n - cnt);
+    }
+};
 ```
 
 ### **...**

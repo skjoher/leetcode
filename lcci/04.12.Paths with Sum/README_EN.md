@@ -1,4 +1,4 @@
-# [04.12. Paths with Sum](https://leetcode-cn.com/problems/paths-with-sum-lcci)
+# [04.12. Paths with Sum](https://leetcode.cn/problems/paths-with-sum-lcci)
 
 [中文文档](/lcci/04.12.Paths%20with%20Sum/README.md)
 
@@ -52,8 +52,8 @@ Depth-First-Search
 
 Using the idea of recursion, at each recursion to a node.
 
-- If root.val-sum == 0, add 1 to the result
-- Consider two scenarios for inclusion or exclusion of this node from the pathway
+-   If root.val-sum == 0, add 1 to the result
+-   Consider two scenarios for inclusion or exclusion of this node from the pathway
 
 Special case: if the parent node of this node is in the path, this node must be included in the path (the path cannot be broken)
 
@@ -64,13 +64,13 @@ class Solution:
             nonlocal ans
             if not root:
                 return 0
-            if sum-root.val == 0:
+            if sum - root.val == 0:
                 ans += 1
             if flag == 0:
                 dfs(root.left, sum, 0)
                 dfs(root.right, sum, 0)
-            dfs(root.left, sum-root.val, 1)
-            dfs(root.right, sum-root.val, 1)
+            dfs(root.left, sum - root.val, 1)
+            dfs(root.right, sum - root.val, 1)
 
         if not root:
             return 0
@@ -83,8 +83,8 @@ class Solution:
 
 Use to 2 recursive processes.
 
-- BFS: (traverse) traverses each tree node.
-- DFS: Starting from each tree node, the nodes sum to see if sum can be satisfied.
+-   BFS: (traverse) traverses each tree node.
+-   DFS: Starting from each tree node, the nodes sum to see if sum can be satisfied.
 
 Note that node values can be positive or negative, and all possible paths need to be exhausted.
 
@@ -112,6 +112,102 @@ class Solution {
         res += dfs(root.left,  sum, cur);
         res += dfs(root.right, sum, cur);
         return res;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function dfs(root: TreeNode | null, sum: number): number {
+    let res = 0;
+    if (root == null) {
+        return res;
+    }
+    sum -= root.val;
+    if (sum === 0) {
+        res++;
+    }
+    return res + dfs(root.left, sum) + dfs(root.right, sum);
+}
+
+function pathSum(root: TreeNode | null, sum: number): number {
+    if (root == null) {
+        return 0;
+    }
+    return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+}
+```
+
+### **Rust**
+
+```rust
+// Definition for a binary tree node.
+// #[derive(Debug, PartialEq, Eq)]
+// pub struct TreeNode {
+//   pub val: i32,
+//   pub left: Option<Rc<RefCell<TreeNode>>>,
+//   pub right: Option<Rc<RefCell<TreeNode>>>,
+// }
+//
+// impl TreeNode {
+//   #[inline]
+//   pub fn new(val: i32) -> Self {
+//     TreeNode {
+//       val,
+//       left: None,
+//       right: None
+//     }
+//   }
+// }
+use std::rc::Rc;
+use std::cell::RefCell;
+use std::collections::VecDeque;
+impl Solution {
+    fn dfs(root: &Option<Rc<RefCell<TreeNode>>>, mut sum: i32) -> i32 {
+        let mut res = 0;
+        if root.is_none() {
+            return res;
+        }
+        let root = root.as_ref().unwrap().borrow();
+        sum -= root.val;
+        if sum == 0 {
+            res += 1;
+        }
+        res + Self::dfs(&root.left, sum) + Self::dfs(&root.right, sum)
+    }
+
+    pub fn path_sum(root: Option<Rc<RefCell<TreeNode>>>, sum: i32) -> i32 {
+        let mut queue = VecDeque::new();
+        if root.is_some() {
+            queue.push_back(root);
+        }
+        let mut res = 0;
+        while let Some(mut root) = queue.pop_front() {
+            res += Self::dfs(&root, sum);
+            let mut root = root.as_mut().unwrap().borrow_mut();
+            if root.left.is_some() {
+                queue.push_back(root.left.take());
+            }
+            if root.right.is_some() {
+                queue.push_back(root.right.take());
+            }
+        }
+        res
     }
 }
 ```

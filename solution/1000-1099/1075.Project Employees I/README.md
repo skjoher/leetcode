@@ -1,4 +1,4 @@
-# [1075. 项目员工 I](https://leetcode-cn.com/problems/project-employees-i)
+# [1075. 项目员工 I](https://leetcode.cn/problems/project-employees-i)
 
 [English Version](/solution/1000-1099/1075.Project%20Employees%20I/README_EN.md)
 
@@ -69,7 +69,6 @@ Result 表：
 +-------------+---------------+
 第一个项目中，员工的平均工作年限是 (3 + 2 + 1) / 3 = 2.00；第二个项目中，员工的平均工作年限是 (3 + 2) / 2 = 2.50
 </pre>
-
 
 ## 解法
 

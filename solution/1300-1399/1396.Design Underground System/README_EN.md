@@ -10,24 +10,26 @@
 
 <ul>
 	<li><code>void checkIn(int id, string stationName, int t)</code>
-	<ul>
-		<li>A customer with a card ID equal to <code>id</code>, checks in at the station <code>stationName</code> at time <code>t</code>.</li>
-		<li>A customer can only be checked into one place at a time.</li>
-	</ul>
-	</li>
-	<li><code>void checkOut(int id, string stationName, int t)</code>
-	<ul>
-		<li>A customer with a card ID equal to <code>id</code>, checks out from the station <code>stationName</code> at time <code>t</code>.</li>
-	</ul>
-	</li>
-	<li><code>double getAverageTime(string startStation, string endStation)</code>
-	<ul>
-		<li>Returns the average time it takes to travel from <code>startStation</code> to <code>endStation</code>.</li>
-		<li>The average time is computed from all the previous traveling times from <code>startStation</code> to <code>endStation</code> that happened <strong>directly</strong>, meaning a check in at <code>startStation</code> followed by a check out from <code>endStation</code>.</li>
-		<li>The time it takes to travel from <code>startStation</code> to <code>endStation</code> <strong>may be different</strong> from the time it takes to travel from <code>endStation</code> to <code>startStation</code>.</li>
-		<li>There will be at least one customer that has traveled from <code>startStation</code> to <code>endStation</code> before <code>getAverageTime</code> is called.</li>
-	</ul>
-	</li>
+
+    <ul>
+    	<li>A customer with a card ID equal to <code>id</code>, checks in at the station <code>stationName</code> at time <code>t</code>.</li>
+    	<li>A customer can only be checked into one place at a time.</li>
+    </ul>
+    </li>
+    <li><code>void checkOut(int id, string stationName, int t)</code>
+    <ul>
+    	<li>A customer with a card ID equal to <code>id</code>, checks out from the station <code>stationName</code> at time <code>t</code>.</li>
+    </ul>
+    </li>
+    <li><code>double getAverageTime(string startStation, string endStation)</code>
+    <ul>
+    	<li>Returns the average time it takes to travel from <code>startStation</code> to <code>endStation</code>.</li>
+    	<li>The average time is computed from all the previous traveling times from <code>startStation</code> to <code>endStation</code> that happened <strong>directly</strong>, meaning a check in at <code>startStation</code> followed by a check out from <code>endStation</code>.</li>
+    	<li>The time it takes to travel from <code>startStation</code> to <code>endStation</code> <strong>may be different</strong> from the time it takes to travel from <code>endStation</code> to <code>startStation</code>.</li>
+    	<li>There will be at least one customer that has traveled from <code>startStation</code> to <code>endStation</code> before <code>getAverageTime</code> is called.</li>
+    </ul>
+    </li>
+
 </ul>
 
 <p>You may assume all calls to the <code>checkIn</code> and <code>checkOut</code> methods are consistent. If a customer checks in at time <code>t<sub>1</sub></code> then checks out at time <code>t<sub>2</sub></code>, then <code>t<sub>1</sub> &lt; t<sub>2</sub></code>. All events happen in chronological order.</p>
@@ -93,7 +95,6 @@ undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); // r
 	<li>Answers within <code>10<sup>-5</sup></code> of the actual value will be accepted.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -102,7 +103,6 @@ undergroundSystem.getAverageTime(&quot;Leyton&quot;, &quot;Paradise&quot;); // r
 
 ```python
 class UndergroundSystem:
-
     def __init__(self):
         self.check_in_station = {}
         self.check_in_time = {}
@@ -147,12 +147,12 @@ class UndergroundSystem {
         checkInTime = new HashMap<>();
         totalTime = new HashMap<>();
     }
-    
+
     public void checkIn(int id, String stationName, int t) {
         checkInStation.put(id, stationName);
         checkInTime.put(id, t);
     }
-    
+
     public void checkOut(int id, String stationName, int t) {
         int cost = t - checkInTime.remove(id);
         String startStation = checkInStation.remove(id);
@@ -162,7 +162,7 @@ class UndergroundSystem {
         ++times[1];
         totalTime.put(stations, times);
     }
-    
+
     public double getAverageTime(String startStation, String endStation) {
         String stations = startStation + "." + endStation;
         int[] times = totalTime.get(stations);

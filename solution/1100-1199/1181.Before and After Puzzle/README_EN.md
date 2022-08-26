@@ -65,7 +65,7 @@
 ```python
 class Solution:
     def beforeAndAfterPuzzles(self, phrases: List[str]) -> List[str]:
-        same_first_word = collections.defaultdict(set)
+        same_first_word = defaultdict(set)
         for i, phrase in enumerate(phrases):
             same_first_word[phrase.split()[0]].add(i)
         res = set()
@@ -88,10 +88,7 @@ class Solution {
         for (int i = 0; i < phrases.length; ++i) {
             String phrase = phrases[i];
             String word = phrase.split(" ")[0];
-            if (!sameFirstWord.containsKey(word)) {
-                sameFirstWord.put(word, new HashSet<>());
-            }
-            sameFirstWord.get(word).add(i);
+            sameFirstWord.computeIfAbsent(word, k -> new HashSet<>()).add(i);
         }
         Set<String> res = new HashSet<>();
         for (int i = 0; i < phrases.length; ++i) {

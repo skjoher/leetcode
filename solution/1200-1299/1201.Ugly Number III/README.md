@@ -1,4 +1,4 @@
-# [1201. 丑数 III](https://leetcode-cn.com/problems/ugly-number-iii)
+# [1201. 丑数 III](https://leetcode.cn/problems/ugly-number-iii)
 
 [English Version](/solution/1200-1299/1201.Ugly%20Number%20III/README_EN.md)
 
@@ -51,7 +51,6 @@
 	<li><code>1 <= a * b * c <= 10^18</code></li>
 	<li>本题结果在 <code>[1, 2 * 10^9]</code> 的范围内</li>
 </ul>
-
 
 ## 解法
 

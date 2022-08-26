@@ -46,7 +46,6 @@
 	<li><code>s[i]</code> is either <code>&#39;A&#39;</code>, <code>&#39;L&#39;</code>, or <code>&#39;P&#39;</code>.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -68,6 +67,25 @@ class Solution {
         return (i == -1 || s.lastIndexOf("A") == i) && !s.contains("LLL");
     }
 }
+```
+
+### **Go**
+
+```go
+func checkRecord(s string) bool {
+	return strings.Count(s, "A") < 2 && !strings.Contains(s, "LLL")
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool checkRecord(string s) {
+        return count(s.begin(), s.end(), 'A') < 2 && s.find("LLL") == string::npos;
+    }
+};
 ```
 
 ### **...**

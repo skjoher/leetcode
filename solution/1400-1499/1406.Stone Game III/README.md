@@ -1,4 +1,4 @@
-# [1406. 石子游戏 III](https://leetcode-cn.com/problems/stone-game-iii)
+# [1406. 石子游戏 III](https://leetcode.cn/problems/stone-game-iii)
 
 [English Version](/solution/1400-1499/1406.Stone%20Game%20III/README_EN.md)
 
@@ -59,7 +59,6 @@
 	<li><code>1 &lt;= values.length &lt;= 50000</code></li>
 	<li><code>-1000&nbsp;&lt;= values[i] &lt;= 1000</code></li>
 </ul>
-
 
 ## 解法
 

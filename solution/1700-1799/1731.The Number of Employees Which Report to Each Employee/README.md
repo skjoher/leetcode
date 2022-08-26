@@ -1,4 +1,4 @@
-# [1731. 每位经理的下属员工数量](https://leetcode-cn.com/problems/the-number-of-employees-which-report-to-each-employee)
+# [1731. 每位经理的下属员工数量](https://leetcode.cn/problems/the-number-of-employees-which-report-to-each-employee)
 
 [English Version](/solution/1700-1799/1731.The%20Number%20of%20Employees%20Which%20Report%20to%20Each%20Employee/README_EN.md)
 
@@ -50,7 +50,6 @@ Result table:
 +-------------+-------+---------------+-------------+
 Hercy 有两个需要向他汇报的员工, 他们是 Alice and Bob. 他们的平均年龄是 (41+36)/2 = 38.5, 四舍五入的结果是 39.
 </pre>
-
 
 ## 解法
 

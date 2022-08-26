@@ -6,7 +6,7 @@
 
 <p>Given a <strong>non-empty</strong>&nbsp;array of integers <code>nums</code>, every element appears <em>twice</em> except for one. Find that single one.</p>
 
-<p><strong>Follow up:</strong>&nbsp;Could you implement a solution with a linear runtime complexity and without using extra memory?</p>
+<p>You must&nbsp;implement a solution with a linear runtime complexity and use&nbsp;only constant&nbsp;extra space.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -27,7 +27,6 @@
 	<li><code>-3 * 10<sup>4</sup> &lt;= nums[i] &lt;= 3 * 10<sup>4</sup></code></li>
 	<li>Each element in the array appears twice except for one element which appears only once.</li>
 </ul>
-
 
 ## Solutions
 
@@ -66,11 +65,11 @@ class Solution {
  * @return {number}
  */
 var singleNumber = function (nums) {
-  let res = 0;
-  for (let num of nums) {
-    res ^= num;
-  }
-  return res;
+    let res = 0;
+    for (let num of nums) {
+        res ^= num;
+    }
+    return res;
 };
 ```
 
@@ -99,6 +98,20 @@ public:
         return res;
     }
 };
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn single_number(nums: Vec<i32>) -> i32 {
+        let mut result = 0;
+        for num in nums {
+            result ^= num;
+        }
+        result
+    }
+}
 ```
 
 ### **...**

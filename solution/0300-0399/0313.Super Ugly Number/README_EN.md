@@ -31,13 +31,12 @@
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= n &lt;= 10<sup>6</sup></code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>
 	<li><code>1 &lt;= primes.length &lt;= 100</code></li>
 	<li><code>2 &lt;= primes[i] &lt;= 1000</code></li>
 	<li><code>primes[i]</code> is <strong>guaranteed</strong> to be a prime number.</li>
 	<li>All the values of <code>primes</code> are <strong>unique</strong> and sorted in <strong>ascending order</strong>.</li>
 </ul>
-
 
 ## Solutions
 

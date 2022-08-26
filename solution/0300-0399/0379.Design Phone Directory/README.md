@@ -1,4 +1,4 @@
-# [379. 电话目录管理系统](https://leetcode-cn.com/problems/design-phone-directory)
+# [379. 电话目录管理系统](https://leetcode.cn/problems/design-phone-directory)
 
 [English Version](/solution/0300-0399/0379.Design%20Phone%20Directory/README_EN.md)
 
@@ -53,7 +53,6 @@ directory.check(2);
 	<li>调用方法的总数处于区间 <code>[0 - 20000]</code> 之内</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -66,7 +65,6 @@ directory.check(2);
 
 ```python
 class PhoneDirectory:
-
     def __init__(self, maxNumbers: int):
         """
         Initialize your data structure here

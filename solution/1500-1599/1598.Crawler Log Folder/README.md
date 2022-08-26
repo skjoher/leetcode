@@ -1,4 +1,4 @@
-# [1598. 文件夹操作日志搜集器](https://leetcode-cn.com/problems/crawler-log-folder)
+# [1598. 文件夹操作日志搜集器](https://leetcode.cn/problems/crawler-log-folder)
 
 [English Version](/solution/1500-1599/1598.Crawler%20Log%20Folder/README_EN.md)
 
@@ -26,7 +26,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1598.Crawler%20Log%20Folder/images/sample_11_1957.png" style="height: 151px; width: 775px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1598.Crawler%20Log%20Folder/images/sample_11_1957.png" style="height: 151px; width: 775px;"></p>
 
 <pre><strong>输入：</strong>logs = [&quot;d1/&quot;,&quot;d2/&quot;,&quot;../&quot;,&quot;d21/&quot;,&quot;./&quot;]
 <strong>输出：</strong>2
@@ -35,7 +35,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1598.Crawler%20Log%20Folder/images/sample_22_1957.png" style="height: 270px; width: 600px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1598.Crawler%20Log%20Folder/images/sample_22_1957.png" style="height: 270px; width: 600px;"></p>
 
 <pre><strong>输入：</strong>logs = [&quot;d1/&quot;,&quot;d2/&quot;,&quot;./&quot;,&quot;d3/&quot;,&quot;../&quot;,&quot;d31/&quot;]
 <strong>输出：</strong>3
@@ -58,7 +58,6 @@
 	<li><code>logs[i]</code> 符合语句中描述的格式</li>
 	<li>文件夹名称由小写英文字母和数字组成</li>
 </ul>
-
 
 ## 解法
 

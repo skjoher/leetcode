@@ -1,4 +1,4 @@
-# [1502. 判断能否形成等差数列](https://leetcode-cn.com/problems/can-make-arithmetic-progression-from-sequence)
+# [1502. 判断能否形成等差数列](https://leetcode.cn/problems/can-make-arithmetic-progression-from-sequence)
 
 [English Version](/solution/1500-1599/1502.Can%20Make%20Arithmetic%20Progression%20From%20Sequence/README_EN.md)
 
@@ -36,7 +36,6 @@
 	<li><code>2 &lt;= arr.length &lt;= 1000</code></li>
 	<li><code>-10^6 &lt;= arr[i] &lt;= 10^6</code></li>
 </ul>
-
 
 ## 解法
 
@@ -83,13 +82,31 @@ class Solution {
  * @param {number[]} arr
  * @return {boolean}
  */
-var canMakeArithmeticProgression = function(arr) {
+var canMakeArithmeticProgression = function (arr) {
     arr.sort((a, b) => a - b);
     for (let i = 1; i < arr.length - 1; i++) {
-        if ((arr[i] << 1) != (arr[i - 1] + arr[i + 1])) return false;
+        if (arr[i] << 1 != arr[i - 1] + arr[i + 1]) return false;
     }
     return true;
 };
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn can_make_arithmetic_progression(mut arr: Vec<i32>) -> bool {
+        arr.sort();
+        let n = arr.len();
+        let target = arr[0] - arr[1];
+        for i in 2..n {
+            if arr[i - 1] - arr[i] != target {
+                return false;
+            }
+        }
+        true
+    }
+}
 ```
 
 ### **...**

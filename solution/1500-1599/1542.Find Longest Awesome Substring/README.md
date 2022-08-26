@@ -1,4 +1,4 @@
-# [1542. 找出最长的超赞子字符串](https://leetcode-cn.com/problems/find-longest-awesome-substring)
+# [1542. 找出最长的超赞子字符串](https://leetcode.cn/problems/find-longest-awesome-substring)
 
 [English Version](/solution/1500-1599/1542.Find%20Longest%20Awesome%20Substring/README_EN.md)
 
@@ -51,7 +51,6 @@
 	<li><code>1 &lt;= s.length &lt;= 10^5</code></li>
 	<li><code>s</code> 仅由数字组成</li>
 </ul>
-
 
 ## 解法
 

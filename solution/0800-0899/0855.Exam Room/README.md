@@ -1,4 +1,4 @@
-# [855. 考场就座](https://leetcode-cn.com/problems/exam-room)
+# [855. 考场就座](https://leetcode.cn/problems/exam-room)
 
 [English Version](/solution/0800-0899/0855.Exam%20Room/README_EN.md)
 
@@ -37,7 +37,6 @@ seat() -&gt; 5，学生最后坐在 5 号座位上。
 	<li>在所有的测试样例中&nbsp;<code>ExamRoom.seat()</code>&nbsp;和&nbsp;<code>ExamRoom.leave()</code>&nbsp;最多被调用&nbsp;<code>10^4</code>&nbsp;次。</li>
 	<li>保证在调用&nbsp;<code>ExamRoom.leave(p)</code>&nbsp;时有学生正坐在座位 <code>p</code> 上。</li>
 </ol>
-
 
 ## 解法
 

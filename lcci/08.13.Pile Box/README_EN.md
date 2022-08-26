@@ -1,4 +1,4 @@
-# [08.13. Pile Box](https://leetcode-cn.com/problems/pile-box-lcci)
+# [08.13. Pile Box](https://leetcode.cn/problems/pile-box-lcci)
 
 [中文文档](/lcci/08.13.Pile%20Box/README.md)
 
@@ -12,9 +12,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: box = [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
 
+
+
 <strong> Output</strong>: 6
+
+
 
 </pre>
 
@@ -22,9 +28,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: box = [[1, 1, 1], [2, 3, 4], [2, 6, 7], [3, 4, 5]]
 
+
+
 <strong> Output</strong>: 10
+
+
 
 </pre>
 
@@ -42,17 +54,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

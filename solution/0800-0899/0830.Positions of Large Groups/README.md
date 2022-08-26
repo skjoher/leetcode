@@ -1,4 +1,4 @@
-# [830. 较大分组的位置](https://leetcode-cn.com/problems/positions-of-large-groups)
+# [830. 较大分组的位置](https://leetcode.cn/problems/positions-of-large-groups)
 
 [English Version](/solution/0800-0899/0830.Positions%20of%20Large%20Groups/README_EN.md)
 
@@ -47,7 +47,8 @@
 <strong>输入：</strong>s = "aba"
 <strong>输出：</strong>[]
 </pre>
- 
+
+
 
 <p><strong>提示：</strong></p>
 
@@ -55,7 +56,6 @@
 	<li><code>1 <= s.length <= 1000</code></li>
 	<li><code>s</code> 仅含小写英文字母</li>
 </ul>
-
 
 ## 解法
 

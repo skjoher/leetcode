@@ -1,4 +1,4 @@
-# [1812. 判断国际象棋棋盘中一个格子的颜色](https://leetcode-cn.com/problems/determine-color-of-a-chessboard-square)
+# [1812. 判断国际象棋棋盘中一个格子的颜色](https://leetcode.cn/problems/determine-color-of-a-chessboard-square)
 
 [English Version](/solution/1800-1899/1812.Determine%20Color%20of%20a%20Chessboard%20Square/README_EN.md)
 
@@ -8,7 +8,7 @@
 
 <p>给你一个坐标 <code>coordinates</code> ，它是一个字符串，表示国际象棋棋盘中一个格子的坐标。下图是国际象棋棋盘示意图。</p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1812.Determine%20Color%20of%20a%20Chessboard%20Square/images/chessboard.png" style="width: 400px; height: 396px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1812.Determine%20Color%20of%20a%20Chessboard%20Square/images/chessboard.png" style="width: 400px; height: 396px;" /></p>
 
 <p>如果所给格子的颜色是白色，请你返回 <code>true</code>，如果是黑色，请返回 <code>false</code> 。</p>
 
@@ -49,7 +49,6 @@
 	<li><code>'1' <= coordinates[1] <= '8'</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -89,7 +88,7 @@ class Solution {
  * @param {string} coordinates
  * @return {boolean}
  */
- var squareIsWhite = function(coordinates) {
+var squareIsWhite = function (coordinates) {
     let x = coordinates.charAt(0).charCodeAt() - 'a'.charCodeAt() + 1;
     let y = Number(coordinates.charAt(1));
     return ((x + y) & 1) == 1;

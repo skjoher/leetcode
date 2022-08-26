@@ -1,4 +1,4 @@
-# [1019. 链表中的下一个更大节点](https://leetcode-cn.com/problems/next-greater-node-in-linked-list)
+# [1019. 链表中的下一个更大节点](https://leetcode.cn/problems/next-greater-node-in-linked-list)
 
 [English Version](/solution/1000-1099/1019.Next%20Greater%20Node%20In%20Linked%20List/README_EN.md)
 
@@ -6,42 +6,41 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给出一个以头节点&nbsp;<code>head</code>&nbsp;作为第一个节点的链表。链表中的节点分别编号为：<code>node_1, node_2, node_3, ...</code> 。</p>
+<p>给定一个长度为&nbsp;<code>n</code>&nbsp;的链表&nbsp;<code>head</code></p>
 
-<p>每个节点都可能有下一个更大值（<em>next larger</em> <strong>value</strong>）：对于&nbsp;<code>node_i</code>，如果其&nbsp;<code>next_larger(node_i)</code>&nbsp;是&nbsp;<code>node_j.val</code>，那么就有&nbsp;<code>j &gt; i</code>&nbsp;且&nbsp;&nbsp;<code>node_j.val &gt; node_i.val</code>，而&nbsp;<code>j</code>&nbsp;是可能的选项中最小的那个。如果不存在这样的&nbsp;<code>j</code>，那么下一个更大值为&nbsp;<code>0</code>&nbsp;。</p>
+<p>对于列表中的每个节点，查找下一个 <strong>更大节点</strong> 的值。也就是说，对于每个节点，找到它旁边的第一个节点的值，这个节点的值 <strong>严格大于</strong> 它的值。</p>
 
-<p>返回整数答案数组&nbsp;<code>answer</code>，其中&nbsp;<code>answer[i] = next_larger(node_{i+1})</code>&nbsp;。</p>
-
-<p><strong><em>注意：</em></strong>在下面的示例中，诸如 <code>[2,1,5]</code> 这样的<strong>输入</strong>（不是输出）是链表的序列化表示，其头节点的值为&nbsp;2，第二个节点值为 1，第三个节点值为&nbsp;5 。</p>
+<p>返回一个整数数组 <code>answer</code> ，其中 <code>answer[i]</code> 是第 <code>i</code> 个节点( <strong>从1开始</strong> )的下一个更大的节点的值。如果第 <code>i</code> 个节点没有下一个更大的节点，设置&nbsp;<code>answer[i] = 0</code>&nbsp;。</p>
 
 <p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
 
-<pre><strong>输入：</strong>[2,1,5]
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1000-1099/1019.Next%20Greater%20Node%20In%20Linked%20List/images/linkedlistnext1.jpg" /></p>
+
+<pre>
+<strong>输入：</strong>head = [2,1,5]
 <strong>输出：</strong>[5,5,0]
 </pre>
 
 <p><strong>示例 2：</strong></p>
 
-<pre><strong>输入：</strong>[2,7,4,3,5]
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1000-1099/1019.Next%20Greater%20Node%20In%20Linked%20List/images/linkedlistnext2.jpg" /></p>
+
+<pre>
+<strong>输入：</strong>head = [2,7,4,3,5]
 <strong>输出：</strong>[7,0,5,5,0]
-</pre>
-
-<p><strong>示例 3：</strong></p>
-
-<pre><strong>输入：</strong>[1,7,5,1,9,2,5,1]
-<strong>输出：</strong>[7,9,9,9,0,5,0,0]
 </pre>
 
 <p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
-<ol>
-	<li>对于链表中的每个节点，<code>1 &lt;= node.val&nbsp;&lt;= 10^9</code></li>
-	<li>给定列表的长度在 <code>[0, 10000]</code>&nbsp;范围内</li>
-</ol>
+<ul>
+	<li>链表中节点数为&nbsp;<code>n</code></li>
+	<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>
+	<li><code>1 &lt;= Node.val &lt;= 10<sup>9</sup></code></li>
+</ul>
 
 ## 解法
 
@@ -61,6 +60,7 @@
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
+
 
 class Solution:
     def nextLargerNodes(self, head: ListNode) -> List[int]:
@@ -124,7 +124,7 @@ class Solution {
  * @param {ListNode} head
  * @return {number[]}
  */
-var nextLargerNodes = function(head) {
+var nextLargerNodes = function (head) {
     let nums = [];
     while (head != null) {
         nums.push(head.val);
@@ -142,6 +142,95 @@ var nextLargerNodes = function(head) {
     }
     return larger;
 };
+```
+
+### **TypeScript**
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+interface Item {
+    index: number;
+    val: number;
+}
+
+function nextLargerNodes(head: ListNode | null): number[] {
+    const res: number[] = [];
+    const stack: Item[] = [];
+    let cur = head;
+    for (let i = 0; cur != null; i++) {
+        res.push(0);
+        const { val, next } = cur;
+        while (stack.length !== 0 && stack[stack.length - 1].val < val) {
+            res[stack.pop().index] = val;
+        }
+        stack.push({
+            val,
+            index: i,
+        });
+        cur = next;
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+// Definition for singly-linked list.
+// #[derive(PartialEq, Eq, Clone, Debug)]
+// pub struct ListNode {
+//   pub val: i32,
+//   pub next: Option<Box<ListNode>>
+// }
+//
+// impl ListNode {
+//   #[inline]
+//   fn new(val: i32) -> Self {
+//     ListNode {
+//       next: None,
+//       val
+//     }
+//   }
+// }
+struct Item {
+    index: usize,
+    val: i32,
+}
+
+impl Solution {
+    pub fn next_larger_nodes(head: Option<Box<ListNode>>) -> Vec<i32> {
+        let mut res = Vec::new();
+        let mut stack: Vec<Item> = Vec::new();
+        let mut cur = &head;
+        for i in 0..usize::MAX {
+            if cur.is_none() {
+                break;
+            }
+            res.push(0);
+            let node = cur.as_ref().unwrap();
+            while !stack.is_empty() && stack.last().unwrap().val < node.val {
+                res[stack.pop().unwrap().index] = node.val;
+            }
+            stack.push(Item {
+                index: i,
+                val: node.val,
+            });
+            cur = &node.next;
+        }
+        res
+    }
+}
 ```
 
 ### **...**

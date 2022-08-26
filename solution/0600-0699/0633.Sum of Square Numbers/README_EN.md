@@ -22,27 +22,6 @@
 <strong>Output:</strong> false
 </pre>
 
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> c = 4
-<strong>Output:</strong> true
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> c = 2
-<strong>Output:</strong> true
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> c = 1
-<strong>Output:</strong> true
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -50,10 +29,9 @@
 	<li><code>0 &lt;= c &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 
-
 ## Solutions
 
-![](./images/table.png)
+![](https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0600-0699/0633.Sum%20of%20Square%20Numbers/images/table.png)
 
 The picture above shows the relationship between `a`, `b`, and `c`. This question is actually looking up `c` in this table
 
@@ -64,17 +42,17 @@ From the upper right corner of the table, it is not difficult to find that it is
 ### **Python3**
 
 ```python
-class Solution(object):
-    def judgeSquareSum(self, c):
-        i, j = 0, int(math.sqrt(c))
-        while i <= j:
-            s = i * i + j * j
-            if s < c:
-                i += 1
-            elif s > c:
-                j -= 1
-            else:
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        a, b = 0, int(sqrt(c))
+        while a <= b:
+            s = a**2 + b**2
+            if s == c:
                 return True
+            if s < c:
+                a += 1
+            else:
+                b -= 1
         return False
 ```
 
@@ -83,18 +61,100 @@ class Solution(object):
 ```java
 class Solution {
     public boolean judgeSquareSum(int c) {
-        int i = 0, j = (int) Math.sqrt(c);
-        while (i <= j) {
-            int s = i * i + j * j;
-            if (s < c) {
-                ++i;
-            } else if (s > c) {
-                --j;
-            } else {
+        long a = 0, b = (long) Math.sqrt(c);
+        while (a <= b) {
+            long s = a * a + b * b;
+            if (s == c) {
                 return true;
+            }
+            if (s < c) {
+                ++a;
+            } else {
+                --b;
             }
         }
         return false;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function judgeSquareSum(c: number): boolean {
+    let a = 0,
+        b = Math.floor(Math.sqrt(c));
+    while (a <= b) {
+        let sum = a ** 2 + b ** 2;
+        if (sum == c) return true;
+        if (sum < c) {
+            ++a;
+        } else {
+            --b;
+        }
+    }
+    return false;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        long a = 0, b = (long)sqrt(c);
+        while (a <= b) {
+            long s = a * a + b * b;
+            if (s == c) return true;
+            if (s < c)
+                ++a;
+            else
+                --b;
+        }
+        return false;
+    }
+};
+```
+
+### **Go**
+
+```go
+func judgeSquareSum(c int) bool {
+	a, b := 0, int(math.Sqrt(float64(c)))
+	for a <= b {
+		s := a*a + b*b
+		if s == c {
+			return true
+		}
+		if s < c {
+			a++
+		} else {
+			b--
+		}
+	}
+	return false
+}
+```
+
+### **Rust**
+
+```rust
+use std::cmp::Ordering;
+impl Solution {
+    pub fn judge_square_sum(c: i32) -> bool {
+        let c = c as i64;
+        let mut left = 0;
+        let mut right = (c as f64).sqrt() as i64;
+        while left <= right {
+            let num = left * left + right * right;
+            match num.cmp(&c) {
+                Ordering::Less => left += 1,
+                Ordering::Greater => right -= 1,
+                Ordering::Equal => return true,
+            }
+        }
+        false
     }
 }
 ```

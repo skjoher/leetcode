@@ -1,4 +1,4 @@
-# [73. 矩阵置零](https://leetcode-cn.com/problems/set-matrix-zeroes)
+# [73. 矩阵置零](https://leetcode.cn/problems/set-matrix-zeroes)
 
 [English Version](/solution/0000-0099/0073.Set%20Matrix%20Zeroes/README_EN.md)
 
@@ -6,43 +6,47 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给定一个 <code><em>m</em> x <em>n</em></code> 的矩阵，如果一个元素为 <strong>0 </strong>，则将其所在行和列的所有元素都设为 <strong>0</strong> 。请使用 <strong><a href="http://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95" target="_blank">原地</a></strong> 算法<strong>。</strong></p>
-
-<p><strong>进阶：</strong></p>
+<p>给定一个&nbsp;<code><em>m</em> x <em>n</em></code> 的矩阵，如果一个元素为 <strong>0 </strong>，则将其所在行和列的所有元素都设为 <strong>0</strong> 。请使用 <strong><a href="http://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95" target="_blank">原地</a></strong> 算法<strong>。</strong></p>
 
 <ul>
-	<li>一个直观的解决方案是使用  <code>O(<em>m</em><em>n</em>)</code> 的额外空间，但这并不是一个好的解决方案。</li>
-	<li>一个简单的改进方案是使用 <code>O(<em>m</em> + <em>n</em>)</code> 的额外空间，但这仍然不是最好的解决方案。</li>
-	<li>你能想出一个仅使用常量空间的解决方案吗？</li>
 </ul>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat1.jpg" style="width: 450px; height: 169px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat1.jpg" style="width: 450px; height: 169px;" />
 <pre>
 <strong>输入：</strong>matrix = [[1,1,1],[1,0,1],[1,1,1]]
 <strong>输出：</strong>[[1,0,1],[0,0,0],[1,0,1]]
 </pre>
 
 <p><strong>示例 2：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat2.jpg" style="width: 450px; height: 137px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0000-0099/0073.Set%20Matrix%20Zeroes/images/mat2.jpg" style="width: 450px; height: 137px;" />
 <pre>
 <strong>输入：</strong>matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
 <strong>输出：</strong>[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 </pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
 	<li><code>m == matrix.length</code></li>
 	<li><code>n == matrix[0].length</code></li>
-	<li><code>1 <= m, n <= 200</code></li>
-	<li><code>-2<sup>31</sup> <= matrix[i][j] <= 2<sup>31</sup> - 1</code></li>
+	<li><code>1 &lt;= m, n &lt;= 200</code></li>
+	<li><code>-2<sup>31</sup> &lt;= matrix[i][j] &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 
+<p>&nbsp;</p>
+
+<p><strong>进阶：</strong></p>
+
+<ul>
+	<li>一个直观的解决方案是使用 &nbsp;<code>O(<em>m</em><em>n</em>)</code>&nbsp;的额外空间，但这并不是一个好的解决方案。</li>
+	<li>一个简单的改进方案是使用 <code>O(<em>m</em>&nbsp;+&nbsp;<em>n</em>)</code> 的额外空间，但这仍然不是最好的解决方案。</li>
+	<li>你能想出一个仅使用常量空间的解决方案吗？</li>
+</ul>
 
 ## 解法
 
@@ -192,6 +196,61 @@ class Solution {
             for (int i = 0; i < m; ++i) {
                 matrix[i][0] = 0;
             }
+        }
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+/**
+ Do not return anything, modify matrix in-place instead.
+ */
+function setZeroes(matrix: number[][]): void {
+    let m = matrix.length,
+        n = matrix[0].length;
+    let c0 = false,
+        r0 = false;
+    // 遍历第一行
+    for (let i = 0; i < m; i++) {
+        if (!matrix[i][0] && !c0) {
+            c0 = true;
+        }
+    }
+    // 第一列
+    for (let j = 0; j < n; j++) {
+        if (!matrix[0][j] && !r0) {
+            r0 = true;
+        }
+    }
+    // 用第一行、第一列标记全部
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (!matrix[i][j]) {
+                matrix[i][0] = 0;
+                matrix[0][j] = 0;
+            }
+        }
+    }
+    // set
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (!matrix[i][0] || !matrix[0][j]) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+    // set 第一列
+    if (c0) {
+        for (let i = 0; i < m; i++) {
+            matrix[i][0] = 0;
+        }
+    }
+    // 第一行
+    if (r0) {
+        for (let j = 0; j < n; j++) {
+            matrix[0][j] = 0;
         }
     }
 }

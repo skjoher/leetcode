@@ -1,4 +1,4 @@
-# [1086. 前五科的均分](https://leetcode-cn.com/problems/high-five)
+# [1086. 前五科的均分](https://leetcode.cn/problems/high-five)
 
 [English Version](/solution/1000-1099/1086.High%20Five/README_EN.md)
 
@@ -67,7 +67,7 @@ class Solution:
         for i, scores in enumerate(s):
             if scores is None:
                 continue
-            avg = sum(heapq.nlargest(5, scores)) // 5
+            avg = sum(nlargest(5, scores)) // 5
             res.append([i, avg])
         return res
 ```

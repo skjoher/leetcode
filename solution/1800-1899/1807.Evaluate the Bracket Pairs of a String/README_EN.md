@@ -52,12 +52,6 @@ The key &quot;a&quot; has a value of &quot;yes&quot;, so replace all occurrences
 Notice that the &quot;a&quot;s not in a bracket pair are not evaluated.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;(a)(b)&quot;, knowledge = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;a&quot;]]
-<strong>Output:</strong> &quot;ba&quot;</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -87,13 +81,14 @@ class Solution:
             for i in range(start, end):
                 if s[i] == ')':
                     return i
+
         knowledge_dict = {item[0]: item[1] for item in knowledge}
         res, n = [], len(s)
         i = 0
         while i < n:
             if s[i] == '(':
                 right_bracket_pos = find_right_bracket(s, i + 1, n)
-                key = s[i + 1: right_bracket_pos]
+                key = s[i + 1 : right_bracket_pos]
                 res.append(knowledge_dict.get(key, '?'))
                 i = right_bracket_pos + 1
             else:

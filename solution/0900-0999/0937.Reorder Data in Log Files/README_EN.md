@@ -51,7 +51,6 @@ The digit-logs have a relative order of &quot;dig1 8 1 5 1&quot;, &quot;dig2 3 6
 	<li><code>logs[i]</code> is guaranteed to have an identifier and at least one word after the identifier.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -59,13 +58,89 @@ The digit-logs have a relative order of &quot;dig1 8 1 5 1&quot;, &quot;dig2 3 6
 ### **Python3**
 
 ```python
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        def cmp(x):
+            a, b = x.split(' ', 1)
+            return (0, b, a) if b[0].isalpha() else (1,)
 
+        return sorted(logs, key=cmp)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public String[] reorderLogFiles(String[] logs) {
+        Arrays.sort(logs, this::cmp);
+        return logs;
+    }
 
+    private int cmp(String a, String b) {
+        String[] t1 = a.split(" ", 2);
+        String[] t2 = b.split(" ", 2);
+        boolean d1 = Character.isDigit(t1[1].charAt(0));
+        boolean d2 = Character.isDigit(t2[1].charAt(0));
+        if (!d1 && !d2) {
+            int v = t1[1].compareTo(t2[1]);
+            return v == 0 ? t1[0].compareTo(t2[0]) : v;
+        }
+        if (d1 && d2) {
+            return 0;
+        }
+        return d1 ? 1 : -1;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function reorderLogFiles(logs: string[]): string[] {
+    const isDigit = (c: string) => c >= '0' && c <= '9';
+    return logs.sort((a, b) => {
+        const end1 = a[a.length - 1];
+        const end2 = b[b.length - 1];
+        if (isDigit(end1) && isDigit(end2)) {
+            return 0;
+        }
+        if (isDigit(end1)) {
+            return 1;
+        }
+        if (isDigit(end2)) {
+            return -1;
+        }
+        const content1 = a.split(' ').slice(1).join(' ');
+        const content2 = b.split(' ').slice(1).join(' ');
+        if (content1 === content2) {
+            return a < b ? -1 : 1;
+        }
+        return content1 < content2 ? -1 : 1;
+    });
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn reorder_log_files(mut logs: Vec<String>) -> Vec<String> {
+        logs.sort_by(|s1, s2| {
+            let (start1, content1) = s1.split_once(' ').unwrap();
+            let (start2, content2) = s2.split_once(' ').unwrap();
+            match (
+                content1.chars().nth(0).unwrap().is_digit(10),
+                content2.chars().nth(0).unwrap().is_digit(10),
+            ) {
+                (true, true) => std::cmp::Ordering::Equal,
+                (true, false) => std::cmp::Ordering::Greater,
+                (false, true) => std::cmp::Ordering::Less,
+                (false, false) => content1.cmp(&content2).then(start1.cmp(&start2)),
+            }
+        });
+        logs
+    }
+}
 ```
 
 ### **...**

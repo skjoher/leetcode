@@ -1,4 +1,4 @@
-# [1648. 销售价值减少的颜色球](https://leetcode-cn.com/problems/sell-diminishing-valued-colored-balls)
+# [1648. 销售价值减少的颜色球](https://leetcode.cn/problems/sell-diminishing-valued-colored-balls)
 
 [English Version](/solution/1600-1699/1648.Sell%20Diminishing-Valued%20Colored%20Balls/README_EN.md)
 
@@ -17,7 +17,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1648.Sell%20Diminishing-Valued%20Colored%20Balls/images/jj.gif" style="width: 480px; height: 270px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1648.Sell%20Diminishing-Valued%20Colored%20Balls/images/jj.gif" style="width: 480px; height: 270px;" />
 <pre>
 <b>输入：</b>inventory = [2,5], orders = 4
 <b>输出：</b>14
@@ -58,7 +58,6 @@
 	<li><code>1 <= inventory[i] <= 10<sup>9</sup></code></li>
 	<li><code>1 <= orders <= min(sum(inventory[i]), 10<sup>9</sup>)</code></li>
 </ul>
-
 
 ## 解法
 

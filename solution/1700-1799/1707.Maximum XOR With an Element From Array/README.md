@@ -1,4 +1,4 @@
-# [1707. 与数组中元素的最大异或值](https://leetcode-cn.com/problems/maximum-xor-with-an-element-from-array)
+# [1707. 与数组中元素的最大异或值](https://leetcode.cn/problems/maximum-xor-with-an-element-from-array)
 
 [English Version](/solution/1700-1799/1707.Maximum%20XOR%20With%20an%20Element%20From%20Array/README_EN.md)
 
@@ -39,7 +39,6 @@
 	<li><code>queries[i].length == 2</code></li>
 	<li><code>0 &lt;= nums[j], x<sub>i</sub>, m<sub>i</sub> &lt;= 10<sup>9</sup></code></li>
 </ul>
-
 
 ## 解法
 

@@ -1,14 +1,13 @@
 class FileSharing:
-
     def __init__(self, m: int):
         self.cur = 0
         self.chunks = m
         self.reused = []
-        self.user_chunks = collections.defaultdict(set)
+        self.user_chunks = defaultdict(set)
 
     def join(self, ownedChunks: List[int]) -> int:
         if self.reused:
-            userID = heapq.heappop(self.reused)
+            userID = heappop(self.reused)
         else:
             self.cur += 1
             userID = self.cur
@@ -16,7 +15,7 @@ class FileSharing:
         return userID
 
     def leave(self, userID: int) -> None:
-        heapq.heappush(self.reused, userID)
+        heappush(self.reused, userID)
         self.user_chunks.pop(userID)
 
     def request(self, userID: int, chunkID: int) -> List[int]:
@@ -29,6 +28,7 @@ class FileSharing:
         if res:
             self.user_chunks[userID].add(chunkID)
         return sorted(res)
+
 
 # Your FileSharing object will be instantiated and called as such:
 # obj = FileSharing(m)

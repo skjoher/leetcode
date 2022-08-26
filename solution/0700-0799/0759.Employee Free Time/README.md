@@ -1,4 +1,4 @@
-# [759. 员工空闲时间](https://leetcode-cn.com/problems/employee-free-time)
+# [759. 员工空闲时间](https://leetcode.cn/problems/employee-free-time)
 
 [English Version](/solution/0700-0799/0759.Employee%20Free%20Time/README_EN.md)
 
@@ -48,7 +48,6 @@
 <p><strong>注：</strong>输入类型于&nbsp;2019 年&nbsp;4 月 15 日 改变。请重置为默认代码的定义以获取新方法。</p>
 
 <p>&nbsp;</p>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1776. 车队 II](https://leetcode-cn.com/problems/car-fleet-ii)
+# [1776. 车队 II](https://leetcode.cn/problems/car-fleet-ii)
 
 [English Version](/solution/1700-1799/1776.Car%20Fleet%20II/README_EN.md)
 
@@ -43,7 +43,6 @@
 	<li><code>1 <= position<sub>i</sub>, speed<sub>i</sub> <= 10<sup>6</sup></code></li>
 	<li><code>position<sub>i</sub> < position<sub>i+1</sub></code></li>
 </ul>
-
 
 ## 解法
 

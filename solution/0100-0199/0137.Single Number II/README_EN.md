@@ -6,6 +6,8 @@
 
 <p>Given an integer array <code>nums</code> where&nbsp;every element appears <strong>three times</strong> except for one, which appears <strong>exactly once</strong>. <em>Find the single element and return it</em>.</p>
 
+<p>You must&nbsp;implement a solution with a linear runtime complexity and use&nbsp;only constant&nbsp;extra space.</p>
+
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 <pre><strong>Input:</strong> nums = [2,2,3,2]
@@ -23,10 +25,6 @@
 	<li>Each element in <code>nums</code> appears exactly <strong>three times</strong> except for one element which appears <strong>once</strong>.</li>
 </ul>
 
-<p>&nbsp;</p>
-<p><strong>Follow up:</strong>&nbsp;Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
-
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -36,16 +34,15 @@
 ```python
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        bits = [0] * 32
-        for num in nums:
-            for i in range(32):
-                bits[i] += (num & 1)
-                num >>= 1
-        res = 0
+        ans = 0
         for i in range(32):
-            if bits[i] % 3 != 0:
-                res |= (1 << i)
-        return res if bits[31] % 3 == 0 else ~(res ^ 0xffffffff)
+            cnt = sum(num >> i & 1 for num in nums)
+            if cnt % 3:
+                if i == 31:
+                    ans -= 1 << i
+                else:
+                    ans |= 1 << i
+        return ans
 ```
 
 ### **Java**
@@ -53,23 +50,55 @@ class Solution:
 ```java
 class Solution {
     public int singleNumber(int[] nums) {
-        int[] bits = new int[32];
-        for (int num : nums) {
-            for (int i = 0; i < 32; ++i) {
-                bits[i] += (num & 1);
-                num >>= 1;
+        int ans = 0;
+        for (int i = 0; i < 32; i++) {
+            int cnt = 0;
+            for (int num : nums) {
+                cnt += num >> i & 1;
             }
+            cnt %= 3;
+            ans |= cnt << i;
         }
-
-        int res = 0;
-        for (int i = 0; i < 32; ++i) {
-            if (bits[i] % 3 == 1) {
-                res |= (1 << i);
-            }
-        }
-        return res;
+        return ans;
     }
 }
+```
+
+### **Go**
+
+```go
+func singleNumber(nums []int) int {
+	ans := int32(0)
+	for i := 0; i < 32; i++ {
+		cnt := int32(0)
+		for _, num := range nums {
+			cnt += int32(num) >> i & 1
+		}
+		cnt %= 3
+		ans |= cnt << i
+	}
+	return int(ans)
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans = 0;
+        for (int i = 0; i < 32; ++i) {
+            int cnt = 0;
+            for (int num : nums) {
+                cnt += ((num >> i) & 1);
+            }
+            cnt %= 3;
+            ans |= cnt << i;
+        }
+        return ans;
+    }
+};
 ```
 
 ### **...**

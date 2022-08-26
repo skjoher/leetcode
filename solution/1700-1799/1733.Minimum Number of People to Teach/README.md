@@ -1,4 +1,4 @@
-# [1733. 需要教语言的最少人数](https://leetcode-cn.com/problems/minimum-number-of-people-to-teach)
+# [1733. 需要教语言的最少人数](https://leetcode.cn/problems/minimum-number-of-people-to-teach)
 
 [English Version](/solution/1700-1799/1733.Minimum%20Number%20of%20People%20to%20Teach/README_EN.md)
 
@@ -52,7 +52,6 @@
 	<li>所有的好友关系 <code>(u<sub>​​​​​i, </sub>v<sub>​​​​​​i</sub>)</code> 都是唯一的。</li>
 	<li><code>languages[i]</code> 中包含的值互不相同。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [635. 设计日志存储系统](https://leetcode-cn.com/problems/design-log-storage-system)
+# [635. 设计日志存储系统](https://leetcode.cn/problems/design-log-storage-system)
 
 [English Version](/solution/0600-0699/0635.Design%20Log%20Storage%20System/README_EN.md)
 
@@ -54,7 +54,6 @@ logSystem.retrieve("2016:01:01:01:01:01", "2017:01:01:23:00:00", "Hour");
 	<li><code>granularity</code> 是这些值 <code>["Year", "Month", "Day", "Hour", "Minute", "Second"]</code> 之一</li>
 	<li>最多调用 <code>500</code> 次 <code>put</code> 和 <code>retrieve</code></li>
 </ul>
-
 
 ## 解法
 

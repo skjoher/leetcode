@@ -1,4 +1,4 @@
-# [1181. 前后拼接](https://leetcode-cn.com/problems/before-and-after-puzzle)
+# [1181. 前后拼接](https://leetcode.cn/problems/before-and-after-puzzle)
 
 [English Version](/solution/1100-1199/1181.Before%20and%20After%20Puzzle/README_EN.md)
 
@@ -74,7 +74,7 @@
 ```python
 class Solution:
     def beforeAndAfterPuzzles(self, phrases: List[str]) -> List[str]:
-        same_first_word = collections.defaultdict(set)
+        same_first_word = defaultdict(set)
         for i, phrase in enumerate(phrases):
             same_first_word[phrase.split()[0]].add(i)
         res = set()
@@ -99,10 +99,7 @@ class Solution {
         for (int i = 0; i < phrases.length; ++i) {
             String phrase = phrases[i];
             String word = phrase.split(" ")[0];
-            if (!sameFirstWord.containsKey(word)) {
-                sameFirstWord.put(word, new HashSet<>());
-            }
-            sameFirstWord.get(word).add(i);
+            sameFirstWord.computeIfAbsent(word, k -> new HashSet<>()).add(i);
         }
         Set<String> res = new HashSet<>();
         for (int i = 0; i < phrases.length; ++i) {

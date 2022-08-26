@@ -6,17 +6,11 @@
 
 <p>Given the array <code>nums</code> consisting of <code>2n</code> elements in the form <code>[x<sub>1</sub>,x<sub>2</sub>,...,x<sub>n</sub>,y<sub>1</sub>,y<sub>2</sub>,...,y<sub>n</sub>]</code>.</p>
 
-
-
 <p><em>Return the array in the form</em> <code>[x<sub>1</sub>,y<sub>1</sub>,x<sub>2</sub>,y<sub>2</sub>,...,x<sub>n</sub>,y<sub>n</sub>]</code>.</p>
-
-
 
 <p>&nbsp;</p>
 
 <p><strong>Example 1:</strong></p>
-
-
 
 <pre>
 
@@ -28,11 +22,7 @@
 
 </pre>
 
-
-
 <p><strong>Example 2:</strong></p>
-
-
 
 <pre>
 
@@ -42,11 +32,7 @@
 
 </pre>
 
-
-
 <p><strong>Example 3:</strong></p>
-
-
 
 <pre>
 
@@ -56,18 +42,18 @@
 
 </pre>
 
-
-
 <p>&nbsp;</p>
 
 <p><strong>Constraints:</strong></p>
 
-
-
 <ul>
-	<li><code>1 &lt;= n &lt;= 500</code></li>
-	<li><code>nums.length == 2n</code></li>
-	<li><code>1 &lt;= nums[i] &lt;= 10^3</code></li>
+
+    <li><code>1 &lt;= n &lt;= 500</code></li>
+
+    <li><code>nums.length == 2n</code></li>
+
+    <li><code>1 &lt;= nums[i] &lt;= 10^3</code></li>
+
 </ul>
 
 ## Solutions
@@ -77,13 +63,69 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        ans = []
+        for i in range(n):
+            ans.append(nums[i])
+            ans.append(nums[i + n])
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int[] shuffle(int[] nums, int n) {
+        int[] ans = new int[n << 1];
+        for (int i = 0, j = 0; i < n; ++i) {
+            ans[j++] = nums[i];
+            ans[j++] = nums[i + n];
+        }
+        return ans;
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function shuffle(nums: number[], n: number): number[] {
+    let ans = [];
+    for (let i = 0; i < n; i++) {
+        ans.push(nums[i], nums[n + i]);
+    }
+    return ans;
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> shuffle(vector<int>& nums, int n) {
+        vector<int> ans;
+        for (int i = 0; i < n; ++i) {
+            ans.push_back(nums[i]);
+            ans.push_back(nums[i + n]);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func shuffle(nums []int, n int) []int {
+	var ans []int
+	for i := 0; i < n; i++ {
+		ans = append(ans, nums[i])
+		ans = append(ans, nums[i+n])
+	}
+	return ans
+}
 ```
 
 ### **...**

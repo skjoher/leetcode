@@ -1,4 +1,4 @@
-# [1741. 查找每个员工花费的总时间](https://leetcode-cn.com/problems/find-total-time-spent-by-each-employee)
+# [1741. 查找每个员工花费的总时间](https://leetcode.cn/problems/find-total-time-spent-by-each-employee)
 
 [English Version](/solution/1700-1799/1741.Find%20Total%20Time%20Spent%20by%20Each%20Employee/README_EN.md)
 
@@ -53,7 +53,6 @@ Result table:
 雇员 2 有两次进出: 有一次发生在 2020-11-28 花费的时间为 (33 - 3) = 30,  有一次发生在 2020-12-09 花费的时间为 (74 - 47) = 27。
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -63,7 +62,14 @@ Result table:
 ### **SQL**
 
 ```sql
-
+SELECT
+    event_day AS day,
+    emp_id,
+    SUM(out_time - in_time) AS  total_time
+FROM
+    Employees
+GROUP BY
+    emp_id, event_day;
 ```
 
 <!-- tabs:end -->

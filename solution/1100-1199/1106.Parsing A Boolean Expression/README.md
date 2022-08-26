@@ -1,4 +1,4 @@
-# [1106. 解析布尔表达式](https://leetcode-cn.com/problems/parsing-a-boolean-expression)
+# [1106. 解析布尔表达式](https://leetcode.cn/problems/parsing-a-boolean-expression)
 
 [English Version](/solution/1100-1199/1106.Parsing%20A%20Boolean%20Expression/README_EN.md)
 
@@ -53,7 +53,6 @@
 	<li><code>expression[i]</code> 由 <code>{&#39;(&#39;, &#39;)&#39;, &#39;&amp;&#39;, &#39;|&#39;, &#39;!&#39;, &#39;t&#39;, &#39;f&#39;, &#39;,&#39;}</code> 中的字符组成。</li>
 	<li><code>expression</code> 是以上述形式给出的有效表达式，表示一个布尔值。</li>
 </ul>
-
 
 ## 解法
 

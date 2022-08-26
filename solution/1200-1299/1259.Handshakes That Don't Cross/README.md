@@ -1,4 +1,4 @@
-# [1259. 不相交的握手](https://leetcode-cn.com/problems/handshakes-that-dont-cross)
+# [1259. 不相交的握手](https://leetcode.cn/problems/handshakes-that-dont-cross)
 
 [English Version](/solution/1200-1299/1259.Handshakes%20That%20Don%27t%20Cross/README_EN.md)
 
@@ -22,7 +22,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1259.Handshakes%20That%20Don%27t%20Cross/images/5125_example_2.png" style="height: 311px; width: 651px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1259.Handshakes%20That%20Don%27t%20Cross/images/5125_example_2.png" style="height: 311px; width: 651px;"></p>
 
 <pre><strong>输入：</strong>num_people = 4
 <strong>输出：</strong>2
@@ -31,7 +31,7 @@
 
 <p><strong>示例 3：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1259.Handshakes%20That%20Don%27t%20Cross/images/5125_example_3.png" style="height: 992px; width: 664px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1200-1299/1259.Handshakes%20That%20Don%27t%20Cross/images/5125_example_3.png" style="height: 992px; width: 664px;"></p>
 
 <pre><strong>输入：</strong>num_people = 6
 <strong>输出：</strong>5
@@ -51,7 +51,6 @@
 	<li><code>2 &lt;= num_people &lt;= 1000</code></li>
 	<li><code>num_people % 2 == 0</code></li>
 </ul>
-
 
 ## 解法
 

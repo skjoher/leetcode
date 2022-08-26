@@ -1,4 +1,4 @@
-# [60. 排列序列](https://leetcode-cn.com/problems/permutation-sequence)
+# [60. 排列序列](https://leetcode.cn/problems/permutation-sequence)
 
 [English Version](/solution/0000-0099/0060.Permutation%20Sequence/README_EN.md)
 
@@ -52,7 +52,6 @@
 	<li><code>1 <= n <= 9</code></li>
 	<li><code>1 <= k <= n!</code></li>
 </ul>
-
 
 ## 解法
 

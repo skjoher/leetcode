@@ -1,4 +1,4 @@
-# [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock)
+# [121. 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)
 
 [English Version](/solution/0100-0199/0121.Best%20Time%20to%20Buy%20and%20Sell%20Stock/README_EN.md)
 
@@ -40,10 +40,11 @@
 	<li><code>0 <= prices[i] <= 10<sup>4</sup></code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+参考本站 [面试题 63. 股票的最大利润](/lcof/%E9%9D%A2%E8%AF%95%E9%A2%9863.%20%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%A9%E6%B6%A6/README.md?id=%E8%A7%A3%E6%B3%95)（题意相同）。
 
 <!-- tabs:start -->
 
@@ -54,13 +55,10 @@
 ```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if not prices:
-            return 0
-        res = 0
-        min_price = prices[0]
-        for price in prices:
-            min_price = min(min_price, price)
-            res = max(res, price - min_price)
+        res, mi = 0, prices[0]
+        for price in prices[1:]:
+            res = max(res, price - mi)
+            mi = min(mi, price)
         return res
 ```
 
@@ -71,15 +69,56 @@ class Solution:
 ```java
 class Solution {
     public int maxProfit(int[] prices) {
-        if (prices == null) return 0;
-        int res = 0;
-        int min = Integer.MAX_VALUE;
-        for (int price : prices) {
-            min = Math.min(min, price);
-            res = Math.max(res, price - min);
+        int res = 0, mi = prices[0];
+        for (int i = 1; i < prices.length; ++i) {
+            res = Math.max(res, prices[i] - mi);
+            mi = Math.min(mi, prices[i]);
         }
         return res;
     }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int res = 0, mi = prices[0];
+        for (int i = 1; i < prices.size(); ++i) {
+            res = max(res, prices[i] - mi);
+            mi = min(mi, prices[i]);
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxProfit(prices []int) int {
+	res, mi := 0, prices[0]
+	for i := 1; i < len(prices); i++ {
+		res = max(res, prices[i]-mi)
+		mi = min(min, prices[i])
+	}
+	return res
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 ```
 
@@ -90,19 +129,61 @@ class Solution {
  * @param {number[]} prices
  * @return {number}
  */
-const maxProfit = function (prices) {
-  let min = prices[0];
-  let profit = 0;
-  for (let i = 0; i < prices.length; i++) {
-    if (prices[i] < min) {
-      min = prices[i];
+var maxProfit = function (prices) {
+    let res = 0;
+    let mi = prices[0];
+    for (let i = 1; i < prices.length; ++i) {
+        res = Math.max(res, prices[i] - mi);
+        mi = Math.min(mi, prices[i]);
     }
-    if (profit < prices[i] - min) {
-      profit = prices[i] - min;
-    }
-  }
-  return profit;
+    return res;
 };
+```
+
+### **C#**
+
+```cs
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        int res = 0, mi = prices[0];
+        for (int i = 1; i < prices.Length; ++i)
+        {
+            res = Math.Max(res, prices[i] - mi);
+            mi = Math.Min(mi, prices[i]);
+        }
+        return res;
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function maxProfit(prices: number[]): number {
+    let res = 0;
+    let min = Infinity;
+    for (const price of prices) {
+        res = Math.max(res, price - min);
+        min = Math.min(min, price);
+    }
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn max_profit(prices: Vec<i32>) -> i32 {
+        let mut res = 0;
+        let mut min = i32::MAX;
+        for price in prices {
+            res = res.max(price - min);
+            min = min.min(price);
+        }
+        res
+    }
+}
 ```
 
 ### **...**

@@ -6,8 +6,6 @@
 
 <p>Given a string <code>s</code>, remove duplicate letters so that every letter appears once and only once. You must make sure your result is <strong>the smallest in lexicographical order</strong> among all possible results.</p>
 
-<p><strong>Note:</strong> This question is the same as 1081:&nbsp;<a href="https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/" target="_blank">https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/</a></p>
-
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
@@ -31,6 +29,8 @@
 	<li><code>s</code> consists of lowercase English letters.</li>
 </ul>
 
+<p>&nbsp;</p>
+<p><strong>Note:</strong> This question is the same as 1081: <a href="https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/" target="_blank">https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/</a></p>
 
 ## Solutions
 

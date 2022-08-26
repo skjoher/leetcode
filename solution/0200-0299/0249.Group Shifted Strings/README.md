@@ -1,4 +1,4 @@
-# [249. 移位字符串分组](https://leetcode-cn.com/problems/group-shifted-strings)
+# [249. 移位字符串分组](https://leetcode.cn/problems/group-shifted-strings)
 
 [English Version](/solution/0200-0299/0249.Group%20Shifted%20Strings/README_EN.md)
 
@@ -26,10 +26,11 @@
 ]
 <strong>解释：</strong>可以认为字母表首尾相接，所以 &#39;z&#39; 的后续为 &#39;a&#39;，所以 [&quot;az&quot;,&quot;ba&quot;] 也满足 &ldquo;移位&rdquo; 操作规律。</pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+将每个字符串第一个字母变成 'a'。
 
 <!-- tabs:start -->
 
@@ -38,7 +39,20 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def groupStrings(self, strings: List[str]) -> List[List[str]]:
+        mp = defaultdict(list)
+        for s in strings:
+            t = []
+            diff = ord(s[0]) - ord('a')
+            for c in s:
+                d = ord(c) - diff
+                if d < ord('a'):
+                    d += 26
+                t.append(chr(d))
+            k = ''.join(t)
+            mp[k].append(s)
+        return list(mp.values())
 ```
 
 ### **Java**
@@ -46,7 +60,71 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public List<List<String>> groupStrings(String[] strings) {
+        Map<String, List<String>> mp = new HashMap<>();
+        for (String s : strings) {
+            int diff = s.charAt(0) - 'a';
+            char[] t = s.toCharArray();
+            for (int i = 0; i < t.length; ++i) {
+                char d = (char) (t[i] - diff);
+                if (d < 'a') {
+                    d += 26;
+                }
+                t[i] = d;
+            }
+            String key = new String(t);
+            mp.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
+        }
+        return new ArrayList<>(mp.values());
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<vector<string>> groupStrings(vector<string>& strings) {
+        unordered_map<string, vector<string>> mp;
+        for (auto& s : strings) {
+            int diff = s[0] - 'a';
+            string t = s;
+            for (int i = 0; i < t.size(); ++i) {
+                char d = t[i] - diff;
+                if (d < 'a') d += 26;
+                t[i] = d;
+            }
+            cout << t << endl;
+            mp[t].push_back(s);
+        }
+        vector<vector<string>> ans;
+        for (auto& e : mp)
+            ans.push_back(e.second);
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func groupStrings(strings []string) [][]string {
+	mp := make(map[string][]string)
+	for _, s := range strings {
+		k := ""
+		for i := range s {
+			k += string((s[i]-s[0]+26)%26 + 'a')
+		}
+		mp[k] = append(mp[k], s)
+	}
+	var ans [][]string
+	for _, v := range mp {
+		ans = append(ans, v)
+	}
+	return ans
+}
 ```
 
 ### **...**

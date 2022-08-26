@@ -1,4 +1,4 @@
-# [550. 游戏玩法分析 IV](https://leetcode-cn.com/problems/game-play-analysis-iv)
+# [550. 游戏玩法分析 IV](https://leetcode.cn/problems/game-play-analysis-iv)
 
 [English Version](/solution/0500-0599/0550.Game%20Play%20Analysis%20IV/README_EN.md)
 
@@ -46,7 +46,6 @@ Result table:
 +-----------+
 只有 ID 为 1 的玩家在第一天登录后才重新登录，所以答案是 1/3 = 0.33
 </pre>
-
 
 ## 解法
 

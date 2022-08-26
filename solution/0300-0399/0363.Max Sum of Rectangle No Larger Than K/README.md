@@ -1,4 +1,4 @@
-# [363. 矩形区域不超过 K 的最大数值和](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k)
+# [363. 矩形区域不超过 K 的最大数值和](https://leetcode.cn/problems/max-sum-of-rectangle-no-larger-than-k)
 
 [English Version](/solution/0300-0399/0363.Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K/README_EN.md)
 
@@ -13,7 +13,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0363.Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K/images/sum-grid.jpg" style="width: 255px; height: 176px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0363.Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K/images/sum-grid.jpg" style="width: 255px; height: 176px;" />
 <pre>
 <strong>输入：</strong>matrix = [[1,0,1],[0,-2,3]], k = 2
 <strong>输出：</strong>2
@@ -42,7 +42,6 @@
 <p> </p>
 
 <p><strong>进阶：</strong>如果行数远大于列数，该如何设计解决方案？</p>
-
 
 ## 解法
 

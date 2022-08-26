@@ -1,4 +1,4 @@
-# [1803. 统计异或值在范围内的数对有多少](https://leetcode-cn.com/problems/count-pairs-with-xor-in-a-range)
+# [1803. 统计异或值在范围内的数对有多少](https://leetcode.cn/problems/count-pairs-with-xor-in-a-range)
 
 [English Version](/solution/1800-1899/1803.Count%20Pairs%20With%20XOR%20in%20a%20Range/README_EN.md)
 
@@ -48,7 +48,6 @@
 	<li><code>1 &lt;= nums[i] &lt;= 2 * 10<sup>4</sup></code></li>
 	<li><code>1 &lt;= low &lt;= high &lt;= 2 * 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

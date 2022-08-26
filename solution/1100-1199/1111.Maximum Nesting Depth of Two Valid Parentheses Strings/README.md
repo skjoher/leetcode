@@ -1,4 +1,4 @@
-# [1111. 有效括号的嵌套深度](https://leetcode-cn.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings)
+# [1111. 有效括号的嵌套深度](https://leetcode.cn/problems/maximum-nesting-depth-of-two-valid-parentheses-strings)
 
 [English Version](/solution/1100-1199/1111.Maximum%20Nesting%20Depth%20of%20Two%20Valid%20Parentheses%20Strings/README_EN.md)
 
@@ -12,7 +12,7 @@
 
 <p>有效括号字符串类型与对应的嵌套深度计算方法如下图所示：</p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1100-1199/1111.Maximum%20Nesting%20Depth%20of%20Two%20Valid%20Parentheses%20Strings/images/1111.png" style="height: 152px; width: 600px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1100-1199/1111.Maximum%20Nesting%20Depth%20of%20Two%20Valid%20Parentheses%20Strings/images/1111.png" style="height: 152px; width: 600px;"></p>
 
 <p>&nbsp;</p>
 
@@ -82,7 +82,6 @@
 例如：<code>&quot;&quot;</code>，<code>&quot;()()&quot;</code>，和&nbsp;<code>&quot;()(()())&quot;</code>&nbsp;都是有效括号字符串，嵌套深度分别为 0，1，2，而&nbsp;<code>&quot;)(&quot;</code> 和&nbsp;<code>&quot;(()&quot;</code>&nbsp;都不是有效括号字符串。
 </pre>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -94,7 +93,24 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maxDepthAfterSplit(self, seq: str) -> List[int]:
+        ans = [0] * len(seq)
+        a = b = 0
+        for i, c in enumerate(seq):
+            if c == "(":
+                if a < b:
+                    a += 1
+                else:
+                    b += 1
+                    ans[i] = 1
+            else:
+                if a > b:
+                    a -= 1
+                else:
+                    b -= 1
+                    ans[i] = 1
+        return ans
 ```
 
 ### **Java**
@@ -102,7 +118,103 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int[] maxDepthAfterSplit(String seq) {
+        int[] res = new int[seq.length()];
+        for (int i = 0, cnt = 0; i < res.length; ++i) {
+            if (seq.charAt(i) == '(') {
+                res[i] = cnt++ & 1;
+            } else {
+                res[i] = --cnt & 1;
+            }
+        }
+        return res;
+    }
+}
+```
 
+```java
+class Solution {
+    public int[] maxDepthAfterSplit(String seq) {
+        int n = seq.length();
+        int[] ans = new int[n];
+        int a = 0, b = 0;
+        for (int i = 0; i < n; ++i) {
+            char c = seq.charAt(i);
+            if (c == '(') {
+                if (a < b) {
+                    ++a;
+                } else {
+                    ++b;
+                    ans[i] = 1;
+                }
+            } else {
+                if (a > b) {
+                    --a;
+                } else {
+                    --b;
+                    ans[i] = 1;
+                }
+            }
+        }
+        return ans;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> maxDepthAfterSplit(string seq) {
+        int n = seq.size();
+        vector<int> ans(n);
+        int a = 0, b = 0;
+        for (int i = 0; i < n; ++i) {
+            char c = seq[i];
+            if (c == '(') {
+                if (a < b)
+                    ++a;
+                else
+                    ++b, ans[i] = 1;
+            } else {
+                if (a > b)
+                    --a;
+                else
+                    --b, ans[i] = 1;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxDepthAfterSplit(seq string) []int {
+	ans := make([]int, len(seq))
+	a, b := 0, 0
+	for i, c := range seq {
+		if c == '(' {
+			if a < b {
+				a++
+			} else {
+				b++
+				ans[i] = 1
+			}
+		} else {
+			if a > b {
+				a--
+			} else {
+				b--
+				ans[i] = 1
+			}
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

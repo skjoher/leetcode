@@ -1,4 +1,4 @@
-# [1060. 有序数组中的缺失元素](https://leetcode-cn.com/problems/missing-element-in-sorted-array)
+# [1060. 有序数组中的缺失元素](https://leetcode.cn/problems/missing-element-in-sorted-array)
 
 [English Version](/solution/1000-1099/1060.Missing%20Element%20in%20Sorted%20Array/README_EN.md)
 
@@ -50,7 +50,6 @@
 <p> </p>
 
 <p><strong>进阶：</strong>你可以设计一个对数时间复杂度（即，<code>O(log(n))</code>）的解决方案吗？</p>
-
 
 ## 解法
 

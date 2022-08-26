@@ -1,4 +1,4 @@
-# [16.24. Pairs With Sum](https://leetcode-cn.com/problems/pairs-with-sum-lcci)
+# [16.24. Pairs With Sum](https://leetcode.cn/problems/pairs-with-sum-lcci)
 
 ## Description
 
@@ -8,7 +8,11 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> nums = [5,6,5], target = 11
+
+
 
 <strong>Output: </strong>[[5,6]]</pre>
 
@@ -16,7 +20,11 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> nums = [5,6,5,6], target = 11
+
+
 
 <strong>Output: </strong>[[5,6],[5,6]]</pre>
 
@@ -34,17 +42,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

@@ -1,4 +1,4 @@
-# [1799. N 次操作后的最大分数和](https://leetcode-cn.com/problems/maximize-score-after-n-operations)
+# [1799. N 次操作后的最大分数和](https://leetcode.cn/problems/maximize-score-after-n-operations)
 
 [English Version](/solution/1700-1799/1799.Maximize%20Score%20After%20N%20Operations/README_EN.md)
 
@@ -55,7 +55,6 @@
 	<li><code>nums.length == 2 * n</code></li>
 	<li><code>1 &lt;= nums[i] &lt;= 10<sup>6</sup></code></li>
 </ul>
-
 
 ## 解法
 

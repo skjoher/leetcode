@@ -1,4 +1,4 @@
-# [170. 两数之和 III - 数据结构设计](https://leetcode-cn.com/problems/two-sum-iii-data-structure-design)
+# [170. 两数之和 III - 数据结构设计](https://leetcode.cn/problems/two-sum-iii-data-structure-design)
 
 [English Version](/solution/0100-0199/0170.Two%20Sum%20III%20-%20Data%20structure%20design/README_EN.md)
 
@@ -16,7 +16,7 @@
 	<li><code>boolean find(int value)</code> 寻找数据结构中是否存在一对整数，使得两数之和与给定的值相等。如果存在，返回 <code>true</code> ；否则，返回 <code>false</code> 。</li>
 </ul>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>示例：</strong></p>
 
@@ -29,20 +29,20 @@
 
 <strong>解释：</strong>
 TwoSum twoSum = new TwoSum();
-twoSum.add(1);   // [] --> [1]
-twoSum.add(3);   // [1] --> [1,3]
-twoSum.add(5);   // [1,3] --> [1,3,5]
+twoSum.add(1);   // [] --&gt; [1]
+twoSum.add(3);   // [1] --&gt; [1,3]
+twoSum.add(5);   // [1,3] --&gt; [1,3,5]
 twoSum.find(4);  // 1 + 3 = 4，返回 true
 twoSum.find(7);  // 没有两个整数加起来等于 7 ，返回 false</pre>
 
-<p> </p>
+<p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
 
 <ul>
-	<li><code>-10<sup>5</sup> <= number <= 10<sup>5</sup></code></li>
-	<li><code>-2<sup>31</sup> <= value <= 2<sup>31</sup> - 1</code></li>
-	<li>最多调用 <code>5 * 10<sup>4</sup></code> 次 <code>add</code> 和 <code>find</code></li>
+	<li><code>-10<sup>5</sup> &lt;= number &lt;= 10<sup>5</sup></code></li>
+	<li><code>-2<sup>31</sup> &lt;= value &lt;= 2<sup>31</sup> - 1</code></li>
+	<li>最多调用 <code>10<sup>4</sup></code> 次 <code>add</code> 和 <code>find</code></li>
 </ul>
 
 ## 解法
@@ -59,12 +59,11 @@ twoSum.find(7);  // 没有两个整数加起来等于 7 ，返回 false</pre>
 
 ```python
 class TwoSum:
-
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.counter = collections.Counter()
+        self.counter = Counter()
 
     def add(self, number: int) -> None:
         """
@@ -104,12 +103,12 @@ class TwoSum {
     public TwoSum() {
         counter = new HashMap<>();
     }
-    
+
     /** Add the number to an internal data structure.. */
     public void add(int number) {
         counter.put(number, counter.getOrDefault(number, 0) + 1);
     }
-    
+
     /** Find if there exists any pair of numbers which sum is equal to the value. */
     public boolean find(int value) {
         for (int num : counter.keySet()) {

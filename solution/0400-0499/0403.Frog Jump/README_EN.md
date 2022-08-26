@@ -34,8 +34,8 @@
 	<li><code>2 &lt;= stones.length &lt;= 2000</code></li>
 	<li><code>0 &lt;= stones[i] &lt;= 2<sup>31</sup> - 1</code></li>
 	<li><code>stones[0] == 0</code></li>
+	<li><code>stones</code>&nbsp;is sorted in a strictly increasing order.</li>
 </ul>
-
 
 ## Solutions
 
@@ -55,7 +55,7 @@ class Solution:
         dp[0][0] = True
         for i in range(1, n):
             for j in range(i):
-                k = stones[i] - stones[j];
+                k = stones[i] - stones[j]
                 if k > j + 1:
                     continue
                 dp[i][k] = dp[j][k - 1] or dp[j][k] or dp[j][k + 1]

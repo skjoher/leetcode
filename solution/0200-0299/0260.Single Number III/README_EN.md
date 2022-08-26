@@ -6,7 +6,7 @@
 
 <p>Given an integer array <code>nums</code>, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in <strong>any order</strong>.</p>
 
-<p><strong>Follow up:&nbsp;</strong>Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?</p>
+<p>You must write an&nbsp;algorithm that runs in linear runtime complexity and uses&nbsp;only constant extra space.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -40,7 +40,6 @@
 	<li>Each integer in <code>nums</code> will appear twice, only two integers will appear once.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -51,15 +50,15 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> List[int]:
         eor = 0
-        for num in nums:
-            eor ^= num
-        diff = eor & (~eor + 1)
-        a = 0
-        for num in nums:
-            if (num & diff) == 0:
-                a ^= num
-        b = eor ^ a
-        return [a, b]
+        for x in nums:
+            eor ^= x
+        lowbit = eor & (-eor)
+        ans = [0, 0]
+        for x in nums:
+            if (x & lowbit) == 0:
+                ans[0] ^= x
+        ans[1] = eor ^ ans[0]
+        return ans
 ```
 
 ### **Java**
@@ -68,19 +67,81 @@ class Solution:
 class Solution {
     public int[] singleNumber(int[] nums) {
         int eor = 0;
-        for (int num : nums) {
-            eor ^= num;
+        for (int x : nums) {
+            eor ^= x;
         }
-        int diff = eor & (~eor + 1);
-        int a = 0;
-        for (int num : nums) {
-            if ((num & diff) == 0) {
-                a ^= num;
+        int lowbit = eor & (-eor);
+        int[] ans = new int[2];
+        for (int x : nums) {
+            if ((x & lowbit) == 0) {
+                ans[0] ^= x;
             }
         }
-        int b = eor ^ a;
-        return new int[]{a, b};
+        ans[1] = eor ^ ans[0];
+        return ans;
     }
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var singleNumber = function (nums) {
+    let eor = 0;
+    for (const x of nums) {
+        eor ^= x;
+    }
+    const lowbit = eor & -eor;
+    let ans = [0];
+    for (const x of nums) {
+        if ((x & lowbit) == 0) {
+            ans[0] ^= x;
+        }
+    }
+    ans.push(eor ^ ans[0]);
+    return ans;
+};
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        long long eor = 0;
+        for (int x : nums) eor ^= x;
+        int lowbit = eor & (-eor);
+        vector<int> ans(2);
+        for (int x : nums)
+            if ((x & lowbit) == 0) ans[0] ^= x;
+        ans[1] = eor ^ ans[0];
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func singleNumber(nums []int) []int {
+	eor := 0
+	for _, x := range nums {
+		eor ^= x
+	}
+	lowbit := eor & (-eor)
+	ans := make([]int, 2)
+	for _, x := range nums {
+		if (x & lowbit) == 0 {
+			ans[0] ^= x
+		}
+	}
+	ans[1] = eor ^ ans[0]
+	return ans
 }
 ```
 

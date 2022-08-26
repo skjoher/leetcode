@@ -1,4 +1,4 @@
-# [1627. 带阈值的图连通性](https://leetcode-cn.com/problems/graph-connectivity-with-threshold)
+# [1627. 带阈值的图连通性](https://leetcode.cn/problems/graph-connectivity-with-threshold)
 
 [English Version](/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/README_EN.md)
 
@@ -22,7 +22,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/images/ex1.jpg" style="width: 382px; height: 181px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/images/ex1.jpg" style="width: 382px; height: 181px;" /></p>
 
 <p> </p>
 
@@ -44,7 +44,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/images/tmp.jpg" style="width: 532px; height: 302px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/images/tmp.jpg" style="width: 532px; height: 302px;" /></p>
 
 <p> </p>
 
@@ -56,7 +56,7 @@
 
 <p><strong>示例 3：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/images/ex3.jpg" style="width: 282px; height: 282px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1627.Graph%20Connectivity%20With%20Threshold/images/ex3.jpg" style="width: 282px; height: 282px;" /></p>
 
 <p> </p>
 
@@ -79,7 +79,6 @@
 	<li><code>1 <= a<sub>i</sub>, b<sub>i</sub> <= cities</code></li>
 	<li><code>a<sub>i</sub> != b<sub>i</sub></code></li>
 </ul>
-
 
 ## 解法
 

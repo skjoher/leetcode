@@ -1,4 +1,4 @@
-# [1664. 生成平衡数组的方案数](https://leetcode-cn.com/problems/ways-to-make-a-fair-array)
+# [1664. 生成平衡数组的方案数](https://leetcode.cn/problems/ways-to-make-a-fair-array)
 
 [English Version](/solution/1600-1699/1664.Ways%20to%20Make%20a%20Fair%20Array/README_EN.md)
 
@@ -59,7 +59,6 @@
 	<li><code>1 <= nums.length <= 10<sup>5</sup></code></li>
 	<li><code>1 <= nums[i] <= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

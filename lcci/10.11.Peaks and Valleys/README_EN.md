@@ -1,4 +1,4 @@
-# [10.11. Peaks and Valleys](https://leetcode-cn.com/problems/peaks-and-valleys-lcci)
+# [10.11. Peaks and Valleys](https://leetcode.cn/problems/peaks-and-valleys-lcci)
 
 [中文文档](/lcci/10.11.Peaks%20and%20Valleys/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong>Input: </strong>[5, 3, 1, 2, 3]
 
+
+
 <strong>Output:</strong>&nbsp;[5, 1, 3, 2, 3]
+
+
 
 </pre>
 
@@ -30,17 +36,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

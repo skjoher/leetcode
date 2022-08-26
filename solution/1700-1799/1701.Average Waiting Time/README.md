@@ -1,4 +1,4 @@
-# [1701. 平均等待时间](https://leetcode-cn.com/problems/average-waiting-time)
+# [1701. 平均等待时间](https://leetcode.cn/problems/average-waiting-time)
 
 [English Version](/solution/1700-1799/1701.Average%20Waiting%20Time/README_EN.md)
 
@@ -72,7 +72,7 @@ class Solution:
         f = total_waiting_time = 0
         for arrival, time in customers:
             f = max(arrival, f) + time
-            total_waiting_time += (f - arrival)
+            total_waiting_time += f - arrival
         return total_waiting_time / len(customers)
 ```
 

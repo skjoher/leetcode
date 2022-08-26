@@ -1,4 +1,4 @@
-# [16.17. Contiguous Sequence](https://leetcode-cn.com/problems/contiguous-sequence-lcci)
+# [16.17. Contiguous Sequence](https://leetcode.cn/problems/contiguous-sequence-lcci)
 
 [中文文档](/lcci/16.17.Contiguous%20Sequence/README.md)
 
@@ -10,11 +10,19 @@
 
 <pre>
 
+
+
 <strong>Input: </strong> [-2,1,-3,4,-1,2,1,-5,4]
+
+
 
 <strong>Output: </strong> 6
 
+
+
 <strong>Explanation: </strong> [4,-1,2,1] has the largest sum 6.
+
+
 
 </pre>
 
@@ -30,11 +38,13 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
+
 
 ```
 
@@ -45,7 +55,7 @@
  * @param {number[]} nums
  * @return {number}
  */
- var maxSubArray = function(nums) {
+var maxSubArray = function (nums) {
     let dp = [-Infinity];
     for (let i = 0; i < nums.length; i++) {
         let cur = nums[i];
@@ -58,6 +68,7 @@
 ### **...**
 
 ```
+
 
 ```
 

@@ -45,7 +45,6 @@ rotate 2 steps to the right: [3,99,-1,-100]
 	<li>Could you do it in-place with <code>O(1)</code> extra space?</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -100,6 +99,8 @@ class Solution {
 
 ### **JavaScript**
 
+the elements in the range `k~n-1` of the array to the front with the native API.
+
 ```js
 /**
  * @param {number[]} nums
@@ -108,8 +109,74 @@ class Solution {
  */
 var rotate = function (nums, k) {
     k %= nums.length;
-    nums.splice(0, 0, ...nums.splice(-k, k))
+    nums.splice(0, 0, ...nums.splice(-k, k));
 };
+```
+
+Use three array reverses implemented by double pointers
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate = function (nums, k) {
+    k %= nums.length;
+    // Use three array reverses
+    reverse(nums, 0, nums.length - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.length - 1);
+};
+function reverse(nums, start, end) {
+    // reverse implemented by double pointers
+    while (start < end) {
+        const temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start += 1;
+        end -= 1;
+    }
+}
+```
+
+### **Go**
+
+```go
+func rotate(nums []int, k int) {
+	n := len(nums)
+	k %= n
+
+	reverse(nums, 0, n-1)
+	reverse(nums, 0, k-1)
+	reverse(nums, k, n-1)
+}
+
+func reverse(nums []int, i, j int) {
+	for i < j {
+		nums[i], nums[j] = nums[j], nums[i]
+		i++
+		j--
+	}
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn rotate(nums: &mut Vec<i32>, k: i32) {
+        let n = nums.len();
+        let k = k as usize % n;
+        if n == 1 || k == 0 {
+            return;
+        }
+
+        nums.reverse();
+        nums[..k].reverse();
+        nums[k..].reverse();
+    }
+}
 ```
 
 ### **...**

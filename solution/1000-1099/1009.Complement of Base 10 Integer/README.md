@@ -1,4 +1,4 @@
-# [1009. 十进制整数的反码](https://leetcode-cn.com/problems/complement-of-base-10-integer)
+# [1009. 十进制整数的反码](https://leetcode.cn/problems/complement-of-base-10-integer)
 
 [English Version](/solution/1000-1099/1009.Complement%20of%20Base%2010%20Integer/README_EN.md)
 
@@ -44,9 +44,8 @@
 
 <ol>
 	<li><code>0 &lt;= N &lt; 10^9</code></li>
-	<li>本题与 476：<a href="https://leetcode-cn.com/problems/number-complement/">https://leetcode-cn.com/problems/number-complement/</a> 相同</li>
+	<li>本题与 476：<a href="https://leetcode.cn/problems/number-complement/">https://leetcode.cn/problems/number-complement/</a> 相同</li>
 </ol>
-
 
 ## 解法
 
@@ -59,7 +58,20 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def bitwiseComplement(self, n: int) -> int:
+        if n == 0:
+            return 1
+        ans = 0
+        find = False
+        for i in range(30, -1, -1):
+            b = n & (1 << i)
+            if not find and b == 0:
+                continue
+            find = True
+            if b == 0:
+                ans |= 1 << i
+        return ans
 ```
 
 ### **Java**
@@ -67,7 +79,69 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int bitwiseComplement(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        int ans = 0;
+        boolean find = false;
+        for (int i = 30; i >= 0; --i) {
+            int b = n & (1 << i);
+            if (!find && b == 0) {
+                continue;
+            }
+            find = true;
+            if (b == 0) {
+                ans |= (1 << i);
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int bitwiseComplement(int n) {
+        if (n == 0) return 1;
+        int ans = 0;
+        bool find = false;
+        for (int i = 30; i >= 0; --i) {
+            int b = n & (1 << i);
+            if (!find && b == 0) continue;
+            find = true;
+            if (b == 0) ans |= (1 << i);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func bitwiseComplement(n int) int {
+	if n == 0 {
+		return 1
+	}
+	ans := 0
+	find := false
+	for i := 30; i >= 0; i-- {
+		b := n & (1 << i)
+		if !find && b == 0 {
+			continue
+		}
+		find = true
+		if b == 0 {
+			ans |= (1 << i)
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**
@@ -76,5 +150,4 @@
 
 ```
 
-<!-- tabs:end -->
 <!-- tabs:end -->

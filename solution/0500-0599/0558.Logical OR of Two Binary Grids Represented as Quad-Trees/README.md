@@ -1,4 +1,4 @@
-# [558. 四叉树交集](https://leetcode-cn.com/problems/logical-or-of-two-binary-grids-represented-as-quad-trees)
+# [558. 四叉树交集](https://leetcode.cn/problems/logical-or-of-two-binary-grids-represented-as-quad-trees)
 
 [English Version](/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/README_EN.md)
 
@@ -39,7 +39,7 @@ class Node {
 	<li>使用适当的子网格递归每个子节点。</li>
 </ol>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/new_top.png" style="height: 181px; width: 777px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/new_top.png" style="height: 181px; width: 777px;" /></p>
 
 <p>如果你想了解更多关于四叉树的内容，可以参考 <a href="https://en.wikipedia.org/wiki/Quadtree">wiki</a> 。</p>
 
@@ -55,7 +55,7 @@ class Node {
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/qt1.png" style="height: 196px; width: 550px;" /> <img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/qt2.png" style="height: 278px; width: 550px;" /></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/qt1.png" style="height: 196px; width: 550px;" /> <img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/qt2.png" style="height: 278px; width: 550px;" /></p>
 
 <pre>
 <strong>输入：</strong>quadTree1 = [[0,1],[1,1],[1,1],[1,0],[1,0]]
@@ -64,7 +64,7 @@ class Node {
 <strong>解释：</strong>quadTree1 和 quadTree2 如上所示。由四叉树所表示的二进制矩阵也已经给出。
 如果我们对这两个矩阵进行按位逻辑或运算，则可以得到下面的二进制矩阵，由一个作为结果的四叉树表示。
 注意，我们展示的二进制矩阵仅仅是为了更好地说明题意，你无需构造二进制矩阵来获得结果四叉树。
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/qtr.png" style="height: 222px; width: 777px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0558.Logical%20OR%20of%20Two%20Binary%20Grids%20Represented%20as%20Quad-Trees/images/qtr.png" style="height: 222px; width: 777px;" />
 </pre>
 
 <p><strong>示例 2：</strong></p>
@@ -110,7 +110,6 @@ class Node {
 	<li><code>n == 2^x</code> ，其中 <code>0 <= x <= 9</code>.</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -122,7 +121,50 @@ class Node {
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
+"""
+# Definition for a QuadTree node.
+class Node:
+    def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
+        self.val = val
+        self.isLeaf = isLeaf
+        self.topLeft = topLeft
+        self.topRight = topRight
+        self.bottomLeft = bottomLeft
+        self.bottomRight = bottomRight
+"""
 
+
+class Solution:
+    def intersect(self, quadTree1: "Node", quadTree2: "Node") -> "Node":
+        def dfs(t1, t2):
+            if t1.isLeaf and t2.isLeaf:
+                return Node(t1.val or t2.val, True)
+            if t1.isLeaf:
+                return t1 if t1.val else t2
+            if t2.isLeaf:
+                return t2 if t2.val else t1
+            res = Node()
+            res.topLeft = dfs(t1.topLeft, t2.topLeft)
+            res.topRight = dfs(t1.topRight, t2.topRight)
+            res.bottomLeft = dfs(t1.bottomLeft, t2.bottomLeft)
+            res.bottomRight = dfs(t1.bottomRight, t2.bottomRight)
+            isLeaf = (
+                res.topLeft.isLeaf
+                and res.topRight.isLeaf
+                and res.bottomLeft.isLeaf
+                and res.bottomRight.isLeaf
+            )
+            sameVal = (
+                res.topLeft.val
+                == res.topRight.val
+                == res.bottomLeft.val
+                == res.bottomRight.val
+            )
+            if isLeaf and sameVal:
+                res = res.topLeft
+            return res
+
+        return dfs(quadTree1, quadTree2)
 ```
 
 ### **Java**
@@ -130,7 +172,173 @@ class Node {
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+/*
+// Definition for a QuadTree node.
+class Node {
+    public boolean val;
+    public boolean isLeaf;
+    public Node topLeft;
+    public Node topRight;
+    public Node bottomLeft;
+    public Node bottomRight;
 
+    public Node() {}
+
+    public Node(boolean _val,boolean _isLeaf,Node _topLeft,Node _topRight,Node _bottomLeft,Node _bottomRight) {
+        val = _val;
+        isLeaf = _isLeaf;
+        topLeft = _topLeft;
+        topRight = _topRight;
+        bottomLeft = _bottomLeft;
+        bottomRight = _bottomRight;
+    }
+};
+*/
+
+class Solution {
+    public Node intersect(Node quadTree1, Node quadTree2) {
+        return dfs(quadTree1, quadTree2);
+    }
+
+    private Node dfs(Node t1, Node t2) {
+        if (t1.isLeaf && t2.isLeaf) {
+            return new Node(t1.val || t2.val, true);
+        }
+        if (t1.isLeaf) {
+            return t1.val ? t1 : t2;
+        }
+        if (t2.isLeaf) {
+            return t2.val ? t2 : t1;
+        }
+        Node res = new Node();
+        res.topLeft = dfs(t1.topLeft, t2.topLeft);
+        res.topRight = dfs(t1.topRight, t2.topRight);
+        res.bottomLeft = dfs(t1.bottomLeft, t2.bottomLeft);
+        res.bottomRight = dfs(t1.bottomRight, t2.bottomRight);
+        boolean isLeaf = res.topLeft.isLeaf && res.topRight.isLeaf && res.bottomLeft.isLeaf && res.bottomRight.isLeaf;
+        boolean sameVal = res.topLeft.val == res.topRight.val && res.topRight.val == res.bottomLeft.val && res.bottomLeft.val == res.bottomRight.val;
+        if (isLeaf && sameVal) {
+            res = res.topLeft;
+        }
+        return res;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+/*
+// Definition for a QuadTree node.
+class Node {
+public:
+    bool val;
+    bool isLeaf;
+    Node* topLeft;
+    Node* topRight;
+    Node* bottomLeft;
+    Node* bottomRight;
+
+    Node() {
+        val = false;
+        isLeaf = false;
+        topLeft = NULL;
+        topRight = NULL;
+        bottomLeft = NULL;
+        bottomRight = NULL;
+    }
+
+    Node(bool _val, bool _isLeaf) {
+        val = _val;
+        isLeaf = _isLeaf;
+        topLeft = NULL;
+        topRight = NULL;
+        bottomLeft = NULL;
+        bottomRight = NULL;
+    }
+
+    Node(bool _val, bool _isLeaf, Node* _topLeft, Node* _topRight, Node* _bottomLeft, Node* _bottomRight) {
+        val = _val;
+        isLeaf = _isLeaf;
+        topLeft = _topLeft;
+        topRight = _topRight;
+        bottomLeft = _bottomLeft;
+        bottomRight = _bottomRight;
+    }
+};
+*/
+
+class Solution {
+public:
+    Node* intersect(Node* quadTree1, Node* quadTree2) {
+        return dfs(quadTree1, quadTree2);
+    }
+
+    Node* dfs(Node* t1, Node* t2) {
+        if (t1->isLeaf && t2->isLeaf) return new Node(t1->val || t2->val, true);
+        if (t1->isLeaf) return t1->val ? t1 : t2;
+        if (t2->isLeaf) return t2->val ? t2 : t1;
+        Node* res = new Node();
+        res->topLeft = dfs(t1->topLeft, t2->topLeft);
+        res->topRight = dfs(t1->topRight, t2->topRight);
+        res->bottomLeft = dfs(t1->bottomLeft, t2->bottomLeft);
+        res->bottomRight = dfs(t1->bottomRight, t2->bottomRight);
+        bool isLeaf = res->topLeft->isLeaf && res->topRight->isLeaf && res->bottomLeft->isLeaf && res->bottomRight->isLeaf;
+        bool sameVal = res->topLeft->val == res->topRight->val && res->topRight->val == res->bottomLeft->val && res->bottomLeft->val == res->bottomRight->val;
+        if (isLeaf && sameVal) res = res->topLeft;
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+/**
+ * Definition for a QuadTree node.
+ * type Node struct {
+ *     Val bool
+ *     IsLeaf bool
+ *     TopLeft *Node
+ *     TopRight *Node
+ *     BottomLeft *Node
+ *     BottomRight *Node
+ * }
+ */
+
+func intersect(quadTree1 *Node, quadTree2 *Node) *Node {
+	var dfs func(*Node, *Node) *Node
+	dfs = func(t1, t2 *Node) *Node {
+		if t1.IsLeaf && t2.IsLeaf {
+			return &Node{Val: t1.Val || t2.Val, IsLeaf: true}
+		}
+		if t1.IsLeaf {
+			if t1.Val {
+				return t1
+			}
+			return t2
+		}
+		if t2.IsLeaf {
+			if t2.Val {
+				return t2
+			}
+			return t1
+		}
+		res := &Node{}
+		res.TopLeft = dfs(t1.TopLeft, t2.TopLeft)
+		res.TopRight = dfs(t1.TopRight, t2.TopRight)
+		res.BottomLeft = dfs(t1.BottomLeft, t2.BottomLeft)
+		res.BottomRight = dfs(t1.BottomRight, t2.BottomRight)
+		isLeaf := res.TopLeft.IsLeaf && res.TopRight.IsLeaf && res.BottomLeft.IsLeaf && res.BottomRight.IsLeaf
+		sameVal := res.TopLeft.Val == res.TopRight.Val && res.TopRight.Val == res.BottomLeft.Val && res.BottomLeft.Val == res.BottomRight.Val
+		if isLeaf && sameVal {
+			res = res.TopLeft
+		}
+		return res
+	}
+
+	return dfs(quadTree1, quadTree2)
+}
 ```
 
 ### **...**

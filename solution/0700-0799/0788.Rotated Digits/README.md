@@ -1,4 +1,4 @@
-# [788. 旋转数字](https://leetcode-cn.com/problems/rotated-digits)
+# [788. 旋转数字](https://leetcode.cn/problems/rotated-digits)
 
 [English Version](/solution/0700-0799/0788.Rotated%20Digits/README_EN.md)
 
@@ -30,7 +30,6 @@
 <ul>
 	<li>N&nbsp;的取值范围是&nbsp;<code>[1, 10000]</code>。</li>
 </ul>
-
 
 ## 解法
 

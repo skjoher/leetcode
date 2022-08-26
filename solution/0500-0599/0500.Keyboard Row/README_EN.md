@@ -13,7 +13,7 @@
 	<li>the second row consists of the characters <code>&quot;asdfghjkl&quot;</code>, and</li>
 	<li>the third row consists of the characters <code>&quot;zxcvbnm&quot;</code>.</li>
 </ul>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0500.Keyboard%20Row/images/keyboard.png" style="width: 800px; max-width: 600px; height: 267px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0500.Keyboard%20Row/images/keyboard.png" style="width: 800px; max-width: 600px; height: 267px;" />
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
@@ -44,7 +44,6 @@
 	<li><code>1 &lt;= words[i].length &lt;= 100</code></li>
 	<li><code>words[i]</code> consists of English letters (both lowercase and uppercase).&nbsp;</li>
 </ul>
-
 
 ## Solutions
 
@@ -93,6 +92,62 @@ class Solution {
         }
         return res.toArray(new String[0]);
     }
+}
+```
+
+```java
+class Solution {
+    public String[] findWords(String[] words) {
+        String s = "12210111011122000010020202";
+        List<String> res = new ArrayList<>();
+        for (String word : words) {
+            Set<Character> t = new HashSet<>();
+            for (char c : word.toLowerCase().toCharArray()) {
+                t.add(s.charAt(c - 'a'));
+            }
+            if (t.size() == 1) {
+                res.add(word);
+            }
+        }
+        return res.toArray(new String[0]);
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        string s = "12210111011122000010020202";
+        vector<string> ans;
+        for (auto& word : words) {
+            unordered_set<char> t;
+            for (char c : word) t.insert(s[tolower(c) - 'a']);
+            if (t.size() == 1) ans.push_back(word);
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func findWords(words []string) []string {
+	s := "12210111011122000010020202"
+	var ans []string
+	for _, word := range words {
+		t := make(map[byte]bool)
+		for _, c := range word {
+			t[s[unicode.ToLower(c)-'a']] = true
+		}
+		if len(t) == 1 {
+			ans = append(ans, word)
+		}
+	}
+	return ans
 }
 ```
 

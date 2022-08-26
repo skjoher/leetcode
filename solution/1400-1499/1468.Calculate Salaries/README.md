@@ -1,4 +1,4 @@
-# [1468. 计算税后工资](https://leetcode-cn.com/problems/calculate-salaries)
+# [1468. 计算税后工资](https://leetcode.cn/problems/calculate-salaries)
 
 [English Version](/solution/1400-1499/1468.Calculate%20Salaries/README_EN.md)
 
@@ -77,7 +77,6 @@ Result 表：
 税后工资计算 = 工资 - ( 税率 / 100）*工资
 对于上述案例，Morninngcat 的税后工资 = 7777 - 7777 * ( 24 / 100) = 7777 - 1866.48 = 5910.52 ，取整为 5911
 </pre>
-
 
 ## 解法
 

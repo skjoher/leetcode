@@ -29,8 +29,8 @@ Total amount you can rob = 1 + 3 = 4.
 <p><strong>Example 3:</strong></p>
 
 <pre>
-<strong>Input:</strong> nums = [0]
-<strong>Output:</strong> 0
+<strong>Input:</strong> nums = [1,2,3]
+<strong>Output:</strong> 3
 </pre>
 
 <p>&nbsp;</p>
@@ -41,7 +41,6 @@ Total amount you can rob = 1 + 3 = 4.
 	<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -51,13 +50,12 @@ Total amount you can rob = 1 + 3 = 4.
 ```python
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        def robRange(nums, start, end):
-            if end - start == 0:
-                return nums[start]
-            pre, cur = 0, nums[start]
-            for i in range(start + 1, end + 1):
-                pre, cur = cur, max(pre + nums[i], cur)
-            return cur
+        def robRange(nums, l, r):
+            a, b = 0, nums[l]
+            for num in nums[l + 1 : r + 1]:
+                a, b = b, max(num + a, b)
+            return b
+
         n = len(nums)
         if n == 1:
             return nums[0]
@@ -70,23 +68,23 @@ class Solution:
 ```java
 class Solution {
     public int rob(int[] nums) {
-        int n;
-        if ((n = nums.length) == 1) return nums[0];
+        int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        }
         int s1 = robRange(nums, 0, n - 2);
         int s2 = robRange(nums, 1, n - 1);
         return Math.max(s1, s2);
     }
 
-    private int robRange(int[] nums, int start, int end) {
-        if (end - start == 0) return nums[start];
-        int pre = 0;
-        int cur = nums[start];
-        for (int i = start + 1; i < end + 1; ++i) {
-            int t = Math.max(pre + nums[i], cur);
-            pre = cur;
-            cur = t;
+    private int robRange(int[] nums, int l, int r) {
+        int a = 0, b = nums[l];
+        for (int i = l + 1; i <= r; ++i) {
+            int c = Math.max(nums[i] + a, b);
+            a = b;
+            b = c;
         }
-        return cur;
+        return b;
     }
 }
 ```
@@ -103,17 +101,15 @@ public:
         int s2 = robRange(nums, 1, n - 1);
         return max(s1, s2);
     }
-private:
-    int robRange(vector<int>& nums, int start, int end) {
-        if (end - start == 0) return nums[start];
-        int pre = 0;
-        int cur = nums[start];
-        for (int i = start + 1; i < end + 1; ++i) {
-            int t = max(pre + nums[i], cur);
-            pre = cur;
-            cur = t;
+
+    int robRange(vector<int>& nums, int l, int r) {
+        int a = 0, b = nums[l];
+        for (int i = l + 1; i <= r; ++i) {
+            int c = max(nums[i] + a, b);
+            a = b;
+            b = c;
         }
-        return cur;
+        return b;
     }
 };
 ```
@@ -122,30 +118,67 @@ private:
 
 ```go
 func rob(nums []int) int {
-    n := len(nums)
-    if n == 1 {
-        return nums[0]
-    }
-    s1, s2 := robRange(nums, 0, n - 2), robRange(nums, 1, n - 1)
-    return max(s1, s2)
+	n := len(nums)
+	if n == 1 {
+		return nums[0]
+	}
+	s1, s2 := robRange(nums, 0, n-2), robRange(nums, 1, n-1)
+	return max(s1, s2)
 }
 
-func robRange(nums[]int, start int, end int) int {
-    if end - start == 0 {
-        return nums[start]
-    }
-    pre, cur := 0, nums[start]
-    for i := start + 1; i < end + 1; i++ {
-        pre, cur = cur, max(pre + nums[i], cur)
-    }
-    return cur
+func robRange(nums []int, l, r int) int {
+	a, b := 0, nums[l]
+	for i := l + 1; i <= r; i++ {
+		a, b = b, max(nums[i]+a, b)
+	}
+	return b
 }
 
 func max(a, b int) int {
-    if (a > b) {
-        return a
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+### **TypeScript**
+
+```ts
+function rob(nums: number[]): number {
+    const n = nums.length;
+    if (n === 1) {
+        return nums[0];
     }
-    return b
+    const robRange = (left: number, right: number) => {
+        const dp = [0, 0];
+        for (let i = left; i < right; i++) {
+            [dp[0], dp[1]] = [dp[1], Math.max(dp[1], dp[0] + nums[i])];
+        }
+        return dp[1];
+    };
+    return Math.max(robRange(0, n - 1), robRange(1, n));
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn rob(nums: Vec<i32>) -> i32 {
+        let n = nums.len();
+        if n == 1 {
+            return nums[0];
+        }
+        let rob_range = |left, right| {
+            let mut dp = [0, 0];
+            for i in left..right {
+                dp = [dp[1], dp[1].max(dp[0] + nums[i])];
+            }
+            dp[1]
+        };
+        rob_range(0, n - 1).max(rob_range(1, n))
+    }
 }
 ```
 

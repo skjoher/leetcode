@@ -1,4 +1,4 @@
-# [1659. 最大化网格幸福感](https://leetcode-cn.com/problems/maximize-grid-happiness)
+# [1659. 最大化网格幸福感](https://leetcode.cn/problems/maximize-grid-happiness)
 
 [English Version](/solution/1600-1699/1659.Maximize%20Grid%20Happiness/README_EN.md)
 
@@ -24,7 +24,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1659.Maximize%20Grid%20Happiness/images/grid_happiness.png" style="width: 261px; height: 121px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1659.Maximize%20Grid%20Happiness/images/grid_happiness.png" style="width: 261px; height: 121px;" />
 <pre>
 <strong>输入：</strong>m = 2, n = 3, introvertsCount = 1, extrovertsCount = 2
 <strong>输出：</strong>240
@@ -64,7 +64,6 @@
 	<li><code>1 <= m, n <= 5</code></li>
 	<li><code>0 <= introvertsCount, extrovertsCount <= min(m * n, 6)</code></li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [809. 情感丰富的文字](https://leetcode-cn.com/problems/expressive-words)
+# [809. 情感丰富的文字](https://leetcode.cn/problems/expressive-words)
 
 [English Version](/solution/0800-0899/0809.Expressive%20Words/README_EN.md)
 
@@ -38,7 +38,6 @@ words = ["hello", "hi", "helo"]
 	<li><code>0 <= len(words[i]) <= 100</code>。</li>
 	<li><code>S</code> 和所有在 <code>words</code> 中的单词都只由小写字母组成。</li>
 </ul>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [1782. 统计点对的数目](https://leetcode-cn.com/problems/count-pairs-of-nodes)
+# [1782. 统计点对的数目](https://leetcode.cn/problems/count-pairs-of-nodes)
 
 [English Version](/solution/1700-1799/1782.Count%20Pairs%20Of%20Nodes/README_EN.md)
 
@@ -22,7 +22,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1782.Count%20Pairs%20Of%20Nodes/images/1614828447-GMnLVg-image.png" style="width: 310px; height: 278px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1782.Count%20Pairs%20Of%20Nodes/images/1614828447-GMnLVg-image.png" style="width: 310px; height: 278px;" />
 <pre>
 <b>输入：</b>n = 4, edges = [[1,2],[2,4],[1,3],[2,3],[2,1]], queries = [2,3]
 <b>输出：</b>[6,5]
@@ -48,7 +48,6 @@
 	<li><code>1 <= queries.length <= 20</code></li>
 	<li><code>0 <= queries[j] < edges.length</code></li>
 </ul>
-
 
 ## 解法
 

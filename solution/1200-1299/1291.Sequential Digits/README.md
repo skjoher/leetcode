@@ -1,4 +1,4 @@
-# [1291. 顺次数](https://leetcode-cn.com/problems/sequential-digits)
+# [1291. 顺次数](https://leetcode.cn/problems/sequential-digits)
 
 [English Version](/solution/1200-1299/1291.Sequential%20Digits/README_EN.md)
 
@@ -31,7 +31,6 @@
 <ul>
 	<li><code>10 &lt;= low &lt;= high &lt;= 10^9</code></li>
 </ul>
-
 
 ## 解法
 

@@ -43,7 +43,6 @@ The strings are the same, so return true.</pre>
 	<li><code>word1[i]</code> and <code>word2[i]</code> consist of lowercase letters.</li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -51,13 +50,38 @@ The strings are the same, so return true.</pre>
 ### **Python3**
 
 ```python
-
+class Solution:
+    def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+        s1, s2 = ''.join(word1), ''.join(word2)
+        return s1 == s2
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        StringBuilder s1 = new StringBuilder();
+        StringBuilder s2 = new StringBuilder();
+        for (String word : word1) {
+            s1.append(word);
+        }
+        for (String word : word2) {
+            s2.append(word);
+        }
+        return Objects.equals(s1.toString(), s2.toString());
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function arrayStringsAreEqual(word1: string[], word2: string[]): boolean {
+    let s1 = word1.join(''),
+        s2 = word2.join('');
+    return s1 == s2;
+}
 ```
 
 ### **...**

@@ -1,31 +1,14 @@
 class Solution:
-    def asteroidCollision(self, asteroids):
-        """
-        :type asteroids: List[int]
-        :rtype: List[int]
-        """
-        if not asteroids:
-            return []
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         ans = []
-        for i in asteroids:
-            if i > 0:
-                ans.append(i)
-            if i < 0:
-                if not ans or ans[-1] < 0:
-                    ans.append(i)
-                else:
-                    while ans:
-                        if ans[-1] < 0:
-                            ans.append(i)
-                            break
-                        elif ans[-1] > abs(i):
-                            break
-                        elif ans[-1] == abs(i):
-                            ans.pop(-1)
-                            break
-                        else:
-                            ans.pop(-1)
-
-                    else:
-                        ans.append(i)
+        for a in asteroids:
+            if a > 0:
+                ans.append(a)
+            else:
+                while ans and 0 < ans[-1] < -a:
+                    ans.pop()
+                if ans and ans[-1] == -a:
+                    ans.pop()
+                elif not ans or ans[-1] < -a:
+                    ans.append(a)
         return ans

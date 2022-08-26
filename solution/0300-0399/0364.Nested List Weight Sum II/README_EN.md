@@ -14,7 +14,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0364.Nested%20List%20Weight%20Sum%20II/images/nestedlistweightsumiiex1.png" style="width: 426px; height: 181px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0364.Nested%20List%20Weight%20Sum%20II/images/nestedlistweightsumiiex1.png" style="width: 426px; height: 181px;" />
 <pre>
 <strong>Input:</strong> nestedList = [[1,1],2,[1,1]]
 <strong>Output:</strong> 8
@@ -23,7 +23,7 @@
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0364.Nested%20List%20Weight%20Sum%20II/images/nestedlistweightsumiiex2.png" style="width: 349px; height: 192px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0364.Nested%20List%20Weight%20Sum%20II/images/nestedlistweightsumiiex2.png" style="width: 349px; height: 192px;" />
 <pre>
 <strong>Input:</strong> nestedList = [1,[4,[6]]]
 <strong>Output:</strong> 17
@@ -51,7 +51,7 @@
 # This is the interface that allows for creating nested lists.
 # You should not implement it, or speculate about its implementation
 # """
-#class NestedInteger:
+# class NestedInteger:
 #    def __init__(self, value=None):
 #        """
 #        If value is not specified, initializes an empty list.
@@ -220,29 +220,29 @@ class Solution {
  * @return {number}
  */
 var depthSumInverse = function (nestedList) {
-  const maxDepth = (nestedList) => {
-    let depth = 1;
-    for (const item of nestedList) {
-      if (item.isInteger()) {
-        continue;
-      }
-      depth = Math.max(depth, 1 + maxDepth(item.getList()));
-    }
-    return depth;
-  };
-  const dfs = (nestedList, depth) => {
-    let depthSum = 0;
-    for (const item of nestedList) {
-      if (item.isInteger()) {
-        depthSum += item.getInteger() * depth;
-      } else {
-        depthSum += dfs(item.getList(), depth - 1);
-      }
-    }
-    return depthSum;
-  };
-  const depth = maxDepth(nestedList);
-  return dfs(nestedList, depth);
+    const maxDepth = nestedList => {
+        let depth = 1;
+        for (const item of nestedList) {
+            if (item.isInteger()) {
+                continue;
+            }
+            depth = Math.max(depth, 1 + maxDepth(item.getList()));
+        }
+        return depth;
+    };
+    const dfs = (nestedList, depth) => {
+        let depthSum = 0;
+        for (const item of nestedList) {
+            if (item.isInteger()) {
+                depthSum += item.getInteger() * depth;
+            } else {
+                depthSum += dfs(item.getList(), depth - 1);
+            }
+        }
+        return depthSum;
+    };
+    const depth = maxDepth(nestedList);
+    return dfs(nestedList, depth);
 };
 ```
 

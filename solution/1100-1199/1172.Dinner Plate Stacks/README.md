@@ -1,4 +1,4 @@
-# [1172. 餐盘栈](https://leetcode-cn.com/problems/dinner-plate-stacks)
+# [1172. 餐盘栈](https://leetcode.cn/problems/dinner-plate-stacks)
 
 [English Version](/solution/1100-1199/1172.Dinner%20Plate%20Stacks/README_EN.md)
 
@@ -72,7 +72,6 @@ D.pop()            // 返回 -1。仍然没有栈。
 	<li><code>0 &lt;= index&nbsp;&lt;= 100000</code></li>
 	<li>最多会对&nbsp;<code>push</code>，<code>pop</code>，和&nbsp;<code>popAtStack</code>&nbsp;进行 <code>200000</code> 次调用。</li>
 </ul>
-
 
 ## 解法
 

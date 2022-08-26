@@ -1,4 +1,4 @@
-# [1804. 实现 Trie （前缀树） II](https://leetcode-cn.com/problems/implement-trie-ii-prefix-tree)
+# [1804. 实现 Trie （前缀树） II](https://leetcode.cn/problems/implement-trie-ii-prefix-tree)
 
 [English Version](/solution/1800-1899/1804.Implement%20Trie%20II%20%28Prefix%20Tree%29/README_EN.md)
 
@@ -66,8 +66,8 @@ trie.countWordsStartingWith("app"); // 返回 0
 
 我们从字典树的根开始，插入字符串。对于当前字符对应的子节点，有两种情况：
 
-- 子节点存在。沿着指针移动到子节点，继续处理下一个字符。
-- 子节点不存在。创建一个新的子节点，记录在 `children` 数组的对应位置上，然后沿着指针移动到子节点，让子节点的 `preCount` 值加 1。继续搜索下一个字符。
+-   子节点存在。沿着指针移动到子节点，继续处理下一个字符。
+-   子节点不存在。创建一个新的子节点，记录在 `children` 数组的对应位置上，然后沿着指针移动到子节点，让子节点的 `preCount` 值加 1。继续搜索下一个字符。
 
 重复以上步骤，直到处理字符串的最后一个字符，然后将当前节点的 `count` 值加 1。
 
@@ -75,8 +75,8 @@ trie.countWordsStartingWith("app"); // 返回 0
 
 我们从字典树的根开始，查找前缀。对于当前字符对应的子节点，有两种情况：
 
-- 子节点存在。沿着指针移动到子节点，继续搜索下一个字符。
-- 子节点不存在。说明字典树中不包含该前缀，返回空指针。
+-   子节点存在。沿着指针移动到子节点，继续搜索下一个字符。
+-   子节点不存在。说明字典树中不包含该前缀，返回空指针。
 
 重复以上步骤，直到返回空指针或搜索完前缀的最后一个字符。
 
@@ -88,7 +88,6 @@ trie.countWordsStartingWith("app"); // 返回 0
 
 ```python
 class Trie:
-
     def __init__(self):
         self.children = [None] * 26
         self.count = 0
@@ -129,6 +128,7 @@ class Trie:
             node = node.children[index]
         return node
 
+
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
 # obj.insert(word)
@@ -152,7 +152,7 @@ class Trie {
         count = 0;
         preCount = 0;
     }
-    
+
     public void insert(String word) {
         Trie node = this;
         for (int i = 0; i < word.length(); ++i) {
@@ -165,17 +165,17 @@ class Trie {
         }
         node.count += 1;
     }
-    
+
     public int countWordsEqualTo(String word) {
         Trie node = searchPrefix(word);
         return node == null ? 0 : node.count;
     }
-    
+
     public int countWordsStartingWith(String prefix) {
         Trie node = searchPrefix(prefix);
         return node == null ? 0 : node.preCount;
     }
-    
+
     public void erase(String word) {
         Trie node = this;
         for (int i = 0; i < word.length(); ++i) {

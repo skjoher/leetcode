@@ -1,4 +1,4 @@
-# [136. 只出现一次的数字](https://leetcode-cn.com/problems/single-number)
+# [136. 只出现一次的数字](https://leetcode.cn/problems/single-number)
 
 [English Version](/solution/0100-0199/0136.Single%20Number/README_EN.md)
 
@@ -22,7 +22,6 @@
 
 <pre><strong>输入:</strong> [4,1,2,1,2]
 <strong>输出:</strong> 4</pre>
-
 
 ## 解法
 
@@ -71,11 +70,11 @@ class Solution {
  * @return {number}
  */
 var singleNumber = function (nums) {
-  let res = 0;
-  for (let num of nums) {
-    res ^= num;
-  }
-  return res;
+    let res = 0;
+    for (let num of nums) {
+        res ^= num;
+    }
+    return res;
 };
 ```
 
@@ -104,6 +103,20 @@ public:
         return res;
     }
 };
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn single_number(nums: Vec<i32>) -> i32 {
+        let mut result = 0;
+        for num in nums {
+            result ^= num;
+        }
+        result
+    }
+}
 ```
 
 ### **...**

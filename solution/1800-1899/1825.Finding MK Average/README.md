@@ -1,4 +1,4 @@
-# [1825. 求出 MK 平均值](https://leetcode-cn.com/problems/finding-mk-average)
+# [1825. 求出 MK 平均值](https://leetcode.cn/problems/finding-mk-average)
 
 [English Version](/solution/1800-1899/1825.Finding%20MK%20Average/README_EN.md)
 
@@ -62,7 +62,6 @@ obj.calculateMKAverage(); // 最后 3 个元素为 [5,5,5]
 	<li><code>1 <= num <= 10<sup>5</sup></code></li>
 	<li><code>addElement</code> 与 <code>calculateMKAverage</code> 总操作次数不超过 <code>10<sup>5</sup></code> 次。</li>
 </ul>
-
 
 ## 解法
 

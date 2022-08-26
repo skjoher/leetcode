@@ -37,6 +37,12 @@ public class Foo {
 <strong>Explanation:</strong> The input [1,3,2] means thread A calls first(), thread B calls third(), and thread C calls second(). &quot;firstsecondthird&quot; is the correct output.
 </pre>
 
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>nums</code> is a permutation of <code>[1, 2, 3]</code>.</li>
+</ul>
 
 ## Solutions
 
@@ -45,13 +51,85 @@ public class Foo {
 ### **Python3**
 
 ```python
+class Foo:
+    def __init__(self):
+        self.l2 = threading.Lock()
+        self.l3 = threading.Lock()
+        self.l2.acquire()
+        self.l3.acquire()
 
+    def first(self, printFirst: 'Callable[[], None]') -> None:
+        printFirst()
+        self.l2.release()
+
+    def second(self, printSecond: 'Callable[[], None]') -> None:
+        self.l2.acquire()
+        printSecond()
+        self.l3.release()
+
+    def third(self, printThird: 'Callable[[], None]') -> None:
+        self.l3.acquire()
+        printThird()
 ```
 
 ### **Java**
 
 ```java
+class Foo {
 
+    private final Semaphore s2 = new Semaphore(0);
+    private final Semaphore s3 = new Semaphore(0);
+
+    public Foo() {
+    }
+
+    public void first(Runnable printFirst) throws InterruptedException {
+        printFirst.run();
+        s2.release();
+    }
+
+    public void second(Runnable printSecond) throws InterruptedException {
+        s2.acquire();
+        printSecond.run();
+        s3.release();
+    }
+
+    public void third(Runnable printThird) throws InterruptedException {
+        s3.acquire();
+        printThird.run();
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Foo {
+private:
+    mutex m2, m3;
+
+public:
+    Foo() {
+        m2.lock();
+        m3.lock();
+    }
+
+    void first(function<void()> printFirst) {
+        printFirst();
+        m2.unlock();
+    }
+
+    void second(function<void()> printSecond) {
+        m2.lock();
+        printSecond();
+        m3.unlock();
+    }
+
+    void third(function<void()> printThird) {
+        m3.lock();
+        printThird();
+    }
+};
 ```
 
 ### **...**

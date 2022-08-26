@@ -10,7 +10,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1411.Number%20of%20Ways%20to%20Paint%20N%20%C3%97%203%20Grid/images/e1.png" style="width: 400px; height: 257px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1400-1499/1411.Number%20of%20Ways%20to%20Paint%20N%20%C3%97%203%20Grid/images/e1.png" style="width: 400px; height: 257px;" />
 <pre>
 <strong>Input:</strong> n = 1
 <strong>Output:</strong> 12
@@ -18,27 +18,6 @@
 </pre>
 
 <p><strong>Example 2:</strong></p>
-
-<pre>
-<strong>Input:</strong> n = 2
-<strong>Output:</strong> 54
-</pre>
-
-<p><strong>Example 3:</strong></p>
-
-<pre>
-<strong>Input:</strong> n = 3
-<strong>Output:</strong> 246
-</pre>
-
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> n = 7
-<strong>Output:</strong> 106494
-</pre>
-
-<p><strong>Example 5:</strong></p>
 
 <pre>
 <strong>Input:</strong> n = 5000
@@ -50,10 +29,8 @@
 
 <ul>
 	<li><code>n == grid.length</code></li>
-	<li><code>grid[i].length == 3</code></li>
 	<li><code>1 &lt;= n &lt;= 5000</code></li>
 </ul>
-
 
 ## Solutions
 
@@ -62,13 +39,70 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def numOfWays(self, n: int) -> int:
+        mod = 10**9 + 7
+        f0 = f1 = 6
+        for _ in range(n - 1):
+            g0 = (3 * f0 + 2 * f1) % mod
+            g1 = (2 * f0 + 2 * f1) % mod
+            f0, f1 = g0, g1
+        return (f0 + f1) % mod
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int numOfWays(int n) {
+        int mod = (int) 1e9 + 7;
+        long f0 = 6, f1 = 6;
+        for (int i = 0; i < n - 1; ++i) {
+            long g0 = (3 * f0 + 2 * f1) % mod;
+            long g1 = (2 * f0 + 2 * f1) % mod;
+            f0 = g0;
+            f1 = g1;
+        }
+        return (int) (f0 + f1) % mod;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+using ll = long long;
+
+class Solution {
+public:
+    int numOfWays(int n) {
+        int mod = 1e9 + 7;
+        ll f0 = 6, f1 = 6;
+        while (--n) {
+            ll g0 = (f0 * 3 + f1 * 2) % mod;
+            ll g1 = (f0 * 2 + f1 * 2) % mod;
+            f0 = g0;
+            f1 = g1;
+        }
+        return (int)(f0 + f1) % mod;
+    }
+};
+```
+
+### **Go**
+
+```go
+func numOfWays(n int) int {
+	mod := int(1e9) + 7
+	f0, f1 := 6, 6
+	for n > 1 {
+		n--
+		g0 := (f0*3 + f1*2) % mod
+		g1 := (f0*2 + f1*2) % mod
+		f0, f1 = g0, g1
+	}
+	return (f0 + f1) % mod
+}
 ```
 
 ### **...**

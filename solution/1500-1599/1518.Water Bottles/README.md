@@ -1,4 +1,4 @@
-# [1518. 换酒问题](https://leetcode-cn.com/problems/water-bottles)
+# [1518. 换酒问题](https://leetcode.cn/problems/water-bottles)
 
 [English Version](/solution/1500-1599/1518.Water%20Bottles/README_EN.md)
 
@@ -16,7 +16,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1518.Water%20Bottles/images/sample_1_1875.png" style="height: 240px; width: 480px;"></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1518.Water%20Bottles/images/sample_1_1875.png" style="height: 240px; width: 480px;"></strong></p>
 
 <pre><strong>输入：</strong>numBottles = 9, numExchange = 3
 <strong>输出：</strong>13
@@ -26,7 +26,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1518.Water%20Bottles/images/sample_2_1875.png" style="height: 240px; width: 790px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1500-1599/1518.Water%20Bottles/images/sample_2_1875.png" style="height: 240px; width: 790px;"></p>
 
 <pre><strong>输入：</strong>numBottles = 15, numExchange = 4
 <strong>输出：</strong>19
@@ -55,10 +55,11 @@
 	<li><code>2 &lt;=&nbsp;numExchange &lt;= 100</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
+
+直接模拟空瓶兑新酒即可。
 
 <!-- tabs:start -->
 
@@ -67,7 +68,13 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
+        ans = numBottles
+        while numBottles >= numExchange:
+            numBottles -= numExchange - 1
+            ans += 1
+        return ans
 ```
 
 ### **Java**
@@ -75,7 +82,45 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+        int ans = numBottles;
+        while (numBottles >= numExchange) {
+            numBottles -= (numExchange - 1);
+            ++ans;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int numWaterBottles(int numBottles, int numExchange) {
+        int ans = numBottles;
+        while (numBottles >= numExchange) {
+            numBottles -= (numExchange - 1);
+            ++ans;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func numWaterBottles(numBottles int, numExchange int) int {
+	ans := numBottles
+	for numBottles >= numExchange {
+		numBottles -= (numExchange - 1)
+		ans++
+	}
+	return ans
+}
 ```
 
 ### **...**

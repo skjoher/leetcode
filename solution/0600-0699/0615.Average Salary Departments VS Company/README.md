@@ -1,4 +1,4 @@
-# [615. 平均工资：部门与公司比较](https://leetcode-cn.com/problems/average-salary-departments-vs-company)
+# [615. 平均工资：部门与公司比较](https://leetcode.cn/problems/average-salary-departments-vs-company)
 
 [English Version](/solution/0600-0699/0615.Average%20Salary%20Departments%20VS%20Company/README_EN.md)
 
@@ -70,7 +70,6 @@
 <p>在二月用同样的公式求平均工资并比较，比较结果为 &#39;same&#39; ，因为部门 &#39;1&#39; 和部门 &#39;2&#39; 的平均工资与公司的平均工资相同，都是 7000 。</p>
 
 <p>&nbsp;</p>
-
 
 ## 解法
 

@@ -8,12 +8,17 @@
 
 <ul>
 	<li>All the dots in the sequence are <strong>distinct</strong>.</li>
-	<li>If the line segment connecting two consecutive dots in the sequence passes through any other dot, the other dot <strong>must have previously appeared</strong> in the sequence. No jumps through non-selected dots are allowed.</li>
+	<li>If the line segment connecting two consecutive dots in the sequence passes through the <strong>center</strong> of any other dot, the other dot <strong>must have previously appeared</strong> in the sequence. No jumps through the center non-selected dots are allowed.
+	<ul>
+		<li>For example, connecting dots <code>2</code> and <code>9</code> without dots <code>5</code> or <code>6</code> appearing beforehand is valid because the line from dot <code>2</code> to dot <code>9</code> does not pass through the center of either dot <code>5</code> or <code>6</code>.</li>
+		<li>However, connecting dots <code>1</code> and <code>3</code> without dot <code>2</code> appearing beforehand is invalid because the line from dot <code>1</code> to dot <code>3</code> passes through the center of dot <code>2</code>.</li>
+	</ul>
+	</li>
 </ul>
 
 <p>Here are some example valid and invalid unlock patterns:</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0351.Android%20Unlock%20Patterns/images/android-unlock.png" style="width: 418px; height: 128px;" /></p>
+<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0300-0399/0351.Android%20Unlock%20Patterns/images/android-unlock.png" style="width: 418px; height: 128px;" /></p>
 
 <ul>
 	<li>The 1st pattern <code>[4,1,3,6]</code> is invalid because the line connecting dots <code>1</code> and <code>3</code> pass through dot <code>2</code>, but dot <code>2</code> did not previously appear in the sequence.</li>
@@ -47,7 +52,6 @@
 <ul>
 	<li><code>1 &lt;= m, n &lt;= 9</code></li>
 </ul>
-
 
 ## Solutions
 

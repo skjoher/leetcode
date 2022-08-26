@@ -1,4 +1,4 @@
-# [1014. 最佳观光组合](https://leetcode-cn.com/problems/best-sightseeing-pair)
+# [1014. 最佳观光组合](https://leetcode.cn/problems/best-sightseeing-pair)
 
 [English Version](/solution/1000-1099/1014.Best%20Sightseeing%20Pair/README_EN.md)
 
@@ -38,7 +38,6 @@
 	<li><code>1 <= values[i] <= 1000</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -50,7 +49,13 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        res, mx = 0, values[0]
+        for i in range(1, len(values)):
+            res = max(res, values[i] - i + mx)
+            mx = max(mx, values[i] + i)
+        return res
 ```
 
 ### **Java**
@@ -58,7 +63,52 @@
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int maxScoreSightseeingPair(int[] values) {
+        int res = 0, mx = values[0];
+        for (int i = 1; i < values.length; ++i) {
+            res = Math.max(res, values[i] - i + mx);
+            mx = Math.max(mx, values[i] + i);
+        }
+        return res;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int>& values) {
+        int res = 0, mx = values[0];
+        for (int i = 1; i < values.size(); ++i) {
+            res = max(res, values[i] - i + mx);
+            mx = max(mx, values[i] + i);
+        }
+        return res;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxScoreSightseeingPair(values []int) int {
+	res, mx := 0, values[0]
+	for i := 1; i < len(values); i++ {
+		res = max(res, values[i]-i+mx)
+		mx = max(mx, values[i]+i)
+	}
+	return res
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

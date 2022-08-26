@@ -1,4 +1,4 @@
-# [288. 单词的唯一缩写](https://leetcode-cn.com/problems/unique-word-abbreviation)
+# [288. 单词的唯一缩写](https://leetcode.cn/problems/unique-word-abbreviation)
 
 [English Version](/solution/0200-0299/0288.Unique%20Word%20Abbreviation/README_EN.md)
 
@@ -36,10 +36,10 @@
 
 <pre>
 <strong>输入</strong>
-["ValidWordAbbr", "isUnique", "isUnique", "isUnique", "isUnique"]
-[[["deer", "door", "cake", "card"]], ["dear"], ["cart"], ["cane"], ["make"]]
+["ValidWordAbbr", "isUnique", "isUnique", "isUnique", "isUnique", "isUnique"]
+[[["deer", "door", "cake", "card"]], ["dear"], ["cart"], ["cane"], ["make"], ["cake"]]
 <strong>输出
-</strong>[null, false, true, false, true]
+</strong>[null, false, true, false, true, true]
 
 <strong>解释</strong>
 ValidWordAbbr validWordAbbr = new ValidWordAbbr(["deer", "door", "cake", "card"]);
@@ -77,25 +77,19 @@ validWordAbbr.isUnique("cake"); // 返回 true，因为 "cake" 已经存在于�
 
 ```python
 class ValidWordAbbr:
-
     def __init__(self, dictionary: List[str]):
-        self.words = {}
+        self.words = defaultdict(set)
         for word in dictionary:
-            abbr = self._word_abbr(word)
-            vals = self.words.get(abbr, set())
-            vals.add(word)
-            self.words[abbr] = vals
+            abbr = self.word_abbr(word)
+            self.words[abbr].add(word)
 
     def isUnique(self, word: str) -> bool:
-        abbr = self._word_abbr(word)
-        vals = self.words.get(abbr)
-        return vals is None or (len(vals) == 1 and word in vals)
+        abbr = self.word_abbr(word)
+        words = self.words[abbr]
+        return not words or (len(words) == 1 and word in words)
 
-    def _word_abbr(self, word: str) -> str:
-        n = len(word)
-        if n < 3:
-            return word
-        return f'{word[0]}{n - 2}{word[n - 1]}'
+    def word_abbr(self, s):
+        return s if len(s) < 3 else f'{s[0]}{len(s) - 2}{s[-1]}'
 
 
 # Your ValidWordAbbr object will be instantiated and called as such:
@@ -114,27 +108,20 @@ class ValidWordAbbr {
     public ValidWordAbbr(String[] dictionary) {
         words = new HashMap<>();
         for (String word : dictionary) {
-            String abbr = wordAbbr(word);
-            Set<String> vals = words.getOrDefault(abbr, new HashSet<>());
-            vals.add(word);
-            words.put(abbr, vals);
+            String abbr = abbr(word);
+            words.computeIfAbsent(abbr, k -> new HashSet<>()).add(word);
         }
     }
 
     public boolean isUnique(String word) {
-        String abbr = wordAbbr(word);
+        String abbr = abbr(word);
         Set<String> vals = words.get(abbr);
         return vals == null || (vals.size() == 1 && vals.contains(word));
     }
 
-    private String wordAbbr(String word) {
-        int n = word.length();
-        if (n < 3) {
-            return word;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(word.charAt(0)).append(n - 2).append(word.charAt(n - 1));
-        return sb.toString();
+    private String abbr(String s) {
+        int n = s.length();
+        return n < 3 ? s : s.charAt(0) + Integer.toString(n - 2) + s.charAt(n - 1);
     }
 }
 
@@ -142,6 +129,80 @@ class ValidWordAbbr {
  * Your ValidWordAbbr object will be instantiated and called as such:
  * ValidWordAbbr obj = new ValidWordAbbr(dictionary);
  * boolean param_1 = obj.isUnique(word);
+ */
+```
+
+### **C++**
+
+```cpp
+class ValidWordAbbr {
+public:
+    unordered_map<string, unordered_set<string>> words;
+
+    ValidWordAbbr(vector<string>& dictionary) {
+        for (auto word : dictionary) {
+            auto abbr = wordAbbr(word);
+            words[abbr].insert(word);
+        }
+    }
+
+    bool isUnique(string word) {
+        auto abbr = wordAbbr(word);
+        if (!words.count(abbr)) return true;
+        auto vals = words[abbr];
+        return vals.size() == 1 && vals.count(word);
+    }
+
+    string wordAbbr(string s) {
+        int n = s.size();
+        return n < 3 ? s : s.substr(0, 1) + to_string(n - 2) + s.substr(n - 1, 1);
+    }
+};
+
+/**
+ * Your ValidWordAbbr object will be instantiated and called as such:
+ * ValidWordAbbr* obj = new ValidWordAbbr(dictionary);
+ * bool param_1 = obj->isUnique(word);
+ */
+```
+
+### **Go**
+
+```go
+type ValidWordAbbr struct {
+	words map[string]map[string]bool
+}
+
+func Constructor(dictionary []string) ValidWordAbbr {
+	words := make(map[string]map[string]bool)
+	for _, word := range dictionary {
+		abbr := wordAbbr(word)
+		if words[abbr] == nil {
+			words[abbr] = make(map[string]bool)
+		}
+		words[abbr][word] = true
+	}
+	return ValidWordAbbr{words}
+}
+
+func (this *ValidWordAbbr) IsUnique(word string) bool {
+	abbr := wordAbbr(word)
+	words := this.words[abbr]
+	return words == nil || (len(words) == 1 && words[word])
+}
+
+func wordAbbr(s string) string {
+	n := len(s)
+	if n <= 2 {
+		return s
+	}
+	return s[0:1] + strconv.Itoa(n-2) + s[n-1:]
+}
+
+/**
+ * Your ValidWordAbbr object will be instantiated and called as such:
+ * obj := Constructor(dictionary);
+ * param_1 := obj.IsUnique(word);
  */
 ```
 

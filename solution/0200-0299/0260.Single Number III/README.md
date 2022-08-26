@@ -1,4 +1,4 @@
-# [260. 只出现一次的数字 III](https://leetcode-cn.com/problems/single-number-iii)
+# [260. 只出现一次的数字 III](https://leetcode.cn/problems/single-number-iii)
 
 [English Version](/solution/0200-0299/0260.Single%20Number%20III/README_EN.md)
 
@@ -44,7 +44,6 @@
 	<li>除两个只出现一次的整数外，<code>nums</code> 中的其他数字都出现两次</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -59,16 +58,15 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> List[int]:
         eor = 0
-        for num in nums:
-            eor ^= num
-        # 提取最右边的 1
-        diff = eor & (~eor + 1)
-        a = 0
-        for num in nums:
-            if (num & diff) == 0:
-                a ^= num
-        b = eor ^ a
-        return [a, b]
+        for x in nums:
+            eor ^= x
+        lowbit = eor & (-eor)
+        ans = [0, 0]
+        for x in nums:
+            if (x & lowbit) == 0:
+                ans[0] ^= x
+        ans[1] = eor ^ ans[0]
+        return ans
 ```
 
 ### **Java**
@@ -79,20 +77,81 @@ class Solution:
 class Solution {
     public int[] singleNumber(int[] nums) {
         int eor = 0;
-        for (int num : nums) {
-            eor ^= num;
+        for (int x : nums) {
+            eor ^= x;
         }
-        // 提取最右的 1
-        int diff = eor & (~eor + 1);
-        int a = 0;
-        for (int num : nums) {
-            if ((num & diff) == 0) {
-                a ^= num;
+        int lowbit = eor & (-eor);
+        int[] ans = new int[2];
+        for (int x : nums) {
+            if ((x & lowbit) == 0) {
+                ans[0] ^= x;
             }
         }
-        int b = eor ^ a;
-        return new int[]{a, b};
+        ans[1] = eor ^ ans[0];
+        return ans;
     }
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var singleNumber = function (nums) {
+    let eor = 0;
+    for (const x of nums) {
+        eor ^= x;
+    }
+    const lowbit = eor & -eor;
+    let ans = [0];
+    for (const x of nums) {
+        if ((x & lowbit) == 0) {
+            ans[0] ^= x;
+        }
+    }
+    ans.push(eor ^ ans[0]);
+    return ans;
+};
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        long long eor = 0;
+        for (int x : nums) eor ^= x;
+        int lowbit = eor & (-eor);
+        vector<int> ans(2);
+        for (int x : nums)
+            if ((x & lowbit) == 0) ans[0] ^= x;
+        ans[1] = eor ^ ans[0];
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func singleNumber(nums []int) []int {
+	eor := 0
+	for _, x := range nums {
+		eor ^= x
+	}
+	lowbit := eor & (-eor)
+	ans := make([]int, 2)
+	for _, x := range nums {
+		if (x & lowbit) == 0 {
+			ans[0] ^= x
+		}
+	}
+	ans[1] = eor ^ ans[0]
+	return ans
 }
 ```
 

@@ -1,4 +1,4 @@
-# [1429. 第一个唯一数字](https://leetcode-cn.com/problems/first-unique-number)
+# [1429. 第一个唯一数字](https://leetcode.cn/problems/first-unique-number)
 
 [English Version](/solution/1400-1499/1429.First%20Unique%20Number/README_EN.md)
 
@@ -96,10 +96,9 @@ firstUnique.showFirstUnique(); // 返回 -1
 
 ```python
 class FirstUnique:
-
     def __init__(self, nums: List[int]):
-        self.counter = collections.OrderedDict()
-        self.unique_nums = collections.OrderedDict()
+        self.counter = OrderedDict()
+        self.unique_nums = OrderedDict()
         for num in nums:
             self.counter[num] = self.counter.get(num, 0) + 1
         for k, v in self.counter.items():
@@ -120,6 +119,7 @@ class FirstUnique:
             self.counter[value] += 1
             if value in self.unique_nums:
                 self.unique_nums.pop(value)
+
 
 # Your FirstUnique object will be instantiated and called as such:
 # obj = FirstUnique(nums)

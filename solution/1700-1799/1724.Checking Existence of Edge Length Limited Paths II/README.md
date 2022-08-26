@@ -1,4 +1,4 @@
-# [1724. 检查边长度限制的路径是否存在 II](https://leetcode-cn.com/problems/checking-existence-of-edge-length-limited-paths-ii)
+# [1724. 检查边长度限制的路径是否存在 II](https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii)
 
 [English Version](/solution/1700-1799/1724.Checking%20Existence%20of%20Edge%20Length%20Limited%20Paths%20II/README_EN.md)
 
@@ -19,7 +19,7 @@
 
 <p><b>示例 1:</b></p>
 
-<p><strong><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1724.Checking%20Existence%20of%20Edge%20Length%20Limited%20Paths%20II/images/messed.png" style="width: 300px; height: 298px;"></strong></p>
+<p><strong><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1700-1799/1724.Checking%20Existence%20of%20Edge%20Length%20Limited%20Paths%20II/images/messed.png" style="width: 300px; height: 298px;"></strong></p>
 
 <pre><b>输入：</b>
 ["DistanceLimitedPathsExist", "query", "query", "query", "query"]
@@ -52,7 +52,6 @@ distanceLimitedPathsExist.query(0, 5, 6); // 返回 false。从 0 到 5 之间�
 	<li><code>1 &lt;= dis<sub>i</sub>, limit &lt;= 10<sup>9</sup></code></li>
 	<li>最多调用 <code>10<sup>4</sup></code> 次 <code>query</code> 。</li>
 </ul>
-
 
 ## 解法
 

@@ -4,7 +4,7 @@
 
 ## Description
 
-<p>A <strong>wiggle sequence</strong> is a sequence where the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with two or fewer elements is trivially a wiggle sequence.</p>
+<p>A <strong>wiggle sequence</strong> is a sequence where the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with one element and a sequence with two non-equal elements are trivially wiggle sequences.</p>
 
 <ul>
 	<li>For example, <code>[1, 7, 4, 9, 2, 5]</code> is a <strong>wiggle sequence</strong> because the differences <code>(6, -3, 5, -7, 3)</code> alternate between positive and negative.</li>
@@ -51,21 +51,103 @@ One is [1, 17, 10, 13, 10, 16, 8] with differences (16, -7, 3, -3, 6, -8).
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Could you solve this in <code>O(n)</code> time?</p>
 
-
 ## Solutions
+
+Dynamic programming.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
-
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        up = down = 1
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i - 1]:
+                up = max(up, down + 1)
+            elif nums[i] < nums[i - 1]:
+                down = max(down, up + 1)
+        return max(up, down)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int wiggleMaxLength(int[] nums) {
+        int up = 1, down = 1;
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] > nums[i - 1]) {
+                up = Math.max(up, down + 1);
+            } else if (nums[i] < nums[i - 1]) {
+                down = Math.max(down, up + 1);
+            }
+        }
+        return Math.max(up, down);
+    }
+}
+```
 
+### **TypeScript**
+
+```ts
+function wiggleMaxLength(nums: number[]): number {
+    let up = 1,
+        down = 1;
+    for (let i = 1; i < nums.length; ++i) {
+        let prev = nums[i - 1],
+            cur = nums[i];
+        if (cur > prev) {
+            up = Math.max(up, down + 1);
+        } else if (cur < prev) {
+            down = Math.max(down, up + 1);
+        }
+    }
+    return Math.max(up, down);
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        int up = 1, down = 1;
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] > nums[i - 1]) {
+                up = max(up, down + 1);
+            } else if (nums[i] < nums[i - 1]) {
+                down = max(down, up + 1);
+            }
+        }
+        return max(up, down);
+    }
+};
+```
+
+### **Go**
+
+```go
+func wiggleMaxLength(nums []int) int {
+	up, down := 1, 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			up = max(up, down+1)
+		} else if nums[i] < nums[i-1] {
+			down = max(down, up+1)
+		}
+	}
+	return max(up, down)
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

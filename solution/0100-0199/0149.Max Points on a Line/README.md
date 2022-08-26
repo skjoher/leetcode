@@ -1,4 +1,4 @@
-# [149. 直线上最多的点数](https://leetcode-cn.com/problems/max-points-on-a-line)
+# [149. 直线上最多的点数](https://leetcode.cn/problems/max-points-on-a-line)
 
 [English Version](/solution/0100-0199/0149.Max%20Points%20on%20a%20Line/README_EN.md)
 
@@ -6,35 +6,34 @@
 
 <!-- 这里写题目描述 -->
 
-<p>给定一个二维平面，平面上有&nbsp;<em>n&nbsp;</em>个点，求最多有多少个点在同一条直线上。</p>
+<p>给你一个数组 <code>points</code> ，其中 <code>points[i] = [x<sub>i</sub>, y<sub>i</sub>]</code> 表示 <strong>X-Y</strong> 平面上的一个点。求最多有多少个点在同一条直线上。</p>
 
-<p><strong>示例 1:</strong></p>
+<p> </p>
 
-<pre><strong>输入:</strong> [[1,1],[2,2],[3,3]]
-<strong>输出:</strong> 3
-<strong>解释:</strong>
-^
-|
-| &nbsp; &nbsp; &nbsp; &nbsp;o
-| &nbsp; &nbsp; o
-| &nbsp;o &nbsp;
-+-------------&gt;
-0 &nbsp;1 &nbsp;2 &nbsp;3  4
+<p><strong>示例 1：</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0149.Max%20Points%20on%20a%20Line/images/plane1.jpg" style="width: 300px; height: 294px;" />
+<pre>
+<strong>输入：</strong>points = [[1,1],[2,2],[3,3]]
+<strong>输出：</strong>3
 </pre>
 
-<p><strong>示例&nbsp;2:</strong></p>
+<p><strong>示例 2：</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0149.Max%20Points%20on%20a%20Line/images/plane2.jpg" style="width: 300px; height: 294px;" />
+<pre>
+<strong>输入：</strong>points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
+<strong>输出：</strong>4
+</pre>
 
-<pre><strong>输入:</strong> [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
-<strong>输出:</strong> 4
-<strong>解释:</strong>
-^
-|
-|  o
-| &nbsp;&nbsp;&nbsp;&nbsp;o&nbsp;&nbsp;      o
-| &nbsp;&nbsp;&nbsp;&nbsp;   o
-| &nbsp;o &nbsp;      o
-+-------------------&gt;
-0 &nbsp;1 &nbsp;2 &nbsp;3 &nbsp;4 &nbsp;5 &nbsp;6</pre>
+<p> </p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+	<li><code>1 <= points.length <= 300</code></li>
+	<li><code>points[i].length == 2</code></li>
+	<li><code>-10<sup>4</sup> <= x<sub>i</sub>, y<sub>i</sub> <= 10<sup>4</sup></code></li>
+	<li><code>points</code> 中的所有点 <strong>互不相同</strong></li>
+</ul>
 
 ## 解法
 
@@ -57,13 +56,13 @@ class Solution:
     def maxPoints(self, points: List[List[int]]) -> int:
         def gcd(a, b) -> int:
             return a if b == 0 else gcd(b, a % b)
-            
+
         n = len(points)
         if n < 3:
             return n
         res = 0
         for i in range(n - 1):
-            counter = collections.Counter()
+            counter = Counter()
             t_max = duplicate = 0
             for j in range(i + 1, n):
                 delta_x = points[i][0] - points[j][0]
@@ -119,6 +118,48 @@ class Solution {
     private int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }
+}
+```
+
+### **Go**
+
+```go
+func maxPoints(points [][]int) int {
+	type pair struct {
+		first  int
+		second int
+	}
+	n := len(points)
+	if n <= 2 {
+		return n
+	}
+	ans := 0
+	for i := 0; i < n-1; i++ {
+		freq := make(map[pair]int)
+		for j := i + 1; j < n; j++ {
+			x1, y1, x2, y2 := points[i][0], points[i][1], points[j][0], points[j][1]
+			dx, dy := x2-x1, y2-y1
+			g := gcd(dx, dy)
+			p := pair{dx / g, dy / g}
+			freq[p]++
+			ans = max(ans, freq[p]+1)
+		}
+	}
+	return ans
+}
+
+func gcd(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 ```
 

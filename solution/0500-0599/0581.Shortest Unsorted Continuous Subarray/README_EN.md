@@ -49,13 +49,93 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        arr = sorted(nums)
+        left, right = 0, len(nums) - 1
+        while left <= right and nums[left] == arr[left]:
+            left += 1
+        while left <= right and nums[right] == arr[right]:
+            right -= 1
+        return right - left + 1
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        int[] arr = nums.clone();
+        Arrays.sort(arr);
+        int left = 0, right = nums.length - 1;
+        while (left <= right && nums[left] == arr[left]) {
+            ++left;
+        }
+        while (left <= right && nums[right] == arr[right]) {
+            --right;
+        }
+        return right - left + 1;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        vector<int> arr = nums;
+        sort(arr.begin(), arr.end());
+        int left = 0, right = arr.size() - 1;
+        while (left <= right && nums[left] == arr[left]) ++left;
+        while (left <= right && nums[right] == arr[right]) --right;
+        return right - left + 1;
+    }
+};
+```
+
+### **Go**
+
+```go
+func findUnsortedSubarray(nums []int) int {
+	n := len(nums)
+	arr := make([]int, n)
+	copy(arr, nums)
+	sort.Ints(arr)
+	left, right := 0, n-1
+	for left <= right && nums[left] == arr[left] {
+		left++
+	}
+	for left <= right && nums[right] == arr[right] {
+		right--
+	}
+	return right - left + 1
+}
+```
+
+```go
+func findUnsortedSubarray(nums []int) int {
+	n := len(nums)
+	maxn, minn := math.MinInt32, math.MaxInt32
+	left, right := -1, -1
+	for i := 0; i < n; i++ {
+		if maxn > nums[i] {
+			right = i
+		} else {
+			maxn = nums[i]
+		}
+		if minn < nums[n-i-1] {
+			left = n - i - 1
+		} else {
+			minn = nums[n-i-1]
+		}
+	}
+	if right == -1 {
+		return 0
+	}
+	return right - left + 1
+}
 ```
 
 ### **...**

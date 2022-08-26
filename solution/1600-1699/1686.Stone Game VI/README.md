@@ -1,4 +1,4 @@
-# [1686. 石子游戏 VI](https://leetcode-cn.com/problems/stone-game-vi)
+# [1686. 石子游戏 VI](https://leetcode.cn/problems/stone-game-vi)
 
 [English Version](/solution/1600-1699/1686.Stone%20Game%20VI/README_EN.md)
 
@@ -65,7 +65,6 @@ Bob 会获胜。
 	<li><code>1 <= n <= 10<sup>5</sup></code></li>
 	<li><code>1 <= aliceValues[i], bobValues[i] <= 100</code></li>
 </ul>
-
 
 ## 解法
 

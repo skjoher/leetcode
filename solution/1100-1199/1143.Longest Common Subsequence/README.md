@@ -1,4 +1,4 @@
-# [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence)
+# [1143. 最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence)
 
 [English Version](/solution/1100-1199/1143.Longest%20Common%20Subsequence/README_EN.md)
 
@@ -51,18 +51,19 @@
 	<li><code>text1</code> 和 <code>text2</code> 仅由小写英文字符组成。</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
 
-动态规划法。
+**方法一：动态规划**
 
 定义 `dp[i][j]` 表示 `text1[0:i-1]` 和 `text2[0:j-1]` 的最长公共子序列（闭区间）。
 
 递推公式如下：
 
-![](./images/gif.gif)
+![](https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1100-1199/1143.Longest%20Common%20Subsequence/images/CodeCogsEqn.gif)
+
+时间复杂度：$O(mn)$。
 
 <!-- tabs:start -->
 
@@ -77,8 +78,11 @@ class Solution:
         dp = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(1, m + 1):
             for j in range(1, n + 1):
-                dp[i][j] = dp[i - 1][j - 1] + 1 if text1[i - 1] == text2[j - 1] else max(dp[i - 1][j], dp[i][j - 1])
-        return dp[m][n]
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+        return dp[-1][-1]
 ```
 
 ### **Java**
@@ -92,11 +96,131 @@ class Solution {
         int[][] dp = new int[m + 1][n + 1];
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
-                char c1 = text1.charAt(i - 1), c2 = text2.charAt(j - 1);
-                dp[i][j] = c1 == c2 ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
             }
         }
         return dp[m][n];
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.size(), n = text2.size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (text1[i - 1] == text2[j - 1])
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                else
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+        return dp[m][n];
+    }
+};
+```
+
+### **Go**
+
+```go
+func longestCommonSubsequence(text1 string, text2 string) int {
+	m, n := len(text1), len(text2)
+	dp := make([][]int, m+1)
+	for i := 0; i <= m; i++ {
+		dp[i] = make([]int, n+1)
+	}
+	for i := 1; i <= m; i++ {
+		for j := 1; j <= n; j++ {
+			if text1[i-1] == text2[j-1] {
+				dp[i][j] = dp[i-1][j-1] + 1
+			} else {
+				dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+			}
+		}
+	}
+	return dp[m][n]
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {string} text1
+ * @param {string} text2
+ * @return {number}
+ */
+var longestCommonSubsequence = function (text1, text2) {
+    const m = text1.length;
+    const n = text2.length;
+    const dp = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
+    for (let i = 1; i <= m; ++i) {
+        for (let j = 1; j <= n; ++j) {
+            if (text1[i - 1] == text2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[m][n];
+};
+```
+
+### **TypeScript**
+
+```ts
+function longestCommonSubsequence(text1: string, text2: string): number {
+    const m = text1.length;
+    const n = text2.length;
+    const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (text1[i - 1] === text2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[m][n];
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn longest_common_subsequence(text1: String, text2: String) -> i32 {
+        let (m, n) = (text1.len(), text2.len());
+        let (text1, text2) = (text1.as_bytes(), text2.as_bytes());
+        let mut dp = vec![vec![0; n + 1]; m + 1];
+        for i in 1..=m {
+            for j in 1..=n {
+                dp[i][j] = if text1[i - 1] == text2[j - 1] {
+                    dp[i - 1][j - 1] + 1
+                } else {
+                    dp[i - 1][j].max(dp[i][j - 1])
+                }
+            }
+        }
+        dp[m][n]
     }
 }
 ```

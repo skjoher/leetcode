@@ -1,4 +1,4 @@
-# [1062. 最长重复子串](https://leetcode-cn.com/problems/longest-repeating-substring)
+# [1062. 最长重复子串](https://leetcode.cn/problems/longest-repeating-substring)
 
 [English Version](/solution/1000-1099/1062.Longest%20Repeating%20Substring/README_EN.md)
 
@@ -45,7 +45,6 @@
 	<li>字符串&nbsp;<code>S</code>&nbsp;仅包含从&nbsp;<code>&#39;a&#39;</code> 到&nbsp;<code>&#39;z&#39;</code>&nbsp;的小写英文字母。</li>
 	<li><code>1 &lt;= S.length &lt;= 1500</code></li>
 </ol>
-
 
 ## 解法
 

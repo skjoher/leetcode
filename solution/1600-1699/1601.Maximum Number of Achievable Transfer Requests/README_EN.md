@@ -14,7 +14,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1601.Maximum%20Number%20of%20Achievable%20Transfer%20Requests/images/move1.jpg" style="width: 600px; height: 406px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1601.Maximum%20Number%20of%20Achievable%20Transfer%20Requests/images/move1.jpg" style="width: 600px; height: 406px;" />
 <pre>
 <strong>Input:</strong> n = 5, requests = [[0,1],[1,0],[0,1],[1,2],[2,0],[3,4]]
 <strong>Output:</strong> 5
@@ -29,7 +29,7 @@ We can achieve the requests of users y, a and z by swapping the places in the 3 
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1601.Maximum%20Number%20of%20Achievable%20Transfer%20Requests/images/move2.jpg" style="width: 450px; height: 327px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1600-1699/1601.Maximum%20Number%20of%20Achievable%20Transfer%20Requests/images/move2.jpg" style="width: 450px; height: 327px;" />
 <pre>
 <strong>Input:</strong> n = 3, requests = [[0,0],[1,2],[2,1]]
 <strong>Output:</strong> 3
@@ -56,7 +56,6 @@ We can achieve all the requests. </pre>
 	<li><code>0 &lt;= from<sub>i</sub>, to<sub>i</sub> &lt; n</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -64,13 +63,154 @@ We can achieve all the requests. </pre>
 ### **Python3**
 
 ```python
+class Solution:
+    def maximumRequests(self, n: int, requests: List[List[int]]) -> int:
+        def check(x):
+            d = [0] * n
+            for i, (f, t) in enumerate(requests):
+                if (x >> i) & 1:
+                    d[f] -= 1
+                    d[t] += 1
+            return all(v == 0 for v in d)
 
+        ans, m = 0, len(requests)
+        for mask in range(1 << m):
+            cnt = mask.bit_count()
+            if cnt > ans and check(mask):
+                ans = cnt
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int maximumRequests(int n, int[][] requests) {
+        int ans = 0;
+        for (int mask = 1; mask < 1 << requests.length; ++mask) {
+            int cnt = Integer.bitCount(mask);
+            if (ans < cnt && check(mask, requests)) {
+                ans = cnt;
+            }
+        }
+        return ans;
+    }
 
+    private boolean check(int x, int[][] requests) {
+        int[] d = new int[21];
+        for (int i = 0; i < requests.length; ++i) {
+            if (((x >> i) & 1) == 1) {
+                int f = requests[i][0];
+                int t = requests[i][1];
+                --d[f];
+                ++d[t];
+            }
+        }
+        for (int v : d) {
+            if (v != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maximumRequests(int n, vector<vector<int>>& requests) {
+        int ans = 0, m = requests.size();
+        for (int mask = 0; mask < 1 << m; ++mask) {
+            int cnt = __builtin_popcount(mask);
+            if (ans < cnt && check(mask, requests)) ans = cnt;
+        }
+        return ans;
+    }
+
+    bool check(int x, vector<vector<int>>& requests) {
+        vector<int> d(21);
+        for (int i = 0; i < requests.size(); ++i) {
+            if ((x >> i) & 1) {
+                --d[requests[i][0]];
+                ++d[requests[i][1]];
+            }
+        }
+        for (int& v : d)
+            if (v) return 0;
+        return 1;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maximumRequests(n int, requests [][]int) int {
+	check := func(x int) bool {
+		d := make([]int, n)
+		for i, r := range requests {
+			if (x>>i)&1 == 1 {
+				d[r[0]]--
+				d[r[1]]++
+			}
+		}
+		for _, v := range d {
+			if v != 0 {
+				return false
+			}
+		}
+		return true
+	}
+
+	ans, m := 0, len(requests)
+	for mask := 0; mask < 1<<m; mask++ {
+		cnt := bits.OnesCount(uint(mask))
+		if ans < cnt && check(mask) {
+			ans = cnt
+		}
+	}
+	return ans
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number} n
+ * @param {number[][]} requests
+ * @return {number}
+ */
+var maximumRequests = function (n, requests) {
+    function check(x) {
+        let d = new Array(n).fill(0);
+        for (let i = 0; i < m; ++i) {
+            if ((x >> i) & 1) {
+                const [f, t] = requests[i];
+                d[f]--;
+                d[t]++;
+            }
+        }
+        for (const v of d) {
+            if (v) {
+                return false;
+            }
+        }
+        return true;
+    }
+    let ans = 0;
+    let m = requests.length;
+    for (let mask = 1; mask < 1 << m; ++mask) {
+        let cnt = mask.toString(2).split('0').join('').length;
+        if (ans < cnt && check(mask)) {
+            ans = cnt;
+        }
+    }
+    return ans;
+};
 ```
 
 ### **...**

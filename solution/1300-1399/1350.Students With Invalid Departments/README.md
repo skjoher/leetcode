@@ -1,4 +1,4 @@
-# [1350. 院系无效的学生](https://leetcode-cn.com/problems/students-with-invalid-departments)
+# [1350. 院系无效的学生](https://leetcode.cn/problems/students-with-invalid-departments)
 
 [English Version](/solution/1300-1399/1350.Students%20With%20Invalid%20Departments/README_EN.md)
 
@@ -39,11 +39,16 @@ id 是该表的主键
 
 <p>写一条 SQL 语句以查询那些所在院系不存在的学生的 id 和姓名</p>
 
-<p>可以以任何顺序返回结果</p>
+<p>可以以 <strong>任何顺序</strong> 返回结果。</p>
 
-<p>下面是返回结果格式的例子</p>
+<p>下面是返回结果格式的例子。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
 
 <pre>
+<strong>输入：</strong>
 Departments 表:
 +------+--------------------------+
 | id   | name                     |
@@ -52,7 +57,6 @@ Departments 表:
 | 7    | Computer Engineering     |
 | 13   | Bussiness Administration |
 +------+--------------------------+
-
 Students 表:
 +------+----------+---------------+
 | id   | name     | department_id |
@@ -68,8 +72,7 @@ Students 表:
 | 7    | Daiana   | 33            |
 | 11   | Madelynn | 1             |
 +------+----------+---------------+
-
-结果表:
+<strong>输出：</strong>
 +------+----------+
 | id   | name     |
 +------+----------+
@@ -78,10 +81,8 @@ Students 表:
 | 4    | Jasmine  |
 | 3    | Steve    |
 +------+----------+
-
-John, Daiana, Steve 和 Jasmine 所在的院系分别是 14, 33, 74 和 77， 其中 14, 33, 74 和 77 并不存在于院系表
-</pre>
-
+<strong>解释：</strong>
+John, Daiana, Steve 和 Jasmine 所在的院系分别是 14, 33, 74 和 77， 其中 14, 33, 74 和 77 并不存在于院系表</pre>
 
 ## 解法
 
@@ -95,15 +96,15 @@ John, Daiana, Steve 和 Jasmine 所在的院系分别是 14, 33, 74 和 77， �
 
 ```sql
 # Write your MySQL query statement below
-SELECT 
+SELECT
     s.id, s.name
-FROM 
+FROM
     Students s
 LEFT JOIN
     Departments d
 ON
     s.department_id = d.id
-WHERE 
+WHERE
     d.id IS NULL;
 ```
 

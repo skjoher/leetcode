@@ -25,7 +25,7 @@
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= wordsDict.length &lt;= 3 * 10<sup>4</sup></code></li>
+	<li><code>2 &lt;= wordsDict.length &lt;= 3 * 10<sup>4</sup></code></li>
 	<li><code>1 &lt;= wordsDict[i].length &lt;= 10</code></li>
 	<li><code>wordsDict[i]</code> consists of lowercase English letters.</li>
 	<li><code>word1</code> and <code>word2</code> are in <code>wordsDict</code>.</li>
@@ -72,6 +72,20 @@ class Solution {
         }
         return shortestDistance;
     }
+}
+```
+
+### **TypeScript**
+
+```ts
+function integerBreak(n: number): number {
+    let dp = new Array(n + 1).fill(1);
+    for (let i = 3; i <= n; i++) {
+        for (let j = 1; j < i; j++) {
+            dp[i] = Math.max(dp[i], j * (i - j), j * dp[i - j]);
+        }
+    }
+    return dp.pop();
 }
 ```
 

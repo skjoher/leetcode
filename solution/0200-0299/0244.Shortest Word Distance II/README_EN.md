@@ -49,7 +49,6 @@ wordDistance.shortest(&quot;makes&quot;, &quot;coding&quot;);    // return 1
 
 ```python
 class WordDistance:
-
     def __init__(self, wordsDict: List[str]):
         self.words = {}
         for i, word in enumerate(wordsDict):
@@ -60,7 +59,7 @@ class WordDistance:
     def shortest(self, word1: str, word2: str) -> int:
         idx1, idx2 = self.words[word1], self.words[word2]
         i1 = i2 = 0
-        shortest = float('inf')
+        shortest = inf
         while i1 < len(idx1) and i2 < len(idx2):
             shortest = min(shortest, abs(idx1[i1] - idx2[i2]))
             smaller = idx1[i1] < idx2[i2]
@@ -85,9 +84,7 @@ class WordDistance {
     public WordDistance(String[] wordsDict) {
         words = new HashMap<>();
         for (int i = 0; i < wordsDict.length; ++i) {
-            List<Integer> indexes = words.getOrDefault(wordsDict[i], new ArrayList<>());
-            indexes.add(i);
-            words.put(wordsDict[i], indexes);
+            words.computeIfAbsent(wordsDict[i], k -> new ArrayList<>()).add(i);
         }
     }
 

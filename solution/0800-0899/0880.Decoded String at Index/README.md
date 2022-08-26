@@ -1,4 +1,4 @@
-# [880. 索引处的解码字符串](https://leetcode-cn.com/problems/decoded-string-at-index)
+# [880. 索引处的解码字符串](https://leetcode.cn/problems/decoded-string-at-index)
 
 [English Version](/solution/0800-0899/0880.Decoded%20String%20at%20Index/README_EN.md)
 
@@ -54,7 +54,6 @@
 	<li>题目保证 <code>K</code> 小于或等于解码字符串的长度。</li>
 	<li>解码后的字符串保证少于&nbsp;<code>2^63</code>&nbsp;个字母。</li>
 </ul>
-
 
 ## 解法
 

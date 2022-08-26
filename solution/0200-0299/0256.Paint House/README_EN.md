@@ -41,7 +41,6 @@ Minimum cost: 2 + 5 + 3 = 10.
 	<li><code>1 &lt;= costs[i][j] &lt;= 20</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -49,13 +48,89 @@ Minimum cost: 2 + 5 + 3 = 10.
 ### **Python3**
 
 ```python
-
+class Solution:
+    def minCost(self, costs: List[List[int]]) -> int:
+        a = b = c = 0
+        for ca, cb, cc in costs:
+            a, b, c = min(b, c) + ca, min(a, c) + cb, min(a, b) + cc
+        return min(a, b, c)
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int minCost(int[][] costs) {
+        int r = 0, g = 0, b = 0;
+        for (int[] cost : costs) {
+            int _r = r, _g = g, _b = b;
+            r = Math.min(_g, _b) + cost[0];
+            g = Math.min(_r, _b) + cost[1];
+            b = Math.min(_r, _g) + cost[2];
+        }
+        return Math.min(r, Math.min(g, b));
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minCost(vector<vector<int>>& costs) {
+        int r = 0, g = 0, b = 0;
+        for (auto& cost : costs) {
+            int _r = r, _g = g, _b = b;
+            r = min(_g, _b) + cost[0];
+            g = min(_r, _b) + cost[1];
+            b = min(_r, _g) + cost[2];
+        }
+        return min(r, min(g, b));
+    }
+};
+```
+
+### **Go**
+
+```go
+func minCost(costs [][]int) int {
+	r, g, b := 0, 0, 0
+	for _, cost := range costs {
+		_r, _g, _b := r, g, b
+		r = min(_g, _b) + cost[0]
+		g = min(_r, _b) + cost[1]
+		b = min(_r, _g) + cost[2]
+	}
+	return min(r, min(g, b))
+}
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
+}
+```
+
+### **JavaScript**
+
+```js
+/**
+ * @param {number[][]} costs
+ * @return {number}
+ */
+var minCost = function (costs) {
+    let [a, b, c] = [0, 0, 0];
+    for (let [ca, cb, cc] of costs) {
+        [a, b, c] = [
+            Math.min(b, c) + ca,
+            Math.min(a, c) + cb,
+            Math.min(a, b) + cc,
+        ];
+    }
+    return Math.min(a, b, c);
+};
 ```
 
 ### **...**

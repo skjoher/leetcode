@@ -1,4 +1,4 @@
-# [1098. 小众书籍](https://leetcode-cn.com/problems/unpopular-books)
+# [1098. 小众书籍](https://leetcode.cn/problems/unpopular-books)
 
 [English Version](/solution/1000-1099/1098.Unpopular%20Books/README_EN.md)
 
@@ -75,7 +75,6 @@ Result 表：
 | 5         | &quot;The Hunger Games&quot; |
 +-----------+--------------------+
 </pre>
-
 
 ## 解法
 

@@ -1,4 +1,4 @@
-# [943. 最短超级串](https://leetcode-cn.com/problems/find-the-shortest-superstring)
+# [943. 最短超级串](https://leetcode.cn/problems/find-the-shortest-superstring)
 
 [English Version](/solution/0900-0999/0943.Find%20the%20Shortest%20Superstring/README_EN.md)
 
@@ -35,7 +35,6 @@
 	<li><code>words[i]</code> 由小写英文字母组成</li>
 	<li><code>words</code> 中的所有字符串 <strong>互不相同</strong></li>
 </ul>
-
 
 ## 解法
 

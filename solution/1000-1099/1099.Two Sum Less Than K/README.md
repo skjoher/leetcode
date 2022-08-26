@@ -1,4 +1,4 @@
-# [1099. 小于 K 的两数之和](https://leetcode-cn.com/problems/two-sum-less-than-k)
+# [1099. 小于 K 的两数之和](https://leetcode.cn/problems/two-sum-less-than-k)
 
 [English Version](/solution/1000-1099/1099.Two%20Sum%20Less%20Than%20K/README_EN.md)
 
@@ -36,7 +36,6 @@
 	<li><code>1 <= nums[i] <= 1000</code></li>
 	<li><code>1 <= k <= 2000</code></li>
 </ul>
-
 
 ## 解法
 

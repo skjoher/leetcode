@@ -6,9 +6,11 @@
 
 <p>There is an integer array <code>nums</code> sorted in ascending order (with <strong>distinct</strong> values).</p>
 
-<p>Prior to being passed to your function, <code>nums</code> is <strong>rotated</strong> at an unknown pivot index <code>k</code> (<code>0 &lt;= k &lt; nums.length</code>) such that the resulting array is <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code> (<strong>0-indexed</strong>). For example, <code>[0,1,2,4,5,6,7]</code> might be rotated at pivot index <code>3</code> and become <code>[4,5,6,7,0,1,2]</code>.</p>
+<p>Prior to being passed to your function, <code>nums</code> is <strong>possibly rotated</strong> at an unknown pivot index <code>k</code> (<code>1 &lt;= k &lt; nums.length</code>) such that the resulting array is <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code> (<strong>0-indexed</strong>). For example, <code>[0,1,2,4,5,6,7]</code> might be rotated at pivot index <code>3</code> and become <code>[4,5,6,7,0,1,2]</code>.</p>
 
-<p>Given the array <code>nums</code> <strong>after</strong> the rotation and an integer <code>target</code>, return <em>the index of </em><code>target</code><em> if it is in </em><code>nums</code><em>, or </em><code>-1</code><em> if it is not in </em><code>nums</code>.</p>
+<p>Given the array <code>nums</code> <strong>after</strong> the possible rotation and an integer <code>target</code>, return <em>the index of </em><code>target</code><em> if it is in </em><code>nums</code><em>, or </em><code>-1</code><em> if it is not in </em><code>nums</code>.</p>
+
+<p>You must write an algorithm with <code>O(log n)</code> runtime complexity.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -28,14 +30,13 @@
 	<li><code>1 &lt;= nums.length &lt;= 5000</code></li>
 	<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>
 	<li>All values of <code>nums</code> are <strong>unique</strong>.</li>
-	<li><code>nums</code> is guaranteed to be rotated at some pivot.</li>
+	<li><code>nums</code> is an ascending array that is possibly rotated.</li>
 	<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>
 </ul>
 
-<p>&nbsp;</p>
-<strong>Follow up:</strong> Can you achieve this in <code>O(log n)</code> time complexity?
-
 ## Solutions
+
+Binary search.
 
 <!-- tabs:start -->
 
@@ -44,22 +45,21 @@
 ```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
-        while l <= r:
-            mid = (l + r) >> 1
-            if nums[mid] == target:
-                return mid
-            if nums[mid] > target:
-                if nums[mid] >= nums[r] and target < nums[l]:
-                    l = mid + 1
+        n = len(nums)
+        left, right = 0, n - 1
+        while left < right:
+            mid = (left + right) >> 1
+            if nums[0] <= nums[mid]:
+                if nums[0] <= target <= nums[mid]:
+                    right = mid
                 else:
-                    r = mid - 1
+                    left = mid + 1
             else:
-                if nums[mid] <= nums[l] and target > nums[r]:
-                    r = mid - 1
+                if nums[mid] < target <= nums[n - 1]:
+                    left = mid + 1
                 else:
-                    l = mid + 1
-        return -1
+                    right = mid
+        return left if nums[left] == target else -1
 ```
 
 ### **Java**
@@ -67,19 +67,25 @@ class Solution:
 ```java
 class Solution {
     public int search(int[] nums, int target) {
-        int l = 0, r = nums.length - 1;
-        while (l <= r) {
-            int mid = (l + r) >>> 1;
-            if (nums[mid] == target) return mid;
-            if (nums[mid] > target) {
-                if (nums[mid] >= nums[r] && target < nums[l]) l = mid + 1;
-                else r = mid - 1;
+        int n = nums.length;
+        int left = 0, right = n - 1;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            if (nums[0] <= nums[mid]) {
+                if (nums[0] <= target && target <= nums[mid]) {
+                    right = mid;
+                } else {
+                    left = mid + 1;
+                }
             } else {
-                if (nums[mid] <= nums[l] && target > nums[r]) r = mid - 1;
-                else l = mid + 1;
+                if (nums[mid] < target && target <= nums[n - 1]) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
             }
         }
-        return -1;
+        return nums[left] == target ? left : -1;
     }
 }
 ```
@@ -92,21 +98,54 @@ class Solution {
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int l = 0, r = nums.size() - 1;
-        while (l <= r) {
-            int mid = (l + r) >> 1;
-            if (nums[mid] == target) return mid;
-            if (nums[mid] > target) {
-                if (nums[mid] >= nums[r] && target < nums[l]) l = mid + 1;
-                else r = mid - 1;
+        int n = nums.size();
+        int left = 0, right = n - 1;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            if (nums[0] <= nums[mid]) {
+                if (nums[0] <= target && target <= nums[mid])
+                    right = mid;
+                else
+                    left = mid + 1;
             } else {
-                if (nums[mid] <= nums[l] && target > nums[r]) r = mid - 1;
-                else l = mid + 1;
+                if (nums[mid] < target && target <= nums[n - 1])
+                    left = mid + 1;
+                else
+                    right = mid;
             }
         }
-        return -1;
+        return nums[left] == target ? left : -1;
     }
 };
+```
+
+### **Go**
+
+```go
+func search(nums []int, target int) int {
+	n := len(nums)
+	left, right := 0, n-1
+	for left < right {
+		mid := (left + right) >> 1
+		if nums[0] <= nums[mid] {
+			if nums[0] <= target && target <= nums[mid] {
+				right = mid
+			} else {
+				left = mid + 1
+			}
+		} else {
+			if nums[mid] < target && target <= nums[n-1] {
+				left = mid + 1
+			} else {
+				right = mid
+			}
+		}
+	}
+	if nums[left] == target {
+		return left
+	}
+	return -1
+}
 ```
 
 ### **JavaScript**
@@ -118,23 +157,86 @@ public:
  * @return {number}
  */
 var search = function (nums, target) {
-  let l = 0, r = nums.length - 1;
-  if (l > r) return -1;
-  while (l <= r) {
-    let mid = l + Math.floor((r - l) / 2);
-    if (nums[mid] === target) return mid;
-    else if (nums[mid] <= nums[r] && target <= nums[r] && target >= nums[mid])
-      l = mid + 1;
-    else if (nums[mid] >= nums[l] && target <= nums[mid] && target >= nums[l])
-      r = mid - 1;
-    else if (nums[mid] >= nums[r])
-      l = mid + 1;
-    else if (nums[mid] <= nums[l])
-      r = mid - 1;
-    else return -1;
-  }
-  return -1;
+    const n = nums.length;
+    let left = 0,
+        right = n - 1;
+    while (left < right) {
+        const mid = (left + right) >> 1;
+        if (nums[0] <= nums[mid]) {
+            if (nums[0] <= target && target <= nums[mid]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        } else {
+            if (nums[mid] < target && target <= nums[n - 1]) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+    }
+    return nums[left] == target ? left : -1;
 };
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn search(nums: Vec<i32>, target: i32) -> i32 {
+        let mut l = 0;
+        let mut r = nums.len() - 1;
+        while l <= r {
+            let mid = l + r >> 1;
+            if nums[mid] == target {
+                return mid as i32;
+            }
+
+            if nums[l] <= nums[mid] {
+                if target < nums[mid] && target >= nums[l] {
+                    r = mid - 1;
+                } else {
+                    l = mid + 1;
+                }
+            } else {
+                if target > nums[mid] && target <= nums[r] {
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+        }
+        -1
+    }
+}
+```
+
+### **TypeScript**
+
+```ts
+function search(nums: number[], target: number): number {
+    const n = nums.length;
+    let left = 0,
+        right = n - 1;
+    while (left < right) {
+        const mid = (left + right) >> 1;
+        if (nums[0] <= nums[mid]) {
+            if (nums[0] <= target && target <= nums[mid]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        } else {
+            if (nums[mid] < target && target <= nums[n - 1]) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+    }
+    return nums[left] == target ? left : -1;
+}
 ```
 
 ### **...**

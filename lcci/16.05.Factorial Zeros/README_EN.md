@@ -1,4 +1,4 @@
-# [16.05. Factorial Zeros](https://leetcode-cn.com/problems/factorial-zeros-lcci)
+# [16.05. Factorial Zeros](https://leetcode.cn/problems/factorial-zeros-lcci)
 
 [中文文档](/lcci/16.05.Factorial%20Zeros/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 3
 
+
+
 <strong>Output:</strong> 0
+
+
 
 <strong>Explanation:</strong>&nbsp;3! = 6, no trailing zero.</pre>
 
@@ -20,9 +26,15 @@
 
 <pre>
 
+
+
 <strong>Input:</strong> 5
 
+
+
 <strong>Output:</strong> 1
+
+
 
 <strong>Explanation:</strong>&nbsp;5! = 120, one trailing zero.</pre>
 
@@ -36,17 +48,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

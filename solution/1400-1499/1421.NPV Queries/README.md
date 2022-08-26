@@ -1,4 +1,4 @@
-# [1421. 净现值查询](https://leetcode-cn.com/problems/npv-queries)
+# [1421. 净现值查询](https://leetcode.cn/problems/npv-queries)
 
 [English Version](/solution/1400-1499/1421.NPV%20Queries/README_EN.md)
 
@@ -84,7 +84,6 @@ Queries 表:
 (7, 2018)的净现值不在 NPV 表中, 我们把它看作是 0.
 所有其它查询的净现值都能在 NPV 表中找到.
 </pre>
-
 
 ## 解法
 

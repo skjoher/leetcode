@@ -1,4 +1,4 @@
-# [1397. 找到所有好字符串](https://leetcode-cn.com/problems/find-all-good-strings)
+# [1397. 找到所有好字符串](https://leetcode.cn/problems/find-all-good-strings)
 
 [English Version](/solution/1300-1399/1397.Find%20All%20Good%20Strings/README_EN.md)
 
@@ -46,7 +46,6 @@
 	<li><code>1 &lt;= evil.length &lt;= 50</code></li>
 	<li>所有字符串都只包含小写英文字母。</li>
 </ul>
-
 
 ## 解法
 

@@ -10,7 +10,7 @@
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0598.Range%20Addition%20II/images/ex1.jpg" style="width: 750px; height: 176px;" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0500-0599/0598.Range%20Addition%20II/images/ex1.jpg" style="width: 750px; height: 176px;" />
 <pre>
 <strong>Input:</strong> m = 3, n = 3, ops = [[2,2],[3,3]]
 <strong>Output:</strong> 4
@@ -36,12 +36,11 @@
 
 <ul>
 	<li><code>1 &lt;= m, n &lt;= 4 * 10<sup>4</sup></code></li>
-	<li><code>1 &lt;= ops.length &lt;= 10<sup>4</sup></code></li>
+	<li><code>0 &lt;= ops.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>ops[i].length == 2</code></li>
 	<li><code>1 &lt;= a<sub>i</sub> &lt;= m</code></li>
 	<li><code>1 &lt;= b<sub>i</sub> &lt;= n</code></li>
 </ul>
-
 
 ## Solutions
 
@@ -50,13 +49,60 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
+        for a, b in ops:
+            m = min(m, a)
+            n = min(n, b)
+        return m * n
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int maxCount(int m, int n, int[][] ops) {
+        for (int[] op : ops) {
+            m = Math.min(m, op[0]);
+            n = Math.min(n, op[1]);
+        }
+        return m * n;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int maxCount(int m, int n, vector<vector<int>>& ops) {
+        for (auto op : ops) {
+            m = min(m, op[0]);
+            n = min(n, op[1]);
+        }
+        return m * n;
+    }
+};
+```
+
+### **Go**
+
+```go
+func maxCount(m int, n int, ops [][]int) int {
+	for _, op := range ops {
+		m = min(m, op[0])
+		n = min(n, op[1])
+	}
+	return m * n
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
 ```
 
 ### **...**

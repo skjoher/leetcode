@@ -1,4 +1,4 @@
-# [面试题 16.02. 单词频率](https://leetcode-cn.com/problems/words-frequency-lcci)
+# [面试题 16.02. 单词频率](https://leetcode.cn/problems/words-frequency-lcci)
 
 [English Version](/lcci/16.02.Words%20Frequency/README_EN.md)
 
@@ -41,12 +41,12 @@ wordsFrequency.get("pen"); //返回1
 
 ```python
 class WordsFrequency:
-
     def __init__(self, book: List[str]):
-        self.counter = collections.Counter(book)
+        self.counter = Counter(book)
 
     def get(self, word: str) -> int:
         return self.counter[word]
+
 
 # Your WordsFrequency object will be instantiated and called as such:
 # obj = WordsFrequency(book)
@@ -87,10 +87,10 @@ class WordsFrequency {
  * @param {string[]} book
  */
 var WordsFrequency = function (book) {
-  this.counter = {};
-  for (const word of book) {
-    this.counter[word] = (this.counter[word] || 0) + 1;
-  }
+    this.counter = {};
+    for (const word of book) {
+        this.counter[word] = (this.counter[word] || 0) + 1;
+    }
 };
 
 /**
@@ -98,13 +98,74 @@ var WordsFrequency = function (book) {
  * @return {number}
  */
 WordsFrequency.prototype.get = function (word) {
-  return this.counter[word] || 0;
+    return this.counter[word] || 0;
 };
 
 /**
  * Your WordsFrequency object will be instantiated and called as such:
  * var obj = new WordsFrequency(book)
  * var param_1 = obj.get(word)
+ */
+```
+
+### **TypeScript**
+
+```ts
+class WordsFrequency {
+    private map: Map<string, number>;
+
+    constructor(book: string[]) {
+        const map = new Map<string, number>();
+        for (const word of book) {
+            map.set(word, (map.get(word) ?? 0) + 1);
+        }
+        this.map = map;
+    }
+
+    get(word: string): number {
+        return this.map.get(word) ?? 0;
+    }
+}
+
+/**
+ * Your WordsFrequency object will be instantiated and called as such:
+ * var obj = new WordsFrequency(book)
+ * var param_1 = obj.get(word)
+ */
+```
+
+### **Rust**
+
+```rust
+use std::collections::HashMap;
+struct WordsFrequency {
+    counter: HashMap<String, i32>
+}
+
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl WordsFrequency {
+
+    fn new(book: Vec<String>) -> Self {
+        let mut counter = HashMap::new();
+        for word in book.into_iter() {
+            *counter.entry(word).or_insert(0) += 1;
+        }
+        Self { counter }
+    }
+
+    fn get(&self, word: String) -> i32 {
+        *self.counter.get(&word).unwrap_or(&0)
+    }
+}
+
+/**
+ * Your WordsFrequency object will be instantiated and called as such:
+ * let obj = WordsFrequency::new(book);
+ * let ret_1: i32 = obj.get(word);
  */
 ```
 

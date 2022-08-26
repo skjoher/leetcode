@@ -1,4 +1,4 @@
-# [1759. 统计同构子字符串的数目](https://leetcode-cn.com/problems/count-number-of-homogenous-substrings)
+# [1759. 统计同构子字符串的数目](https://leetcode.cn/problems/count-number-of-homogenous-substrings)
 
 [English Version](/solution/1700-1799/1759.Count%20Number%20of%20Homogenous%20Substrings/README_EN.md)
 
@@ -48,7 +48,6 @@
 	<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>s</code> 由小写字符串组成</li>
 </ul>
-
 
 ## 解法
 

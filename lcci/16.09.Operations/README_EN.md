@@ -1,4 +1,4 @@
-# [16.09. Operations](https://leetcode-cn.com/problems/operations-lcci)
+# [16.09. Operations](https://leetcode.cn/problems/operations-lcci)
 
 [中文文档](/lcci/16.09.Operations/README.md)
 
@@ -19,13 +19,23 @@
 
 <pre>
 
+
+
 Operations operations = new Operations();
+
+
 
 operations.minus(1, 2); //returns -1
 
+
+
 operations.multiply(3, 4); //returns 12
 
+
+
 operations.divide(5, -2); //returns -2
+
+
 
 </pre>
 
@@ -44,17 +54,20 @@ operations.divide(5, -2); //returns -2
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

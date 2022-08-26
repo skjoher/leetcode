@@ -1,4 +1,4 @@
-# [1378. 使用唯一标识码替换员工ID](https://leetcode-cn.com/problems/replace-employee-id-with-the-unique-identifier)
+# [1378. 使用唯一标识码替换员工 ID](https://leetcode.cn/problems/replace-employee-id-with-the-unique-identifier)
 
 [English Version](/solution/1300-1399/1378.Replace%20Employee%20ID%20With%20The%20Unique%20Identifier/README_EN.md)
 
@@ -40,10 +40,15 @@ id 是这张表的主键。
 
 <p>你可以以<strong> 任意</strong> 顺序返回结果表。</p>
 
-<p>查询结果的格式如下例所示：</p>
+<p>查询结果的格式如下例所示。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
 
 <pre>
-<code>Employees</code> table:
+<code><strong>输入：</strong>
+Employees</code> 表:
 +----+----------+
 | id | name     |
 +----+----------+
@@ -53,8 +58,7 @@ id 是这张表的主键。
 | 90 | Winston  |
 | 3  | Jonathan |
 +----+----------+
-
-<code>EmployeeUNI</code> table:
+<code>EmployeeUNI</code> 表:
 +----+-----------+
 | id | unique_id |
 +----+-----------+
@@ -62,8 +66,7 @@ id 是这张表的主键。
 | 11 | 2         |
 | 90 | 3         |
 +----+-----------+
-
-<code>EmployeeUNI</code> table:
+<strong>输出：</strong>
 +-----------+----------+
 | unique_id | name     |
 +-----------+----------+
@@ -73,13 +76,11 @@ id 是这张表的主键。
 | 3         | Winston  |
 | 1         | Jonathan |
 +-----------+----------+
-
+<strong>解释：</strong>
 Alice and Bob 没有唯一标识码, 因此我们使用 null 替代。
 Meir 的唯一标识码是 2 。
 Winston 的唯一标识码是 3 。
-Jonathan 唯一标识码是 1 。
-</pre>
-
+Jonathan 唯一标识码是 1 。</pre>
 
 ## 解法
 
@@ -90,7 +91,16 @@ Jonathan 唯一标识码是 1 。
 ### **SQL**
 
 ```sql
-
+# Write your MySQL query statement below
+SELECT
+    b.unique_id AS unique_id,
+    a.name AS name
+FROM
+    Employees a
+LEFT JOIN
+    EmployeeUNI b
+ON
+    a.id = b.id;
 ```
 
 <!-- tabs:end -->

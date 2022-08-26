@@ -1,4 +1,4 @@
-# [628. 三个数的最大乘积](https://leetcode-cn.com/problems/maximum-product-of-three-numbers)
+# [628. 三个数的最大乘积](https://leetcode.cn/problems/maximum-product-of-three-numbers)
 
 [English Version](/solution/0600-0699/0628.Maximum%20Product%20of%20Three%20Numbers/README_EN.md)
 
@@ -40,7 +40,6 @@
 	<li><code>-1000 <= nums[i] <= 1000</code></li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -59,7 +58,9 @@ class Solution:
         # 全负 0 1 n-1
         # 全正 n-1 n-2 n-3
         # 有正有负 max([0 1 n-1], [n-1 n-2 n-3])
-        return max(nums[0] * nums[1] * nums[n - 1], nums[n - 1] * nums[n - 2] * nums[n - 3])
+        return max(
+            nums[0] * nums[1] * nums[n - 1], nums[n - 1] * nums[n - 2] * nums[n - 3]
+        )
 ```
 
 ### **Java**

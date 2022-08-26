@@ -1,4 +1,4 @@
-# [1819. 序列中不同最大公约数的数目](https://leetcode-cn.com/problems/number-of-different-subsequences-gcds)
+# [1819. 序列中不同最大公约数的数目](https://leetcode.cn/problems/number-of-different-subsequences-gcds)
 
 [English Version](/solution/1800-1899/1819.Number%20of%20Different%20Subsequences%20GCDs/README_EN.md)
 
@@ -25,7 +25,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1819.Number%20of%20Different%20Subsequences%20GCDs/images/image-1.png" />
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/1800-1899/1819.Number%20of%20Different%20Subsequences%20GCDs/images/image-1.png" />
 <pre>
 <strong>输入：</strong>nums = [6,10,3]
 <strong>输出：</strong>5
@@ -48,7 +48,6 @@
 	<li><code>1 <= nums.length <= 10<sup>5</sup></code></li>
 	<li><code>1 <= nums[i] <= 2 * 10<sup>5</sup></code></li>
 </ul>
-
 
 ## 解法
 

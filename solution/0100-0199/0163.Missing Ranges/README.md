@@ -1,4 +1,4 @@
-# [163. 缺失的区间](https://leetcode-cn.com/problems/missing-ranges)
+# [163. 缺失的区间](https://leetcode.cn/problems/missing-ranges)
 
 [English Version](/solution/0100-0199/0163.Missing%20Ranges/README_EN.md)
 
@@ -13,7 +13,6 @@
 <pre><strong>输入: </strong><strong><em>nums</em></strong> = <code>[0, 1, 3, 50, 75]</code>, <strong><em>lower</em></strong> = 0 和 <strong><em>upper</em></strong> = 99,
 <strong>输出: </strong><code>[&quot;2&quot;, &quot;4-&gt;49&quot;, &quot;51-&gt;74&quot;, &quot;76-&gt;99&quot;]</code>
 </pre>
-
 
 ## 解法
 

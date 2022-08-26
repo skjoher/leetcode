@@ -1,4 +1,4 @@
-# [1665. 完成所有任务的最少初始能量](https://leetcode-cn.com/problems/minimum-initial-energy-to-finish-tasks)
+# [1665. 完成所有任务的最少初始能量](https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks)
 
 [English Version](/solution/1600-1699/1665.Minimum%20Initial%20Energy%20to%20Finish%20Tasks/README_EN.md)
 
@@ -66,7 +66,6 @@
 	<li><code>1 &lt;= tasks.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>1 &lt;= actual<sub>​i</sub> &lt;= minimum<sub>i</sub> &lt;= 10<sup>4</sup></code></li>
 </ul>
-
 
 ## 解法
 

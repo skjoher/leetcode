@@ -1,4 +1,4 @@
-# [1225. 报告系统状态的连续日期](https://leetcode-cn.com/problems/report-contiguous-dates)
+# [1225. 报告系统状态的连续日期](https://leetcode.cn/problems/report-contiguous-dates)
 
 [English Version](/solution/1200-1299/1225.Report%20Contiguous%20Dates/README_EN.md)
 
@@ -75,7 +75,6 @@ Result table:
 从 2019-01-04 到 2019-01-05 所有任务失败，系统状态为 &quot;failed&quot;。
 从 2019-01-06 到 2019-01-06 所有任务成功，系统状态为 &quot;succeeded&quot;。
 </pre>
-
 
 ## 解法
 

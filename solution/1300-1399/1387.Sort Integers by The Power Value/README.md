@@ -1,4 +1,4 @@
-# [1387. 将整数按权重排序](https://leetcode-cn.com/problems/sort-integers-by-the-power-value)
+# [1387. 将整数按权重排序](https://leetcode.cn/problems/sort-integers-by-the-power-value)
 
 [English Version](/solution/1300-1399/1387.Sort%20Integers%20by%20The%20Power%20Value/README_EN.md)
 
@@ -25,7 +25,8 @@
 
 <p><strong>示例 1：</strong></p>
 
-<pre><strong>输入：</strong>lo = 12, hi = 15, k = 2
+<pre>
+<strong>输入：</strong>lo = 12, hi = 15, k = 2
 <strong>输出：</strong>13
 <strong>解释：</strong>12 的权重为 9（12 --&gt; 6 --&gt; 3 --&gt; 10 --&gt; 5 --&gt; 16 --&gt; 8 --&gt; 4 --&gt; 2 --&gt; 1）
 13 的权重为 9
@@ -37,29 +38,12 @@
 
 <p><strong>示例 2：</strong></p>
 
-<pre><strong>输入：</strong>lo = 1, hi = 1, k = 1
-<strong>输出：</strong>1
-</pre>
-
-<p><strong>示例 3：</strong></p>
-
-<pre><strong>输入：</strong>lo = 7, hi = 11, k = 4
+<pre>
+<strong>输入：</strong>lo = 7, hi = 11, k = 4
 <strong>输出：</strong>7
 <strong>解释：</strong>区间内整数 [7, 8, 9, 10, 11] 对应的权重为 [16, 3, 19, 6, 14] 。
 按权重排序后得到的结果为 [8, 10, 11, 7, 9] 。
 排序后数组中第 4 个数字为 7 。
-</pre>
-
-<p><strong>示例 4：</strong></p>
-
-<pre><strong>输入：</strong>lo = 10, hi = 20, k = 5
-<strong>输出：</strong>13
-</pre>
-
-<p><strong>示例 5：</strong></p>
-
-<pre><strong>输入：</strong>lo = 1, hi = 1000, k = 777
-<strong>输出：</strong>570
 </pre>
 
 <p>&nbsp;</p>
@@ -70,7 +54,6 @@
 	<li><code>1 &lt;= lo &lt;= hi &lt;= 1000</code></li>
 	<li><code>1 &lt;= k &lt;= hi - lo + 1</code></li>
 </ul>
-
 
 ## 解法
 

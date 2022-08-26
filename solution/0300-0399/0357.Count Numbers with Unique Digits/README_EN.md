@@ -29,7 +29,6 @@
 	<li><code>0 &lt;= n &lt;= 8</code></li>
 </ul>
 
-
 ## Solutions
 
 <!-- tabs:start -->
@@ -37,13 +36,75 @@
 ### **Python3**
 
 ```python
-
+class Solution:
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        if n == 0:
+            return 1
+        if n == 1:
+            return 10
+        ans, cur = 10, 9
+        for i in range(n - 1):
+            cur *= 9 - i
+            ans += cur
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    public int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n == 1) {
+            return 10;
+        }
+        int ans = 10;
+        for (int i = 0, cur = 9; i < n - 1; ++i) {
+            cur *= (9 - i);
+            ans += cur;
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) return 1;
+        if (n == 1) return 10;
+        int ans = 10;
+        for (int i = 0, cur = 9; i < n - 1; ++i) {
+            cur *= (9 - i);
+            ans += cur;
+        }
+        return ans;
+    }
+};
+```
+
+### **Go**
+
+```go
+func countNumbersWithUniqueDigits(n int) int {
+	if n == 0 {
+		return 1
+	}
+	if n == 1 {
+		return 10
+	}
+	ans := 10
+	for i, cur := 0, 9; i < n-1; i++ {
+		cur *= (9 - i)
+		ans += cur
+	}
+	return ans
+}
 ```
 
 ### **...**

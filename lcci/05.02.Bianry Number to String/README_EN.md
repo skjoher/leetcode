@@ -1,4 +1,4 @@
-# [05.02. Bianry Number to String](https://leetcode-cn.com/problems/bianry-number-to-string-lcci)
+# [05.02. Bianry Number to String](https://leetcode.cn/problems/bianry-number-to-string-lcci)
 
 [中文文档](/lcci/05.02.Bianry%20Number%20to%20String/README.md)
 
@@ -10,9 +10,15 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: 0.625
 
+
+
 <strong> Output</strong>: &quot;0.101&quot;
+
+
 
 </pre>
 
@@ -20,11 +26,19 @@
 
 <pre>
 
+
+
 <strong> Input</strong>: 0.1
+
+
 
 <strong> Output</strong>: &quot;ERROR&quot;
 
+
+
 <strong> Note</strong>: 0.1 cannot be represented accurately in binary.
+
+
 
 </pre>
 
@@ -42,17 +56,20 @@
 
 ```python
 
+
 ```
 
 ### **Java**
 
 ```java
 
+
 ```
 
 ### **...**
 
 ```
+
 
 ```
 

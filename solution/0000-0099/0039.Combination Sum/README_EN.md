@@ -36,20 +36,6 @@ These are the only two combinations.
 <strong>Output:</strong> []
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> candidates = [1], target = 1
-<strong>Output:</strong> [[1]]
-</pre>
-
-<p><strong>Example 5:</strong></p>
-
-<pre>
-<strong>Input:</strong> candidates = [1], target = 2
-<strong>Output:</strong> [[1,1]]
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -60,21 +46,182 @@ These are the only two combinations.
 	<li><code>1 &lt;= target &lt;= 500</code></li>
 </ul>
 
-
 ## Solutions
+
+DFS.
 
 <!-- tabs:start -->
 
 ### **Python3**
 
 ```python
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(s, u, t):
+            if s == target:
+                ans.append(t[:])
+                return
+            if s > target:
+                return
+            for i in range(u, len(candidates)):
+                c = candidates[i]
+                t.append(c)
+                dfs(s + c, i, t)
+                t.pop()
 
+        ans = []
+        dfs(0, 0, [])
+        return ans
 ```
 
 ### **Java**
 
 ```java
+class Solution {
+    private List<List<Integer>> ans;
+    private int target;
+    private int[] candidates;
 
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        ans = new ArrayList<>();
+        this.target = target;
+        this.candidates = candidates;
+        dfs(0, 0, new ArrayList<>());
+        return ans;
+    }
+
+    private void dfs(int s, int u, List<Integer> t) {
+        if (s == target) {
+            ans.add(new ArrayList<>(t));
+            return;
+        }
+        if (s > target) {
+            return;
+        }
+        for (int i = u; i < candidates.length; ++i) {
+            int c = candidates[i];
+            t.add(c);
+            dfs(s + c, i, t);
+            t.remove(t.size() - 1);
+        }
+    }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> ans;
+    vector<int> candidates;
+    int target;
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        this->candidates = candidates;
+        this->target = target;
+        vector<int> t;
+        dfs(0, 0, t);
+        return ans;
+    }
+
+    void dfs(int s, int u, vector<int>& t) {
+        if (s == target) {
+            ans.push_back(t);
+            return;
+        }
+        if (s > target) return;
+        for (int i = u; i < candidates.size(); ++i) {
+            int c = candidates[i];
+            t.push_back(c);
+            dfs(s + c, i, t);
+            t.pop_back();
+        }
+    }
+};
+```
+
+### **Go**
+
+```go
+func combinationSum(candidates []int, target int) [][]int {
+	var ans [][]int
+
+	var dfs func(s, u int, t []int)
+	dfs = func(s, u int, t []int) {
+		if s == target {
+			ans = append(ans, append([]int(nil), t...))
+			return
+		}
+		if s > target {
+			return
+		}
+		for i := u; i < len(candidates); i++ {
+			c := candidates[i]
+			t = append(t, c)
+			dfs(s+c, i, t)
+			t = t[:len(t)-1]
+		}
+	}
+
+	var t []int
+	dfs(0, 0, t)
+	return ans
+}
+```
+
+### **TypeScript**
+
+```ts
+function combinationSum(candidates: number[], target: number): number[][] {
+    const n = candidates.length;
+    const t: number[] = [];
+    const res: number[][] = [];
+    const dfs = (i: number, sum: number) => {
+        if (sum > target) {
+            return;
+        }
+        if (sum === target) {
+            res.push([...t]);
+            return;
+        }
+        for (let j = i; j < n; j++) {
+            t.push(candidates[j]);
+            dfs(j, sum + candidates[j]);
+            t.pop();
+        }
+    };
+    dfs(0, 0);
+    return res;
+}
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    fn dfs(i: usize, count: i32, candidates: &Vec<i32>, t: &mut Vec<i32>, res: &mut Vec<Vec<i32>>) {
+        if count < 0 {
+            return;
+        }
+        if count == 0 {
+            res.push(t.clone());
+            return;
+        }
+        for j in i..candidates.len() {
+            let num = candidates[j];
+            t.push(num);
+            Self::dfs(j, count - num, candidates, t, res);
+            t.pop();
+        }
+    }
+
+    pub fn combination_count(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
+        let mut res = Vec::new();
+        Self::dfs(0, target, &candidates, &mut vec![], &mut res);
+        res
+    }
+}
 ```
 
 ### **...**

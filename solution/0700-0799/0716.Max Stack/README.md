@@ -1,4 +1,4 @@
-# [716. 最大栈](https://leetcode-cn.com/problems/max-stack)
+# [716. 最大栈](https://leetcode.cn/problems/max-stack)
 
 [English Version](/solution/0700-0799/0716.Max%20Stack/README_EN.md)
 
@@ -49,7 +49,7 @@ stk.top();     // 返回 5，[<strong>5</strong>] - 栈没有改变
 
 <ul>
 	<li><code>-10<sup>7</sup> <= x <= 10<sup>7</sup></code></li>
-	<li>最多调用 <code>104</code> 次 <code>push</code>、<code>pop</code>、<code>top</code>、<code>peekMax</code> 和 <code>popMax</code></li>
+	<li>最多调用 <code>10<sup>4</sup></code> 次 <code>push</code>、<code>pop</code>、<code>top</code>、<code>peekMax</code> 和 <code>popMax</code></li>
 	<li>调用 <code>pop</code>、<code>top</code>、<code>peekMax</code> 或 <code>popMax</code> 时，栈中 <strong>至少存在一个元素</strong></li>
 </ul>
 
@@ -60,7 +60,6 @@ stk.top();     // 返回 5，[<strong>5</strong>] - 栈没有改变
 <ul>
 	<li>试着设计解决方案：调用 <code>top</code> 方法的时间复杂度为 <code>O(1)</code> ，调用其他方法的时间复杂度为 <code>O(logn)</code> 。 </li>
 </ul>
-
 
 ## 解法
 

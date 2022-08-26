@@ -1,4 +1,4 @@
-# [999. 可以被一步捕获的棋子数](https://leetcode-cn.com/problems/available-captures-for-rook)
+# [999. 可以被一步捕获的棋子数](https://leetcode.cn/problems/available-captures-for-rook)
 
 [English Version](/solution/0900-0999/0999.Available%20Captures%20for%20Rook/README_EN.md)
 
@@ -23,7 +23,7 @@
 
 <p><strong>示例 1：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0999.Available%20Captures%20for%20Rook/images/1253_example_1_improved.png" style="height: 305px; width: 300px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0999.Available%20Captures%20for%20Rook/images/1253_example_1_improved.png" style="height: 305px; width: 300px;"></p>
 
 <pre><strong>输入：</strong>[[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;R&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]]
 <strong>输出：</strong>3
@@ -33,7 +33,7 @@
 
 <p><strong>示例 2：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0999.Available%20Captures%20for%20Rook/images/1253_example_2_improved.png" style="height: 306px; width: 300px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0999.Available%20Captures%20for%20Rook/images/1253_example_2_improved.png" style="height: 306px; width: 300px;"></p>
 
 <pre><strong>输入：</strong>[[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;B&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;B&quot;,&quot;R&quot;,&quot;B&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;B&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]]
 <strong>输出：</strong>0
@@ -43,7 +43,7 @@
 
 <p><strong>示例 3：</strong></p>
 
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0999.Available%20Captures%20for%20Rook/images/1253_example_3_improved.png" style="height: 305px; width: 300px;"></p>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0900-0999/0999.Available%20Captures%20for%20Rook/images/1253_example_3_improved.png" style="height: 305px; width: 300px;"></p>
 
 <pre><strong>输入：</strong>[[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;p&quot;,&quot;p&quot;,&quot;.&quot;,&quot;R&quot;,&quot;.&quot;,&quot;p&quot;,&quot;B&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;B&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;p&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]]
 <strong>输出：</strong>3
@@ -61,7 +61,6 @@
 	<li>只有一个格子上存在&nbsp;<code>board[i][j] == &#39;R&#39;</code></li>
 </ol>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -77,22 +76,21 @@
 ```python
 class Solution:
     def numRookCaptures(self, board: List[List[str]]) -> int:
-
-        def search(board, i, j, direction):
-            while i >= 0 and i < 8 and j >= 0 and j < 8:
-                if board[i][j] == 'B': return 0
-                if board[i][j] == 'p': return 1
-                i += direction[0]
-                j += direction[1]
-            return 0
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        res = 0;
-        for i in range(8):
-            for j in range(8):
+        x, y, n = 0, 0, 8
+        for i in range(n):
+            for j in range(n):
                 if board[i][j] == 'R':
-                    for direction in directions:
-                        res += search(board, i, j, direction)
-                    return res
+                    x, y = i, j
+                    break
+        ans = 0
+        for a, b in [[0, -1], [0, 1], [-1, 0], [1, 0]]:
+            i, j = x, y
+            while 0 <= i + a < n and 0 <= j + b < n and board[i + a][j + b] != 'B':
+                i, j = i + a, j + b
+                if board[i][j] == 'p':
+                    ans += 1
+                    break
+        return ans
 ```
 
 ### **Java**
@@ -102,30 +100,106 @@ class Solution:
 ```java
 class Solution {
     public int numRookCaptures(char[][] board) {
-        int[][] directions = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-        int res = 0;
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                if (board[i][j] == 'R') {
-                    for (int[] direction : directions) {
-                        res += search(board, i, j, direction);
-                    }
-                    return res;
+        int[] pos = find(board);
+        int ans = 0, n = 8;
+        int[][] dirs = new int[][]{{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+        for (int[] dir : dirs) {
+            int x = pos[0], y = pos[1], a = dir[0], b = dir[1];
+            while (x + a >= 0 && x + a < n && y + b >= 0 && y + b < n && board[x + a][y + b] != 'B') {
+                x += a;
+                y += b;
+                if (board[x][y] == 'p') {
+                    ++ans;
+                    break;
                 }
             }
         }
-        return res;
+        return ans;
     }
 
-    private int search(char[][] board, int i, int j, int[] direction) {
-        while (i >= 0 && i < 8 && j >= 0 && j < 8) {
-            if (board[i][j] == 'B') return 0;
-            if (board[i][j] == 'p') return 1;
-            i += direction[0];
-            j += direction[1];
+    private int[] find(char[][] board) {
+        int n = 8;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] == 'R') {
+                    return new int[]{i, j};
+                }
+            }
         }
-        return 0;
+        return null;
     }
+}
+```
+
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        vector<int> pos = find(board);
+        int ans = 0, n = 8;
+        vector<vector<int>> dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        for (auto& dir : dirs) {
+            int x = pos[0], y = pos[1], a = dir[0], b = dir[1];
+            while (x + a >= 0 && x + a < n && y + b >= 0 && y + b < n && board[x + a][y + b] != 'B') {
+                x += a;
+                y += b;
+                if (board[x][y] == 'p') {
+                    ++ans;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+
+    vector<int> find(vector<vector<char>>& board) {
+        int n = 8;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] == 'R') {
+                    return {i, j};
+                }
+            }
+        }
+        return {};
+    }
+};
+```
+
+### **Go**
+
+```go
+func numRookCaptures(board [][]byte) int {
+	n := 8
+
+	find := func() []int {
+		for i := 0; i < n; i++ {
+			for j := 0; j < n; j++ {
+				if board[i][j] == 'R' {
+					return []int{i, j}
+				}
+			}
+		}
+		return []int{}
+	}
+
+	pos := find()
+	ans := 0
+	dirs := [4][2]int{{0, -1}, {0, 1}, {1, 0}, {-1, 0}}
+	for _, dir := range dirs {
+		x, y, a, b := pos[0], pos[1], dir[0], dir[1]
+		for x+a >= 0 && x+a < n && y+b >= 0 && y+b < n && board[x+a][y+b] != 'B' {
+			x += a
+			y += b
+			if board[x][y] == 'p' {
+				ans++
+				break
+			}
+		}
+	}
+	return ans
 }
 ```
 

@@ -1,4 +1,4 @@
-# [295. 数据流的中位数](https://leetcode-cn.com/problems/find-median-from-data-stream)
+# [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream)
 
 [English Version](/solution/0200-0299/0295.Find%20Median%20from%20Data%20Stream/README_EN.md)
 
@@ -40,9 +40,9 @@ findMedian() -&gt; 2</pre>
 
 <!-- 这里可写通用的实现逻辑 -->
 
-- 创建大根堆、小根堆，其中：大根堆存放较小的一半元素，小根堆存放较大的一半元素。
-- 添加元素时，先放入小根堆，然后将小根堆对顶元素弹出并放入大根堆（使得大根堆个数多 1）；若大小根堆元素个数差超过 1，则将大根堆元素弹出放入小根堆。
-- 取中位数时，若大根堆元素较多，取大根堆堆顶，否则取两堆顶元素和的平均值。
+-   创建大根堆、小根堆，其中：大根堆存放较小的一半元素，小根堆存放较大的一半元素。
+-   添加元素时，先放入小根堆，然后将小根堆对顶元素弹出并放入大根堆（使得大根堆个数多 1）；若大小根堆元素个数差超过 1，则将大根堆元素弹出放入小根堆。
+-   取中位数时，若大根堆元素较多，取大根堆堆顶，否则取两堆顶元素和的平均值。
 
 <!-- tabs:start -->
 
@@ -52,7 +52,6 @@ findMedian() -&gt; 2</pre>
 
 ```python
 class MedianFinder:
-
     def __init__(self):
         """
         initialize your data structure here.
@@ -61,10 +60,10 @@ class MedianFinder:
         self.max_heap = []
 
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.min_heap, num)
-        heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        heappush(self.min_heap, num)
+        heappush(self.max_heap, -heappop(self.min_heap))
         if len(self.max_heap) - len(self.min_heap) > 1:
-            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+            heappush(self.min_heap, -heappop(self.max_heap))
 
     def findMedian(self) -> float:
         if len(self.max_heap) > len(self.min_heap):
@@ -114,6 +113,44 @@ class MedianFinder {
  * MedianFinder obj = new MedianFinder();
  * obj.addNum(num);
  * double param_2 = obj.findMedian();
+ */
+```
+
+### **C++**
+
+```cpp
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    MedianFinder() { }
+
+    void addNum(int num) {
+        max_heap.push(num);
+        min_heap.push(max_heap.top());
+        max_heap.pop();
+        if (min_heap.size() > max_heap.size()) {
+            max_heap.push(min_heap.top());
+            min_heap.pop();
+        }
+    }
+
+    double findMedian() {
+        if (max_heap.size() > min_heap.size()) {
+            return max_heap.top();
+        }
+        return (double)(max_heap.top() + min_heap.top()) / 2;
+    }
+
+private:
+    priority_queue<int> max_heap;
+    priority_queue<int, vector<int>, greater<int>> min_heap;
+};
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
  */
 ```
 

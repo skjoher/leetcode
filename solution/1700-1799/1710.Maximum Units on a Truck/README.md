@@ -1,4 +1,4 @@
-# [1710. 卡车上的最大单元数](https://leetcode-cn.com/problems/maximum-units-on-a-truck)
+# [1710. 卡车上的最大单元数](https://leetcode.cn/problems/maximum-units-on-a-truck)
 
 [English Version](/solution/1700-1799/1710.Maximum%20Units%20on%20a%20Truck/README_EN.md)
 
@@ -47,7 +47,6 @@
 	<li><code>1 <= numberOfBoxes<sub>i</sub>, numberOfUnitsPerBox<sub>i</sub> <= 1000</code></li>
 	<li><code>1 <= truckSize <= 10<sup>6</sup></code></li>
 </ul>
-
 
 ## 解法
 

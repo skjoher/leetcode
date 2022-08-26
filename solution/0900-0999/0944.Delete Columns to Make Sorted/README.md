@@ -1,4 +1,4 @@
-# [944. 删列造序](https://leetcode-cn.com/problems/delete-columns-to-make-sorted)
+# [944. 删列造序](https://leetcode.cn/problems/delete-columns-to-make-sorted)
 
 [English Version](/solution/0900-0999/0944.Delete%20Columns%20to%20Make%20Sorted/README_EN.md)
 
@@ -67,7 +67,6 @@ cae</pre>
 	<li><code>strs[i]</code> 由小写英文字母组成</li>
 </ul>
 
-
 ## 解法
 
 <!-- 这里可写通用的实现逻辑 -->
@@ -79,7 +78,16 @@ cae</pre>
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```python
-
+class Solution:
+    def minDeletionSize(self, strs: List[str]) -> int:
+        m, n = len(strs[0]), len(strs)
+        ans = 0
+        for j in range(m):
+            for i in range(1, n):
+                if strs[i][j] < strs[i - 1][j]:
+                    ans += 1
+                    break
+        return ans
 ```
 
 ### **Java**
@@ -87,7 +95,82 @@ cae</pre>
 <!-- 这里可写当前语言的特殊实现逻辑 -->
 
 ```java
+class Solution {
+    public int minDeletionSize(String[] strs) {
+        int m = strs[0].length(), n = strs.length;
+        int ans = 0;
+        for (int j = 0; j < m; ++j) {
+            for (int i = 1; i < n; ++i) {
+                if (strs[i].charAt(j) < strs[i - 1].charAt(j)) {
+                    ++ans;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+}
+```
 
+### **C++**
+
+```cpp
+class Solution {
+public:
+    int minDeletionSize(vector<string>& strs) {
+        int n = strs.size();
+        int m = strs[0].size();
+        int res = 0;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n - 1; ++j) {
+                if (strs[j][i] > strs[j + 1][i]) {
+                    res++;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
+### **Rust**
+
+```rust
+impl Solution {
+    pub fn min_deletion_size(strs: Vec<String>) -> i32 {
+        let n = strs.len();
+        let m = strs[0].len();
+        let mut res = 0;
+        for i in 0..m {
+            for j in 1..n {
+                if strs[j - 1].as_bytes()[i] > strs[j].as_bytes()[i] {
+                    res += 1;
+                    break;
+                }
+            }
+        }
+        res
+    }
+}
+```
+
+### **Go**
+
+```go
+func minDeletionSize(strs []string) int {
+	m, n := len(strs[0]), len(strs)
+	ans := 0
+	for j := 0; j < m; j++ {
+		for i := 1; i < n; i++ {
+			if strs[i][j] < strs[i-1][j] {
+				ans++
+				break
+			}
+		}
+	}
+	return ans
+}
 ```
 
 ### **...**

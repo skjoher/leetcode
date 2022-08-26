@@ -42,14 +42,6 @@ Thus, &quot;abcabcababcc&quot; is valid.
 <strong>Explanation:</strong> It is impossible to get &quot;abccba&quot; using the operation.
 </pre>
 
-<p><strong>Example 4:</strong></p>
-
-<pre>
-<strong>Input:</strong> s = &quot;cababc&quot;
-<strong>Output:</strong> false
-<strong>Explanation:</strong> It is impossible to get &quot;cababc&quot; using the operation.
-</pre>
-
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
@@ -57,7 +49,6 @@ Thus, &quot;abcabcababcc&quot; is valid.
 	<li><code>1 &lt;= s.length &lt;= 2 * 10<sup>4</sup></code></li>
 	<li><code>s</code> consists of letters <code>&#39;a&#39;</code>, <code>&#39;b&#39;</code>, and <code>&#39;c&#39;</code></li>
 </ul>
-
 
 ## Solutions
 
@@ -81,5 +72,4 @@ Thus, &quot;abcabcababcc&quot; is valid.
 
 ```
 
-<!-- tabs:end -->
 <!-- tabs:end -->
